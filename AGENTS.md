@@ -20,3 +20,34 @@ Consult these guides before working on related tasks:
 - [Adding or managing content](https://docs.astro.build/en/guides/content-collections/)
 - [Adding styles or using Tailwind](https://docs.astro.build/en/guides/styling/)
 - [Supporting multiple languages](https://docs.astro.build/en/guides/internationalization/)
+
+## DistroQuest scope and content
+
+- Respect the requested milestone boundary; do not advance to the next milestone
+  without an explicit request. Local planning notes may exist in the ignored `docs/`
+  folder, but tracked instructions must remain useful without those notes.
+- Keep user-facing text, metadata, and accessible labels in `src/i18n/`.
+  English is published; Italian, Spanish, Portuguese, French, and German are planned.
+  Do not expose untranslated routes or a language selector before content is ready.
+- Use at least `0.875rem` for small readable text; do not shrink it further on mobile.
+
+## Local verification
+
+- Leave a dev server started by the user running. Reuse its reported URL for inspection.
+- In the managed sandbox, process visibility can be restricted. Astro’s status check
+  may falsely treat an outside-sandbox PID as stale and remove its lock file. Inspect
+  status in the same execution context as the server; do not restart a server merely
+  because a sandboxed status check reports it missing.
+- If browser automation is unavailable, installed `chromium-browser --headless` can
+  verify the static build with an isolated profile under `/tmp`. Keep test tooling
+  outside the shipped application and close only processes started for that test.
+
+## Brand assets
+
+- `public/favicon.svg` is the canonical shield/terminal mark. Reuse
+  `src/components/BrandMark.astro` for page placements; avoid copied SVG paths.
+- Generate `public/favicon.ico` from that SVG when the mark changes. Keep the
+  16, 32, 48, 64, 128, and 256px fallback sizes aligned with the SVG.
+
+  Regenerate with `magick -background none public/favicon.svg -filter point -define
+  icon:auto-resize=256,128,64,48,32,16 public/favicon.ico` (build-time tooling only).

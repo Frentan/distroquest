@@ -1,0 +1,76 @@
+---
+import { defaultLocale, getMessages, type PublishedLocale } from '../i18n';
+interface Props {
+  locale?: PublishedLocale;
+}
+const { locale = defaultLocale } = Astro.props;
+const copy = getMessages(locale).theme;
+---
+
+<button
+  class="theme-toggle"
+  type="button"
+  aria-label={copy.switchToDark}
+  data-light-label={copy.light}
+  data-dark-label={copy.dark}
+  data-light-aria={copy.switchToLight}
+  data-dark-aria={copy.switchToDark}
+  hidden
+>
+  <span class="theme-icon" aria-hidden="true">
+    🌙
+  </span>
+  <span class="theme-label">{copy.dark}</span>
+</button>
+
+<script>
+  const toggle = document.querySelector<HTMLButtonElement>('.theme-toggle');
+  const label = toggle?.querySelector<HTMLElement>('.theme-label');
+  const icon = toggle?.querySelector<HTMLElement>('.theme-icon');
+  const systemTheme = window.matchMedia('(prefers-color-scheme: dark)');
+  let manualChoice = false;
+  try {
+    const saved = localStorage.getItem('distroquest-theme');
+    manualChoice = saved === 'light' || saved === 'dark';
+  } catch {
+    /* An in-memory override still works when storage is blocked. */
+  }
+
+  function applyTheme(theme: 'light' | 'dark') {
+    document.documentElement.dataset.theme = theme;
+    const target = theme === 'dark' ? 'light' : 'dark';
+    if (label) label.textContent = toggle?.dataset[`${target}Label`] ?? '';
+    if (icon) icon.textContent = target === 'light' ? '☀️' : '🌙';
+    toggle?.setAttribute('aria-label', toggle.dataset[`${target}Aria`] ?? '');
+  }
+
+  if (toggle) {
+    applyTheme(
+      document.documentElement.dataset.theme === 'dark' ? 'dark' : 'light',
+    );
+    toggle.hidden = false;
+    toggle.addEventListener('click', () => {
+      const theme =
+        document.documentElement.dataset.theme === 'dark' ? 'light' : 'dark';
+      manualChoice = true;
+      applyTheme(theme);
+      try {
+        localStorage.setItem('distroquest-theme', theme);
+      } catch {}
+    });
+    systemTheme.addEventListener('change', (event) => {
+      if (!manualChoice) applyTheme(event.matches ? 'dark' : 'light');
+    });
+    window.addEventListener('storage', (event) => {
+      if (event.key !== 'distroquest-theme' && event.key !== null) return;
+      manualChoice = event.newValue === 'light' || event.newValue === 'dark';
+      applyTheme(
+        manualChoice
+          ? (event.newValue as 'light' | 'dark')
+          : systemTheme.matches
+            ? 'dark'
+            : 'light',
+      );
+    });
+  }
+</script>

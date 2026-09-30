@@ -22,3 +22,11 @@ pnpm-debug.log*
 
 # jetbrains setting folder
 .idea/
+
+# local planning and internal development notes
+/docs/
+
+# local agent and tool state
+/.agents/
+/.codex/
+/.aws/

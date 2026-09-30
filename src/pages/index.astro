@@ -1,17 +1,70 @@
 ---
-
+import BaseLayout from '../layouts/BaseLayout.astro';
+import QuestScene from '../components/QuestScene.astro';
+import { defaultLocale, getMessages, localePath } from '../i18n';
+const locale = defaultLocale;
+const copy = getMessages(locale);
 ---
 
-<html lang="en">
-	<head>
-		<meta charset="utf-8" />
-		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-		<link rel="icon" href="/favicon.ico" />
-		<meta name="viewport" content="width=device-width" />
-		<meta name="generator" content={Astro.generator} />
-		<title>Astro</title>
-	</head>
-	<body>
-		<h1>Astro</h1>
-	</body>
-</html>
+<BaseLayout
+  locale={locale}
+  title={copy.home.title}
+  description={copy.home.description}
+>
+  <div class="container">
+    <section class="hero" aria-labelledby="hero-title">
+      <div class="hero-copy">
+        <p class="eyebrow">
+          <span aria-hidden="true">✦</span> {copy.home.eyebrow}
+        </p>
+        <h1 id="hero-title">
+          {copy.site.wordmark[0]}
+          <span>{copy.site.wordmark[1]}</span>
+          <span class="title-dot">.</span>
+        </h1>
+        <p class="tagline">
+          {copy.home.tagline[0]}
+          <br class="desktop-break" /> {copy.home.tagline[1]}
+        </p>
+        <p class="hero-description">{copy.home.introduction}</p>
+        <a class="button button-primary" href={localePath('/quiz/', locale)}>
+          {copy.home.begin} <span aria-hidden="true">→</span>
+        </a>
+        <ul class="quest-facts" aria-label={copy.home.factsLabel}>
+          {copy.home.facts.map((fact) => (
+            <li>{fact}</li>
+          ))}
+        </ul>
+        <p class="preview-note">{copy.home.preview}</p>
+      </div>
+      <QuestScene locale={locale} />
+    </section>
+    <section class="how-section" id="how-it-works" aria-labelledby="how-title">
+      <div class="section-heading">
+        <p class="eyebrow">{copy.home.howEyebrow}</p>
+        <h2 id="how-title">{copy.home.howTitle}</h2>
+        <p>{copy.home.howIntroduction}</p>
+      </div>
+      <ol class="steps">
+        {copy.home.steps.map((step, index) => (
+          <li>
+            <span class="step-number" aria-hidden="true">
+              {String(index + 1).padStart(2, '0')}
+            </span>
+            <h3>{step.title}</h3>
+            <p>{step.description}</p>
+          </li>
+        ))}
+      </ol>
+    </section>
+    <aside class="privacy-note" aria-label={copy.home.privacyLabel}>
+      <span class="privacy-icon" aria-hidden="true">
+        ◇
+      </span>
+      <p>
+        <strong>{copy.home.privacyTitle}</strong> {copy.home.privacyDescription}
+      </p>
+      <span class="privacy-label">{copy.home.privacyBadge}</span>
+    </aside>
+  </div>
+</BaseLayout>

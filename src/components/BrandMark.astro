@@ -1,0 +1,17 @@
+---
+interface Props {
+  class?: string;
+  size?: number;
+}
+const { class: className = 'brand-icon', size = 32 } = Astro.props;
+---
+
+<!-- The standalone SVG is canonical; reuse it rather than copying its paths. -->
+<img
+  class={className}
+  src="/favicon.svg"
+  width={size}
+  height={size}
+  alt=""
+  aria-hidden="true"
+/>

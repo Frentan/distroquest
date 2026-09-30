@@ -1,0 +1,35 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import { defaultLocale, getMessages, localePath } from '../i18n';
+const locale = defaultLocale;
+const copy = getMessages(locale).quiz;
+---
+
+<BaseLayout
+  locale={locale}
+  title={copy.title}
+  description={copy.description}
+  noindex
+>
+  <section class="placeholder container" aria-labelledby="quiz-title">
+    <span class="placeholder-emblem" aria-hidden="true">
+      ✦
+    </span>
+    <p class="eyebrow">{copy.eyebrow}</p>
+    <h1 id="quiz-title">
+      {copy.heading[0]}
+      <br />
+      {copy.heading[1]}
+    </h1>
+    <p>{copy.introduction}</p>
+    <div class="placeholder-details">
+      {copy.facts.map((fact) => (
+        <span>{fact}</span>
+      ))}
+    </div>
+    <a class="button button-primary" href={localePath('/', locale)}>
+      {copy.back} <span aria-hidden="true">←</span>
+    </a>
+    <p class="placeholder-footnote">{copy.footnote}</p>
+  </section>
+</BaseLayout>
