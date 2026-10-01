@@ -4,7 +4,8 @@
 
 A small, playful Linux distribution finder built with Astro, TypeScript, and plain CSS.
 The current site includes a responsive homepage, light/dark themes, and a quiz placeholder.
-The recommendation quiz is still in development.
+The recommendation quiz is still in development. Its 16-question schema and
+answer-to-preference model are implemented; the quiz UI and matching engine are later work.
 
 No signup, cookies, or tracking. Only your theme preference is saved in your browser.
 
@@ -60,3 +61,18 @@ npm run data:review -- --json     # Complete profiles
 
 Both commands validate the dataset before printing it. See [the model notes](src/data/README.md)
 for capability definitions, traits, recommendation constraints, and assessment assumptions.
+
+## User preferences
+
+The questionnaire defines eight core, four practical, three philosophy, and one
+final-path question. Question copy lives in `src/i18n/en/questions.ts`; typed effects
+and profile construction are independent of presentation and distro matching.
+
+```sh
+npm run preferences:review              # Questions and example preference table
+npm run preferences:review -- --json     # Questions, effects, answers, and profiles
+```
+
+See [the preference model notes](src/preferences/README.md) for the answer contract,
+target/importance semantics, eligibility evidence, and validation coverage. About
+three minutes remains the completion target; it needs a timed playtest with the UI.

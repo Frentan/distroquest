@@ -1,0 +1,173 @@
+# User preferences, v1
+
+Milestone 3 defines 16 questions and translates a complete answer set into a
+deterministic `UserPreferenceProfile`. It does not rank distributions, evaluate
+their constraints, render a quiz, or produce result screens. The 25 reviewed
+distro records remain unchanged.
+
+## Review and use
+
+```sh
+npm run preferences:review                  # Questions and example target table
+npm run preferences:review -- --json        # Copy, effects, answers, full profiles
+npm run preferences:review -- --answers /tmp/answers.json
+npm test
+```
+
+The JSON review output retains option IDs, emoji, localized copy, and effects.
+The file mode accepts the same answer shape as the builder and exits unsuccessfully
+for invalid JSON or answers. These are local inspection tools; no answers are
+persisted by the application.
+
+```ts
+import { buildPreferenceProfile, validateAnswers } from './profile.ts';
+import type { AnswerSet } from '../domain/preferences.ts';
+
+// One option ID in an array for single-choice questions; 1–3 for use-cases.
+// See scripts/preference-examples.ts for eight complete answer sets.
+const issues = validateAnswers(answers);
+if (issues.length === 0) {
+  const profile = buildPreferenceProfile(answers);
+}
+```
+
+`buildPreferenceProfile(unknown)` validates independently and throws an
+`InvalidAnswersError` with structured question IDs and issue codes. Missing,
+empty, malformed, duplicate, unknown, or excessive selections are rejected.
+Incomplete sessions belong in future UI state, not in fabricated finished profiles.
+Issue codes are internal; future UI error messages must live in `src/i18n/`.
+
+## Boundaries
+
+- `src/domain/preferences.ts`: question, effect, answer, and profile contracts.
+- `src/data/questions.ts`: stable IDs, section/order, selection limits, decorative
+  emoji, numeric effects, and explicit trait/eligibility evidence.
+- `src/i18n/en/questions.ts`: prompts, helpers, labels, and final-road descriptions;
+  exposed as `en.questions`. No matching logic depends on translated strings.
+- `src/preferences/profile.ts`: answer validation and pure profile construction.
+- `scripts/preference-examples.ts`: eight review fixtures shared with tests.
+
+`QUESTION_COUNT` derives from the schema and supplies both public format badges.
+The question order follows the requested 8 / 4 / 3 / 1 structure:
+
+|   # | ID               | Main evidence                                              |
+| --: | :--------------- | :--------------------------------------------------------- |
+|   1 | experience       | Beginner needs; reported Linux experience                  |
+|   2 | setup            | Default polish, convenience, system setup appetite         |
+|   3 | freshness        | Desired software currency and conservatism                 |
+|   4 | maintenance      | Convenience, conservatism; upkeep tolerance                |
+|   5 | control          | System control; explicit control appetite                  |
+|   6 | customization    | Desktop flexibility and default polish                     |
+|   7 | release          | Fixed/rolling preference and strength                      |
+|   8 | system-model     | Traditional/atomic preference, container-first interest    |
+|   9 | use-cases        | 1–3 purposes; development and old-hardware needs           |
+|  10 | gaming           | Gaming intensity                                           |
+|  11 | hardware         | Resource constraints, separate from machine age            |
+|  12 | gpu              | Graphics vendor or explicit uncertainty                    |
+|  13 | software-freedom | Free-software preference                                   |
+|  14 | troubleshooting  | Learning tolerance; secondary convenience/control needs    |
+|  15 | identity         | Aspirational preferences and explicit specialist interests |
+|  16 | path             | Small thematic reinforcement                               |
+
+## Targets, evidence weights, and importance
+
+Capabilities use the same ten keys as the distro model. Each answer contributes
+`{ target, weight }` pairs on 0–5, rather than adding positive/negative modifiers
+to an arbitrary starting value. Targets are weighted means:
+
+```text
+target(axis) = sum(answer target × evidence weight) / sum(evidence weight)
+```
+
+With no evidence, a target is 0 and has zero importance. Outputs are continuous
+0–5 values; they are not rounded to distro half steps. No per-person min/max
+normalization occurs, so answering one question does not rescale unrelated axes.
+
+Direct questions use weight 4; secondary signals use 1 (homelab development uses 2);
+identity uses 2; the final road uses 0.5. Setup describes secondary consequences,
+so it uses 1. Weights represent evidence strength within an axis, not the later
+distribution match score. Freshness and stability are related but not forced to
+sum to 5. Rolling and atomic choices never change numeric capabilities.
+
+`importance` is a separate 0–5 map. For benefit axes it equals the resulting
+target: a user who needs little gaming support gives it little weight. Freshness
+has importance 4 even for a low target, because choosing older software is still
+a meaningful directional preference. There is no global normalization of weights.
+These are initial design judgments to review with scenarios, not empirically
+calibrated measurements.
+
+Milestone 4 must distinguish wanted benefits from aversions. Zero gaming need must
+not reward poor gaming; advanced users must not be rewarded for an unfriendly
+distro. Extra polish or beginner support is not inherently a mismatch. Capability
+targets and importance are inputs to that decision, not a selected distance metric
+or implemented matching engine. Direct system-model preferences remain traits.
+
+## Explicit evidence and mixed answers
+
+- Experience comes only from question 1. Regular use is intermediate; terminal
+  confidence and the init-system answer are advanced. Humor remains self-report,
+  not proof of expertise. Aspirations and troubleshooting never promote experience.
+- Upkeep tolerance comes only from question 4; control appetite from question 5;
+  learning tolerance from question 14. Willingness to learn a new model is distinct
+  from wanting regular maintenance. The architect fixture demonstrates this.
+- Question 9 records all selected use cases in canonical order. Development maps
+  to developer needs; homelab supplies a smaller development signal. Creative and
+  security purposes remain explicit traits because the current capability model
+  has no creative-work or pentesting-quality axis. No such score is invented.
+- Question 10 exclusively supplies numeric gaming intensity, including a genuine
+  zero. Question 9's gaming selection remains a use case, even if answers differ.
+- Question 11 supplies the main resource-constraint target. Selecting old-hardware
+  use in question 9 supplies secondary evidence; opposing answers blend rather
+  than discarding either. This is not a RAM, CPU architecture, or compatibility gate.
+- Fixed/traditional choices are explicit `false`; neutral choices omit the
+  optional boolean and have strength 0. Positive preferences have strength 1 or 2.
+  Atomic updates do not imply rolling releases. Container-first is separate from
+  atomic interest so NixOS is not silently treated as an image-based workstation.
+- Free-software preference is 0, 2, 4, or 5. It indicates policy preference, not a
+  guarantee of entirely free firmware, applications, or drivers.
+- `unknown` GPU is not inferred from use cases. `other` retains unsupported or
+  unusual-hardware uncertainty. NVIDIA is evidence for later setup modifiers,
+  not an eligibility veto. CPU architecture, driver generation, and game/anti-cheat
+  compatibility need later checks before actionable hardware claims.
+- Identity has seven options to name technical learning, declarative configuration,
+  minimalism, and traditional Unix directly. Choosing one supplies only that
+  interest; the learning use case can add technical learning alongside it. Every
+  interest in the existing distro constraints is reachable without stereotypes.
+- The final road contributes only low-weight capability targets. It cannot change
+  traits, experience, learning/upkeep tolerance, or specialist eligibility evidence.
+
+Mixed answers are retained. A newcomer can want deep control; an experienced user
+can want low maintenance. Wanting current software and fixed releases is coherent.
+A learning/security use case records intent but does not satisfy Kali's required
+intermediate experience. Actual `require` and `strongly-prefer` evaluation remains
+Milestone 4 work; `UserTraits.useCases`, `interests`, and `eligibility` provide its
+existing vocabulary without replacing distro constraints.
+
+## Copy and timing
+
+Keep the 16-question count. Rolling/system-model questions move into core;
+free-software preference, troubleshooting, and identity form philosophy. The
+atomic prompt avoids suggesting a protected base is impossible to modify or break.
+Hardware wording distinguishes available resources from age. Intel is named
+explicitly; integrated graphics alone do not identify a vendor.
+
+Emoji are ordinary Unicode strings, not IDs or meaning-bearing controls. Future
+rendering should put them in `aria-hidden="true"` spans alongside visible labels.
+Appearance varies across platforms; emoji must never be the only accessible name.
+
+About three minutes remains a target, not a timed result. Keep optional explanations
+short and show one question at a time in the future UI. The one multiselect and
+seven-option identity question deserve attention in a timed playtest. Do not add
+questions until testing shows a missing decision signal worth the extra reading.
+
+## Verification and next boundary
+
+Tests cover schema/copy completeness, every option, all 92 valid use-case combinations,
+bounded deterministic output, canonical ordering, malformed answers, nonmutation,
+monotonic direct signals, neutral traits, GPU separation, gaming zero, specialist
+evidence, and the finale's limited influence across eight complete scenarios.
+
+Milestone 4 will compare these profiles against the 25 distro records, evaluate
+constraints, select a fit function and trait modifiers, and explain recommendations.
+No distro-specific bonuses, ranking thresholds, match percentages, result diversity
+rules, or final result screens are implemented here.

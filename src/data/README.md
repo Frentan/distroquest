@@ -3,8 +3,9 @@
 Milestone 2 contains 25 desktop-oriented assessments. Scores are editorial estimates
 for comparison and tuning, informed by the linked project sources; they are not
 benchmarks, measured reliability, or published project ratings. Review the table
-before designing the questionnaire. No preference weights, scoring engine, ranking,
-or eligibility evaluator exists yet.
+before designing the questionnaire. Milestone 3 now defines questions and user
+preferences separately in [the preference model](../preferences/README.md).
+No distro scoring engine, ranking, or eligibility evaluator exists yet.
 
 ## Inspect and validate
 
@@ -113,7 +114,8 @@ The later engine must decide soft penalty strength and how to handle missing ans
 Conditions describe minimum experience, maintenance/learning tolerance, desire for system
 control, a use case, or a specific interest. Ordered thresholds are intermediate
 then advanced for experience, moderate then high for tolerance/control. They are
-eligibility vocabulary only; no answer state or user preference object exists.
+eligibility vocabulary. Milestone 3 provides explicit user evidence using these
+values, extended with lower experience/tolerance levels; constraint evaluation is later work.
 
 - Kali requires security testing **and** at least intermediate Linux experience.
 - Gentoo strongly prefers advanced experience, high upkeep tolerance, and high control.
@@ -161,8 +163,8 @@ cached page, so it is not evidence of a newly verified release state.
   container footprint. Alpine/Arch/Gentoo polish measures what is supplied, not what
   an expert could build. Slackware stability does not override its soft conditions.
 
-Next step: review the full numeric table, edition assumptions, and specialist
-constraints, then approve any tuning before starting Milestone 3.
+The numeric table, edition assumptions, and specialist constraints were reviewed
+before Milestone 3. Keep further distro tuning separate from questionnaire design.
 
 ## Relative relationships and later result diversity
 

@@ -1,9 +1,12 @@
-import { distroContentEn } from './en/distros';
+import { distroContentEn } from './en/distros.ts';
+import { questionContentEn } from './en/questions.ts';
+import { QUESTION_COUNT } from '../data/questions.ts';
 
 // All English UI copy, including metadata and accessible labels, lives here.
 // Preserve whole sentences; future translations can choose their own line breaks.
 export const en = {
   distros: distroContentEn,
+  questions: questionContentEn,
   site: {
     name: 'DistroQuest',
     wordmark: ['Distro', 'Quest'],
@@ -30,7 +33,7 @@ export const en = {
       'Find the Linux distribution that fits the way you use your computer. A few questions now. Fewer installation sidequests later.',
     begin: 'Begin Quest',
     factsLabel: 'Planned quiz format',
-    facts: ['14 questions', '~3 minutes', 'No signup'],
+    facts: [`${QUESTION_COUNT} questions`, '~3 minutes', 'No signup'],
     preview: 'The quest is taking shape. Preview the starting point.',
     howEyebrow: 'A LITTLE SELF-DISCOVERY',
     howTitle: 'Less hopping. More doing.',
@@ -75,7 +78,7 @@ export const en = {
     heading: ['A little patience,', 'adventurer.'],
     introduction:
       'The trail is still being mapped. The quiz isn’t ready yet, but your starting point is.',
-    facts: ['14 questions', 'About 3 minutes', 'No signup'],
+    facts: [`${QUESTION_COUNT} questions`, 'About 3 minutes', 'No signup'],
     back: 'Back to camp',
     footnote:
       'No answers to save. No account to create. Come back when the quest is ready.',
