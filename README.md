@@ -29,6 +29,7 @@ npm run dev:stop
 
 ```sh
 npm run check
+npm test
 npm run format:check
 npm run build
 ```
@@ -44,5 +45,18 @@ building to populate canonical URLs and the sitemap. No server adapter is requir
 
 ## Content
 
-English copy, metadata, and accessible labels live in `src/i18n/en.ts`. English is the
+English copy, metadata, and accessible labels live in `src/i18n/`. English is the
 only published language; the locale structure is prepared for future translations.
+
+## Distro data
+
+The dataset contains 25 typed distro profiles. Technical data lives in `src/data/`;
+English descriptions and archetypes live in `src/i18n/en/distros.ts`.
+
+```sh
+npm run data:review              # Capability table
+npm run data:review -- --json     # Complete profiles
+```
+
+Both commands validate the dataset before printing it. See [the model notes](src/data/README.md)
+for capability definitions, traits, recommendation constraints, and assessment assumptions.

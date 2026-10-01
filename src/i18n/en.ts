@@ -1,6 +1,9 @@
+import { distroContentEn } from './en/distros';
+
 // All English UI copy, including metadata and accessible labels, lives here.
 // Preserve whole sentences; future translations can choose their own line breaks.
 export const en = {
+  distros: distroContentEn,
   site: {
     name: 'DistroQuest',
     wordmark: ['Distro', 'Quest'],
