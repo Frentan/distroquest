@@ -35,8 +35,8 @@ if (issues.length === 0) {
 `buildPreferenceProfile(unknown)` validates independently and throws an
 `InvalidAnswersError` with structured question IDs and issue codes. Missing,
 empty, malformed, duplicate, unknown, or excessive selections are rejected.
-Incomplete sessions belong in future UI state, not in fabricated finished profiles.
-Issue codes are internal; future UI error messages must live in `src/i18n/`.
+Incomplete sessions belong in `src/quiz/state.ts`, not in fabricated finished profiles.
+Issue codes are internal; user-facing error messages live in `src/i18n/`.
 
 ## Boundaries
 
@@ -121,6 +121,10 @@ Direct system-model preferences remain traits.
   has no creative-work or pentesting-quality axis. No such score is invented.
 - Question 10 exclusively supplies numeric gaming intensity, including a genuine
   zero. Question 9's gaming selection remains a use case, even if answers differ.
+  Everyday, creative, and gaming intent also select result preparation tips;
+  this presentation step adds no scoring weights or eligibility evidence. Gaming
+  tips require positive explicit intensity. Creative app/peripheral advice is not
+  a claim about distro compatibility with a specific workflow.
 - Question 11 supplies the main resource-constraint target. Selecting old-hardware
   use in question 9 supplies secondary evidence; opposing answers blend rather
   than discarding either. This is not a RAM, CPU architecture, or compatibility gate.
@@ -141,10 +145,12 @@ Direct system-model preferences remain traits.
   atomic interest so NixOS is not silently treated as an image-based workstation.
 - Free-software preference is 0, 2, 4, or 5. It indicates policy preference, not a
   guarantee of entirely free firmware, applications, or drivers.
-- `unknown` GPU is not inferred from use cases. `other` retains unsupported or
-  unusual-hardware uncertainty. NVIDIA is evidence for later setup modifiers,
-  not an eligibility veto. CPU architecture, driver generation, and game/anti-cheat
-  compatibility need later checks before actionable hardware claims.
+- `unknown` GPU is not inferred from use cases. `other` retains unusual-hardware
+  uncertainty. `open-driver` combines AMD/Intel graphics. Mac answers use neutral
+  graphics evidence and a separate platform layer. NVIDIA is evidence for setup
+  modifiers, not an eligibility veto. The platform layer distinguishes native
+  Mac installation paths. Driver generation, exact device features, and game/anti-cheat compatibility still need
+  checks before actionable hardware claims.
 - Identity has seven options to name technical learning, declarative configuration,
   minimalism, and traditional Unix directly. Choosing one supplies only that
   interest; the learning use case can add technical learning alongside it. Every
@@ -164,17 +170,19 @@ provide its existing vocabulary without replacing distro constraints.
 Keep the 16-question count. Rolling/system-model questions move into core;
 free-software preference, troubleshooting, and identity form philosophy. The
 atomic prompt avoids suggesting a protected base is impossible to modify or break.
-Hardware wording distinguishes available resources from age. Intel is named
-explicitly; integrated graphics alone do not identify a vendor.
+Hardware wording distinguishes available resources from age. AMD and Intel graphics share the standard open-driver answer. Mac types are
+separate platform choices; one conditional follow-up identifies the Apple Silicon
+generation or Intel Mac T2 status. The 16 preference questions remain unchanged in
+count; Mac users see 17 screens. Platform answers do not enter preference scoring.
 
-Emoji are ordinary Unicode strings, not IDs or meaning-bearing controls. Future
-rendering should put them in `aria-hidden="true"` spans alongside visible labels.
+Emoji are ordinary Unicode strings, not IDs or meaning-bearing controls. The quiz
+renders them in `aria-hidden="true"` spans alongside visible labels.
 Appearance varies across platforms; emoji must never be the only accessible name.
 
-About three minutes remains a target, not a timed result. Keep optional explanations
-short and show one question at a time in the future UI. The one multiselect and
-seven-option identity question deserve attention in a timed playtest. Do not add
-questions until testing shows a missing decision signal worth the extra reading.
+About three minutes was confirmed in a user playtest of the Milestone 5A UI.
+Keep optional explanations short and show one question at a time. Completion time
+will vary by user. Do not add questions until testing shows a missing decision
+signal worth the extra reading.
 
 ## Verification and next boundary
 
@@ -185,5 +193,6 @@ evidence, and the finale's limited influence across eight complete scenarios.
 
 Milestone 4 now compares these profiles against all 25 distro records in the separate
 recommendation engine. This builder keeps its original target/importance contract.
-Scoring, constraint evaluation, and ranking diagnostics live in that engine; quiz
-and final result screens remain later work.
+Scoring, constraint evaluation, and ranking diagnostics live in that engine.
+Milestone 5A's quiz and result presentation live in `src/quiz/` and consume its
+outputs without changing the builder's evidence rules or the engine's scores.

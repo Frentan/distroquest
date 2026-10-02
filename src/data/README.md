@@ -182,7 +182,7 @@ cached page, so it is not evidence of a newly verified release state.
 The numeric table, edition assumptions, and specialist constraints were reviewed
 before Milestone 3. Keep further distro tuning separate from questionnaire design.
 
-## Relative relationships and later result diversity
+## Relative relationships and result diversity
 
 The reviewed model prioritizes coherent relationships over isolated scores:
 
@@ -193,12 +193,11 @@ The reviewed model prioritizes coherent relationships over isolated scores:
 These relationships are regression-checked in the dataset tests. Breadth represents
 ordinary desktop recommendation reach; it is not an overall quality score.
 
-For the later results model, avoid placing two near-identical members of the same
-family among the top three unless their match scores differ meaningfully. Present
-the best-matching Fedora desktop as the winner and its sibling as a desktop
-alternative, leaving the other recommendation slots for distinct paths. Either
-Workstation or KDE can win according to the user's needs; the breadth difference
-alone is not sufficient to guarantee diverse results.
+Milestone 5A groups sibling editions in the public shortlist. When Fedora leads,
+the best-matching desktop is the winner and its sibling is a desktop alternative,
+leaving the other recommendation slots for distinct paths. Either Workstation or
+KDE can win according to the user's needs. Platform support can narrow or reorder
+practical installation paths independently of these preference scores.
 
 For example, hypothetical scores of Fedora KDE 92, Workstation 90, Tumbleweed 84,
 and CachyOS 81 should yield KDE as winner, Workstation as its desktop alternative,
@@ -212,5 +211,5 @@ Likewise, Debian ancestry does not make every Debian derivative interchangeable.
 The engine exposes both ancestry and a `presentationGroup`: Fedora Workstation
 and KDE share `fedora-desktop`; other distro IDs remain distinct. Independent `workflow` metadata distinguishes conventional desktop, atomic
 desktop, gaming appliance, and declarative system. Core scoring never penalizes
-family members or applies a one-per-family limit. Choosing a meaningful-difference threshold and
-presenting grouped alternatives remain later result-UI decisions.
+family members or applies a one-per-family limit. Grouped alternatives are now
+presented by the quiz UI; no meaningful-difference threshold has been introduced.

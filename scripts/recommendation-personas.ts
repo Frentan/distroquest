@@ -52,7 +52,7 @@ export const recommendationPersonas = {
     control: ['understand'],
     'use-cases': ['gaming'],
     gaming: ['main'],
-    gpu: ['amd'],
+    gpu: ['open-driver'],
     'software-freedom': ['pragmatic'],
     identity: ['dependable'],
     path: ['modern'],
@@ -61,7 +61,7 @@ export const recommendationPersonas = {
     // Explicit device evidence; gaming intensity and GPU remain separate answers.
     ...preferenceExamples.gamer,
     hardware: ['handheld'],
-    gpu: ['amd'],
+    gpu: ['open-driver'],
     control: ['drive'],
     'system-model': ['protected'],
     'use-cases': ['gaming'],

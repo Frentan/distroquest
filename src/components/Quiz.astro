@@ -1,0 +1,18 @@
+---
+import { quizCopy } from '../i18n/en/quiz';
+import '../styles/quiz.css';
+---
+
+<section class="quiz-shell container" aria-label={quizCopy.eyebrow}>
+  <div id="quiz-root">
+    <p>{quizCopy.loading}</p>
+  </div>
+  <noscript>
+    <p>{quizCopy.noScript}</p>
+  </noscript>
+</section>
+<script>
+  import { mountQuiz } from '../quiz/client';
+  const root = document.querySelector<HTMLElement>('#quiz-root');
+  if (root) mountQuiz(root);
+</script>

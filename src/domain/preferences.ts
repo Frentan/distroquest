@@ -33,7 +33,7 @@ export type UseCase = (typeof preferenceUseCases)[number];
 export type Interest = (typeof interests)[number];
 export type Experience = 'new' | 'beginner' | 'intermediate' | 'advanced';
 export type Tolerance = 'low' | 'moderate' | 'high';
-export type Gpu = 'nvidia' | 'amd' | 'intel' | 'other' | 'unknown';
+export type Gpu = 'nvidia' | 'open-driver' | 'other' | 'unknown';
 export type Hardware =
   'powerful' | 'recent' | 'aging' | 'limited' | 'unspecified';
 export type DeviceType = 'desktop-or-laptop' | 'handheld';

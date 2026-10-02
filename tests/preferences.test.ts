@@ -59,8 +59,8 @@ test('16 questions have the requested sections, complete localized copy, and bou
       }
     }
   }
-  assert.equal(en.home.facts[0], '16 questions');
-  assert.equal(en.quiz.facts[0], '16 questions');
+  assert.equal(en.home.facts[0], '16 questions (+1 for Macs)');
+  assert.equal(en.quiz.progress(1, QUESTION_COUNT), 'Question 1 of 16');
 });
 
 test('missing, malformed, duplicate, unknown, and excessive answers fail without defaults', () => {

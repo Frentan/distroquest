@@ -229,9 +229,9 @@ export const questions: readonly Question[] = [
   ]),
   single('gpu', 'practical', [
     option('nvidia', '🟢', { traits: { gpu: 'nvidia' } }),
-    option('amd', '🔴', { traits: { gpu: 'amd' } }),
-    option('intel', '🔵', { traits: { gpu: 'intel' } }),
-    option('other', '🛸', { traits: { gpu: 'other' } }),
+    option('open-driver', '🔵', { traits: { gpu: 'open-driver' } }),
+    option('apple-silicon', '🍏', { traits: { gpu: 'other' } }),
+    option('intel-mac', '🍎', { traits: { gpu: 'other' } }),
     option('unknown', '❓', { traits: { gpu: 'unknown' } }),
   ]),
   single('software-freedom', 'philosophy', [

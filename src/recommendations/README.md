@@ -1,8 +1,9 @@
 # Recommendation engine, model v2
 
 Milestone 4 transforms a complete 16-question answer set into a normalized profile
-and a deterministic ranking of all 25 distro records. It implements no quiz or
-result UI and adds no dependencies. The questionnaire still has 16 questions. The hardware/customization questions
+and a deterministic ranking of all 25 distro records. The engine stays independent
+of Milestone 5A's quiz and result UI and adds no dependencies. The questionnaire
+still has 16 base questions. The hardware/customization questions
 now include handheld and familiar-layout answers; Fedora Workstation assessments
 and the scoring rules have been tuned against the complete persona suite.
 
@@ -18,7 +19,7 @@ const result = recommend(answers);
 `recommend(unknown)` is the public input boundary. Existing answer validation rejects
 incomplete, malformed, unknown, duplicate, or excessive selections with
 `InvalidAnswersError`. It never supplies missing answers. Outputs contain no localized
-prose: reasons and cautions are machine codes for later mapping into `src/i18n/`.
+prose: reasons and cautions are machine codes mapped into `src/i18n/` by the quiz UI.
 
 `normalizePreferenceProfile` adapts the existing `UserPreferenceProfile` into a
 `RecommendationProfile`. Every axis contains `{ target, weight }`: target is the
@@ -110,7 +111,7 @@ uncapped contribution and, when needed, a `traits.cap` balancing entry. Its sum
 therefore reproduces `traitAdjustment`. The cap refines capability fit without
 allowing stacked trait matches to rescue a very poor numeric match.
 
-Neutral rolling/atomic answers add no modifier. Unknown, AMD, Intel, and other GPU
+Neutral rolling/atomic answers add no modifier. Unknown, open-driver, and Mac/other graphics
 answers add no NVIDIA modifier. A gaming use-case checkbox cannot override numeric
 zero gaming intensity. FOSS policy is a preference, not a free-firmware guarantee.
 Container-first is not inferred from atomic updates; NixOS receives atomic credit
@@ -154,7 +155,7 @@ Breadth contributes at most two points, with no multiplier. The fixed 116-point
 normalization ceiling follows the current roster's maximum: 100 capability points,
 12 trait points, 2 satisfied-soft-constraint points, and 2 breadth points. It does
 not depend on the other candidates, and is not a probability, percentile, or
-public-facing match claim. Revisit the ceiling if future profiles contain multiple
+calibrated match percentage. Revisit the ceiling if future profiles contain multiple
 soft constraints. `modelVersion` identifies the current formula and machine-code
 contract; persist answers rather than assuming cached rankings survive rule updates.
 
@@ -165,9 +166,10 @@ Bazzite and Bluefin distinct. Family membership never changes core scores or rem
 candidates. `workflow` independently distinguishes conventional desktop, atomic
 desktop, gaming appliance, and declarative system. Fedora desktop editions share
 ancestry and an edition group; Bluefin and Bazzite retain distinct workflows/groups.
-No one-per-family limit or family penalty is applied. Future shortlist selection can
-consider close scores and similar workflows; choosing or displaying that shortlist
-remains later work.
+No one-per-family limit or family penalty is applied. Milestone 5A's presentation
+groups editions into a main path, optional sibling edition, and distinct alternatives.
+The separate platform layer filters and orders practical installation paths;
+shortlist presentation does not change preference scores.
 
 ## Persona verification and debugging
 
@@ -221,6 +223,38 @@ to name the evidence actually present in its answers.
   penalties remain tuning judgments. Scenario tests are not user research or
   empirical calibration. Distro assessments keep their existing evidence limits.
 
-Model version 2 identifies these rule changes. Before UI integration, review real
-answer sets and device/game compatibility. Localize machine codes in later
-presentation work; the development normalized score is not a polished percentage.
+Model version 2 identifies these rule changes. Review real answer sets and
+device/game compatibility. The UI localizes machine codes in `src/i18n/`; the
+normalized score is not an empirically calibrated percentage. The UI displays it as preference fit,
+rounded to one decimal place, with hardware compatibility handled separately.
+
+Milestone 5A presentation uses the existing `capabilityMatches.actual` values for
+segmented capability bars on all ten axes. These are assessed distro capabilities
+out of 5, not personalized similarities or hardware support ratings. Fedora Asahi
+cards explicitly label their stats as inherited base Fedora assessments. No
+separate variant score is invented; assessment-basis data remains available internally.
+
+A review of all 15 persona rankings found 61 adjacent eligible pairs that display
+the same score at 0.5-point rounding, versus 15 at one decimal place. Three pairs
+have exactly equal raw scores. One-decimal display distinguishes more candidates
+without changing normalization, raw-score ordering, or the existing ID tiebreaker.
+Equal displayed percentages may still be close scores or exact ties. Fit remains
+an uncalibrated preference score, not a probability.
+
+Everyday and creative use cases have no distinct scoring axis; the gaming checkbox
+records intent while question 10 supplies intensity. The UI now uses selected
+purposes for preparation tips through `preparationTopics`, without feeding those
+tips into the preference builder or engine. A gaming checkbox paired with zero
+gaming intensity does not add gaming advice. Development/homelab/resource signals
+and security/learning constraints retain their existing effects. Broad purposes
+never infer experience or grant specialist eligibility.
+
+## Platform integration
+
+The GPU intake now combines AMD/Intel graphics as `open-driver`; Mac choices carry
+neutral `other` graphics evidence. NVIDIA rules are unchanged. Conditional platform
+answers never enter this engine’s answer contract or numeric scores.
+`applyPlatform(result, platform)` in `src/platforms/compatibility.ts` preserves this
+full result and creates a separate support-aware candidate ordering. T2 maintained
+paths precede manual paths; Apple Silicon variants and conservative support-check
+results are selected separately. See the root README for source dates and limits.

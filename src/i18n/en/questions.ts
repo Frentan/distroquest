@@ -92,7 +92,8 @@ export const questionContentEn: QuestionDictionary = {
   },
   'use-cases': {
     prompt: 'What will this machine mostly do?',
-    helper: 'Pick up to three. Your sidequests count too.',
+    helper:
+      'Some plans guide your fit; others help pack your kit. Gaming gets its own question.',
     options: {
       everyday: { label: 'Browsing, office, and everyday life' },
       development: { label: 'Programming and development' },
@@ -126,14 +127,14 @@ export const questionContentEn: QuestionDictionary = {
     },
   },
   gpu: {
-    prompt: 'What GPU do you have?',
+    prompt: 'What graphics or Mac platform do you use?',
     helper:
-      'GPU means graphics hardware. If you have two, choose the one you want to use for demanding tasks.',
+      'On a Mac, choose your Mac type. On another computer, choose the graphics hardware you use for demanding tasks.',
     options: {
       nvidia: { label: 'NVIDIA' },
-      amd: { label: 'AMD' },
-      intel: { label: 'Intel graphics' },
-      other: { label: 'Apple or other graphics hardware' },
+      'open-driver': { label: 'AMD or Intel Graphics' },
+      'apple-silicon': { label: 'Apple Silicon Mac' },
+      'intel-mac': { label: 'Intel Mac' },
       unknown: { label: 'I have absolutely no idea.' },
     },
   },
