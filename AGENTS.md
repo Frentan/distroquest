@@ -3,10 +3,11 @@
 When starting the dev server, use background mode:
 
 ```
-astro dev --background
+npm run dev:start
 ```
 
-Manage the background server with `astro dev stop`, `astro dev status`, and `astro dev logs`.
+Manage the background server with `npm run dev:stop`, `npm run dev:status`, and
+`npm run dev:logs`.
 
 ## Documentation
 
@@ -31,7 +32,32 @@ Consult these guides before working on related tasks:
   Do not expose untranslated routes or a language selector before content is ready.
 - Use at least `0.875rem` for small readable text; do not shrink it further on mobile.
 
+## Matching and assessments
+
+- Keep the roster at 25 profiles unless an expansion is explicitly requested.
+  Assessment changes need source evidence for the specific edition being assessed.
+- Derive expertise and specialist eligibility from explicit answers. Broad purposes
+  and aspirational answers must not grant experience or bypass requirements.
+- Keep platform installation guidance separate from matching scores. Platform
+  support may reorder practical paths without changing the engine's scores.
+- For scoring changes, review the existing personas and relevant focused scenarios,
+  then regenerate `src/recommendations/EXAMPLES.md` with
+  `npm run --silent recommendations:review -- --examples` and format the output.
+- Consult the [distro model](src/data/README.md),
+  [preference model](src/preferences/README.md), and
+  [scoring engine](src/recommendations/README.md) before changing their rules.
+
 ## Local verification
+
+Run the checks relevant to the change; use the full set for application or scoring
+changes:
+
+```sh
+npm run check
+npm test
+npm run format:check
+npm run build
+```
 
 - Leave a dev server started by the user running. Reuse its reported URL for inspection.
 - In the managed sandbox, process visibility can be restricted. Astro’s status check
