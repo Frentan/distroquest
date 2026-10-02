@@ -74,15 +74,19 @@ export const questions: readonly Question[] = [
   ]),
   single('freshness', 'core', [
     option('proven', '🪨', {
+      traits: { freshnessIntent: 'proven' },
       capabilities: { freshness: target(1), stability: target(5) },
     }),
     option('balanced', '🌿', {
+      traits: { freshnessIntent: 'balanced' },
       capabilities: { freshness: target(3), stability: target(4.5) },
     }),
     option('modern', '⚡', {
+      traits: { freshnessIntent: 'modern' },
       capabilities: { freshness: target(4.5), stability: target(3.5) },
     }),
     option('newest', '🔥', {
+      traits: { freshnessIntent: 'newest' },
       capabilities: { freshness: target(5), stability: target(2.5) },
     }),
   ]),
@@ -128,6 +132,10 @@ export const questions: readonly Question[] = [
     }),
     option('touches', '🪴', {
       capabilities: { customization: target(2.5), desktopPolish: target(4) },
+    }),
+    option('familiar', '🪟', {
+      capabilities: { customization: target(3.5), desktopPolish: target(4) },
+      traits: { desktopLayoutPreference: 'panel-menu' },
     }),
     option('workflow', '🧩', {
       capabilities: { customization: target(4), desktopPolish: target(3) },
@@ -213,6 +221,10 @@ export const questions: readonly Question[] = [
     option('limited', '🥔', {
       capabilities: { oldHardware: target(5) },
       traits: { hardware: 'limited' },
+    }),
+    option('handheld', '🕹️', {
+      capabilities: { oldHardware: target(2) },
+      traits: { hardware: 'unspecified', deviceType: 'handheld' },
     }),
   ]),
   single('gpu', 'practical', [

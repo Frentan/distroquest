@@ -53,6 +53,8 @@ export const traitValues = {
   baseMutability: ['mutable', 'protected'],
   softwarePolicy: ['free-software-first', 'pragmatic'],
   nvidiaSupport: ['integrated', 'guided', 'manual'],
+  desktopLayout: ['panel-menu', 'dock-overview', 'user-selected'],
+  handheldSupport: ['documented', 'unassessed'],
 } as const;
 type TraitValue<K extends keyof typeof traitValues> =
   (typeof traitValues)[K][number];

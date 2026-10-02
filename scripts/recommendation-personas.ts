@@ -1,0 +1,125 @@
+import type { AnswerSet } from '../src/domain/preferences.ts';
+import { preferenceExamples } from './preference-examples.ts';
+
+const beginner = preferenceExamples.newcomer;
+const expert: AnswerSet = {
+  ...preferenceExamples.enthusiast,
+  identity: ['minimal'],
+  'use-cases': ['learning'],
+};
+
+// Complete answer fixtures: tests and the CLI exercise the real questionnaire.
+export const recommendationPersonas = {
+  beginner,
+  windowsGamer: {
+    ...beginner,
+    experience: ['tried'],
+    'use-cases': ['everyday', 'gaming'],
+    gaming: ['important'],
+    gpu: ['nvidia'],
+    freshness: ['modern'],
+    'software-freedom': ['pragmatic'],
+  },
+  customizableDeveloper: {
+    ...preferenceExamples.tinkerer,
+    experience: ['terminal'],
+    'use-cases': ['development'],
+    customization: ['castle'],
+    maintenance: ['occasional'],
+    'software-freedom': ['important'],
+  },
+  oldLaptop: preferenceExamples.oldHardware,
+  rollingEnthusiast: {
+    ...expert,
+    setup: ['configure'],
+    control: ['components'],
+    customization: ['workflow'],
+    identity: ['shape'],
+  },
+  highControl: expert,
+  declarative: {
+    ...preferenceExamples.architect,
+    maintenance: ['sometimes'],
+    freshness: ['balanced'],
+    release: ['fixed'],
+  },
+  gamingFirst: {
+    ...beginner,
+    experience: ['regular'],
+    setup: ['little'],
+    freshness: ['modern'],
+    maintenance: ['occasional'],
+    control: ['understand'],
+    'use-cases': ['gaming'],
+    gaming: ['main'],
+    gpu: ['amd'],
+    'software-freedom': ['pragmatic'],
+    identity: ['dependable'],
+    path: ['modern'],
+  },
+  gamingAppliance: {
+    // Explicit device evidence; gaming intensity and GPU remain separate answers.
+    ...preferenceExamples.gamer,
+    hardware: ['handheld'],
+    gpu: ['amd'],
+    control: ['drive'],
+    'system-model': ['protected'],
+    'use-cases': ['gaming'],
+    'software-freedom': ['pragmatic'],
+  },
+  atomicDeveloper: {
+    ...preferenceExamples.developer,
+    control: ['drive'],
+    customization: ['defaults'],
+    'system-model': ['containers'],
+    'use-cases': ['development', 'homelab'],
+    'software-freedom': ['pragmatic'],
+  },
+  penetrationTester: {
+    ...expert,
+    'use-cases': ['security'],
+    customization: ['touches'],
+    control: ['components'],
+    identity: ['understand'],
+    freshness: ['modern'],
+    'software-freedom': ['pragmatic'],
+  },
+  securityCurious: preferenceExamples.securityBeginner,
+  foss: {
+    ...preferenceExamples.tinkerer,
+    'use-cases': ['development'],
+    'software-freedom': ['strong'],
+    freshness: ['modern'],
+  },
+  conservative: {
+    ...beginner,
+    experience: ['regular'],
+    setup: ['little'],
+    freshness: ['proven'],
+    release: ['fixed'],
+    customization: ['workflow'],
+    control: ['understand'],
+  },
+  unixAdministrator: {
+    ...expert,
+    freshness: ['proven'],
+    release: ['fixed'],
+    identity: ['unix'],
+    'software-freedom': ['pragmatic'],
+    customization: ['workflow'],
+  },
+} as const satisfies Readonly<Record<string, AnswerSet>>;
+
+// Representative, frequently useful tables; specialist scenarios stay in CLI/tests.
+export const examplePersonaNames = [
+  'beginner',
+  'windowsGamer',
+  'customizableDeveloper',
+  'oldLaptop',
+  'rollingEnthusiast',
+  'highControl',
+  'gamingFirst',
+  'gamingAppliance',
+  'atomicDeveloper',
+  'conservative',
+] as const satisfies readonly (keyof typeof recommendationPersonas)[];

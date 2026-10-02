@@ -216,6 +216,8 @@ test('rejects arbitrary traits, nonboolean focus, and inconsistent images', () =
     'baseMutability',
     'softwarePolicy',
     'nvidiaSupport',
+    'desktopLayout',
+    'handheldSupport',
   ]) {
     rejects(
       changeProfile({ traits: { ...first.traits, [key]: 'arbitrary-tag' } }),

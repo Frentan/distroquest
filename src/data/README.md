@@ -3,9 +3,10 @@
 Milestone 2 contains 25 desktop-oriented assessments. Scores are editorial estimates
 for comparison and tuning, informed by the linked project sources; they are not
 benchmarks, measured reliability, or published project ratings. Review the table
-before designing the questionnaire. Milestone 3 now defines questions and user
+during model tuning. Milestone 3 now defines questions and user
 preferences separately in [the preference model](../preferences/README.md).
-No distro scoring engine, ranking, or eligibility evaluator exists yet.
+Milestone 4 implements scoring, ranking, and eligibility evaluation in
+[the recommendation engine](../recommendations/README.md).
 
 ## Inspect and validate
 
@@ -94,14 +95,26 @@ The four `focus` booleans identify deliberate gaming, security, minimal-system, 
 development emphasis. A false value means no special emphasis, not inability.
 Traits stay categorical; they are never secretly converted to extra capabilities.
 
+`desktopLayout` records the assessed edition's layout: `panel-menu`, `dock-overview`,
+or `user-selected`. It describes defaults, not every desktop a distro can install.
+Only explicit panel/menu user preference receives a small match bonus; no layout
+conflict penalty is applied. The categories follow the existing localized
+`assessmentBasis`, so KDE, Cinnamon, and Xfce assessments can share a style without
+claiming identical desktop environments.
+
+`handheldSupport` is `documented` for Bazzite's separate handheld path and `unassessed`
+for the other current desktop baselines. Unassessed does not mean unsupported and
+does not exclude a distro. Bazzite's [Handheld Wiki](https://docs.bazzite.gg/Handheld_and_HTPC_edition/Handheld_Wiki/)
+provides device-specific support information; scoring never guarantees compatibility
+for an unspecified handheld or for the generic desktop image.
+
 ## Breadth and constraints
 
 `recommendation.breadth` is an internal 0–5 half-step prior for ordinary desktop
 recommendation: 0 specialist-only, 1 very narrow, 2 enthusiast, 3 moderate,
 4 broad, 5 exceptionally broad. Intermediate half steps are allowed. It measures
-audience breadth, not quality, popularity, or a user's match. A later engine should
-use it only as a modest prior/tiebreaker, after eligibility and capability fit;
-no multiplier or numerical influence is selected in this milestone. A breadth of
+audience breadth, not quality, popularity, or a user's match. The recommendation engine
+uses it as an additive 0–2 point prior, after eligibility and capability fit. A breadth of
 0 is not a hidden gate; Kali has explicit requirements.
 
 Each constraint has an `effect` and nonempty `allOf` conditions. All conditions
@@ -109,13 +122,14 @@ within a constraint are conjunctive. All `require` constraints must be satisfied
 before a top recommendation is eligible. `strongly-prefer` expresses substantial
 soft reluctance if the whole condition group does not match, rather than a total
 lock. Unknown user evidence must not be assumed to satisfy hard requirements.
-The later engine must decide soft penalty strength and how to handle missing answers.
+The engine penalizes unmet soft conditions and rejects incomplete answer sets;
+see its scoring notes for the selected strengths.
 
 Conditions describe minimum experience, maintenance/learning tolerance, desire for system
 control, a use case, or a specific interest. Ordered thresholds are intermediate
 then advanced for experience, moderate then high for tolerance/control. They are
 eligibility vocabulary. Milestone 3 provides explicit user evidence using these
-values, extended with lower experience/tolerance levels; constraint evaluation is later work.
+values, extended with lower experience/tolerance levels; the engine evaluates those thresholds.
 
 - Kali requires security testing **and** at least intermediate Linux experience.
 - Gentoo strongly prefers advanced experience, high upkeep tolerance, and high control.
@@ -128,7 +142,8 @@ values, extended with lower experience/tolerance levels; constraint evaluation i
 
 ## Assessment limits and tuning questions
 
-Source checks date to 2026-10-01. Project descriptions support mechanisms and focus;
+Original source checks date to 2026-10-01; the Bazzite handheld documentation
+was additionally checked on 2026-10-02. Project descriptions support mechanisms and focus;
 scores and comparative judgments remain DistroQuest's own interpretation. Edition
 baselines are explicit in `assessmentBasis`. Sources can change; verify new releases
 before tuning. MX's project manual and Garuda's project-hosted support discussion
@@ -137,10 +152,11 @@ were unavailable to the research tool. Gentoo's overview was served from an olde
 cached page, so it is not evidence of a newly verified release state.
 
 - Fedora Workstation emphasizes approachable, cohesive GNOME defaults (beginner
-  friendliness 4, customization 3, polish 5). Fedora KDE trades some initial
+  friendliness 4.5, customization 3, polish 5). Fedora KDE trades some initial
   simplicity for built-in flexibility (3.5, 4.5, and 4.5 respectively). Workstation
-  retains breadth 5; KDE uses 4.5 to distinguish its audience without implying
-  lower quality. Fedora's 4 gaming still assumes a modest driver/codec setup step.
+  now has low maintenance 4 (formerly 3.5), following persona review; these
+  convenience scores are editorial judgments. Workstation retains breadth 5; KDE
+  uses 4.5 to distinguish its audience without implying lower quality. Fedora's 4 gaming still assumes a modest driver/codec setup step.
 - Mint scores higher on newcomer convenience and conservative upkeep, but lower
   on current graphics/toolchains and development than Fedora. Its Cinnamon baseline
   prevents lightweight alternate editions from inflating the default hardware score.
@@ -187,13 +203,14 @@ alone is not sufficient to guarantee diverse results.
 For example, hypothetical scores of Fedora KDE 92, Workstation 90, Tumbleweed 84,
 and CachyOS 81 should yield KDE as winner, Workstation as its desktop alternative,
 and Tumbleweed/CachyOS as other recommendations. These are illustrative scores,
-not implemented match percentages or a selected similarity threshold.
+not current engine outputs or a selected presentation threshold.
 
 `traits.family` provides ancestry context, but family membership alone is too broad
 to decide equivalence. Fedora KDE and Workstation share a foundation and chiefly
 differ by desktop; Bazzite changes the system/update model and gaming workflow.
 Likewise, Debian ancestry does not make every Debian derivative interchangeable.
-The later engine should combine ancestry with desktop-variant identity, system
-model, constraints, and capability similarity. Explicit variant grouping and the
-meaningful-difference threshold remain design decisions for that milestone; no
-grouping, ranking, or presentation logic is implemented here.
+The engine exposes both ancestry and a `presentationGroup`: Fedora Workstation
+and KDE share `fedora-desktop`; other distro IDs remain distinct. Independent `workflow` metadata distinguishes conventional desktop, atomic
+desktop, gaming appliance, and declarative system. Core scoring never penalizes
+family members or applies a one-per-family limit. Choosing a meaningful-difference threshold and
+presenting grouped alternatives remain later result-UI decisions.

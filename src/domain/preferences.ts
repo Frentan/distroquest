@@ -34,7 +34,10 @@ export type Interest = (typeof interests)[number];
 export type Experience = 'new' | 'beginner' | 'intermediate' | 'advanced';
 export type Tolerance = 'low' | 'moderate' | 'high';
 export type Gpu = 'nvidia' | 'amd' | 'intel' | 'other' | 'unknown';
-export type Hardware = 'powerful' | 'recent' | 'aging' | 'limited';
+export type Hardware =
+  'powerful' | 'recent' | 'aging' | 'limited' | 'unspecified';
+export type DeviceType = 'desktop-or-laptop' | 'handheld';
+export type FreshnessIntent = 'proven' | 'balanced' | 'modern' | 'newest';
 
 // Each selected option supplies a target and its evidence weight, not a delta.
 export type PreferenceEffect = Readonly<{
@@ -50,6 +53,9 @@ export type PreferenceEffect = Readonly<{
     fossPreference?: Score;
     gpu?: Gpu;
     hardware?: Hardware;
+    deviceType?: DeviceType;
+    freshnessIntent?: FreshnessIntent;
+    desktopLayoutPreference?: 'panel-menu';
     useCase?: UseCase;
     interest?: Interest;
   }>;
@@ -91,6 +97,9 @@ export type UserTraits = Readonly<{
   securityUseCase: boolean;
   gpu: Gpu;
   hardware: Hardware;
+  deviceType: DeviceType;
+  freshnessIntent: FreshnessIntent;
+  desktopLayoutPreference?: 'panel-menu';
   useCases: readonly UseCase[];
   interests: readonly Interest[];
 }>;

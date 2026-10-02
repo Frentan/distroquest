@@ -200,7 +200,7 @@ test('experience, hardware needs, and direct preference axes progress monotonica
     experience: ['init', 'terminal', 'regular', 'tried', 'new'],
     maintenance: ['hobby', 'sometimes', 'occasional', 'minimal'],
     control: ['drive', 'understand', 'components', 'everything'],
-    customization: ['defaults', 'touches', 'workflow', 'castle'],
+    customization: ['defaults', 'touches', 'familiar', 'workflow', 'castle'],
     freshness: ['proven', 'balanced', 'modern', 'newest'],
     hardware: ['powerful', 'recent', 'aging', 'limited'],
   };
@@ -246,5 +246,59 @@ test('examples distinguish developer, desktop tinkerer, declarative learner, and
       profile(example).traits.interests.includes(interest),
     );
     assert.ok(reachable, interest);
+  }
+});
+
+test('new answer labels preserve ordering and have distinct emoji within their questions', () => {
+  const customization = questions.find(
+    (question) => question.id === 'customization',
+  )!;
+  assert.deepEqual(
+    customization.options.map((option) => option.id),
+    ['defaults', 'touches', 'familiar', 'workflow', 'castle'],
+  );
+  assert.equal(customization.options[2].emoji, '🪟');
+  assert.equal(
+    questionContentEn.customization.options.familiar.label,
+    'Familiar panels and menus, with plenty to tweak.',
+  );
+  const hardware = questions.find((question) => question.id === 'hardware')!;
+  assert.equal(
+    hardware.options.find((option) => option.id === 'handheld')!.emoji,
+    '🕹️',
+  );
+  for (const question of [customization, hardware])
+    assert.equal(
+      new Set(question.options.map((option) => option.emoji)).size,
+      question.options.length,
+    );
+});
+
+test('layout and handheld answers do not grant control, expertise or GPU evidence', () => {
+  const original = profile(base);
+  const layout = profile({ ...base, customization: ['familiar'] });
+  assert.equal(layout.targets.customization, 3.5);
+  assert.equal(layout.traits.desktopLayoutPreference, 'panel-menu');
+  assert.equal(layout.targets.systemControl, original.targets.systemControl);
+  assert.deepEqual(layout.eligibility, original.eligibility);
+  const handheld = profile({ ...base, hardware: ['handheld'] });
+  assert.equal(handheld.traits.deviceType, 'handheld');
+  assert.equal(handheld.traits.hardware, 'unspecified');
+  assert.equal(handheld.targets.oldHardware, 2);
+  assert.equal(handheld.traits.gpu, original.traits.gpu);
+  assert.equal(handheld.targets.gaming, original.targets.gaming);
+  assert.equal(original.traits.deviceType, 'desktop-or-laptop');
+  assert.equal(original.traits.desktopLayoutPreference, undefined);
+});
+
+test('freshness intent comes only from its direct answer and survives secondary reinforcement', () => {
+  for (const intent of ['proven', 'balanced', 'modern', 'newest']) {
+    const result = profile({
+      ...base,
+      freshness: [intent],
+      identity: ['dependable'],
+      path: ['modern'],
+    });
+    assert.equal(result.traits.freshnessIntent, intent);
   }
 });

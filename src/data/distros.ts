@@ -25,6 +25,8 @@ export const distroProfiles = [
       baseMutability: 'mutable',
       softwarePolicy: 'pragmatic',
       nvidiaSupport: 'guided',
+      desktopLayout: 'panel-menu',
+      handheldSupport: 'unassessed',
       atomicUpdates: false,
       focus: {
         gaming: false,
@@ -65,6 +67,8 @@ export const distroProfiles = [
       baseMutability: 'mutable',
       softwarePolicy: 'pragmatic',
       nvidiaSupport: 'guided',
+      desktopLayout: 'dock-overview',
+      handheldSupport: 'unassessed',
       atomicUpdates: false,
       focus: {
         gaming: false,
@@ -86,8 +90,8 @@ export const distroProfiles = [
     id: 'fedora-workstation',
     slug: 'fedora-workstation',
     capabilities: {
-      beginnerFriendly: 4,
-      lowMaintenance: 3.5,
+      beginnerFriendly: 4.5,
+      lowMaintenance: 4,
       stability: 4,
       freshness: 4.5,
       customization: 3,
@@ -105,6 +109,8 @@ export const distroProfiles = [
       baseMutability: 'mutable',
       softwarePolicy: 'free-software-first',
       nvidiaSupport: 'guided',
+      desktopLayout: 'dock-overview',
+      handheldSupport: 'unassessed',
       atomicUpdates: false,
       focus: {
         gaming: false,
@@ -118,7 +124,7 @@ export const distroProfiles = [
       constraints: [],
     },
     assessment: {
-      reviewedOn: '2026-10-01',
+      reviewedOn: '2026-10-02',
       sources: ['https://fedoraproject.org/workstation/'],
     },
   },
@@ -145,6 +151,8 @@ export const distroProfiles = [
       baseMutability: 'mutable',
       softwarePolicy: 'free-software-first',
       nvidiaSupport: 'guided',
+      desktopLayout: 'panel-menu',
+      handheldSupport: 'unassessed',
       atomicUpdates: false,
       focus: {
         gaming: false,
@@ -185,6 +193,8 @@ export const distroProfiles = [
       baseMutability: 'mutable',
       softwarePolicy: 'free-software-first',
       nvidiaSupport: 'manual',
+      desktopLayout: 'panel-menu',
+      handheldSupport: 'unassessed',
       atomicUpdates: false,
       focus: {
         gaming: false,
@@ -225,6 +235,8 @@ export const distroProfiles = [
       baseMutability: 'mutable',
       softwarePolicy: 'pragmatic',
       nvidiaSupport: 'integrated',
+      desktopLayout: 'dock-overview',
+      handheldSupport: 'unassessed',
       atomicUpdates: false,
       focus: {
         gaming: false,
@@ -265,6 +277,8 @@ export const distroProfiles = [
       baseMutability: 'mutable',
       softwarePolicy: 'pragmatic',
       nvidiaSupport: 'guided',
+      desktopLayout: 'panel-menu',
+      handheldSupport: 'unassessed',
       atomicUpdates: false,
       focus: {
         gaming: false,
@@ -305,6 +319,8 @@ export const distroProfiles = [
       baseMutability: 'mutable',
       softwarePolicy: 'pragmatic',
       nvidiaSupport: 'manual',
+      desktopLayout: 'dock-overview',
+      handheldSupport: 'unassessed',
       atomicUpdates: false,
       focus: {
         gaming: false,
@@ -345,6 +361,8 @@ export const distroProfiles = [
       baseMutability: 'mutable',
       softwarePolicy: 'free-software-first',
       nvidiaSupport: 'guided',
+      desktopLayout: 'panel-menu',
+      handheldSupport: 'unassessed',
       atomicUpdates: false,
       focus: {
         gaming: false,
@@ -385,6 +403,8 @@ export const distroProfiles = [
       baseMutability: 'mutable',
       softwarePolicy: 'pragmatic',
       nvidiaSupport: 'manual',
+      desktopLayout: 'panel-menu',
+      handheldSupport: 'unassessed',
       atomicUpdates: false,
       focus: {
         gaming: false,
@@ -425,6 +445,8 @@ export const distroProfiles = [
       baseMutability: 'mutable',
       softwarePolicy: 'pragmatic',
       nvidiaSupport: 'manual',
+      desktopLayout: 'user-selected',
+      handheldSupport: 'unassessed',
       atomicUpdates: false,
       focus: {
         gaming: false,
@@ -483,6 +505,8 @@ export const distroProfiles = [
       baseMutability: 'mutable',
       softwarePolicy: 'pragmatic',
       nvidiaSupport: 'integrated',
+      desktopLayout: 'panel-menu',
+      handheldSupport: 'unassessed',
       atomicUpdates: false,
       focus: {
         gaming: true,
@@ -523,6 +547,8 @@ export const distroProfiles = [
       baseMutability: 'mutable',
       softwarePolicy: 'pragmatic',
       nvidiaSupport: 'integrated',
+      desktopLayout: 'panel-menu',
+      handheldSupport: 'unassessed',
       atomicUpdates: false,
       focus: {
         gaming: true,
@@ -563,6 +589,8 @@ export const distroProfiles = [
       baseMutability: 'protected',
       softwarePolicy: 'pragmatic',
       nvidiaSupport: 'integrated',
+      desktopLayout: 'panel-menu',
+      handheldSupport: 'documented',
       atomicUpdates: true,
       focus: {
         gaming: true,
@@ -576,8 +604,11 @@ export const distroProfiles = [
       constraints: [],
     },
     assessment: {
-      reviewedOn: '2026-10-01',
-      sources: ['https://bazzite.gg/'],
+      reviewedOn: '2026-10-02',
+      sources: [
+        'https://bazzite.gg/',
+        'https://docs.bazzite.gg/Handheld_and_HTPC_edition/Handheld_Wiki/',
+      ],
     },
   },
   {
@@ -603,6 +634,8 @@ export const distroProfiles = [
       baseMutability: 'protected',
       softwarePolicy: 'pragmatic',
       nvidiaSupport: 'integrated',
+      desktopLayout: 'dock-overview',
+      handheldSupport: 'unassessed',
       atomicUpdates: true,
       focus: {
         gaming: false,
@@ -643,6 +676,8 @@ export const distroProfiles = [
       baseMutability: 'protected',
       softwarePolicy: 'pragmatic',
       nvidiaSupport: 'manual',
+      desktopLayout: 'panel-menu',
+      handheldSupport: 'unassessed',
       atomicUpdates: true,
       focus: {
         gaming: false,
@@ -701,6 +736,8 @@ export const distroProfiles = [
       baseMutability: 'mutable',
       softwarePolicy: 'pragmatic',
       nvidiaSupport: 'manual',
+      desktopLayout: 'user-selected',
+      handheldSupport: 'unassessed',
       atomicUpdates: false,
       focus: {
         gaming: false,
@@ -759,6 +796,8 @@ export const distroProfiles = [
       baseMutability: 'mutable',
       softwarePolicy: 'pragmatic',
       nvidiaSupport: 'manual',
+      desktopLayout: 'panel-menu',
+      handheldSupport: 'unassessed',
       atomicUpdates: false,
       focus: {
         gaming: false,
@@ -817,6 +856,8 @@ export const distroProfiles = [
       baseMutability: 'mutable',
       softwarePolicy: 'pragmatic',
       nvidiaSupport: 'manual',
+      desktopLayout: 'panel-menu',
+      handheldSupport: 'unassessed',
       atomicUpdates: false,
       focus: {
         gaming: false,
@@ -873,6 +914,8 @@ export const distroProfiles = [
       baseMutability: 'mutable',
       softwarePolicy: 'pragmatic',
       nvidiaSupport: 'guided',
+      desktopLayout: 'panel-menu',
+      handheldSupport: 'unassessed',
       atomicUpdates: false,
       focus: {
         gaming: false,
@@ -915,6 +958,8 @@ export const distroProfiles = [
       baseMutability: 'mutable',
       softwarePolicy: 'pragmatic',
       nvidiaSupport: 'integrated',
+      desktopLayout: 'panel-menu',
+      handheldSupport: 'unassessed',
       atomicUpdates: false,
       focus: {
         gaming: true,
@@ -957,6 +1002,8 @@ export const distroProfiles = [
       baseMutability: 'mutable',
       softwarePolicy: 'pragmatic',
       nvidiaSupport: 'guided',
+      desktopLayout: 'panel-menu',
+      handheldSupport: 'unassessed',
       atomicUpdates: false,
       focus: {
         gaming: false,
@@ -997,6 +1044,8 @@ export const distroProfiles = [
       baseMutability: 'mutable',
       softwarePolicy: 'pragmatic',
       nvidiaSupport: 'integrated',
+      desktopLayout: 'panel-menu',
+      handheldSupport: 'unassessed',
       atomicUpdates: false,
       focus: {
         gaming: true,
@@ -1037,6 +1086,8 @@ export const distroProfiles = [
       baseMutability: 'mutable',
       softwarePolicy: 'pragmatic',
       nvidiaSupport: 'manual',
+      desktopLayout: 'user-selected',
+      handheldSupport: 'unassessed',
       atomicUpdates: false,
       focus: {
         gaming: false,
@@ -1095,6 +1146,8 @@ export const distroProfiles = [
       baseMutability: 'mutable',
       softwarePolicy: 'pragmatic',
       nvidiaSupport: 'manual',
+      desktopLayout: 'panel-menu',
+      handheldSupport: 'unassessed',
       atomicUpdates: false,
       focus: {
         gaming: false,

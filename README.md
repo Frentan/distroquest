@@ -5,7 +5,7 @@
 A small, playful Linux distribution finder built with Astro, TypeScript, and plain CSS.
 The current site includes a responsive homepage, light/dark themes, and a quiz placeholder.
 The recommendation quiz is still in development. Its 16-question schema and
-answer-to-preference model are implemented; the quiz UI and matching engine are later work.
+answer-to-preference model and recommendation engine are implemented; quiz and result UI remain later work.
 
 No signup, cookies, or tracking. Only your theme preference is saved in your browser.
 
@@ -76,3 +76,21 @@ npm run preferences:review -- --json     # Questions, effects, answers, and prof
 See [the preference model notes](src/preferences/README.md) for the answer contract,
 target/importance semantics, eligibility evidence, and validation coverage. About
 three minutes remains the completion target; it needs a timed playtest with the UI.
+
+## Recommendations
+
+The pure engine validates complete quiz answers, normalizes capability weights,
+evaluates all 25 distro profiles, and returns a full ranking with machine-readable
+reasons, cautions, per-axis contributions, and constraint outcomes. It adds no UI.
+
+```sh
+npm run recommendations:review                              # All 15 personas
+npm run recommendations:review -- --persona atomicDeveloper # Full score table
+npm run recommendations:review -- --persona beginner --json # Complete diagnostics
+npm run recommendations:review -- --answers /tmp/answers.json
+npm run recommendations:review -- --examples                # Representative tables
+```
+
+See [the scoring notes](src/recommendations/README.md) for formulas, rule strengths,
+API usage, limitations, and tuning questions. [Example rankings](src/recommendations/EXAMPLES.md)
+include complete 25-distro tables for ten representative personas.

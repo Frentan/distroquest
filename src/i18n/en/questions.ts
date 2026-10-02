@@ -56,6 +56,7 @@ export const questionContentEn: QuestionDictionary = {
     options: {
       defaults: { label: 'Give me a polished default and leave it alone.' },
       touches: { label: 'A few personal touches.' },
+      familiar: { label: 'Familiar panels and menus, with plenty to tweak.' },
       workflow: {
         label: 'I like rearranging workflows, panels, and shortcuts.',
       },
@@ -121,6 +122,7 @@ export const questionContentEn: QuestionDictionary = {
       recent: { label: 'A normal recent laptop or desktop.' },
       aging: { label: 'Getting old, but still respectable.' },
       limited: { label: 'This machine remembers dial-up.' },
+      handheld: { label: 'A handheld gaming PC.' },
     },
   },
   gpu: {

@@ -110,6 +110,7 @@ export function buildPreferenceProfile(input: unknown): UserPreferenceProfile {
     !eligibility.systemControl ||
     !traits.gpu ||
     !traits.hardware ||
+    !traits.freshnessIntent ||
     traits.fossPreference === undefined
   )
     throw new Error('Question schema is missing required profile evidence');
@@ -137,6 +138,11 @@ export function buildPreferenceProfile(input: unknown): UserPreferenceProfile {
       securityUseCase: useCases.has('security-testing'),
       gpu: traits.gpu,
       hardware: traits.hardware,
+      deviceType: traits.deviceType ?? 'desktop-or-laptop',
+      freshnessIntent: traits.freshnessIntent,
+      ...(traits.desktopLayoutPreference === undefined
+        ? {}
+        : { desktopLayoutPreference: traits.desktopLayoutPreference }),
       useCases: preferenceUseCases.filter((value) => useCases.has(value)),
       interests: interests.filter((value) => selectedInterests.has(value)),
     },

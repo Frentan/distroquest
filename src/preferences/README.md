@@ -2,8 +2,9 @@
 
 Milestone 3 defines 16 questions and translates a complete answer set into a
 deterministic `UserPreferenceProfile`. It does not rank distributions, evaluate
-their constraints, render a quiz, or produce result screens. The 25 reviewed
-distro records remain unchanged.
+their constraints, render a quiz, or produce result screens. Milestone 4 extends
+two existing questions with familiar-layout and handheld options while retaining
+the 16-question structure; distro scoring lives in the separate recommendation engine.
 
 ## Review and use
 
@@ -87,7 +88,10 @@ Direct questions use weight 4; secondary signals use 1 (homelab development uses
 identity uses 2; the final road uses 0.5. Setup describes secondary consequences,
 so it uses 1. Weights represent evidence strength within an axis, not the later
 distribution match score. Freshness and stability are related but not forced to
-sum to 5. Rolling and atomic choices never change numeric capabilities.
+sum to 5. Rolling and atomic choices never change numeric capabilities. The familiar-layout
+option sits between personal touches and workflow rearrangement, using target 3.5
+for customization and 4 for polish; it supplies an explicit panel/menu preference
+without changing technical control or experience.
 
 `importance` is a separate 0–5 map. For benefit axes it equals the resulting
 target: a user who needs little gaming support gives it little weight. Freshness
@@ -96,11 +100,12 @@ a meaningful directional preference. There is no global normalization of weights
 These are initial design judgments to review with scenarios, not empirically
 calibrated measurements.
 
-Milestone 4 must distinguish wanted benefits from aversions. Zero gaming need must
-not reward poor gaming; advanced users must not be rewarded for an unfriendly
+The recommendation engine distinguishes wanted benefits from aversions. Zero gaming
+need must not reward poor gaming; advanced users must not be rewarded for an unfriendly
 distro. Extra polish or beginner support is not inherently a mismatch. Capability
-targets and importance are inputs to that decision, not a selected distance metric
-or implemented matching engine. Direct system-model preferences remain traits.
+targets and importance are inputs to [the scoring engine](../recommendations/README.md),
+which normalizes importance to 0–1 and uses shortfall distance for benefits.
+Direct system-model preferences remain traits.
 
 ## Explicit evidence and mixed answers
 
@@ -119,6 +124,17 @@ or implemented matching engine. Direct system-model preferences remain traits.
 - Question 11 supplies the main resource-constraint target. Selecting old-hardware
   use in question 9 supplies secondary evidence; opposing answers blend rather
   than discarding either. This is not a RAM, CPU architecture, or compatibility gate.
+- The additional hardware answer 🕹️ “A handheld gaming PC” supplies resource target
+  2 and explicit `deviceType: handheld`. Its power category is `unspecified`;
+  portability is not a resource measurement. It does not infer GPU, gaming intensity,
+  use cases, atomic preference, or eligibility. Existing hardware answers use
+  `deviceType: desktop-or-laptop` and preserve their original numeric targets.
+- The direct freshness question also supplies `freshnessIntent`. Identity/finale
+  signals may blend numeric targets but cannot change that categorical evidence.
+  Scoring permits limited extra freshness for the balanced answer only.
+- Customization's new third answer 🪟 “Familiar panels and menus, with plenty to
+  tweak” records `desktopLayoutPreference: panel-menu`. Other options leave it
+  unspecified; flexibility and layout preference remain distinct signals.
 - Fixed/traditional choices are explicit `false`; neutral choices omit the
   optional boolean and have strength 0. Positive preferences have strength 1 or 2.
   Atomic updates do not imply rolling releases. Container-first is separate from
@@ -139,9 +155,9 @@ or implemented matching engine. Direct system-model preferences remain traits.
 Mixed answers are retained. A newcomer can want deep control; an experienced user
 can want low maintenance. Wanting current software and fixed releases is coherent.
 A learning/security use case records intent but does not satisfy Kali's required
-intermediate experience. Actual `require` and `strongly-prefer` evaluation remains
-Milestone 4 work; `UserTraits.useCases`, `interests`, and `eligibility` provide its
-existing vocabulary without replacing distro constraints.
+intermediate experience. The recommendation engine now evaluates `require` and
+`strongly-prefer` constraints; `UserTraits.useCases`, `interests`, and `eligibility`
+provide its existing vocabulary without replacing distro constraints.
 
 ## Copy and timing
 
@@ -167,7 +183,7 @@ bounded deterministic output, canonical ordering, malformed answers, nonmutation
 monotonic direct signals, neutral traits, GPU separation, gaming zero, specialist
 evidence, and the finale's limited influence across eight complete scenarios.
 
-Milestone 4 will compare these profiles against the 25 distro records, evaluate
-constraints, select a fit function and trait modifiers, and explain recommendations.
-No distro-specific bonuses, ranking thresholds, match percentages, result diversity
-rules, or final result screens are implemented here.
+Milestone 4 now compares these profiles against all 25 distro records in the separate
+recommendation engine. This builder keeps its original target/importance contract.
+Scoring, constraint evaluation, and ranking diagnostics live in that engine; quiz
+and final result screens remain later work.
