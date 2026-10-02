@@ -110,16 +110,7 @@ export const recommendationPersonas = {
   },
 } as const satisfies Readonly<Record<string, AnswerSet>>;
 
-// Representative, frequently useful tables; specialist scenarios stay in CLI/tests.
-export const examplePersonaNames = [
-  'beginner',
-  'windowsGamer',
-  'customizableDeveloper',
-  'oldLaptop',
-  'rollingEnthusiast',
-  'highControl',
-  'gamingFirst',
-  'gamingAppliance',
-  'atomicDeveloper',
-  'conservative',
-] as const satisfies readonly (keyof typeof recommendationPersonas)[];
+// Keep the reference complete as personas are added or reordered.
+export const examplePersonaNames = Object.keys(
+  recommendationPersonas,
+) as readonly (keyof typeof recommendationPersonas)[];

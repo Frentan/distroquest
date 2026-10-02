@@ -1,9 +1,9 @@
-# Example rankings, model v2
+# Example rankings, model v3
 
-Ten representative scenarios from the 15 complete answer fixtures in
+All 15 complete answer fixtures from
 [`scripts/recommendation-personas.ts`](../../scripts/recommendation-personas.ts).
 Values are development score points, not match probabilities. Tables round for
-readability; the engine sorts unrounded raw scores. Specialist scenarios remain
+readability; the engine sorts unrounded raw scores. Each persona is also
 available through the CLI and tests.
 
 Regenerate with `npm run --silent recommendations:review -- --examples > src/recommendations/EXAMPLES.md`, then run `npm run format`.
@@ -14,10 +14,15 @@ Regenerate with `npm run --silent recommendations:review -- --examples > src/rec
 - [oldLaptop](#oldlaptop)
 - [rollingEnthusiast](#rollingenthusiast)
 - [highControl](#highcontrol)
+- [declarative](#declarative)
 - [gamingFirst](#gamingfirst)
 - [gamingAppliance](#gamingappliance)
 - [atomicDeveloper](#atomicdeveloper)
+- [penetrationTester](#penetrationtester)
+- [securityCurious](#securitycurious)
+- [foss](#foss)
 - [conservative](#conservative)
+- [unixAdministrator](#unixadministrator)
 
 ## beginner
 
@@ -199,6 +204,36 @@ Regenerate with `npm run --silent recommendations:review -- --examples > src/rec
 |  24 | elementary-os       | true     |  63.93 |      55.11 |      62.93 |  -0.40 |        0.00 |    1.40 |
 |  25 | kali-linux          | false    |  -8.51 |       0.00 |      83.89 |   7.60 |     -100.00 |    0.00 |
 
+## declarative
+
+|   # | Distro              | Eligible |    Raw | Normalized | Capability | Traits | Eligibility | Breadth |
+| --: | :------------------ | :------- | -----: | ---------: | ---------: | -----: | ----------: | ------: |
+|   1 | nixos               | true     | 113.71 |      98.03 |      98.91 |  12.00 |        2.00 |    0.80 |
+|   2 | fedora-workstation  | true     | 100.84 |      86.93 |      93.64 |   5.20 |        0.00 |    2.00 |
+|   3 | fedora-kde          | true     | 100.64 |      86.76 |      93.64 |   5.20 |        0.00 |    1.80 |
+|   4 | bluefin             | true     | 100.36 |      86.52 |      91.16 |   7.60 |        0.00 |    1.60 |
+|   5 | ubuntu              | true     |  99.47 |      85.75 |      93.87 |   3.60 |        0.00 |    2.00 |
+|   6 | pop-os              | true     |  98.49 |      84.91 |      93.29 |   3.60 |        0.00 |    1.60 |
+|   7 | debian              | true     |  95.54 |      82.37 |      90.54 |   3.20 |        0.00 |    1.80 |
+|   8 | bazzite             | true     |  92.40 |      79.66 |      85.20 |   5.60 |        0.00 |    1.60 |
+|   9 | mx-linux            | true     |  91.74 |      79.08 |      88.54 |   1.60 |        0.00 |    1.60 |
+|  10 | linux-mint          | true     |  90.98 |      78.43 |      87.38 |   1.60 |        0.00 |    2.00 |
+|  11 | nobara              | true     |  90.29 |      77.84 |      87.29 |   1.60 |        0.00 |    1.40 |
+|  12 | zorin-os            | true     |  90.20 |      77.76 |      86.80 |   1.60 |        0.00 |    1.80 |
+|  13 | opensuse-tumbleweed | true     |  89.55 |      77.20 |      90.75 |  -2.80 |        0.00 |    1.60 |
+|  14 | cachyos             | true     |  85.77 |      73.94 |      90.97 |  -6.40 |        0.00 |    1.20 |
+|  15 | elementary-os       | true     |  84.93 |      73.21 |      81.93 |   1.60 |        0.00 |    1.40 |
+|  16 | endeavouros         | true     |  84.39 |      72.75 |      89.59 |  -6.40 |        0.00 |    1.20 |
+|  17 | garuda-linux        | true     |  83.84 |      72.28 |      89.24 |  -6.40 |        0.00 |    1.00 |
+|  18 | solus               | true     |  81.53 |      70.29 |      86.73 |  -6.40 |        0.00 |    1.20 |
+|  19 | pikaos              | true     |  80.45 |      69.35 |      85.85 |  -6.40 |        0.00 |    1.00 |
+|  20 | alpine-linux        | true     |  77.15 |      66.51 |      83.35 |   1.60 |       -8.00 |    0.20 |
+|  21 | arch-linux          | true     |  71.10 |      61.30 |      84.70 |  -6.40 |       -8.00 |    0.80 |
+|  22 | gentoo              | true     |  70.70 |      60.95 |      84.70 |  -6.40 |       -8.00 |    0.40 |
+|  23 | slackware           | true     |  69.10 |      59.57 |      83.10 |   1.60 |      -16.00 |    0.40 |
+|  24 | void-linux          | true     |  66.00 |      56.90 |      87.80 |  -6.40 |      -16.00 |    0.60 |
+|  25 | kali-linux          | false    | -23.88 |       0.00 |      82.52 |  -6.40 |     -100.00 |    0.00 |
+
 ## gamingFirst
 
 |   # | Distro              | Eligible |    Raw | Normalized | Capability | Traits | Eligibility | Breadth |
@@ -289,6 +324,96 @@ Regenerate with `npm run --silent recommendations:review -- --examples > src/rec
 |  24 | slackware           | true     |  36.07 |      31.09 |      65.67 |  -6.00 |      -24.00 |    0.40 |
 |  25 | kali-linux          | false    | -33.70 |       0.00 |      72.30 |  -6.00 |     -100.00 |    0.00 |
 
+## penetrationTester
+
+|   # | Distro              | Eligible |    Raw | Normalized | Capability | Traits | Eligibility | Breadth |
+| --: | :------------------ | :------- | -----: | ---------: | ---------: | -----: | ----------: | ------: |
+|   1 | cachyos             | true     | 106.55 |      91.85 |      97.35 |   8.00 |        0.00 |    1.20 |
+|   2 | endeavouros         | true     | 106.55 |      91.85 |      97.35 |   8.00 |        0.00 |    1.20 |
+|   3 | kali-linux          | true     | 106.44 |      91.76 |      94.44 |  12.00 |        0.00 |    0.00 |
+|   4 | garuda-linux        | true     | 106.35 |      91.68 |      97.35 |   8.00 |        0.00 |    1.00 |
+|   5 | opensuse-tumbleweed | true     | 106.05 |      91.42 |      96.45 |   8.00 |        0.00 |    1.60 |
+|   6 | pikaos              | true     | 103.03 |      88.82 |      94.03 |   8.00 |        0.00 |    1.00 |
+|   7 | arch-linux          | true     | 101.67 |      87.65 |      90.87 |   8.00 |        2.00 |    0.80 |
+|   8 | solus               | true     | 101.28 |      87.31 |      92.08 |   8.00 |        0.00 |    1.20 |
+|   9 | gentoo              | true     | 100.20 |      86.38 |      89.80 |   8.00 |        2.00 |    0.40 |
+|  10 | fedora-workstation  | true     |  98.27 |      84.72 |      96.27 |   0.00 |        0.00 |    2.00 |
+|  11 | fedora-kde          | true     |  98.07 |      84.55 |      96.27 |   0.00 |        0.00 |    1.80 |
+|  12 | nobara              | true     |  97.03 |      83.65 |      95.63 |   0.00 |        0.00 |    1.40 |
+|  13 | void-linux          | true     |  95.52 |      82.35 |      94.92 |   8.00 |       -8.00 |    0.60 |
+|  14 | pop-os              | true     |  93.86 |      80.91 |      92.26 |   0.00 |        0.00 |    1.60 |
+|  15 | ubuntu              | true     |  92.25 |      79.53 |      90.25 |   0.00 |        0.00 |    2.00 |
+|  16 | debian              | true     |  90.22 |      77.78 |      88.42 |   0.00 |        0.00 |    1.80 |
+|  17 | mx-linux            | true     |  89.85 |      77.45 |      88.25 |   0.00 |        0.00 |    1.60 |
+|  18 | linux-mint          | true     |  88.06 |      75.92 |      86.06 |   0.00 |        0.00 |    2.00 |
+|  19 | zorin-os            | true     |  87.86 |      75.74 |      86.06 |   0.00 |        0.00 |    1.80 |
+|  20 | bazzite             | true     |  83.32 |      71.83 |      89.72 |  -8.00 |        0.00 |    1.60 |
+|  21 | elementary-os       | true     |  83.11 |      71.65 |      81.71 |   0.00 |        0.00 |    1.40 |
+|  22 | bluefin             | true     |  82.72 |      71.31 |      89.12 |  -8.00 |        0.00 |    1.60 |
+|  23 | nixos               | true     |  80.79 |      69.64 |      95.99 |  -8.00 |       -8.00 |    0.80 |
+|  24 | alpine-linux        | true     |  80.00 |      68.96 |      87.80 |   0.00 |       -8.00 |    0.20 |
+|  25 | slackware           | true     |  77.29 |      66.63 |      84.89 |   0.00 |       -8.00 |    0.40 |
+
+## securityCurious
+
+|   # | Distro              | Eligible |    Raw | Normalized | Capability | Traits | Eligibility | Breadth |
+| --: | :------------------ | :------- | -----: | ---------: | ---------: | -----: | ----------: | ------: |
+|   1 | linux-mint          | true     |  98.46 |      84.88 |      96.86 |  -0.40 |        0.00 |    2.00 |
+|   2 | ubuntu              | true     |  98.19 |      84.65 |      96.59 |  -0.40 |        0.00 |    2.00 |
+|   3 | fedora-workstation  | true     |  97.59 |      84.13 |      94.39 |   1.20 |        0.00 |    2.00 |
+|   4 | bazzite             | true     |  96.54 |      83.23 |      95.34 |  -0.40 |        0.00 |    1.60 |
+|   5 | bluefin             | true     |  95.89 |      82.66 |      94.69 |  -0.40 |        0.00 |    1.60 |
+|   6 | zorin-os            | true     |  95.79 |      82.58 |      94.39 |  -0.40 |        0.00 |    1.80 |
+|   7 | pop-os              | true     |  95.39 |      82.23 |      94.19 |  -0.40 |        0.00 |    1.60 |
+|   8 | mx-linux            | true     |  94.01 |      81.04 |      92.81 |  -0.40 |        0.00 |    1.60 |
+|   9 | fedora-kde          | true     |  93.36 |      80.48 |      90.36 |   1.20 |        0.00 |    1.80 |
+|  10 | elementary-os       | true     |  93.05 |      80.22 |      92.05 |  -0.40 |        0.00 |    1.40 |
+|  11 | debian              | true     |  91.27 |      78.68 |      88.27 |   1.20 |        0.00 |    1.80 |
+|  12 | solus               | true     |  90.09 |      77.66 |      89.29 |  -0.40 |        0.00 |    1.20 |
+|  13 | opensuse-tumbleweed | true     |  85.93 |      74.07 |      83.13 |   1.20 |        0.00 |    1.60 |
+|  14 | nobara              | true     |  85.49 |      73.70 |      84.49 |  -0.40 |        0.00 |    1.40 |
+|  15 | pikaos              | true     |  81.74 |      70.46 |      81.14 |  -0.40 |        0.00 |    1.00 |
+|  16 | cachyos             | true     |  80.57 |      69.46 |      79.77 |  -0.40 |        0.00 |    1.20 |
+|  17 | garuda-linux        | true     |  80.37 |      69.29 |      79.77 |  -0.40 |        0.00 |    1.00 |
+|  18 | endeavouros         | true     |  75.76 |      65.31 |      74.96 |  -0.40 |        0.00 |    1.20 |
+|  19 | nixos               | true     |  64.16 |      55.31 |      79.76 |  -0.40 |      -16.00 |    0.80 |
+|  20 | alpine-linux        | true     |  50.98 |      43.95 |      67.18 |  -0.40 |      -16.00 |    0.20 |
+|  21 | void-linux          | true     |  49.50 |      42.67 |      73.30 |  -0.40 |      -24.00 |    0.60 |
+|  22 | slackware           | true     |  44.95 |      38.75 |      68.95 |  -0.40 |      -24.00 |    0.40 |
+|  23 | arch-linux          | true     |  38.79 |      33.44 |      62.39 |  -0.40 |      -24.00 |    0.80 |
+|  24 | gentoo              | true     |  38.11 |      32.85 |      62.11 |  -0.40 |      -24.00 |    0.40 |
+|  25 | kali-linux          | false    | -20.72 |       0.00 |      71.68 |   7.60 |     -100.00 |    0.00 |
+
+## foss
+
+|   # | Distro              | Eligible |    Raw | Normalized | Capability | Traits | Eligibility | Breadth |
+| --: | :------------------ | :------- | -----: | ---------: | ---------: | -----: | ----------: | ------: |
+|   1 | fedora-kde          | true     | 104.14 |      89.78 |      97.34 |   5.00 |        0.00 |    1.80 |
+|   2 | opensuse-tumbleweed | true     |  99.99 |      86.20 |      93.39 |   5.00 |        0.00 |    1.60 |
+|   3 | fedora-workstation  | true     |  99.85 |      86.08 |      92.85 |   5.00 |        0.00 |    2.00 |
+|   4 | pop-os              | true     |  92.79 |      79.99 |      90.19 |   1.00 |        0.00 |    1.60 |
+|   5 | debian              | true     |  91.51 |      78.89 |      86.71 |   3.00 |        0.00 |    1.80 |
+|   6 | cachyos             | true     |  91.17 |      78.59 |      90.97 |  -1.00 |        0.00 |    1.20 |
+|   7 | ubuntu              | true     |  90.20 |      77.76 |      87.20 |   1.00 |        0.00 |    2.00 |
+|   8 | nobara              | true     |  90.09 |      77.67 |      89.69 |  -1.00 |        0.00 |    1.40 |
+|   9 | bluefin             | true     |  90.00 |      77.58 |      87.40 |   1.00 |        0.00 |    1.60 |
+|  10 | endeavouros         | true     |  89.94 |      77.53 |      89.74 |  -1.00 |        0.00 |    1.20 |
+|  11 | garuda-linux        | true     |  89.30 |      76.99 |      89.30 |  -1.00 |        0.00 |    1.00 |
+|  12 | bazzite             | true     |  88.10 |      75.95 |      87.50 |  -1.00 |        0.00 |    1.60 |
+|  13 | pikaos              | true     |  87.27 |      75.23 |      87.27 |  -1.00 |        0.00 |    1.00 |
+|  14 | mx-linux            | true     |  84.81 |      73.12 |      84.21 |  -1.00 |        0.00 |    1.60 |
+|  15 | solus               | true     |  84.78 |      73.08 |      84.58 |  -1.00 |        0.00 |    1.20 |
+|  16 | linux-mint          | true     |  83.98 |      72.40 |      82.98 |  -1.00 |        0.00 |    2.00 |
+|  17 | zorin-os            | true     |  82.12 |      70.79 |      81.32 |  -1.00 |        0.00 |    1.80 |
+|  18 | nixos               | true     |  77.10 |      66.46 |      91.30 |   1.00 |      -16.00 |    0.80 |
+|  19 | elementary-os       | true     |  75.51 |      65.09 |      75.11 |  -1.00 |        0.00 |    1.40 |
+|  20 | arch-linux          | true     |  71.51 |      61.65 |      87.71 |  -1.00 |      -16.00 |    0.80 |
+|  21 | void-linux          | true     |  69.78 |      60.15 |      86.18 |  -1.00 |      -16.00 |    0.60 |
+|  22 | gentoo              | true     |  60.05 |      51.77 |      84.65 |  -1.00 |      -24.00 |    0.40 |
+|  23 | alpine-linux        | true     |  54.58 |      47.05 |      79.38 |  -1.00 |      -24.00 |    0.20 |
+|  24 | slackware           | true     |  49.82 |      42.95 |      74.42 |  -1.00 |      -24.00 |    0.40 |
+|  25 | kali-linux          | false    | -23.46 |       0.00 |      77.54 |  -1.00 |     -100.00 |    0.00 |
+
 ## conservative
 
 |   # | Distro              | Eligible |    Raw | Normalized | Capability | Traits | Eligibility | Breadth |
@@ -318,3 +443,33 @@ Regenerate with `npm run --silent recommendations:review -- --examples > src/rec
 |  23 | arch-linux          | true     |  41.92 |      36.14 |      61.52 |  -4.40 |      -16.00 |    0.80 |
 |  24 | gentoo              | true     |  34.04 |      29.35 |      62.04 |  -4.40 |      -24.00 |    0.40 |
 |  25 | kali-linux          | false    | -35.92 |       0.00 |      68.48 |  -4.40 |     -100.00 |    0.00 |
+
+## unixAdministrator
+
+|   # | Distro              | Eligible |    Raw | Normalized | Capability | Traits | Eligibility | Breadth |
+| --: | :------------------ | :------- | -----: | ---------: | ---------: | -----: | ----------: | ------: |
+|   1 | slackware           | true     | 106.08 |      91.45 |      95.68 |   8.00 |        2.00 |    0.40 |
+|   2 | debian              | true     | 101.70 |      87.68 |      91.90 |   8.00 |        0.00 |    1.80 |
+|   3 | mx-linux            | true     |  95.64 |      82.45 |      86.04 |   8.00 |        0.00 |    1.60 |
+|   4 | linux-mint          | true     |  93.83 |      80.89 |      83.83 |   8.00 |        0.00 |    2.00 |
+|   5 | ubuntu              | true     |  92.39 |      79.65 |      82.39 |   8.00 |        0.00 |    2.00 |
+|   6 | pop-os              | true     |  90.46 |      77.98 |      80.86 |   8.00 |        0.00 |    1.60 |
+|   7 | zorin-os            | true     |  90.19 |      77.75 |      80.39 |   8.00 |        0.00 |    1.80 |
+|   8 | fedora-kde          | true     |  89.32 |      77.00 |      79.52 |   8.00 |        0.00 |    1.80 |
+|   9 | fedora-workstation  | true     |  85.41 |      73.63 |      75.41 |   8.00 |        0.00 |    2.00 |
+|  10 | nobara              | true     |  84.55 |      72.89 |      75.15 |   8.00 |        0.00 |    1.40 |
+|  11 | gentoo              | true     |  84.30 |      72.67 |      81.90 |   0.00 |        2.00 |    0.40 |
+|  12 | elementary-os       | true     |  83.88 |      72.31 |      74.48 |   8.00 |        0.00 |    1.40 |
+|  13 | alpine-linux        | true     |  83.60 |      72.06 |      83.40 |   8.00 |       -8.00 |    0.20 |
+|  14 | nixos               | true     |  82.22 |      70.88 |      89.42 |   0.00 |       -8.00 |    0.80 |
+|  15 | arch-linux          | true     |  80.29 |      69.22 |      77.49 |   0.00 |        2.00 |    0.80 |
+|  16 | opensuse-tumbleweed | true     |  79.56 |      68.58 |      77.96 |   0.00 |        0.00 |    1.60 |
+|  17 | cachyos             | true     |  79.39 |      68.44 |      78.19 |   0.00 |        0.00 |    1.20 |
+|  18 | endeavouros         | true     |  79.39 |      68.44 |      78.19 |   0.00 |        0.00 |    1.20 |
+|  19 | garuda-linux        | true     |  79.19 |      68.27 |      78.19 |   0.00 |        0.00 |    1.00 |
+|  20 | void-linux          | true     |  76.14 |      65.63 |      83.54 |   0.00 |       -8.00 |    0.60 |
+|  21 | solus               | true     |  74.22 |      63.98 |      73.02 |   0.00 |        0.00 |    1.20 |
+|  22 | pikaos              | true     |  74.17 |      63.94 |      73.17 |   0.00 |        0.00 |    1.00 |
+|  23 | bluefin             | true     |  72.53 |      62.53 |      70.93 |   0.00 |        0.00 |    1.60 |
+|  24 | bazzite             | true     |  72.22 |      62.26 |      70.62 |   0.00 |        0.00 |    1.60 |
+|  25 | kali-linux          | false    | -22.68 |       0.00 |      77.32 |   0.00 |     -100.00 |    0.00 |

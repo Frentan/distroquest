@@ -62,8 +62,8 @@ export function percentMatch(row: Recommendation): number {
   return Math.round(row.normalizedScore * 10) / 10;
 }
 
-// Preparation advice follows explicit intent, without feeding back into ranking
-// or granting specialist eligibility. Numeric gaming evidence remains authoritative.
+// Preparation advice adds no scores or specialist eligibility; the engine
+// separately evaluates explicit intent. Numeric gaming evidence remains authoritative.
 export function preparationTopics(
   result: RecommendationResult,
 ): readonly UseCase[] {

@@ -144,6 +144,8 @@ export const reasonCopy: Record<string, string> = {
     'Its image-based workflow suits your interest in container-based tools.',
   'focus.gaming':
     'Gaming is a focus of this distribution, matching your plans.',
+  'creative.documented-integration':
+    'It offers documented creative setup conveniences; check your apps, plugins, media formats, and peripherals.',
   'focus.development': 'Its development focus fits your coding use case.',
   'focus.security':
     'Its security-tool focus fits your security-testing use case.',

@@ -55,6 +55,7 @@ export const traitValues = {
   nvidiaSupport: ['integrated', 'guided', 'manual'],
   desktopLayout: ['panel-menu', 'dock-overview', 'user-selected'],
   handheldSupport: ['documented', 'unassessed'],
+  creativeIntegration: ['documented', 'unassessed'],
 } as const;
 type TraitValue<K extends keyof typeof traitValues> =
   (typeof traitValues)[K][number];

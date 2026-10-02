@@ -27,6 +27,7 @@ export const distroProfiles = [
       nvidiaSupport: 'guided',
       desktopLayout: 'panel-menu',
       handheldSupport: 'unassessed',
+      creativeIntegration: 'unassessed',
       atomicUpdates: false,
       focus: {
         gaming: false,
@@ -69,6 +70,7 @@ export const distroProfiles = [
       nvidiaSupport: 'guided',
       desktopLayout: 'dock-overview',
       handheldSupport: 'unassessed',
+      creativeIntegration: 'unassessed',
       atomicUpdates: false,
       focus: {
         gaming: false,
@@ -111,6 +113,7 @@ export const distroProfiles = [
       nvidiaSupport: 'guided',
       desktopLayout: 'dock-overview',
       handheldSupport: 'unassessed',
+      creativeIntegration: 'unassessed',
       atomicUpdates: false,
       focus: {
         gaming: false,
@@ -153,6 +156,7 @@ export const distroProfiles = [
       nvidiaSupport: 'guided',
       desktopLayout: 'panel-menu',
       handheldSupport: 'unassessed',
+      creativeIntegration: 'unassessed',
       atomicUpdates: false,
       focus: {
         gaming: false,
@@ -195,6 +199,7 @@ export const distroProfiles = [
       nvidiaSupport: 'manual',
       desktopLayout: 'panel-menu',
       handheldSupport: 'unassessed',
+      creativeIntegration: 'unassessed',
       atomicUpdates: false,
       focus: {
         gaming: false,
@@ -237,6 +242,7 @@ export const distroProfiles = [
       nvidiaSupport: 'integrated',
       desktopLayout: 'dock-overview',
       handheldSupport: 'unassessed',
+      creativeIntegration: 'unassessed',
       atomicUpdates: false,
       focus: {
         gaming: false,
@@ -279,6 +285,7 @@ export const distroProfiles = [
       nvidiaSupport: 'guided',
       desktopLayout: 'panel-menu',
       handheldSupport: 'unassessed',
+      creativeIntegration: 'unassessed',
       atomicUpdates: false,
       focus: {
         gaming: false,
@@ -321,6 +328,7 @@ export const distroProfiles = [
       nvidiaSupport: 'manual',
       desktopLayout: 'dock-overview',
       handheldSupport: 'unassessed',
+      creativeIntegration: 'unassessed',
       atomicUpdates: false,
       focus: {
         gaming: false,
@@ -363,6 +371,7 @@ export const distroProfiles = [
       nvidiaSupport: 'guided',
       desktopLayout: 'panel-menu',
       handheldSupport: 'unassessed',
+      creativeIntegration: 'unassessed',
       atomicUpdates: false,
       focus: {
         gaming: false,
@@ -405,6 +414,7 @@ export const distroProfiles = [
       nvidiaSupport: 'manual',
       desktopLayout: 'panel-menu',
       handheldSupport: 'unassessed',
+      creativeIntegration: 'unassessed',
       atomicUpdates: false,
       focus: {
         gaming: false,
@@ -447,6 +457,7 @@ export const distroProfiles = [
       nvidiaSupport: 'manual',
       desktopLayout: 'user-selected',
       handheldSupport: 'unassessed',
+      creativeIntegration: 'unassessed',
       atomicUpdates: false,
       focus: {
         gaming: false,
@@ -507,6 +518,7 @@ export const distroProfiles = [
       nvidiaSupport: 'integrated',
       desktopLayout: 'panel-menu',
       handheldSupport: 'unassessed',
+      creativeIntegration: 'documented',
       atomicUpdates: false,
       focus: {
         gaming: true,
@@ -520,8 +532,11 @@ export const distroProfiles = [
       constraints: [],
     },
     assessment: {
-      reviewedOn: '2026-10-01',
-      sources: ['https://cachyos.org/'],
+      reviewedOn: '2026-10-02',
+      sources: [
+        'https://wiki.cachyos.org/configuration/general_system_tweaks/',
+        'https://cachyos.org/',
+      ],
     },
   },
   {
@@ -549,6 +564,7 @@ export const distroProfiles = [
       nvidiaSupport: 'integrated',
       desktopLayout: 'panel-menu',
       handheldSupport: 'unassessed',
+      creativeIntegration: 'documented',
       atomicUpdates: false,
       focus: {
         gaming: true,
@@ -562,8 +578,12 @@ export const distroProfiles = [
       constraints: [],
     },
     assessment: {
-      reviewedOn: '2026-10-01',
-      sources: ['https://nobaraproject.org/'],
+      reviewedOn: '2026-10-02',
+      sources: [
+        'https://nobaraproject.org/',
+        'https://wiki.nobaraproject.org/en/general-usage/additional-software/obs-studio',
+        'https://wiki.nobaraproject.org/en/general-usage/additional-software/davinci-resolve',
+      ],
     },
   },
   {
@@ -591,6 +611,7 @@ export const distroProfiles = [
       nvidiaSupport: 'integrated',
       desktopLayout: 'panel-menu',
       handheldSupport: 'documented',
+      creativeIntegration: 'documented',
       atomicUpdates: true,
       focus: {
         gaming: true,
@@ -606,6 +627,7 @@ export const distroProfiles = [
     assessment: {
       reviewedOn: '2026-10-02',
       sources: [
+        'https://github.com/ublue-os/bazzite/blob/main/README.md',
         'https://bazzite.gg/',
         'https://docs.bazzite.gg/Handheld_and_HTPC_edition/Handheld_Wiki/',
       ],
@@ -636,6 +658,7 @@ export const distroProfiles = [
       nvidiaSupport: 'integrated',
       desktopLayout: 'dock-overview',
       handheldSupport: 'unassessed',
+      creativeIntegration: 'documented',
       atomicUpdates: true,
       focus: {
         gaming: false,
@@ -649,8 +672,11 @@ export const distroProfiles = [
       constraints: [],
     },
     assessment: {
-      reviewedOn: '2026-10-01',
-      sources: ['https://docs.projectbluefin.io/'],
+      reviewedOn: '2026-10-02',
+      sources: [
+        'https://docs.projectbluefin.io/administration/',
+        'https://docs.projectbluefin.io/',
+      ],
     },
   },
   {
@@ -678,6 +704,7 @@ export const distroProfiles = [
       nvidiaSupport: 'manual',
       desktopLayout: 'panel-menu',
       handheldSupport: 'unassessed',
+      creativeIntegration: 'unassessed',
       atomicUpdates: true,
       focus: {
         gaming: false,
@@ -738,6 +765,7 @@ export const distroProfiles = [
       nvidiaSupport: 'manual',
       desktopLayout: 'user-selected',
       handheldSupport: 'unassessed',
+      creativeIntegration: 'unassessed',
       atomicUpdates: false,
       focus: {
         gaming: false,
@@ -798,6 +826,7 @@ export const distroProfiles = [
       nvidiaSupport: 'manual',
       desktopLayout: 'panel-menu',
       handheldSupport: 'unassessed',
+      creativeIntegration: 'unassessed',
       atomicUpdates: false,
       focus: {
         gaming: false,
@@ -858,6 +887,7 @@ export const distroProfiles = [
       nvidiaSupport: 'manual',
       desktopLayout: 'panel-menu',
       handheldSupport: 'unassessed',
+      creativeIntegration: 'unassessed',
       atomicUpdates: false,
       focus: {
         gaming: false,
@@ -916,6 +946,7 @@ export const distroProfiles = [
       nvidiaSupport: 'guided',
       desktopLayout: 'panel-menu',
       handheldSupport: 'unassessed',
+      creativeIntegration: 'unassessed',
       atomicUpdates: false,
       focus: {
         gaming: false,
@@ -960,6 +991,7 @@ export const distroProfiles = [
       nvidiaSupport: 'integrated',
       desktopLayout: 'panel-menu',
       handheldSupport: 'unassessed',
+      creativeIntegration: 'unassessed',
       atomicUpdates: false,
       focus: {
         gaming: true,
@@ -1004,6 +1036,7 @@ export const distroProfiles = [
       nvidiaSupport: 'guided',
       desktopLayout: 'panel-menu',
       handheldSupport: 'unassessed',
+      creativeIntegration: 'documented',
       atomicUpdates: false,
       focus: {
         gaming: false,
@@ -1017,7 +1050,7 @@ export const distroProfiles = [
       constraints: [],
     },
     assessment: {
-      reviewedOn: '2026-10-01',
+      reviewedOn: '2026-10-02',
       sources: ['https://getsol.us/'],
     },
   },
@@ -1046,6 +1079,7 @@ export const distroProfiles = [
       nvidiaSupport: 'integrated',
       desktopLayout: 'panel-menu',
       handheldSupport: 'unassessed',
+      creativeIntegration: 'documented',
       atomicUpdates: false,
       focus: {
         gaming: true,
@@ -1059,7 +1093,7 @@ export const distroProfiles = [
       constraints: [],
     },
     assessment: {
-      reviewedOn: '2026-10-01',
+      reviewedOn: '2026-10-02',
       sources: ['https://pika-os.com/'],
     },
   },
@@ -1088,6 +1122,7 @@ export const distroProfiles = [
       nvidiaSupport: 'manual',
       desktopLayout: 'user-selected',
       handheldSupport: 'unassessed',
+      creativeIntegration: 'unassessed',
       atomicUpdates: false,
       focus: {
         gaming: false,
@@ -1148,6 +1183,7 @@ export const distroProfiles = [
       nvidiaSupport: 'manual',
       desktopLayout: 'panel-menu',
       handheldSupport: 'unassessed',
+      creativeIntegration: 'unassessed',
       atomicUpdates: false,
       focus: {
         gaming: false,

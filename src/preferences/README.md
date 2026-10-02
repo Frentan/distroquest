@@ -1,10 +1,8 @@
 # User preferences, v1
 
-Milestone 3 defines 16 questions and translates a complete answer set into a
-deterministic `UserPreferenceProfile`. It does not rank distributions, evaluate
-their constraints, render a quiz, or produce result screens. Milestone 4 extends
-two existing questions with familiar-layout and handheld options while retaining
-the 16-question structure; distro scoring lives in the separate recommendation engine.
+The 16-question schema converts complete answers into a deterministic
+`UserPreferenceProfile`. This module owns validation and evidence construction;
+[the engine](../recommendations/README.md) owns ranking and constraint evaluation.
 
 ## Review and use
 
@@ -121,8 +119,9 @@ Direct system-model preferences remain traits.
   has no creative-work or pentesting-quality axis. No such score is invented.
 - Question 10 exclusively supplies numeric gaming intensity, including a genuine
   zero. Question 9's gaming selection remains a use case, even if answers differ.
-  Everyday, creative, and gaming intent also select result preparation tips;
-  this presentation step adds no scoring weights or eligibility evidence. Gaming
+  Everyday, creative, and gaming intent also select preparation tips. Tips add
+  no scoring weights or eligibility evidence; the engine separately applies a
+  small documented-integration bonus for explicit creative intent. Gaming
   tips require positive explicit intensity. Creative app/peripheral advice is not
   a claim about distro compatibility with a specific workflow.
 - Question 11 supplies the main resource-constraint target. Selecting old-hardware
@@ -165,34 +164,19 @@ intermediate experience. The recommendation engine now evaluates `require` and
 `strongly-prefer` constraints; `UserTraits.useCases`, `interests`, and `eligibility`
 provide its existing vocabulary without replacing distro constraints.
 
-## Copy and timing
+## Copy and platform intake
 
-Keep the 16-question count. Rolling/system-model questions move into core;
-free-software preference, troubleshooting, and identity form philosophy. The
-atomic prompt avoids suggesting a protected base is impossible to modify or break.
-Hardware wording distinguishes available resources from age. AMD and Intel graphics share the standard open-driver answer. Mac types are
-separate platform choices; one conditional follow-up identifies the Apple Silicon
-generation or Intel Mac T2 status. The 16 preference questions remain unchanged in
-count; Mac users see 17 screens. Platform answers do not enter preference scoring.
+User-facing copy lives in `src/i18n/`. Hardware wording distinguishes resources
+from age; the atomic prompt does not promise an unbreakable base. `open-driver`
+combines AMD/Intel graphics. Mac choices carry neutral graphics evidence and add
+one required platform follow-up outside the 16-question preference contract.
+Follow-ups guide installation without changing targets, traits, or eligibility.
+The base quiz took about three minutes in a user playtest; times will vary.
 
-Emoji are ordinary Unicode strings, not IDs or meaning-bearing controls. The quiz
-renders them in `aria-hidden="true"` spans alongside visible labels.
-Appearance varies across platforms; emoji must never be the only accessible name.
+## Verification
 
-About three minutes was confirmed in a user playtest of the Milestone 5A UI.
-Keep optional explanations short and show one question at a time. Completion time
-will vary by user. Do not add questions until testing shows a missing decision
-signal worth the extra reading.
-
-## Verification and next boundary
-
-Tests cover schema/copy completeness, every option, all 92 valid use-case combinations,
-bounded deterministic output, canonical ordering, malformed answers, nonmutation,
-monotonic direct signals, neutral traits, GPU separation, gaming zero, specialist
-evidence, and the finale's limited influence across eight complete scenarios.
-
-Milestone 4 now compares these profiles against all 25 distro records in the separate
-recommendation engine. This builder keeps its original target/importance contract.
-Scoring, constraint evaluation, and ranking diagnostics live in that engine.
-Milestone 5A's quiz and result presentation live in `src/quiz/` and consume its
-outputs without changing the builder's evidence rules or the engine's scores.
+Tests cover every option and all 92 valid use-case combinations, malformed answers,
+bounded deterministic output, canonical ordering, nonmutation, monotonic direct
+signals, neutral traits, GPU separation, gaming zero, explicit eligibility, and
+limited finale influence. The builder preserves its target/importance contract;
+scoring lives in the engine and interactive state/presentation in `src/quiz/`.

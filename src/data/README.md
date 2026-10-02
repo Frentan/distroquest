@@ -1,12 +1,9 @@
 # Distro model, v1
 
-Milestone 2 contains 25 desktop-oriented assessments. Scores are editorial estimates
-for comparison and tuning, informed by the linked project sources; they are not
-benchmarks, measured reliability, or published project ratings. Review the table
-during model tuning. Milestone 3 now defines questions and user
-preferences separately in [the preference model](../preferences/README.md).
-Milestone 4 implements scoring, ranking, and eligibility evaluation in
-[the recommendation engine](../recommendations/README.md).
+The 25 desktop assessments are editorial estimates informed by linked project
+sources, not benchmarks, measured reliability, or published project ratings.
+[Preferences](../preferences/README.md) and [scoring](../recommendations/README.md)
+are separate models.
 
 ## Inspect and validate
 
@@ -19,13 +16,7 @@ npm run data:review -- --json
 The default review output is a Markdown table of all ten capabilities and breadth.
 JSON includes every profile, trait, constraint, source, and English content field.
 For a clean JSON file, use `npm run --silent data:review -- --json > /tmp/distroquest-profiles.json`.
-Both modes validate first and exit unsuccessfully if any record is invalid. These
-tools run locally with Node's built-in TypeScript stripping and test runner; they
-add no dependencies and ship no inspection page.
-
-Tests use in-process execution because this managed environment's isolated runner
-reported only the file wrapper. In-process execution exposes the individual test cases
-and their assertions; the suite has no global mocks or shared-state changes.
+Both modes validate first and exit unsuccessfully if any record is invalid. Review tools run locally and ship no inspection page.
 
 ## Boundaries
 
@@ -108,6 +99,41 @@ does not exclude a distro. Bazzite's [Handheld Wiki](https://docs.bazzite.gg/Han
 provides device-specific support information; scoring never guarantees compatibility
 for an unspecified handheld or for the generic desktop image.
 
+### Creative integration review
+
+A `documented` assessment requires a distro-maintained creative app integration
+or targeted setup helper available to the assessed desktop. Generic app availability,
+codec playback, ordinary software catalogs, and manual how-tos alone do not qualify.
+Optional helpers/packages count; they need not be preinstalled. This is a small
+convenience signal, not a workflow-quality rating or device/app certification.
+
+The 2026-10-02 pass reviewed the roster's project overviews and followed up on
+plausible integrations. Six profiles qualify:
+
+| Distro  | Documented convenience and source                                                                                                                                                                                         |
+| :------ | :------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| Nobara  | [OBS packaging/plugins](https://wiki.nobaraproject.org/en/general-usage/additional-software/obs-studio) and [DaVinci Resolve Wizard](https://wiki.nobaraproject.org/en/general-usage/additional-software/davinci-resolve) |
+| Bazzite | [Preinstalled OBS VkCapture and an OpenTabletDriver helper with bundled udev rules](https://github.com/ublue-os/bazzite/blob/main/README.md)                                                                              |
+| PikaOS  | [Blender GPU-backend integration and customized OBS capture/stream-key support](https://pika-os.com/)                                                                                                                     |
+| CachyOS | [Custom OBS package with CUDA/virtual-camera fixes](https://wiki.cachyos.org/configuration/general_system_tweaks/#obs-studio)                                                                                             |
+| Bluefin | [OpenTabletDriver install/uninstall helper](https://docs.projectbluefin.io/administration/#application-installation-commands)                                                                                             |
+| Solus   | [Maintained ROCm integration for GPU-accelerated Blender](https://getsol.us/#for-content-creators)                                                                                                                        |
+
+The other 19 stay `unassessed`, without penalty. This is a bounded source pass,
+not proof that they lack creative integrations. Zorin Pro's [creative bundle](https://help.zorin.com/docs/apps-games/alternatives-to-windows-apps/)
+is outside the Core baseline; separate Fedora/Ubuntu creative editions do not
+transfer to the assessed desktops. Pop!_OS's [Resolve guide](https://support.system76.com/support/install-davinci-resolve)
+documents manual dependencies and a community script. MX's general package installer
+and Garuda's general setup assistant alone do not establish specialized integration;
+Garuda's current tool contents and Slackware's documentation could not be fully
+retrieved in this pass. Bluefin qualifies through its current tablet helper, not the
+[removed Resolve recipe](https://github.com/ublue-os/bluefin/discussions/3842).
+
+Explicit creative intent activates the existing +2 trait modifier, inside the
+±12 cap. No capability axis, extra questionnaire, inferred expertise, or guarantee
+for specific apps, formats, plugins, or peripherals is added. Review helpers and
+package claims again when their sources or assessed editions change.
+
 ## Breadth and constraints
 
 `recommendation.breadth` is an internal 0–5 half-step prior for ordinary desktop
@@ -142,9 +168,9 @@ values, extended with lower experience/tolerance levels; the engine evaluates th
 
 ## Assessment limits and tuning questions
 
-Original source checks date to 2026-10-01; the Bazzite handheld documentation
-was additionally checked on 2026-10-02. Project descriptions support mechanisms and focus;
-scores and comparative judgments remain DistroQuest's own interpretation. Edition
+Original source checks date to 2026-10-01; Bazzite handheld documentation and
+the creative integration sources above were checked on 2026-10-02. Project sources support
+mechanisms and focus; comparative scores remain DistroQuest's interpretation. Edition
 baselines are explicit in `assessmentBasis`. Sources can change; verify new releases
 before tuning. MX's project manual and Garuda's project-hosted support discussion
 provide narrower evidence than the other project overview pages; their main sites
@@ -179,37 +205,14 @@ cached page, so it is not evidence of a newly verified release state.
   container footprint. Alpine/Arch/Gentoo polish measures what is supplied, not what
   an expert could build. Slackware stability does not override its soft conditions.
 
-The numeric table, edition assumptions, and specialist constraints were reviewed
-before Milestone 3. Keep further distro tuning separate from questionnaire design.
-
 ## Relative relationships and result diversity
 
-The reviewed model prioritizes coherent relationships over isolated scores:
+Dataset tests check beginner friendliness (Mint > Fedora > Tumbleweed > Arch >
+Gentoo), gaming readiness (Bazzite > Fedora), and old-hardware fit (MX > Mint).
+Breadth separately favors general-purpose reach; it is not quality.
 
-- Beginner friendliness: Mint > Fedora (both desktops) > Tumbleweed > Arch > Gentoo.
-- Gaming readiness: Bazzite > Fedora; general-purpose breadth: Fedora > Bazzite.
-- Older-hardware suitability: MX > Mint; general-purpose breadth: Mint > MX.
-
-These relationships are regression-checked in the dataset tests. Breadth represents
-ordinary desktop recommendation reach; it is not an overall quality score.
-
-Milestone 5A groups sibling editions in the public shortlist. When Fedora leads,
-the best-matching desktop is the winner and its sibling is a desktop alternative,
-leaving the other recommendation slots for distinct paths. Either Workstation or
-KDE can win according to the user's needs. Platform support can narrow or reorder
-practical installation paths independently of these preference scores.
-
-For example, hypothetical scores of Fedora KDE 92, Workstation 90, Tumbleweed 84,
-and CachyOS 81 should yield KDE as winner, Workstation as its desktop alternative,
-and Tumbleweed/CachyOS as other recommendations. These are illustrative scores,
-not current engine outputs or a selected presentation threshold.
-
-`traits.family` provides ancestry context, but family membership alone is too broad
-to decide equivalence. Fedora KDE and Workstation share a foundation and chiefly
-differ by desktop; Bazzite changes the system/update model and gaming workflow.
-Likewise, Debian ancestry does not make every Debian derivative interchangeable.
-The engine exposes both ancestry and a `presentationGroup`: Fedora Workstation
-and KDE share `fedora-desktop`; other distro IDs remain distinct. Independent `workflow` metadata distinguishes conventional desktop, atomic
-desktop, gaming appliance, and declarative system. Core scoring never penalizes
-family members or applies a one-per-family limit. Grouped alternatives are now
-presented by the quiz UI; no meaningful-difference threshold has been introduced.
+The engine groups Fedora Workstation/KDE as `fedora-desktop`; other distro IDs
+remain distinct. `family` describes ancestry, and `workflow` distinguishes
+conventional, atomic, gaming-appliance, and declarative systems. The quiz groups
+sibling editions without penalizing scores or enforcing one result per family.
+Platform support can independently reorder practical installation paths.

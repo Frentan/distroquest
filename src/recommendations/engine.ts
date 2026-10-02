@@ -21,6 +21,7 @@ export const scoringRules = Object.freeze({
   balancedFreshnessAllowance: 1,
   layoutMatch: 2,
   handheldMatch: 3,
+  creativeIntegrationMatch: 2,
   breadthMaximum: 2,
   normalizationMaximum: 116,
   unmetSoftCondition: 8,
@@ -157,6 +158,14 @@ function traitModifiers(
     add('focus.gaming', 3 * gaming.weight);
   if (user.useCases.includes('development') && traits.focus.development)
     add('focus.development', 2);
+  if (
+    user.useCases.includes('creative') &&
+    traits.creativeIntegration === 'documented'
+  )
+    add(
+      'creative.documented-integration',
+      scoringRules.creativeIntegrationMatch,
+    );
   if (user.securityUseCase && traits.focus.security) add('focus.security', 8);
   if (user.gpu === 'nvidia')
     add(
@@ -366,5 +375,5 @@ export function rankDistros(
 // Public boundary: accepts untrusted answers; existing validation rejects omissions.
 export function recommend(input: unknown): RecommendationResult {
   const profile = normalizePreferenceProfile(buildPreferenceProfile(input));
-  return { modelVersion: 2, profile, ranking: rankDistros(profile) };
+  return { modelVersion: 3, profile, ranking: rankDistros(profile) };
 }

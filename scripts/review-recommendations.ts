@@ -21,12 +21,12 @@ export function formatRankingTable(result: RecommendationResult): string {
 
 export function formatExampleRankings(): string {
   return [
-    '# Example rankings, model v2',
+    '# Example rankings, model v3',
     '',
-    'Ten representative scenarios from the 15 complete answer fixtures in',
+    `All ${examplePersonaNames.length} complete answer fixtures from`,
     '[`scripts/recommendation-personas.ts`](../../scripts/recommendation-personas.ts).',
     'Values are development score points, not match probabilities. Tables round for',
-    'readability; the engine sorts unrounded raw scores. Specialist scenarios remain',
+    'readability; the engine sorts unrounded raw scores. Each persona is also',
     'available through the CLI and tests.',
     '',
     'Regenerate with `npm run --silent recommendations:review -- --examples > src/recommendations/EXAMPLES.md`, then run `npm run format`.',

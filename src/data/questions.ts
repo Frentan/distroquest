@@ -41,11 +41,11 @@ export const questions: readonly Question[] = [
       capabilities: { beginnerFriendly: target(2.5) },
       eligibility: { experience: 'intermediate' },
     }),
-    option('terminal', '🧙', {
+    option('terminal', '🧑‍💻', {
       capabilities: { beginnerFriendly: target(1) },
       eligibility: { experience: 'advanced' },
     }),
-    option('init', '☠️', {
+    option('init', '🧙‍♂️', {
       capabilities: { beginnerFriendly: target(0) },
       eligibility: { experience: 'advanced' },
     }),
@@ -148,7 +148,7 @@ export const questions: readonly Question[] = [
     option('fixed', '🧱', {
       traits: { wantsRolling: false, rollingStrength: 2 },
     }),
-    option('either', '🤷'),
+    option('either', '😐'),
     option('appealing', '🌊', {
       traits: { wantsRolling: true, rollingStrength: 1 },
     }),
@@ -160,7 +160,7 @@ export const questions: readonly Question[] = [
     option('traditional', '🔓', {
       traits: { wantsAtomic: false, atomicStrength: 2 },
     }),
-    option('either', '🤷'),
+    option('either', '😐'),
     option('protected', '🛡️', {
       traits: { wantsAtomic: true, atomicStrength: 1 },
     }),
@@ -193,7 +193,7 @@ export const questions: readonly Question[] = [
         capabilities: { developerExperience: target(4, 2) },
         traits: { useCase: 'homelab' },
       }),
-      option('old-hardware', '🧓', {
+      option('old-hardware', '👴', {
         capabilities: { oldHardware: target(5, 1) },
         traits: { useCase: 'old-hardware' },
       }),
@@ -214,7 +214,7 @@ export const questions: readonly Question[] = [
       capabilities: { oldHardware: target(1) },
       traits: { hardware: 'recent' },
     }),
-    option('aging', '🧓', {
+    option('aging', '📺', {
       capabilities: { oldHardware: target(3.5) },
       traits: { hardware: 'aging' },
     }),
@@ -235,7 +235,7 @@ export const questions: readonly Question[] = [
     option('unknown', '❓', { traits: { gpu: 'unknown' } }),
   ]),
   single('software-freedom', 'philosophy', [
-    option('pragmatic', '🤷', { traits: { fossPreference: 0 } }),
+    option('pragmatic', '😐', { traits: { fossPreference: 0 } }),
     option('prefer', '🌱', { traits: { fossPreference: 2 } }),
     option('important', '🐧', { traits: { fossPreference: 4 } }),
     option('strong', '🕊️', { traits: { fossPreference: 5 } }),
@@ -308,7 +308,7 @@ export const questions: readonly Question[] = [
     ),
     option(
       'forbidden',
-      '🧙',
+      '☠️',
       mood({ systemControl: 5, customization: 5, lowMaintenance: 1 }, 0.5),
     ),
   ]),

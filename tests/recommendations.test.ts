@@ -650,17 +650,127 @@ test('ancestry, edition groups and workflows remain distinct without modifying s
   assert.equal(get('declarative', 'nixos').workflow, 'declarative-system');
 });
 
-test('example review includes ten complete accessible tables and keeps specialists in the full review', () => {
+test('example review includes complete accessible tables for every persona', () => {
   const output = formatExampleRankings();
-  assert.equal((output.match(/^## /gm) ?? []).length, 10);
-  assert.equal((output.match(/^\| \d+ \|/gm) ?? []).length, 250);
+  assert.deepEqual(
+    [...output.matchAll(/^## (.+)$/gm)].map((match) => match[1]),
+    Object.keys(personas),
+  );
+  assert.equal(
+    (output.match(/^\| \d+ \|/gm) ?? []).length,
+    25 * Object.keys(personas).length,
+  );
   assert.ok(output.includes('[customizableDeveloper](#customizabledeveloper)'));
-  assert.ok(!output.includes('## penetrationTester'));
+  assert.ok(output.includes('## penetrationTester'));
+  assert.ok(output.includes('## securityCurious'));
   assert.equal(reviewRecommendations(['--examples']), output);
   assert.throws(() => reviewRecommendations(['--examples', '--json']));
   assert.ok(
     reviewRecommendations(['--persona', 'penetrationTester']).includes(
       'kali-linux',
     ),
+  );
+});
+
+test('creative intent adds only a small documented integration refinement', () => {
+  for (const name of [
+    'beginner',
+    'windowsGamer',
+    'oldLaptop',
+    'atomicDeveloper',
+    'securityCurious',
+  ] as const) {
+    const answers = personas[name];
+    const before = recommend(answers);
+    const after = recommend({
+      ...answers,
+      'use-cases': [...answers['use-cases'], 'creative'],
+    });
+    assert.deepEqual(after.profile.capabilities, before.profile.capabilities);
+    assert.deepEqual(after.profile.eligibility, before.profile.eligibility);
+    for (const row of after.ranking) {
+      const previous = before.ranking.find(
+        (other) => other.distroId === row.distroId,
+      )!;
+      const distro = distroProfiles.find((other) => other.id === row.distroId)!;
+      assert.equal(row.capabilityScore, previous.capabilityScore);
+      assert.equal(row.eligible, previous.eligible);
+      assert.deepEqual(row.constraints, previous.constraints);
+      assert.ok(row.traitAdjustment - previous.traitAdjustment >= 0);
+      assert.ok(row.traitAdjustment - previous.traitAdjustment <= 2);
+      if (distro.traits.creativeIntegration === 'documented') {
+        assert.ok(row.reasons.includes('creative.documented-integration'));
+        const expected = Math.min(
+          scoringRules.traitLimit,
+          previous.traitAdjustment + scoringRules.creativeIntegrationMatch,
+        );
+        assert.equal(row.traitAdjustment, expected);
+        assert.ok(
+          Math.abs(
+            row.rawScore -
+              previous.rawScore -
+              (expected - previous.traitAdjustment),
+          ) < 1e-10,
+        );
+      } else {
+        assert.deepEqual(row, previous);
+      }
+    }
+    if (
+      name === 'beginner' ||
+      name === 'oldLaptop' ||
+      name === 'atomicDeveloper'
+    )
+      assert.equal(after.ranking[0].distroId, before.ranking[0].distroId);
+    if (name === 'securityCurious')
+      assert.equal(
+        after.ranking.find((row) => row.distroId === 'kali-linux')!.eligible,
+        false,
+      );
+  }
+});
+
+test('creative integration follows the assessed trait, remains capped, and is not inferred', () => {
+  const distro = distroProfiles.find((row) => row.id === 'nobara')!;
+  for (const answers of Object.values(personas)) {
+    assert.ok(
+      !recommend(answers).ranking.some((row) =>
+        row.reasons.includes('creative.documented-integration'),
+      ),
+    );
+  }
+  const profile = recommend({
+    ...personas.beginner,
+    'use-cases': ['creative'],
+  }).profile;
+  const reidentified = { ...distro, id: 'linux-mint' as const };
+  assert.equal(
+    scoreDistro(profile, reidentified).rawScore,
+    scoreDistro(profile, distro).rawScore,
+  );
+  const unassessed = {
+    ...distro,
+    traits: { ...distro.traits, creativeIntegration: 'unassessed' as const },
+  };
+  assert.equal(
+    scoreDistro(profile, distro).rawScore -
+      scoreDistro(profile, unassessed).rawScore,
+    2,
+  );
+  const cappedProfile = {
+    ...recommend(personas.declarative).profile,
+    traits: {
+      ...recommend(personas.declarative).profile.traits,
+      useCases: ['creative'] as const,
+    },
+  };
+  const nixos = distroProfiles.find((row) => row.id === 'nixos')!;
+  const capped = scoreDistro(cappedProfile, {
+    ...nixos,
+    traits: { ...nixos.traits, creativeIntegration: 'documented' },
+  });
+  assert.equal(capped.traitAdjustment, scoringRules.traitLimit);
+  assert.ok(
+    capped.traitModifiers.some((modifier) => modifier.code === 'traits.cap'),
   );
 });

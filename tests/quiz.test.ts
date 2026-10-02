@@ -151,6 +151,19 @@ test('all public engine signals are translated, internal diagnostics stay out', 
     }
     assert.ok(strongestReasons(shortlist(result).primary).length >= 3);
   }
+  const creative = recommend({
+    ...personas.beginner,
+    'use-cases': ['creative'],
+  });
+  const nobara = creative.ranking.find((row) => row.distroId === 'nobara')!;
+  assert.ok(
+    strongestReasons(nobara).includes('creative.documented-integration'),
+  );
+  assert.ok(
+    explainReason('creative.documented-integration')?.includes(
+      'check your apps',
+    ),
+  );
   assert.equal(explainReason('breadth.prior'), undefined);
 });
 test('same-family derivatives remain distinct when their edition groups differ', () => {
@@ -199,7 +212,7 @@ test('one-decimal fit separates rounding collisions while retaining real engine 
   assert.equal(percentMatch(tied[0]), percentMatch(tied[1]));
 });
 
-test('broad purposes tailor preparation without changing ranking, expertise, or gaming evidence', () => {
+test('broad purposes tailor preparation without inventing expertise or gaming evidence', () => {
   const base = { ...personas.beginner, gaming: ['none'] };
   const everyday = recommend({ ...base, 'use-cases': ['everyday'] });
   const creative = recommend({ ...base, 'use-cases': ['creative'] });
@@ -207,8 +220,11 @@ test('broad purposes tailor preparation without changing ranking, expertise, or 
     ...base,
     'use-cases': ['everyday', 'creative', 'gaming'],
   });
-  assert.deepEqual(creative.ranking, everyday.ranking);
-  assert.deepEqual(combined.ranking, everyday.ranking);
+  assert.deepEqual(combined.ranking, creative.ranking);
+  assert.deepEqual(
+    creative.profile.capabilities,
+    everyday.profile.capabilities,
+  );
   assert.deepEqual(combined.profile.eligibility, everyday.profile.eligibility);
   assert.equal(combined.profile.capabilities.gaming.target, 0);
   assert.equal(combined.profile.capabilities.gaming.weight, 0);
