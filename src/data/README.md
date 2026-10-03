@@ -207,6 +207,32 @@ cached page, so it is not evidence of a newly verified release state.
 
 ## Relative relationships and result diversity
 
+### CachyOS and Garuda review (2026-10-03)
+
+The assessed baselines are CachyOS KDE on supported modern x86-64 hardware and
+Garuda Dr460nized Gaming KDE. Garuda's [current Gaming ISO package list](https://gitlab.com/garuda-linux/tools/iso-profiles/-/raw/master/garuda/dr460nized-gaming/Packages-Desktop)
+includes Steam, Lutris, Heroic, Wine, Proton, overlays, and controller tools.
+CachyOS's [gaming guide](https://wiki.cachyos.org/configuration/gaming/)
+documents installation of its gaming libraries and launcher bundle through CachyOS
+Hello. This supports a distinction in initial setup convenience, not game compatibility
+or measured performance.
+
+Both document snapshot recovery: [Garuda](https://wiki.garudalinux.org/en/restoring-snapshots)
+and [CachyOS](https://wiki.cachyos.org/configuration/btrfs_snapshots/).
+Recovery support alone does not establish lower routine upkeep or greater stability.
+Garuda's wiki also contains older guidance; current ISO package sources carry more
+weight for bundled software. Its generic OBS package does not establish specialized
+creative integration under the existing criterion.
+
+Garuda gaming readiness is now 5 (formerly 4.5), reflecting the assessed Gaming
+edition's preinstalled setup. This is an editorial half-step, not a benchmark or
+compatibility guarantee. Its other scores, traits, breadth, and constraints are
+unchanged. Garuda now leads the experienced rolling-gamer fixture while Bazzite
+remains first for both existing gaming personas. The change has no effect when
+gaming intensity is below the maximum; development and creative intent can still
+favor CachyOS. Before this refinement, CachyOS equaled or exceeded Garuda on every
+capability and scoring trait and had higher breadth, preventing Garuda from winning.
+
 Dataset tests check beginner friendliness (Mint > Fedora > Tumbleweed > Arch >
 Gentoo), gaming readiness (Bazzite > Fedora), and old-hardware fit (MX > Mint).
 Breadth separately favors general-purpose reach; it is not quality.

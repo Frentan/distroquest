@@ -976,7 +976,7 @@ export const distroProfiles = [
       freshness: 5,
       customization: 4.5,
       systemControl: 4.5,
-      gaming: 4.5,
+      gaming: 5,
       developerExperience: 4,
       oldHardware: 2,
       desktopPolish: 4,
@@ -1005,9 +1005,12 @@ export const distroProfiles = [
       constraints: [],
     },
     assessment: {
-      reviewedOn: '2026-10-01',
+      reviewedOn: '2026-10-03',
       sources: [
         'https://forum.garudalinux.org/t/btrfs-balance-crashed-now-no-free-space-on-disk/33965',
+        'https://gitlab.com/garuda-linux/tools/iso-profiles/-/raw/master/garuda/dr460nized-gaming/Packages-Desktop',
+        'https://wiki.garudalinux.org/en/restoring-snapshots',
+        'https://wiki.cachyos.org/configuration/gaming/',
       ],
     },
   },

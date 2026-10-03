@@ -100,6 +100,23 @@ test('gaming-first user: gaming-focused distributions near the top', () => {
   within('gamingFirst', ['bazzite', 'nobara'], 3);
   outside('gamingFirst', ['kali-linux', 'slackware', 'alpine-linux'], 10);
 });
+
+test('the assessed Garuda Gaming setup distinguishes maximum-intensity rolling gaming', () => {
+  assert.equal(top('rollingGamingDesktop', 1)[0], 'garuda-linux');
+  const full = recommend(personas.rollingGamingDesktop);
+  const lower = recommend({
+    ...personas.rollingGamingDesktop,
+    gaming: ['important'],
+  });
+  assert.ok(
+    lower.ranking.findIndex((row) => row.distroId === 'cachyos') <
+      lower.ranking.findIndex((row) => row.distroId === 'garuda-linux'),
+  );
+  const garuda = full.ranking[0];
+  assert.ok(garuda.rawScore - full.ranking[1].rawScore > 3);
+  assert.equal(top('gamingFirst', 1)[0], 'bazzite');
+  assert.equal(top('gamingAppliance', 1)[0], 'bazzite');
+});
 test('gaming appliance: Bazzite favored by gaming, convenience and atomic preference', () => {
   within('gamingAppliance', ['bazzite'], 2);
   assert.ok(get('gamingAppliance', 'bazzite').reasons.includes('atomic.match'));
@@ -119,7 +136,7 @@ test('genuine penetration tester: Kali is eligible and ranks highly', () => {
 
 test('qualified security intent has separate credit even when general traits are capped', () => {
   const result = recommend(personas.penetrationTester);
-  assert.equal(result.modelVersion, 4);
+  assert.equal(result.modelVersion, 5);
   const kali = result.ranking[0];
   assert.equal(kali.distroId, 'kali-linux');
   assert.equal(kali.traitAdjustment, 12);
@@ -831,11 +848,19 @@ test('creative intent adds only a small documented integration refinement', () =
 test('creative integration follows the assessed trait, remains capped, and is not inferred', () => {
   const distro = distroProfiles.find((row) => row.id === 'nobara')!;
   for (const answers of Object.values(personas)) {
-    assert.ok(
-      !recommend(answers).ranking.some((row) =>
-        row.reasons.includes('creative.documented-integration'),
-      ),
+    const explicitCreativeIntent = answers['use-cases'].some(
+      (value) => value === 'creative',
     );
+    for (const row of recommend(answers).ranking) {
+      const assessed = distroProfiles.find(
+        (distro) => distro.id === row.distroId,
+      )!;
+      assert.equal(
+        row.reasons.includes('creative.documented-integration'),
+        explicitCreativeIntent &&
+          assessed.traits.creativeIntegration === 'documented',
+      );
+    }
   }
   const profile = recommend({
     ...personas.beginner,

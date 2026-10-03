@@ -74,8 +74,8 @@ and platform diagnostics through `window.distroquestDebug`; production excludes 
 | :-------------------------------------------------- | :--------------------------------------------- | :---------------------------------------- |
 | [Distro model](src/data/README.md)                  | `npm run data:review`                          | Assessments, traits, constraints, sources |
 | [Preference model](src/preferences/README.md)       | `npm run preferences:review`                   | Answer validation and evidence weights    |
-| [Scoring engine](src/recommendations/README.md)     | `npm run recommendations:review`               | Formulas, diagnostics, and 15 personas    |
-| [Example rankings](src/recommendations/EXAMPLES.md) | `npm run recommendations:review -- --examples` | All 15 complete ranking tables            |
+| [Scoring engine](src/recommendations/README.md)     | `npm run recommendations:review`               | Formulas, diagnostics, and 20 personas    |
+| [Example rankings](src/recommendations/EXAMPLES.md) | `npm run recommendations:review -- --examples` | All 20 complete ranking tables            |
 
 Review commands accept `--json`. Preferences and recommendations also accept
 `--answers /tmp/answers.json`; recommendations accept `--persona atomicDeveloper`.

@@ -23,6 +23,59 @@ import {
 import { recommendationPersonas as personas } from '../scripts/recommendation-personas.ts';
 
 const result = recommend(personas.beginner);
+
+test('the review personas expose all 25 profiles through standard-PC shortlists', () => {
+  const seen = new Set<string>();
+  for (const answers of Object.values(personas)) {
+    const view = platformShortlist(
+      applyPlatform(recommend(answers), 'x86-standard'),
+    );
+    for (const candidate of [
+      view.primary,
+      view.sameEdition,
+      ...view.alternatives,
+    ]) {
+      if (!candidate) continue;
+      assert.equal(candidate.recommendation.eligible, true);
+      seen.add(candidate.recommendation.distroId);
+    }
+  }
+  assert.deepEqual([...seen].sort(), [...distroIds].sort());
+});
+
+test('focused desktop scenarios retain justified alternatives and specialist conditions', () => {
+  const cases = [
+    ['polishedSimpleDesktop', ['elementary-os', 'zorin-os']],
+    ['simpleRollingDesktop', ['solus']],
+    ['rollingGamingDesktop', ['garuda-linux', 'pikaos']],
+    ['minimalOldLaptop', ['void-linux']],
+    ['minimalLearningDesktop', ['alpine-linux']],
+  ] as const;
+  for (const [name, expected] of cases) {
+    const ranking = recommend(personas[name]);
+    const view = platformShortlist(applyPlatform(ranking, 'x86-standard'));
+    const visible = [
+      view.primary,
+      view.sameEdition,
+      ...view.alternatives,
+    ].flatMap((candidate) =>
+      candidate ? [candidate.recommendation.distroId] : [],
+    );
+    for (const id of expected)
+      assert.ok(visible.includes(id), `${name}: missing ${id}`);
+    assert.equal(
+      ranking.ranking.find((row) => row.distroId === 'kali-linux')!.eligible,
+      false,
+    );
+    if (name === 'minimalOldLaptop' || name === 'minimalLearningDesktop') {
+      const id = name === 'minimalOldLaptop' ? 'void-linux' : 'alpine-linux';
+      const specialist = ranking.ranking.find((row) => row.distroId === id)!;
+      assert.ok(
+        specialist.constraints.every((constraint) => constraint.matched),
+      );
+    }
+  }
+});
 const gpuIndex = questions.findIndex((q) => q.id === 'gpu');
 const atGpu = (choice: string) =>
   selectAnswer(

@@ -1,15 +1,15 @@
-# Recommendation engine, model v4
+# Recommendation engine, model v5
 
 The pure engine converts complete quiz answers into a deterministic ranking of
-all 25 distro profiles. Model v4 adds a separate specialist intent match for eligible
-security-testing users. The shared trait cap, questionnaire, ten capability axes,
-and distro assessments are unchanged.
+all 25 distro profiles. Model v5 retains v4's separate specialist intent match for
+eligible security-testing users and includes the reviewed Garuda Gaming readiness
+assessment. The shared trait cap, questionnaire, and ten capability axes are unchanged.
 
 ## API and boundaries
 
 ```ts
 import { recommend } from './engine.ts';
-const result = recommend(answers); // { modelVersion: 4, profile, ranking }
+const result = recommend(answers); // { modelVersion: 5, profile, ranking }
 ```
 
 `recommend(unknown)` validates through the preference builder and throws
@@ -165,18 +165,25 @@ npm run recommendations:review -- --answers /tmp/answers.json
 npm run recommendations:review -- --examples
 ```
 
-The 15 complete fixtures in `scripts/recommendation-personas.ts` cover beginners,
+The 20 complete fixtures in `scripts/recommendation-personas.ts` cover beginners,
 gaming, development, old hardware, rolling/control/declarative workflows, security,
-FOSS, conservative updates, and manual Unix use. Tests assert sensible top-N results,
+FOSS, conservative updates, manual Unix use, simple polished desktops, convenient
+rolling desktops, rolling gaming, and expert minimal systems. Tests assert sensible top-N results,
 constraints, deterministic scores, and reconstructable diagnostics. Five paired
 creative scenarios check that the refinement leaves capability scores, expertise,
 and eligibility unchanged; baseline persona rankings remain unchanged.
 
 `formatRankingTable` prints all score components. JSON includes the full profile,
 reasons, cautions, trait modifiers, and capability/constraint diagnostics. Use
-`npm run --silent` for clean JSON. [Example rankings](EXAMPLES.md) contain all 15 full
+`npm run --silent` for clean JSON. [Example rankings](EXAMPLES.md) contain all 20 full
 tables, including specialist fixtures; `--examples` derives its list from the persona
 registry so new fixtures are included automatically.
+
+Across these fixtures, all 25 profiles appear on standard-PC shortlists through
+the actual platform presentation path. This includes primary results, sibling
+editions, and alternatives; it does not require every profile to win or establish
+support on every platform. Coverage tests also check that Void and Alpine satisfy
+their specialist conditions in the expert minimal-system scenarios.
 
 The beginner old-laptop fixture favors Mint, MX, and Debian; the Windows gamer favors
 Bazzite, Fedora Workstation, Pop!_OS, and Bluefin. Atomic development favors Bluefin;
