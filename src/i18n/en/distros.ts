@@ -17,9 +17,9 @@ export const distroContentEn = {
       'Broad everyday application availability',
     ],
     cautions: [
-      'Base packages can lag current upstream releases',
-      'Cinnamon is heavier than lightweight desktop alternatives',
-      'Newest gaming hardware may need a newer graphics stack',
+      'Base packages can lag current upstream releases.',
+      'Cinnamon is heavier than lightweight desktop alternatives.',
+      'Newest gaming hardware may need a newer graphics stack.',
     ],
     idealFor: [
       'First-time Linux users',
@@ -45,9 +45,9 @@ export const distroContentEn = {
       'Strong development ecosystem',
     ],
     cautions: [
-      'GNOME can feel unfamiliar to Windows users',
-      'Snap packaging may not suit every workflow',
-      'LTS base packages trade freshness for continuity',
+      'GNOME can feel unfamiliar to Windows users.',
+      'Snap packaging may not suit every workflow.',
+      'LTS base packages trade freshness for continuity.',
     ],
     idealFor: [
       'New Linux users',
@@ -73,9 +73,9 @@ export const distroContentEn = {
       'Established upstream collaboration',
     ],
     cautions: [
-      'Frequent release upgrades need planning',
-      'Some codecs and proprietary drivers need extra setup',
-      'GNOME extensions can add upgrade friction',
+      'Frequent release upgrades need planning.',
+      'Some codecs and proprietary drivers need extra setup.',
+      'GNOME extensions can add upgrade friction.',
     ],
     idealFor: [
       'Software developers',
@@ -100,9 +100,9 @@ export const distroContentEn = {
       'Broad general-purpose workstation fit',
     ],
     cautions: [
-      'Frequent release upgrades need planning',
-      'Proprietary drivers and some codecs need extra setup',
-      'Abundant desktop settings can overwhelm newcomers',
+      'Frequent release upgrades need planning.',
+      'Proprietary drivers and some codecs need extra setup.',
+      'Abundant desktop settings can overwhelm newcomers.',
     ],
     idealFor: [
       'Users wanting an adjustable everyday desktop',
@@ -128,9 +128,9 @@ export const distroContentEn = {
       'Community-governed development',
     ],
     cautions: [
-      'Older base packages and graphics stack',
-      'Desktop setup can require more choices than beginner-focused derivatives',
-      'New hardware may need backports or firmware attention',
+      'Older base packages and graphics stack.',
+      'Desktop setup can require more choices than beginner-focused derivatives.',
+      'New hardware may need backports or firmware attention.',
     ],
     idealFor: [
       'Users prioritizing predictable change',
@@ -156,9 +156,9 @@ export const distroContentEn = {
       'Gaming and graphics setup conveniences',
     ],
     cautions: [
-      'COSMIC maturity and app integration deserve hands-on review',
-      'Ubuntu instructions may differ in desktop and system details',
-      'Not aimed at very weak machines',
+      'COSMIC maturity and app integration deserve hands-on review.',
+      'Ubuntu instructions may differ in desktop and system details.',
+      'Not aimed at very weak machines.',
     ],
     idealFor: [
       'Developers and creators',
@@ -184,9 +184,9 @@ export const distroContentEn = {
       'Carefully styled defaults',
     ],
     cautions: [
-      'Base software can lag upstream',
-      'Some layouts and extras belong to the paid edition',
-      'Default desktop is heavier than minimal alternatives',
+      'Base software can lag upstream.',
+      'Some layouts and extras belong to the paid edition.',
+      'Default desktop is heavier than minimal alternatives.',
     ],
     idealFor: [
       'Windows and macOS newcomers',
@@ -212,9 +212,9 @@ export const distroContentEn = {
       'Ubuntu foundation',
     ],
     cautions: [
-      'Limited built-in desktop customization',
-      'Smaller selection of tightly integrated applications',
-      'Gaming and specialist tools require more setup',
+      'Limited built-in desktop customization.',
+      'Smaller selection of tightly integrated applications.',
+      'Gaming and specialist tools require more setup.',
     ],
     idealFor: [
       'Design-conscious desktop users',
@@ -239,9 +239,9 @@ export const distroContentEn = {
       'Broad desktop and system configuration options',
     ],
     cautions: [
-      'Frequent and sometimes large updates',
-      'Proprietary codecs and drivers need attention',
-      'Snapshot recovery still requires understanding and disk space',
+      'Frequent and sometimes large updates.',
+      'Proprietary codecs and drivers need attention.',
+      'Snapshot recovery still requires understanding and disk space.',
     ],
     idealFor: [
       'Users wanting a managed rolling desktop',
@@ -267,9 +267,9 @@ export const distroContentEn = {
       'Lean and adaptable installation',
     ],
     cautions: [
-      'Rolling updates can need manual intervention',
-      'Terminal-based administration is expected',
-      'AUR packages need independent review and maintenance',
+      'Rolling updates can need manual intervention.',
+      'Terminal-based administration is expected.',
+      'AUR packages need independent review and maintenance.',
     ],
     idealFor: [
       'Linux users moving toward Arch',
@@ -295,9 +295,9 @@ export const distroContentEn = {
       'Large community build ecosystem',
     ],
     cautions: [
-      'Installation and desktop assembly require deliberate choices',
-      'Updates may need manual intervention',
-      'Community packages are not equivalent to vetted official packages',
+      'Installation and desktop assembly require deliberate choices.',
+      'Updates may need manual intervention.',
+      'Community packages are not equivalent to vetted official packages.',
     ],
     idealFor: [
       'Experienced Linux users',
@@ -323,9 +323,9 @@ export const distroContentEn = {
       'Kernel and scheduler choices',
     ],
     cautions: [
-      'CPU requirements vary across optimized builds',
-      'Rolling and custom kernel updates need attention',
-      'Performance gains depend on hardware and workload',
+      'CPU requirements vary across optimized builds.',
+      'Rolling and custom kernel updates need attention.',
+      'Performance gains depend on hardware and workload.',
     ],
     idealFor: [
       'Gaming enthusiasts with modern hardware',
@@ -351,9 +351,9 @@ export const distroContentEn = {
       'Graphical setup and update tools',
     ],
     cautions: [
-      'Custom changes can diverge from Fedora guidance',
-      'Smaller hobby project support surface',
-      'Major upgrades deserve attention to project instructions',
+      'Custom changes can diverge from Fedora guidance.',
+      'Smaller hobby project support surface.',
+      'Major upgrades deserve attention to project instructions.',
     ],
     idealFor: [
       'Desktop gamers',
@@ -379,9 +379,9 @@ export const distroContentEn = {
       'Application separation from the base system',
     ],
     cautions: [
-      'Host modifications differ from conventional Linux',
-      'Game-mode support depends on hardware and image',
-      'Flatpak and container workflows take adjustment',
+      'Host modifications differ from conventional Linux.',
+      'Game-mode support depends on hardware and image.',
+      'Flatpak and container workflows take adjustment.',
     ],
     idealFor: [
       'Desktop gamers',
@@ -407,9 +407,9 @@ export const distroContentEn = {
       'Separated desktop and command-line applications',
     ],
     cautions: [
-      'Host package installation follows a different model',
-      'Homebrew, Flatpak, and containers add concepts to learn',
-      'GNOME customization remains more limited than Plasma',
+      'Host package installation follows a different model.',
+      'Homebrew, Flatpak, and containers add concepts to learn.',
+      'GNOME customization remains more limited than Plasma.',
     ],
     idealFor: [
       'Container-oriented developers',
@@ -435,9 +435,9 @@ export const distroContentEn = {
       'Extensive package ecosystem',
     ],
     cautions: [
-      'Distinct configuration language and learning curve',
-      'Conventional filesystem assumptions can break software workflows',
-      'Reproducibility requires disciplined version pinning',
+      'Distinct configuration language and learning curve.',
+      'Conventional filesystem assumptions can break software workflows.',
+      'Reproducibility requires disciplined version pinning.',
     ],
     idealFor: [
       'Technical users interested in declarative systems',
@@ -463,9 +463,9 @@ export const distroContentEn = {
       'Detailed system documentation',
     ],
     cautions: [
-      'Configuration and upgrades demand substantial attention',
-      'Source builds can consume considerable time and resources',
-      'Desktop integration is the user’s responsibility',
+      'Configuration and upgrades demand substantial attention.',
+      'Source builds can consume considerable time and resources.',
+      'Desktop integration is the user’s responsibility.',
     ],
     idealFor: [
       'Experienced system enthusiasts',
@@ -491,9 +491,9 @@ export const distroContentEn = {
       'Alternative libc options',
     ],
     cautions: [
-      'Smaller ecosystem than major distro families',
-      'More manual desktop and driver integration',
-      'Many mainstream instructions assume systemd',
+      'Smaller ecosystem than major distro families.',
+      'More manual desktop and driver integration.',
+      'Many mainstream instructions assume systemd.',
     ],
     idealFor: [
       'Experienced users seeking a lean desktop',
@@ -519,9 +519,9 @@ export const distroContentEn = {
       'Virtual-machine and live-use options',
     ],
     cautions: [
-      'Unsuitable as an ordinary beginner desktop recommendation',
-      'Unrelated repositories can damage the supported system',
-      'General development and gaming are outside its focus',
+      'Unsuitable as an ordinary beginner desktop recommendation.',
+      'Unrelated repositories can damage the supported system.',
+      'General development and gaming are outside its focus.',
     ],
     idealFor: [
       'Penetration testers',
@@ -547,9 +547,9 @@ export const distroContentEn = {
       'Useful live and recovery workflows',
     ],
     cautions: [
-      'Base packages favor stability over freshness',
-      'Newest graphics hardware may need a different kernel stack',
-      'Desktop presentation is less cohesive than design-focused alternatives',
+      'Base packages favor stability over freshness.',
+      'Newest graphics hardware may need a different kernel stack.',
+      'Desktop presentation is less cohesive than design-focused alternatives.',
     ],
     idealFor: [
       'Users keeping modest hardware productive',
@@ -575,9 +575,9 @@ export const distroContentEn = {
       'Highly adjustable desktop',
     ],
     cautions: [
-      'Rolling updates still need attention',
-      'Rich defaults consume more resources',
-      'Opinionated theming and extra tools may not suit everyone',
+      'Rolling updates still need attention.',
+      'Rich defaults consume more resources.',
+      'Opinionated theming and extra tools may not suit everyone.',
     ],
     idealFor: [
       'Gaming enthusiasts',
@@ -603,9 +603,9 @@ export const distroContentEn = {
       'Independent distribution design',
     ],
     cautions: [
-      'Smaller package catalogue than major distro families',
-      'Vendor packages may target other distributions',
-      'Rolling changes and project direction need periodic review',
+      'Smaller package catalogue than major distro families.',
+      'Vendor packages may target other distributions.',
+      'Rolling changes and project direction need periodic review.',
     ],
     idealFor: [
       'Users wanting a curated daily desktop',
@@ -631,9 +631,9 @@ export const distroContentEn = {
       'Creator and compute tooling',
     ],
     cautions: [
-      'Younger project with less accumulated support history',
-      'Optimized base requires compatible modern CPUs',
-      'Rolling custom repositories can need closer maintenance',
+      'Younger project with less accumulated support history.',
+      'Optimized base requires compatible modern CPUs.',
+      'Rolling custom repositories can need closer maintenance.',
     ],
     idealFor: [
       'Gamers with compatible modern hardware',
@@ -659,9 +659,9 @@ export const distroContentEn = {
       'Explicit minimal system composition',
     ],
     cautions: [
-      'musl can complicate proprietary and glibc-targeted software',
-      'Desktop integration requires manual work',
-      'Poor fit for mainstream desktop gaming',
+      'musl can complicate proprietary and glibc-targeted software.',
+      'Desktop integration requires manual work.',
+      'Poor fit for mainstream desktop gaming.',
     ],
     idealFor: [
       'Advanced minimal-system users',
@@ -687,9 +687,9 @@ export const distroContentEn = {
       'Established Unix-style workflows',
     ],
     cautions: [
-      'Official package tools do not resolve dependencies automatically',
-      'Stable software can be substantially older',
-      'Modern desktop and vendor workflows need extra manual work',
+      'Official package tools do not resolve dependencies automatically.',
+      'Stable software can be substantially older.',
+      'Modern desktop and vendor workflows need extra manual work.',
     ],
     idealFor: [
       'Experienced Unix-oriented users',

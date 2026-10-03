@@ -113,8 +113,98 @@ test('atomic/container-first developer: Bluefin strongly favored', () => {
   outside('atomicDeveloper', ['nixos', 'arch-linux', 'gentoo'], 8);
 });
 test('genuine penetration tester: Kali is eligible and ranks highly', () => {
-  within('penetrationTester', ['kali-linux'], 5);
+  assert.equal(top('penetrationTester', 1)[0], 'kali-linux');
   assert.equal(get('penetrationTester', 'kali-linux').eligible, true);
+});
+
+test('qualified security intent has separate credit even when general traits are capped', () => {
+  const result = recommend(personas.penetrationTester);
+  assert.equal(result.modelVersion, 4);
+  const kali = result.ranking[0];
+  assert.equal(kali.distroId, 'kali-linux');
+  assert.equal(kali.traitAdjustment, 12);
+  assert.ok(
+    kali.traitModifiers.some((modifier) => modifier.code === 'traits.cap'),
+  );
+  assert.equal(kali.specialistAdjustment, 4);
+  assert.deepEqual(kali.specialistModifiers, [
+    { code: 'specialist.security-testing', points: 4 },
+  ]);
+  assert.ok(kali.rawScore >= 109 && kali.rawScore <= 112);
+  assert.ok(kali.normalizedScore >= 94 && kali.normalizedScore <= 96);
+  assert.ok(kali.rawScore - result.ranking[1].rawScore > 3);
+  assert.ok(
+    result.ranking.slice(1).every((row) => row.specialistAdjustment === 0),
+  );
+
+  for (const release of ['either', 'rolling']) {
+    for (const system of ['either', 'traditional']) {
+      const rows = recommend({
+        ...personas.penetrationTester,
+        release: [release],
+        'system-model': [system],
+      }).ranking;
+      const row = rows.find(
+        (candidate) => candidate.distroId === 'kali-linux',
+      )!;
+      assert.equal(row.specialistAdjustment, 4);
+      assert.equal(rows[0].distroId, 'kali-linux');
+    }
+  }
+  const source = distroProfiles.find((distro) => distro.id === 'kali-linux')!;
+  assert.equal(
+    scoreDistro(result.profile, { ...source, id: 'debian' })
+      .specialistAdjustment,
+    4,
+  );
+});
+
+test('specialist intent cannot grant eligibility or arise from aspiration or broad purposes', () => {
+  for (const experience of ['new', 'tried', 'regular', 'terminal', 'init']) {
+    const result = recommend({
+      ...personas.penetrationTester,
+      experience: [experience],
+    });
+    const kali = result.ranking.find((row) => row.distroId === 'kali-linux')!;
+    const qualified = !['new', 'tried'].includes(experience);
+    assert.equal(kali.eligible, qualified);
+    assert.equal(kali.specialistAdjustment, qualified ? 4 : 0);
+    if (!qualified) assert.equal(kali.normalizedScore, 0);
+  }
+  for (const answers of [
+    personas.highControl,
+    personas.securityCurious,
+    personas.gamingAppliance,
+    personas.atomicDeveloper,
+  ]) {
+    assert.ok(
+      recommend(answers).ranking.every((row) => row.specialistAdjustment === 0),
+    );
+  }
+  assert.deepEqual(top('securityCurious', 3), [
+    'linux-mint',
+    'ubuntu',
+    'fedora-workstation',
+  ]);
+});
+
+test('the current roster fits the fixed normalization ceiling before clamping', () => {
+  for (const distro of distroProfiles) {
+    const positiveConstraints =
+      distro.recommendation.constraints.filter(
+        (constraint) => constraint.effect === 'strongly-prefer',
+      ).length * scoringRules.satisfiedSoftConstraint;
+    const maximum =
+      100 +
+      scoringRules.traitLimit +
+      positiveConstraints +
+      (scoringRules.breadthMaximum * distro.recommendation.breadth) / 5 +
+      (distro.traits.focus.security ? scoringRules.specialistIntentMatch : 0);
+    assert.ok(
+      maximum <= scoringRules.normalizationMaximum,
+      `${distro.id}: theoretical upper bound ${maximum}`,
+    );
+  }
 });
 test('beginner curious about security: aspirations cannot unlock Kali', () => {
   assert.equal(get('securityCurious', 'kali-linux').eligible, false);
@@ -228,8 +318,16 @@ test('every persona has all 25 unique scores with finite reconstructable diagnos
         row.rawScore,
         row.capabilityScore +
           row.traitAdjustment +
+          row.specialistAdjustment +
           row.eligibilityAdjustment +
           row.breadthAdjustment,
+      );
+      assert.equal(
+        row.specialistAdjustment,
+        row.specialistModifiers.reduce(
+          (sum, modifier) => sum + modifier.points,
+          0,
+        ),
       );
       assert.ok(
         Math.abs(

@@ -22,6 +22,7 @@ export const scoringRules = Object.freeze({
   layoutMatch: 2,
   handheldMatch: 3,
   creativeIntegrationMatch: 2,
+  specialistIntentMatch: 4,
   breadthMaximum: 2,
   normalizationMaximum: 116,
   unmetSoftCondition: 8,
@@ -196,6 +197,25 @@ function traitModifiers(
   return adjustments;
 }
 
+// Specialist intent is separate from general trait preferences. Only the
+// security-testing match is enabled; existing eligibility must already hold.
+function specialistModifiers(
+  profile: RecommendationProfile,
+  distro: DistroProfile,
+  eligible: boolean,
+): Adjustment[] {
+  return eligible &&
+    profile.traits.securityUseCase &&
+    distro.traits.focus.security
+    ? [
+        {
+          code: 'specialist.security-testing',
+          points: scoringRules.specialistIntentMatch,
+        },
+      ]
+    : [];
+}
+
 export function scoreDistro(
   profile: RecommendationProfile,
   distro: DistroProfile,
@@ -276,11 +296,17 @@ export function scoreDistro(
   );
   if (uncapped !== traitAdjustment)
     modifiers.push({ code: 'traits.cap', points: traitAdjustment - uncapped });
+  const specialists = specialistModifiers(profile, distro, eligible);
+  const specialistAdjustment = specialists.reduce(
+    (sum, modifier) => sum + modifier.points,
+    0,
+  );
   const breadthAdjustment =
     (scoringRules.breadthMaximum * distro.recommendation.breadth) / 5;
   const rawScore =
     capabilityScore +
     traitAdjustment +
+    specialistAdjustment +
     eligibilityAdjustment +
     breadthAdjustment;
   return {
@@ -305,12 +331,15 @@ export function scoreDistro(
       : 0,
     capabilityScore,
     traitAdjustment,
+    specialistAdjustment,
     eligibilityAdjustment,
     breadthAdjustment,
     capabilityMatches,
     traitModifiers: modifiers,
+    specialistModifiers: specialists,
     constraints,
     reasons: [
+      ...specialists.map((modifier) => modifier.code),
       ...capabilityMatches
         .filter((match) => match.weight > 0 && match.similarity >= 0.9)
         .map(
@@ -375,5 +404,5 @@ export function rankDistros(
 // Public boundary: accepts untrusted answers; existing validation rejects omissions.
 export function recommend(input: unknown): RecommendationResult {
   const profile = normalizePreferenceProfile(buildPreferenceProfile(input));
-  return { modelVersion: 3, profile, ranking: rankDistros(profile) };
+  return { modelVersion: 4, profile, ranking: rankDistros(profile) };
 }

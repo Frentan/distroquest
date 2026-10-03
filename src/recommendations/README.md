@@ -1,14 +1,15 @@
-# Recommendation engine, model v3
+# Recommendation engine, model v4
 
 The pure engine converts complete quiz answers into a deterministic ranking of
-all 25 distro profiles. Model v3 adds a narrow creative-integration modifier to
-v2's rules; the questionnaire and ten capability axes are unchanged.
+all 25 distro profiles. Model v4 adds a separate specialist intent match for eligible
+security-testing users. The shared trait cap, questionnaire, ten capability axes,
+and distro assessments are unchanged.
 
 ## API and boundaries
 
 ```ts
 import { recommend } from './engine.ts';
-const result = recommend(answers); // { modelVersion: 3, profile, ranking }
+const result = recommend(answers); // { modelVersion: 4, profile, ranking }
 ```
 
 `recommend(unknown)` validates through the preference builder and throws
@@ -91,6 +92,19 @@ modifiers. A gaming checkbox cannot override zero intensity. FOSS policy does no
 guarantee free firmware. Atomic updates alone do not imply container-first interest;
 NixOS is declarative, not an image-based container workstation.
 
+## Specialist intent
+
+An eligible user explicitly selecting security testing receives a separate +4
+match on profiles with assessed security focus. `specialistModifiers` explains
+the match and sums to `specialistAdjustment`, outside the ±12 trait cap. The existing
++8 security-focus trait remains inside that cap. No distro-ID bonus or new capability
+axis is used; eligibility is evaluated first and is never bypassed.
+
+Only this security-testing match is enabled. Gaming appliances, container-oriented
+development, creative workflows, and platform installation paths receive no new
+specialist credit. Any extension needs specific user evidence, an assessed matching
+trait, scenario review, and a review of the normalization ceiling.
+
 ## Eligibility
 
 Constraints use conjunctive `allOf` conditions. Ordered thresholds compare explicit
@@ -113,13 +127,17 @@ satisfied groups. Soft penalties do not exclude a distro outright.
 
 ```text
 breadth adjustment = 2 × distro breadth / 5
-raw score          = capability + capped traits + eligibility + breadth
+raw score          = capability + capped traits + specialist + eligibility + breadth
 normalized score   = 100 × clamp(raw score / 116, 0, 1)  # eligible only
 ```
 
-The fixed ceiling allows 100 capability, 12 trait, 2 satisfied-soft-constraint, and
-2 breadth points. It is independent of other candidates and is not a probability
-or calibrated percentage. Revisit it if profiles gain multiple soft constraints.
+The fixed ceiling remains 116. Ordinary profiles allow 100 capability, 12 trait,
+2 satisfied-soft-constraint, and 2 breadth points. Kali, the only current security
+specialist, instead allows 100 capability, 12 trait, and 4 specialist points; it has
+zero breadth and no soft-constraint reward. Dataset tests check these upper bounds
+before normalization, so future changes cannot silently rely on clamping overflow.
+The scale is independent of other candidates and is not a probability or calibrated
+percentage. Revisit it when adding specialist matches or positive constraint rewards.
 Persist answers and recompute rankings after model changes.
 
 Sort by eligibility, descending unrounded raw score, then ascending distro ID for
@@ -163,6 +181,8 @@ registry so new fixtures are included automatically.
 The beginner old-laptop fixture favors Mint, MX, and Debian; the Windows gamer favors
 Bazzite, Fedora Workstation, Pop!_OS, and Bluefin. Atomic development favors Bluefin;
 experienced security testing can favor Kali while beginners remain excluded.
+The penetration-tester fixture now puts Kali first at 110.44 raw points (95.2 fit);
+shared release/system preferences cannot absorb its separate specialist credit.
 These are reviewed scenarios, not user research or empirical calibration. Numeric
 assessments, freshness/gaming distance rules, small trait bonuses, and specialist
 penalties remain editorial tuning judgments. Verify real workflows and hardware.

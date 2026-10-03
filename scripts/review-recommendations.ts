@@ -10,18 +10,18 @@ import {
 // Internal development output; no browser dependencies or application UI copy.
 export function formatRankingTable(result: RecommendationResult): string {
   return [
-    '| # | Distro | Eligible | Raw | Normalized | Capability | Traits | Eligibility | Breadth |',
-    '| ---: | :--- | :--- | ---: | ---: | ---: | ---: | ---: | ---: |',
+    '| # | Distro | Eligible | Raw | Normalized | Capability | Traits | Specialist | Eligibility | Breadth |',
+    '| ---: | :--- | :--- | ---: | ---: | ---: | ---: | ---: | ---: | ---: |',
     ...result.ranking.map(
       (row, index) =>
-        `| ${index + 1} | ${row.distroId} | ${row.eligible} | ${[row.rawScore, row.normalizedScore, row.capabilityScore, row.traitAdjustment, row.eligibilityAdjustment, row.breadthAdjustment].map((value) => value.toFixed(2)).join(' | ')} |`,
+        `| ${index + 1} | ${row.distroId} | ${row.eligible} | ${[row.rawScore, row.normalizedScore, row.capabilityScore, row.traitAdjustment, row.specialistAdjustment, row.eligibilityAdjustment, row.breadthAdjustment].map((value) => value.toFixed(2)).join(' | ')} |`,
     ),
   ].join('\n');
 }
 
 export function formatExampleRankings(): string {
   return [
-    '# Example rankings, model v3',
+    '# Example rankings, model v4',
     '',
     `All ${examplePersonaNames.length} complete answer fixtures from`,
     '[`scripts/recommendation-personas.ts`](../../scripts/recommendation-personas.ts).',

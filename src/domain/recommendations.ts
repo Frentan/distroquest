@@ -47,17 +47,19 @@ export type Recommendation = Readonly<{
   normalizedScore: number;
   capabilityScore: number;
   traitAdjustment: number;
+  specialistAdjustment: number;
   eligibilityAdjustment: number;
   breadthAdjustment: number;
   capabilityMatches: readonly CapabilityMatch[];
   traitModifiers: readonly Adjustment[];
+  specialistModifiers: readonly Adjustment[];
   constraints: readonly ConstraintOutcome[];
   // Stable machine codes, not localized UI text.
   reasons: readonly string[];
   cautions: readonly string[];
 }>;
 export type RecommendationResult = Readonly<{
-  modelVersion: 3;
+  modelVersion: 4;
   profile: RecommendationProfile;
   ranking: readonly Recommendation[];
 }>;

@@ -47,9 +47,12 @@ export function strongestReasons(row: Recommendation): string[] {
           ? 'developerExperience'
           : code === 'focus.gaming'
             ? 'gaming'
-            : code.startsWith('capability.')
-              ? code.split('.')[1]
-              : code;
+            : code === 'focus.security' ||
+                code === 'specialist.security-testing'
+              ? 'security-testing'
+              : code.startsWith('capability.')
+                ? code.split('.')[1]
+                : code;
       if (topics.has(topic)) return false;
       topics.add(topic);
       return true;

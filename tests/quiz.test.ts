@@ -166,6 +166,28 @@ test('all public engine signals are translated, internal diagnostics stay out', 
   );
   assert.equal(explainReason('breadth.prior'), undefined);
 });
+
+test('specialist security fit is visible without duplicating the security-focus explanation', () => {
+  const kali = recommend(personas.penetrationTester).ranking[0];
+  const reasons = strongestReasons(kali);
+  assert.equal(reasons[0], 'specialist.security-testing');
+  assert.ok(explainReason(reasons[0]));
+  const onlySecurity = {
+    ...kali,
+    reasons: [
+      'specialist.security-testing',
+      'focus.security',
+      ...kali.reasons.filter((code) => code.startsWith('capability.')),
+    ],
+  };
+  assert.equal(
+    strongestReasons(onlySecurity).filter(
+      (code) =>
+        code === 'specialist.security-testing' || code === 'focus.security',
+    ).length,
+    1,
+  );
+});
 test('same-family derivatives remain distinct when their edition groups differ', () => {
   const result = recommend(personas.windowsGamer);
   const ranking: Recommendation[] = [

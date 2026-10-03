@@ -97,11 +97,11 @@ export const capabilityCopy: Record<
     caution: 'Its software update pace differs from your preferred balance.',
   },
   customization: {
-    reason: 'It offers room for the desktop customization you want.',
+    reason: 'Its customization options fit the desktop changes you want.',
     caution: 'Your preferred customization may take more work here.',
   },
   systemControl: {
-    reason: 'It gives you the system control you asked for.',
+    reason: 'Its system control fits the access you asked for.',
     caution: 'It offers less direct system control than you preferred.',
   },
   gaming: {
@@ -142,14 +142,16 @@ export const reasonCopy: Record<string, string> = {
   'atomic.match': 'Its system update model matches your preferred approach.',
   'containers.image-based':
     'Its image-based workflow suits your interest in container-based tools.',
-  'focus.gaming':
-    'Gaming is a focus of this distribution, matching your plans.',
+  'focus.gaming': 'Its gaming focus matches your plans.',
   'creative.documented-integration':
-    'It offers documented creative setup conveniences; check your apps, plugins, media formats, and peripherals.',
+    'Its creative setup conveniences are documented; check your apps, plugins, media formats, and peripherals.',
   'focus.development': 'Its development focus fits your coding use case.',
   'focus.security':
     'Its security-tool focus fits your security-testing use case.',
-  'nvidia.integrated': 'Integrated NVIDIA support fits the GPU you selected.',
+  'specialist.security-testing':
+    'Its specialist focus matches the security-testing work you selected.',
+  'nvidia.integrated':
+    'Its integrated NVIDIA support fits the GPU you selected.',
   'software-policy.free-software-first':
     'Its free-software-first policy aligns with your preference.',
   'focus.minimalism':
@@ -159,7 +161,7 @@ export const reasonCopy: Record<string, string> = {
   'desktop-layout.match':
     'Its panels and menus fit your preference for a familiar layout.',
   'handheld.documented-support':
-    'It documents a handheld gaming path; check your specific device before installing.',
+    'Its documented handheld gaming path fits your device choice; check your specific device before installing.',
 };
 export const cautionCopy: Record<string, string> = {
   'release.conflict':
