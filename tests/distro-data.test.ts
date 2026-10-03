@@ -325,9 +325,12 @@ test('specialist restrictions survive dataset edits', () => {
       ],
     ],
   ] as const) {
-    assert.deepEqual(get(id).recommendation.constraints, [
-      { effect: 'strongly-prefer', allOf: expected },
-    ]);
+    assert.deepEqual(
+      get(id).recommendation.constraints.filter(
+        (constraint) => constraint.effect === 'strongly-prefer',
+      ),
+      [{ effect: 'strongly-prefer', allOf: expected }],
+    );
   }
 });
 

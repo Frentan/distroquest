@@ -486,10 +486,18 @@ export const distroProfiles = [
             },
           ],
         },
+        {
+          effect: 'require',
+          allOf: [
+            { kind: 'experience', minimum: 'intermediate' },
+            { kind: 'maintenance-tolerance', minimum: 'moderate' },
+            { kind: 'system-control', minimum: 'moderate' },
+          ],
+        },
       ],
     },
     assessment: {
-      reviewedOn: '2026-10-01',
+      reviewedOn: '2026-10-03',
       sources: ['https://archlinux.org/about/'],
     },
   },
@@ -734,11 +742,18 @@ export const distroProfiles = [
             },
           ],
         },
+        {
+          effect: 'require',
+          allOf: [
+            { kind: 'experience', minimum: 'intermediate' },
+            { kind: 'learning-tolerance', minimum: 'moderate' },
+          ],
+        },
       ],
     },
     assessment: {
-      reviewedOn: '2026-10-01',
-      sources: ['https://nixos.org/'],
+      reviewedOn: '2026-10-03',
+      sources: ['https://nixos.org/', 'https://nixos.org/manual/nixos/stable/'],
     },
   },
   {
@@ -795,10 +810,18 @@ export const distroProfiles = [
             },
           ],
         },
+        {
+          effect: 'require',
+          allOf: [
+            { kind: 'experience', minimum: 'intermediate' },
+            { kind: 'maintenance-tolerance', minimum: 'moderate' },
+            { kind: 'system-control', minimum: 'moderate' },
+          ],
+        },
       ],
     },
     assessment: {
-      reviewedOn: '2026-10-01',
+      reviewedOn: '2026-10-03',
       sources: ['https://www.gentoo.org/get-started/about/'],
     },
   },
@@ -856,11 +879,22 @@ export const distroProfiles = [
             },
           ],
         },
+        {
+          effect: 'require',
+          allOf: [
+            { kind: 'experience', minimum: 'intermediate' },
+            { kind: 'maintenance-tolerance', minimum: 'moderate' },
+            { kind: 'system-control', minimum: 'moderate' },
+          ],
+        },
       ],
     },
     assessment: {
-      reviewedOn: '2026-10-01',
-      sources: ['https://voidlinux.org/'],
+      reviewedOn: '2026-10-03',
+      sources: [
+        'https://voidlinux.org/',
+        'https://docs.voidlinux.org/about/about-this-handbook.html',
+      ],
     },
   },
   {
@@ -1155,11 +1189,22 @@ export const distroProfiles = [
             },
           ],
         },
+        {
+          effect: 'require',
+          allOf: [
+            { kind: 'experience', minimum: 'intermediate' },
+            { kind: 'maintenance-tolerance', minimum: 'moderate' },
+            { kind: 'system-control', minimum: 'moderate' },
+          ],
+        },
       ],
     },
     assessment: {
-      reviewedOn: '2026-10-01',
-      sources: ['https://alpinelinux.org/about/'],
+      reviewedOn: '2026-10-03',
+      sources: [
+        'https://alpinelinux.org/about/',
+        'https://docs.alpinelinux.org/user-handbook/0.1a/Installing/setup_alpine.html',
+      ],
     },
   },
   {
@@ -1216,11 +1261,22 @@ export const distroProfiles = [
             },
           ],
         },
+        {
+          effect: 'require',
+          allOf: [
+            { kind: 'experience', minimum: 'intermediate' },
+            { kind: 'maintenance-tolerance', minimum: 'moderate' },
+            { kind: 'system-control', minimum: 'moderate' },
+          ],
+        },
       ],
     },
     assessment: {
-      reviewedOn: '2026-10-01',
-      sources: ['https://docs.slackware.com/slackware:philosophy'],
+      reviewedOn: '2026-10-03',
+      sources: [
+        'https://docs.slackware.com/slackware:philosophy',
+        'https://docs.slackware.com/slackbook:intro_to_slackware',
+      ],
     },
   },
 ] as const satisfies readonly DistroProfile[];

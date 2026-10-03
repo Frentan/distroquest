@@ -1,16 +1,15 @@
-# Recommendation engine, model v6
+# Recommendation engine, model v7
 
 The pure engine converts complete quiz answers into a deterministic ranking of
-all 25 distro profiles. Model v6 adds +2 specialist matches for explicit handheld
-gaming and container-first development, retaining Kali's +4 security-testing match
-and the reviewed Garuda Gaming readiness assessment. The shared trait cap,
-questionnaire, and ten capability axes are unchanged.
+all 25 distro profiles. Model v7 adds minimum eligibility requirements for manual
+desktops and NixOS, retaining the separate specialist intent matches. The shared
+trait cap, normalization scale, questionnaire, and ten capability axes are unchanged.
 
 ## API and boundaries
 
 ```ts
 import { recommend } from './engine.ts';
-const result = recommend(answers); // { modelVersion: 6, profile, ranking }
+const result = recommend(answers); // { modelVersion: 7, profile, ranking }
 ```
 
 `recommend(unknown)` validates through the preference builder and throws
@@ -131,9 +130,16 @@ identity/finale answers cannot promote experience.
   every eligible record. Kali requires security intent and intermediate experience.
 - `strongly-prefer`: −8 per unmet condition, capped at −24 per constraint; +2 if
   fully satisfied. These adjustments sit outside the trait cap.
-- Gentoo, Arch, Alpine, Slackware, NixOS, and Void retain their specialist conditions;
-  see [the dataset notes](../data/README.md#breadth-and-constraints). NixOS learning
-  tolerance is distinct from routine maintenance tolerance.
+- Arch, Gentoo, Slackware, Void, and Alpine require intermediate experience,
+  moderate upkeep tolerance, and moderate system-control interest.
+- NixOS requires intermediate experience and moderate learning tolerance, without
+  a hard upkeep or control requirement. Its distinct model needs learning evidence.
+
+These are recommendation floors for the assessed desktops, not upstream installation
+restrictions. Existing stronger conditions remain soft: advanced expertise, high
+upkeep/control, and specific interests can improve fit without becoming hard gates.
+See [the dataset notes](../data/README.md#breadth-and-constraints) for source evidence.
+Matched hard requirements add no points; eligible scores stay unchanged.
 
 `constraints` exposes condition values, match flags, and adjustments.
 `constraint.i.j.unmet` identifies missing evidence; `constraint.i.met` explains

@@ -45,6 +45,9 @@ never infer expertise or grant specialist eligibility.
 Eligible security-testing users receive a separate +4 specialist intent match.
 Explicit handheld gaming and container-first development receive +2 on matching
 specialist profiles; the general trait cap stays at ±12.
+Manual desktop profiles require minimum experience, upkeep tolerance, and system
+involvement. NixOS instead requires minimum experience and learning tolerance;
+stronger ideal-fit preferences remain soft penalties.
 
 Displayed fit is an uncalibrated preference score, not a compatibility guarantee.
 The ten capability bars show assessed distro strengths out of 5. A separate platform

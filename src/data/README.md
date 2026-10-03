@@ -158,13 +158,29 @@ eligibility vocabulary. Milestone 3 provides explicit user evidence using these
 values, extended with lower experience/tolerance levels; the engine evaluates those thresholds.
 
 - Kali requires security testing **and** at least intermediate Linux experience.
+- Arch, Gentoo, Slackware, Void, and Alpine require intermediate experience,
+  moderate upkeep tolerance, and moderate system-control interest.
+- NixOS requires intermediate experience and moderate learning tolerance; routine
+  upkeep and control preferences do not impose hard requirements.
+
+These minimums are DistroQuest recommendation policy for the assessed desktop
+workflows, not upstream restrictions. The existing ideal-fit conditions stay soft:
+
 - Gentoo strongly prefers advanced experience, high upkeep tolerance, and high control.
 - Alpine desktop strongly prefers advanced experience, minimalism, and technical exploration.
 - Slackware strongly prefers advanced experience, traditional Unix interest, and high upkeep tolerance.
 - NixOS strongly prefers technical experience, declarative interest, and willingness
   to learn a distinct system model. Learning tolerance is separate from routine upkeep.
-- Arch and Void also carry soft conditions to prevent control/resource scores alone
-  from making them accidental beginner recommendations.
+- Arch and Void retain their stronger soft upkeep, control, and minimalism conditions.
+
+The 2026-10-03 eligibility review used [Arch's user-built base](https://archlinux.org/about/),
+[Gentoo's configurable Portage workflow](https://www.gentoo.org/get-started/about/),
+[Void's handbook expectations](https://docs.voidlinux.org/about/about-this-handbook.html),
+[Alpine's manual setup responsibilities](https://docs.alpinelinux.org/user-handbook/0.1a/Installing/setup_alpine.html),
+[Slackware's manual administration and dependency handling](https://docs.slackware.com/slackbook:intro_to_slackware),
+and [NixOS's configuration/rebuild workflow](https://nixos.org/manual/nixos/stable/#sec-changing-config).
+These sources support the workflow distinction; the thresholds are editorial choices.
+Gentoo's overview remains an older cached snapshot, not fresh release evidence.
 
 ## Assessment limits and tuning questions
 

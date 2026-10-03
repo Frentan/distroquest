@@ -136,7 +136,7 @@ test('genuine penetration tester: Kali is eligible and ranks highly', () => {
 
 test('qualified security intent has separate credit even when general traits are capped', () => {
   const result = recommend(personas.penetrationTester);
-  assert.equal(result.modelVersion, 6);
+  assert.equal(result.modelVersion, 7);
   const kali = result.ranking[0];
   assert.equal(kali.distroId, 'kali-linux');
   assert.equal(kali.traitAdjustment, 12);
@@ -330,10 +330,9 @@ test('the current roster fits the fixed normalization ceiling before clamping', 
 test('beginner curious about security: aspirations cannot unlock Kali', () => {
   assert.equal(get('securityCurious', 'kali-linux').eligible, false);
   assert.equal(get('securityCurious', 'kali-linux').normalizedScore, 0);
-  assert.equal(
-    recommend(personas.securityCurious).ranking.at(-1)!.distroId,
-    'kali-linux',
-  );
+  const ranking = recommend(personas.securityCurious).ranking;
+  const kaliIndex = ranking.findIndex((row) => row.distroId === 'kali-linux');
+  assert.ok(ranking.every((row, index) => !row.eligible || index < kaliIndex));
   outside('securityCurious', ['gentoo', 'alpine-linux', 'slackware'], 10);
 });
 test('FOSS-focused user: free-software-first choices rank well', () => {
@@ -592,20 +591,33 @@ function fail(
 }
 test('all stored constraints are conjunctive; each missing condition is independently explained', () => {
   for (const distro of distroProfiles) {
-    for (const constraint of distro.recommendation.constraints) {
+    for (const [
+      index,
+      constraint,
+    ] of distro.recommendation.constraints.entries()) {
       const satisfied = constraint.allOf.reduce(
         satisfy,
         recommend(personas.beginner).profile,
       );
-      assert.equal(scoreDistro(satisfied, distro).constraints[0].matched, true);
+      assert.equal(
+        scoreDistro(satisfied, distro).constraints[index].matched,
+        true,
+      );
       for (const condition of constraint.allOf) {
         assert.equal(matchesCondition(satisfied, condition), true);
         const broken = fail(satisfied, condition);
         assert.equal(matchesCondition(broken, condition), false);
         const score = scoreDistro(broken, distro);
-        assert.equal(score.constraints[0].matched, false);
+        assert.equal(score.constraints[index].matched, false);
         assert.ok(score.eligibilityAdjustment < 0);
-        assert.equal(score.eligible, constraint.effect !== 'require');
+        assert.equal(
+          score.eligible,
+          score.constraints.every(
+            (outcome, constraintIndex) =>
+              distro.recommendation.constraints[constraintIndex].effect !==
+                'require' || outcome.matched,
+          ),
+        );
         assert.ok(
           score.cautions.some((code) => code.startsWith('constraint.')),
         );
@@ -630,8 +642,122 @@ test('Kali requires both genuine security intent and experience, including at th
   }
 });
 
-test('Gentoo penalties accumulate for insufficient experience, upkeep and control', () => {
-  assert.equal(get('beginner', 'gentoo').eligibilityAdjustment, -24);
+test('manual desktops enforce only minimum experience, upkeep and control through quiz answers', () => {
+  const ids = [
+    'arch-linux',
+    'gentoo',
+    'slackware',
+    'void-linux',
+    'alpine-linux',
+  ];
+  for (const experience of ['new', 'tried', 'regular', 'terminal', 'init'])
+    for (const maintenance of ['minimal', 'occasional', 'sometimes', 'hobby'])
+      for (const control of [
+        'drive',
+        'understand',
+        'components',
+        'everything',
+      ]) {
+        const result = recommend({
+          ...personas.highControl,
+          experience: [experience],
+          maintenance: [maintenance],
+          control: [control],
+        });
+        const expected =
+          !['new', 'tried'].includes(experience) &&
+          maintenance !== 'minimal' &&
+          control !== 'drive';
+        for (const id of ids) {
+          const row = result.ranking.find(
+            (candidate) => candidate.distroId === id,
+          )!;
+          assert.equal(
+            row.eligible,
+            expected,
+            `${id}: ${experience}/${maintenance}/${control}`,
+          );
+          if (!expected) {
+            assert.equal(row.normalizedScore, 0);
+            assert.equal(
+              row.constraints.filter(
+                (constraint) => constraint.effect === 'require',
+              ).length,
+              1,
+            );
+            assert.ok(row.cautions.includes('eligibility.excluded'));
+          }
+        }
+      }
+});
+
+test('NixOS minimum learning evidence is independent of upkeep and control preferences', () => {
+  for (const experience of ['new', 'tried', 'regular', 'terminal', 'init'])
+    for (const troubleshooting of [
+      'distress',
+      'search',
+      'investigate',
+      'learn',
+    ])
+      for (const maintenance of [
+        'minimal',
+        'occasional',
+        'sometimes',
+        'hobby',
+      ]) {
+        const row = recommend({
+          ...personas.declarative,
+          experience: [experience],
+          troubleshooting: [troubleshooting],
+          maintenance: [maintenance],
+          control: ['drive'],
+        }).ranking.find((candidate) => candidate.distroId === 'nixos')!;
+        const expected =
+          !['new', 'tried'].includes(experience) &&
+          troubleshooting !== 'distress';
+        assert.equal(row.eligible, expected);
+        if (!expected) assert.equal(row.normalizedScore, 0);
+        if (expected && troubleshooting !== 'learn')
+          assert.ok(
+            row.constraints.some(
+              (constraint) =>
+                constraint.effect === 'strongly-prefer' && !constraint.matched,
+            ),
+          );
+      }
+});
+
+test('specialist interests cannot bypass newcomer experience requirements', () => {
+  for (const experience of ['new', 'tried'])
+    for (const identity of ['minimal', 'declarative', 'unix', 'understand']) {
+      const result = recommend({
+        ...personas.highControl,
+        experience: [experience],
+        identity: [identity],
+        path: ['forbidden'],
+        'use-cases': ['learning', 'development', 'security'],
+      });
+      for (const id of [
+        'arch-linux',
+        'gentoo',
+        'slackware',
+        'void-linux',
+        'alpine-linux',
+        'nixos',
+      ])
+        assert.equal(
+          result.ranking.find((row) => row.distroId === id)!.eligible,
+          false,
+        );
+      assert.equal(
+        result.profile.eligibility.experience,
+        experience === 'new' ? 'new' : 'beginner',
+      );
+    }
+});
+
+test('Gentoo soft preferences remain distinct from minimum eligibility', () => {
+  assert.equal(get('beginner', 'gentoo').eligibilityAdjustment, -124);
   assert.equal(get('highControl', 'gentoo').eligibilityAdjustment, 2);
   const profile = recommend(personas.highControl).profile;
   for (const condition of distroProfiles.find(
@@ -641,7 +767,7 @@ test('Gentoo penalties accumulate for insufficient experience, upkeep and contro
       scoreDistro(
         fail(profile, condition),
         distroProfiles.find((distro) => distro.id === 'gentoo')!,
-      ).eligibilityAdjustment,
+      ).constraints[0].adjustment,
       -8,
     );
 });
