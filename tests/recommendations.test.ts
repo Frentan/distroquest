@@ -136,7 +136,7 @@ test('genuine penetration tester: Kali is eligible and ranks highly', () => {
 
 test('qualified security intent has separate credit even when general traits are capped', () => {
   const result = recommend(personas.penetrationTester);
-  assert.equal(result.modelVersion, 7);
+  assert.equal(result.modelVersion, 8);
   const kali = result.ranking[0];
   assert.equal(kali.distroId, 'kali-linux');
   assert.equal(kali.traitAdjustment, 12);
@@ -856,7 +856,11 @@ test('returned diagnostics do not expose mutable references into distro constrai
 });
 
 test('ties use stable distro IDs and normalization preserves eligible ordering', () => {
-  const ranking = recommend(personas.rollingEnthusiast).ranking;
+  const ranking = recommend({
+    ...personas.rollingEnthusiast,
+    'use-cases': ['gaming'],
+    gaming: ['none'],
+  }).ranking;
   const cachy = ranking.findIndex((row) => row.distroId === 'cachyos');
   const endeavour = ranking.findIndex((row) => row.distroId === 'endeavouros');
   assert.equal(ranking[cachy].rawScore, ranking[endeavour].rawScore);
@@ -901,6 +905,59 @@ test('gaming shortfalls count twice and similarity stays bounded', () => {
   assert.equal(capabilitySimilarity('gaming', 4, 3.5), 0.8);
   assert.equal(capabilitySimilarity('gaming', 5, 0), 0);
   assert.equal(capabilitySimilarity('gaming', 1, 5), 1);
+  // Extend the gaming contract across every assessed focus, all intensities,
+  // and explicit purpose selection without adding personas.
+  for (const gaming of ['none', 'occasional', 'important', 'main']) {
+    for (const selected of [false, true]) {
+      const result = recommend({
+        ...personas.beginner,
+        gaming: [gaming],
+        'use-cases': selected ? ['everyday', 'gaming'] : ['everyday'],
+      });
+      for (const distro of distroProfiles) {
+        const row = result.ranking.find(
+          (candidate) => candidate.distroId === distro.id,
+        )!;
+        const mismatch =
+          distro.traits.focus.gaming &&
+          !selected &&
+          (gaming === 'none' || gaming === 'occasional');
+        assert.deepEqual(
+          row.traitModifiers.filter(
+            (modifier) => modifier.code === 'focus.gaming-mismatch',
+          ),
+          mismatch
+            ? [
+                {
+                  code: 'focus.gaming-mismatch',
+                  points: gaming === 'none' ? -6 : -3,
+                },
+              ]
+            : [],
+        );
+        assert.equal(row.cautions.includes('focus.gaming-mismatch'), mismatch);
+        const reward = row.traitModifiers.find(
+          (modifier) => modifier.code === 'focus.gaming',
+        );
+        assert.equal(
+          reward?.points ?? 0,
+          distro.traits.focus.gaming && !mismatch && gaming !== 'none'
+            ? 3 * result.profile.capabilities.gaming.weight
+            : 0,
+        );
+        // Changing focus alone cannot change capabilities or constraints.
+        const unfocused = scoreDistro(result.profile, {
+          ...distro,
+          traits: {
+            ...distro.traits,
+            focus: { ...distro.traits.focus, gaming: false },
+          },
+        });
+        assert.equal(row.capabilityScore, unfocused.capabilityScore);
+        assert.deepEqual(row.constraints, unfocused.constraints);
+      }
+    }
+  }
   within('windowsGamer', ['fedora-workstation'], 2);
   assert.ok(
     get('windowsGamer', 'fedora-workstation').rawScore >

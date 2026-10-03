@@ -1,4 +1,4 @@
-# Recommendation engine, model v7
+# Recommendation engine, model v8
 
 The pure engine converts complete quiz answers into a deterministic ranking of
 all 25 distro profiles, with eligibility, score components, and explanation codes.
@@ -7,7 +7,7 @@ all 25 distro profiles, with eligibility, score components, and explanation code
 
 ```ts
 import { recommend } from './engine.ts';
-const result = recommend(answers); // { modelVersion: 7, profile, ranking }
+const result = recommend(answers); // { modelVersion: 8, profile, ranking }
 ```
 
 `recommend(unknown)` validates through the preference builder and throws
@@ -54,21 +54,22 @@ gaps. Raw differences remain inspectable. No rounding occurs before sorting.
 
 Adjustments use capability-score points and assessed traits, without distro-ID bonuses.
 
-| Evidence                                                    | Adjustment                                       |
-| :---------------------------------------------------------- | :----------------------------------------------- |
-| Explicit rolling/fixed choice                               | ±2 × strength (1 or 2)                           |
-| Explicit atomic/traditional choice                          | ±2 × strength (1 or 2)                           |
-| Container-first interest                                    | +3 image-based; −2 other models                  |
-| Positive gaming intensity and gaming focus                  | +3 × normalized gaming importance                |
-| Development intent and development focus                    | +2                                               |
-| Creative intent and documented creative integration         | +2                                               |
-| Security-testing intent and security focus                  | +8; eligibility still applies                    |
-| NVIDIA GPU                                                  | integrated +2; guided 0; manual −2               |
-| FOSS preference `f` on 0–5                                  | free-software-first +3 × f/5; pragmatic −1 × f/5 |
-| Minimalism interest and minimal focus                       | +3                                               |
-| Declarative interest and declarative model                  | +6                                               |
-| Explicit panel/menu preference and assessed matching layout | +2                                               |
-| Handheld device and documented handheld path                | +3                                               |
+| Evidence                                                      | Adjustment                                       |
+| :------------------------------------------------------------ | :----------------------------------------------- |
+| Explicit rolling/fixed choice                                 | ±2 × strength (1 or 2)                           |
+| Explicit atomic/traditional choice                            | ±2 × strength (1 or 2)                           |
+| Container-first interest                                      | +3 image-based; −2 other models                  |
+| Gaming focus, no gaming use case, intensity none / occasional | −6 / −3 (replaces the positive focus reward)     |
+| Positive gaming intensity and gaming focus, without mismatch  | +3 × normalized gaming importance                |
+| Development intent and development focus                      | +2                                               |
+| Creative intent and documented creative integration           | +2                                               |
+| Security-testing intent and security focus                    | +8; eligibility still applies                    |
+| NVIDIA GPU                                                    | integrated +2; guided 0; manual −2               |
+| FOSS preference `f` on 0–5                                    | free-software-first +3 × f/5; pragmatic −1 × f/5 |
+| Minimalism interest and minimal focus                         | +3                                               |
+| Declarative interest and declarative model                    | +6                                               |
+| Explicit panel/menu preference and assessed matching layout   | +2                                               |
+| Handheld device and documented handheld path                  | +3                                               |
 
 The net adjustment is capped to −12…+12. `traitModifiers` retains uncapped entries
 and a `traits.cap` correction when needed; its sum reproduces `traitAdjustment`.
@@ -80,7 +81,12 @@ codec, plugin, or peripheral compatibility. Handheld results always advise check
 the specific device.
 
 Neutral release/atomic choices add nothing. Only NVIDIA evidence activates driver
-modifiers. A gaming checkbox cannot override zero intensity. FOSS policy does not
+modifiers. Gaming focus is distinct from gaming capability: without a gaming use case,
+none (target 0) incurs −6 and occasional (target 2) incurs −3, replacing the
+positive focus reward. Important/main intensity keeps its existing reward. An
+explicit gaming use case suppresses mismatch, but cannot override zero intensity
+to earn a reward. The modifier uses `focus.gaming-mismatch` in diagnostics and
+cautions, inside the existing trait cap. Surplus gaming capability remains free. FOSS policy does not
 guarantee free firmware. Atomic updates alone do not imply container-first interest;
 NixOS is declarative, not an image-based container workstation.
 
@@ -145,8 +151,8 @@ normalized score   = 100 × clamp(raw score / 116, 0, 1)  # eligible only
 The fixed ceiling remains 116. Ordinary profiles allow 100 capability, 12 trait,
 2 satisfied-soft-constraint, and 2 breadth points. Kali, the only current security
 specialist, instead allows 100 capability, 12 trait, and 4 specialist points; it has
-zero breadth and no soft-constraint reward. Bazzite and Bluefin each allow 100
-capability, 12 trait, 2 specialist, and 1.6 breadth points, totaling 115.6.
+zero breadth and no soft-constraint reward. Bazzite allows 100 capability, 12 trait, 2 specialist, and 1.2 breadth points,
+totaling 115.2; Bluefin allows 1.6 breadth points, totaling 115.6.
 Dataset tests check these upper bounds
 before normalization, so future changes cannot silently rely on clamping overflow.
 The scale is independent of other candidates and is not a probability or calibrated

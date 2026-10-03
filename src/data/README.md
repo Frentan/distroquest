@@ -200,6 +200,13 @@ served from an older cached page, not fresh release evidence.
   requirements affect hardware suitability; exact CPU/GPU gates remain future work.
 - Bazzite/Bluefin favor low upkeep over host control. Bazzite's gaming-oriented host
   is more constrained; custom images do not determine default control scores.
+  The 2026-10-03 rebalance assigns Bazzite development 3.5 and breadth 3:
+  its [gaming-focused image and container tooling](https://github.com/ublue-os/bazzite/blob/main/README.md)
+  support development, while [Bluefin's Developer Mode](https://docs.projectbluefin.io/bluefin-dx/)
+  targets that workflow explicitly. Its convenience and gaming scores stay unchanged.
+  These values are editorial assessments, not measured tool quality. The other
+  gaming-focused profiles retain their existing upkeep, control, and breadth
+  distinctions; the engine separately accounts for irrelevant gaming specialization.
 - Gentoo's hardware optimization potential does not establish practical old-machine
   suitability given build resource costs. Arch's current stack and user-led setup
   do not make it an older-hardware specialist. Alpine's small footprint helps that

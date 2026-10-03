@@ -263,9 +263,11 @@ test('one-decimal fit separates rounding collisions while retaining real engine 
     percentMatch(kdeAlternative),
     percentMatch(rollingAlternative),
   );
-  const tied = recommend(personas.rollingEnthusiast).ranking.filter((row) =>
-    ['cachyos', 'endeavouros'].includes(row.distroId),
-  );
+  const tied = recommend({
+    ...personas.rollingEnthusiast,
+    'use-cases': ['gaming'],
+    gaming: ['none'],
+  }).ranking.filter((row) => ['cachyos', 'endeavouros'].includes(row.distroId));
   assert.equal(tied[0].rawScore, tied[1].rawScore);
   assert.equal(tied[0].normalizedScore, tied[1].normalizedScore);
   assert.equal(percentMatch(tied[0]), percentMatch(tied[1]));
@@ -279,7 +281,20 @@ test('broad purposes tailor preparation without inventing expertise or gaming ev
     ...base,
     'use-cases': ['everyday', 'creative', 'gaming'],
   });
-  assert.deepEqual(combined.ranking, creative.ranking);
+  for (const row of combined.ranking) {
+    const previous = creative.ranking.find(
+      (other) => other.distroId === row.distroId,
+    )!;
+    assert.equal(row.capabilityScore, previous.capabilityScore);
+    assert.equal(row.eligible, previous.eligible);
+    assert.deepEqual(row.constraints, previous.constraints);
+    assert.ok(!row.reasons.includes('focus.gaming'));
+    const hadMismatch = previous.cautions.includes('focus.gaming-mismatch');
+    assert.ok(
+      Math.abs(row.rawScore - previous.rawScore - (hadMismatch ? 6 : 0)) <
+        1e-10,
+    );
+  }
   assert.deepEqual(
     creative.profile.capabilities,
     everyday.profile.capabilities,

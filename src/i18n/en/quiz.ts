@@ -196,6 +196,8 @@ export const reasonCopy: Record<string, string> = {
     'Its documented handheld gaming path fits your device choice; check your specific device before installing.',
 };
 export const cautionCopy: Record<string, string> = {
+  'focus.gaming-mismatch':
+    'Its gaming focus is a weaker fit for your limited gaming plans.',
   'release.conflict':
     'Its release model differs from the update style you chose.',
   'atomic.conflict':

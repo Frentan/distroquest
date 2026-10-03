@@ -605,7 +605,7 @@ export const distroProfiles = [
       customization: 3.5,
       systemControl: 2,
       gaming: 5,
-      developerExperience: 4,
+      developerExperience: 3.5,
       oldHardware: 2,
       desktopPolish: 4.5,
     },
@@ -629,7 +629,7 @@ export const distroProfiles = [
       },
     },
     recommendation: {
-      breadth: 4,
+      breadth: 3,
       constraints: [],
     },
     assessment: {

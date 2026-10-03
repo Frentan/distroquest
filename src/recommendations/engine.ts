@@ -18,6 +18,8 @@ import { buildPreferenceProfile } from '../preferences/profile.ts';
 export const scoringRules = Object.freeze({
   traitLimit: 12,
   gamingDistanceMultiplier: 2,
+  gamingFocusNoInterestPenalty: 6,
+  gamingFocusOccasionalPenalty: 3,
   balancedFreshnessAllowance: 1,
   layoutMatch: 2,
   handheldMatch: 3,
@@ -157,8 +159,18 @@ function traitModifiers(
       traits.systemModel === 'image-based' ? 3 : -2,
     );
   const gaming = profile.capabilities.gaming;
-  if (traits.focus.gaming && gaming.target > 0)
-    add('focus.gaming', 3 * gaming.weight);
+  if (traits.focus.gaming) {
+    // The direct gaming answer owns this target (none 0, occasional 2).
+    // Penalize purpose mismatch, never surplus gaming capability.
+    if (!user.useCases.includes('gaming') && gaming.target <= 2)
+      add(
+        'focus.gaming-mismatch',
+        -(gaming.target === 0
+          ? scoringRules.gamingFocusNoInterestPenalty
+          : scoringRules.gamingFocusOccasionalPenalty),
+      );
+    else if (gaming.target > 0) add('focus.gaming', 3 * gaming.weight);
+  }
   if (user.useCases.includes('development') && traits.focus.development)
     add('focus.development', 2);
   if (
@@ -423,5 +435,5 @@ export function rankDistros(
 // Public boundary: accepts untrusted answers; existing validation rejects omissions.
 export function recommend(input: unknown): RecommendationResult {
   const profile = normalizePreferenceProfile(buildPreferenceProfile(input));
-  return { modelVersion: 7, profile, ranking: rankDistros(profile) };
+  return { modelVersion: 8, profile, ranking: rankDistros(profile) };
 }

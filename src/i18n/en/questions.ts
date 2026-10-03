@@ -97,7 +97,7 @@ export const questionContentEn: QuestionDictionary = {
     options: {
       everyday: { label: 'Browsing, office, and everyday life.' },
       development: { label: 'Programming and development.' },
-      gaming: { label: 'Gaming' },
+      gaming: { label: 'Gaming.' },
       creative: { label: 'Creative work and media.' },
       learning: { label: 'Learning Linux.' },
       security: { label: 'Cybersecurity and pentesting.' },
