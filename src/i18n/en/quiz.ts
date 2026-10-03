@@ -8,10 +8,29 @@ export const quizCopy = {
   eyebrow: 'YOUR QUEST',
   progress: (current: number, total: number) =>
     `Question ${current} of ${total}`,
-  progressLabel: 'Quest progress',
-  singleHint: 'Choose one, then continue. You can always go back.',
-  finalHint: 'Choose one, then reveal your path. You can always go back.',
-  multipleHint: (max: number) => `Choose up to ${max}, then continue.`,
+  progressLabel: 'Submitted answers',
+  submitted: (count: number, total: number) => `${count} of ${total} submitted`,
+  macStep: 'Includes one Mac hardware question.',
+  selectionCount: (count: number, max: number) => `${count} of ${max} selected`,
+  selectionLimit: 'Limit reached. Deselect an answer to choose another.',
+  artPlaceholder: 'Character art placeholder',
+  relevantStats: 'Capabilities for your priorities',
+  statsNote:
+    'Assessed capabilities out of 5, separate from preference fit and hardware support.',
+  comparedWith: (name: string) => `Compared with ${name}`,
+  capabilityComparison: (label: string, value: number, primary: number) =>
+    `${label}: ${value}/5 (main path: ${primary}/5)`,
+  editionNote: 'Same distribution, another desktop edition.',
+  workflow: {
+    'conventional-desktop': 'Traditional desktop',
+    'atomic-desktop': 'Atomic desktop',
+    'gaming-appliance': 'Gaming appliance',
+    'declarative-system': 'Declarative system',
+  },
+  release: { fixed: 'Fixed releases', rolling: 'Rolling releases' },
+  singleHint: 'Choose one.',
+  finalHint: 'Choose one to reveal your path.',
+  multipleHint: (max: number) => `Choose 1–${max}.`,
   back: 'Back',
   next: 'Continue',
   retry: 'Try again',
@@ -31,7 +50,8 @@ export const quizCopy = {
   error:
     'Your path could not be revealed. Your answers are still here. Try again, or go back to review them.',
   path: 'YOUR PATH',
-  stats: 'Distro stats',
+  stats: 'Full capability profile',
+  installationGuidance: 'Installation guidance',
   variantStatsNote:
     'Base Fedora capabilities out of 5; Asahi is not rated separately.',
   statValue: (value: number) => `${value} out of 5`,

@@ -1,0 +1,97 @@
+---
+import { defaultLocale, getMessages, type PublishedLocale } from '../i18n';
+interface Props {
+  locale?: PublishedLocale;
+  decorative?: boolean;
+}
+const { locale = defaultLocale, decorative = false } = Astro.props;
+const copy = getMessages(locale).scene;
+---
+
+<svg
+  class="quest-art"
+  aria-hidden={decorative ? 'true' : undefined}
+  viewBox="0 0 480 360"
+  role={decorative ? undefined : 'img'}
+  aria-labelledby={decorative ? undefined : 'scene-title scene-description'}
+  shape-rendering="crispEdges"
+>
+  <title id="scene-title">{copy.title}</title>
+  <desc id="scene-description">{copy.description}</desc>
+  <defs>
+    <pattern
+      id="scene-grid"
+      width="24"
+      height="24"
+      patternUnits="userSpaceOnUse"
+    >
+      <path
+        d="M24 0H0V24"
+        fill="none"
+        stroke="var(--scene-grid)"
+        stroke-width="1"
+      />
+    </pattern>
+    <g id="pine">
+      <path d="M-4 0h8v12h-8" fill="var(--tree-trunk)" />
+      <path
+        d="M-4-48h8v8h8v12h8v12h8V0h-56v-16h8v-12h8v-12h8Z"
+        fill="var(--tree)"
+      />
+      <path d="M-4-40h8v12h8v12h8v8H0v-8h-8v-12h4Z" fill="var(--tree-light)" />
+    </g>
+  </defs>
+  <path fill="var(--scene-sky)" d="M0 0h480v360H0z" />
+  <path fill="url(#scene-grid)" d="M0 0h480v360H0z" />
+  <path d="M364 42h36v8h8v36h-8v8h-36v-8h-8V50h8Z" fill="var(--scene-sun)" />
+  <path
+    d="M40 72h40v-8h40v8h24v8H40zm228 42h24v-8h32v8h24v8h-80z"
+    fill="var(--scene-cloud)"
+  />
+  <path
+    d="M0 192h24v-24h24v-24h24v-24h24V96h24v24h24v24h24v24h24v24h24v-24h24v-24h24v-24h24V96h24V72h24v24h24v24h24v24h24v24h24v24h48v168H0Z"
+    fill="var(--mountain-back)"
+  />
+  <path
+    d="M96 96h24v24h24v24h-24v-12H96v12H72v-24h24zm216-24h24v24h24v24h-24v-12h-24v12h-24V96h24Z"
+    fill="var(--mountain-snow)"
+  />
+  <path
+    d="M0 232h48v-16h48v-16h48v16h48v24h72v-24h48v-16h48v-16h48v16h24v16h48v144H0Z"
+    fill="var(--mountain-front)"
+  />
+  <path
+    d="M0 288h72v-16h72v-16h72v16h72v16h48v-16h72v-16h72v104H0Z"
+    fill="var(--scene-ground)"
+  />
+  <path
+    d="M264 252h24v24h-24v12h-24v24h24v24h24v24h-72v-24h-24v-36h24v-24h48Z"
+    fill="var(--scene-path)"
+  />
+  <g>
+    <use href="#pine" x="56" y="270" />
+    <use href="#pine" x="104" y="250" />
+    <use href="#pine" x="388" y="260" />
+    <use href="#pine" x="436" y="288" />
+    <use href="#pine" x="40" y="330" />
+    <use href="#pine" x="140" y="322" />
+    <use href="#pine" x="348" y="324" />
+  </g>
+  <path
+    d="M234 210h84v8h8v48h-8v8h-32v12h20v8h-60v-8h20v-12h-32v-8h-8v-48h8Z"
+    fill="var(--computer-frame)"
+  />
+  <path d="M238 222h76v40h-76Z" fill="var(--computer-screen)" />
+  <path
+    d="M262 230h8v8h-8zm-8 8h8v8h-8zm8 8h8v8h-8zm16 0h16v8h-16z"
+    fill="var(--screen-ink)"
+  />
+  <path
+    d="M190 164h8v8h8v8h-8v8h-8v-8h-8v-8h8zm158 14h6v6h6v6h-6v6h-6v-6h-6v-6h6z"
+    fill="var(--scene-sun)"
+  />
+  <path
+    d="M78 300h8v8h-8zm324 30h8v8h-8zm-224 10h8v8h-8z"
+    fill="var(--grass)"
+  />
+</svg>

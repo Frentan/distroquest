@@ -95,14 +95,14 @@ export const questionContentEn: QuestionDictionary = {
     helper:
       'Some plans guide your fit; others help pack your kit. Gaming gets its own question.',
     options: {
-      everyday: { label: 'Browsing, office, and everyday life' },
-      development: { label: 'Programming and development' },
+      everyday: { label: 'Browsing, office, and everyday life.' },
+      development: { label: 'Programming and development.' },
       gaming: { label: 'Gaming' },
-      creative: { label: 'Creative work and media' },
-      learning: { label: 'Learning Linux' },
-      security: { label: 'Cybersecurity and pentesting' },
-      homelab: { label: 'Servers, containers, and homelab' },
-      'old-hardware': { label: 'Keeping old hardware alive' },
+      creative: { label: 'Creative work and media.' },
+      learning: { label: 'Learning Linux.' },
+      security: { label: 'Cybersecurity and pentesting.' },
+      homelab: { label: 'Servers, containers, and homelab.' },
+      'old-hardware': { label: 'Keeping old hardware alive.' },
     },
   },
   gaming: {

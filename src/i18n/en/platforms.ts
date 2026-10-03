@@ -1,8 +1,4 @@
-import type {
-  Platform,
-  PlatformSupport,
-  PlatformFollowupId,
-} from '../../domain/platform.ts';
+import type { Platform, PlatformFollowupId } from '../../domain/platform.ts';
 export const platformQuestions: Record<
   PlatformFollowupId,
   {
@@ -17,8 +13,8 @@ export const platformQuestions: Record<
     options: {
       'm1-m2': { label: 'M1 / M2' },
       m3: { label: 'M3' },
-      'm4-plus': { label: 'M4 or newer' },
-      unknown: { label: 'Not sure' },
+      'm4-plus': { label: 'M4 or newer.' },
+      unknown: { label: 'Not sure.' },
     },
   },
   'intel-t2': {
@@ -28,7 +24,7 @@ export const platformQuestions: Record<
     options: {
       yes: { label: 'Yes' },
       no: { label: 'No' },
-      unknown: { label: 'I don’t know' },
+      unknown: { label: 'I don’t know.' },
     },
   },
 };
@@ -69,13 +65,7 @@ export const platformCopy = {
     unverified:
       'Native installation support for this platform remains unverified.',
   },
-  statuses: {
-    native: 'Standard installation path',
-    'supported-with-special-path': 'Supported with a special installation path',
-    experimental: 'Experimental support',
-    unsupported: 'No supported path',
-    unknown: 'Support needs checking',
-  } satisfies Record<PlatformSupport, string>,
+  standardInstallation: 'Standard installation path',
   notes: {
     'x86-standard':
       'Follow the standard PC installation path. Check your exact hardware and driver requirements before installing.',

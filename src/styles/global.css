@@ -6,6 +6,7 @@
   --text: #252e29;
   --muted: #5d685f;
   --line: #d4dbcf;
+  --control-line: #818d7e;
   --accent: #315b46;
   --accent-soft: #e7eddf;
   --gold: #80591d;
@@ -47,6 +48,7 @@
     --text: #f2f1e7;
     --muted: #b2bcb0;
     --line: #3d4b40;
+    --control-line: #7e907f;
     --accent: #b4d3a0;
     --accent-soft: #293b2e;
     --gold: #dfbc76;
@@ -78,6 +80,7 @@
   --text: #f2f1e7;
   --muted: #b2bcb0;
   --line: #3d4b40;
+  --control-line: #7e907f;
   --accent: #b4d3a0;
   --accent-soft: #293b2e;
   --gold: #dfbc76;
@@ -181,6 +184,9 @@ h3 {
   height: 32px;
   flex: 0 0 auto;
 }
+.brand-quest {
+  color: var(--accent);
+}
 .brand-dot,
 .title-dot {
   color: var(--gold);
@@ -208,7 +214,7 @@ nav {
   padding: 8px 12px;
   color: var(--text);
   background: var(--surface);
-  border: 1px solid var(--line);
+  border: 1px solid var(--control-line);
   border-radius: 4px;
   cursor: pointer;
   font-size: 0.875rem;
@@ -301,10 +307,16 @@ nav {
   color: var(--muted);
   font-size: 0.875rem;
 }
-.quest-facts li + li::before {
-  content: '·';
-  margin-right: 16px;
-  color: var(--gold);
+.quest-facts li {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+.quest-facts li::before {
+  content: '';
+  width: 4px;
+  height: 4px;
+  background: var(--muted);
 }
 .preview-note {
   font-size: 0.875rem;
@@ -584,5 +596,34 @@ nav {
     transition:
       transform 120ms ease,
       box-shadow 120ms ease;
+  }
+}
+
+@media (max-width: 420px) {
+  .container {
+    width: calc(100% - 32px);
+  }
+  .site-header {
+    flex-wrap: nowrap;
+    gap: 8px;
+    padding-block: 12px;
+  }
+  .brand {
+    gap: 7px;
+  }
+  .theme-toggle {
+    min-width: 44px;
+    justify-content: center;
+    padding: 9px;
+  }
+  .theme-label {
+    display: none;
+  }
+  nav {
+    gap: 0;
+  }
+  .hero {
+    padding-block: 32px 40px;
+    gap: 28px;
   }
 }

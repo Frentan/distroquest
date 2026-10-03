@@ -34,11 +34,7 @@ export const en = {
       'Find the Linux distribution that fits the way you use your computer. A few questions now. Fewer installation sidequests later.',
     begin: 'Begin Quest',
     factsLabel: 'Quiz format',
-    facts: [
-      `${QUESTION_COUNT} questions (+1 for Macs)`,
-      '~3 minutes',
-      'No signup',
-    ],
+    facts: [`${QUESTION_COUNT} questions (+1 for Macs)`, '~3 minutes'],
     preview: 'Your answers stay in this tab. No account needed.',
     howEyebrow: 'A LITTLE SELF-DISCOVERY',
     howTitle: 'Less hopping. More doing.',

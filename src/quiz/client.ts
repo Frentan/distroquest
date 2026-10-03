@@ -8,6 +8,10 @@ import {
   capabilityLabels,
   preparationCopy,
 } from '../i18n/en/quiz.ts';
+import type {
+  Recommendation,
+  CapabilityMatch,
+} from '../domain/recommendations.ts';
 import type { PlatformCandidate } from '../domain/platform.ts';
 import { platformCopy, platformQuestions } from '../i18n/en/platforms.ts';
 import { platformSources } from '../data/platforms.ts';
@@ -50,6 +54,7 @@ function button(text: string, action: () => void, primary = false) {
 }
 export function mountQuiz(root: HTMLElement) {
   let state = startQuiz();
+  const submitted = new Set<string>();
   const distros = getDistros(en.distros);
   const panel = element('div', undefined, 'quiz-panel');
   const restartDialog = element('dialog', undefined, 'restart-dialog');
@@ -65,6 +70,7 @@ export function mountQuiz(root: HTMLElement) {
       () => {
         restartDialog.close();
         state = startQuiz();
+        submitted.clear();
         render();
       },
       true,
@@ -77,6 +83,10 @@ export function mountQuiz(root: HTMLElement) {
     cancel.focus();
   }
   function advance() {
+    if (!hasValidAnswer(state)) return;
+    submitted.add(
+      state.followup ? 'mac-followup' : questions[state.current].id,
+    );
     state = nextQuestion(state);
     render();
   }
@@ -90,74 +100,19 @@ export function mountQuiz(root: HTMLElement) {
     heading.tabIndex = -1;
     return heading;
   }
-  function recommendationCard(candidate: PlatformCandidate, primary: boolean) {
-    const row = candidate.recommendation;
-    const platformResult = state.platformResult!;
-    const isVariant =
-      candidate.variant && candidate.support === 'supported-with-special-path';
-    const preferenceOnly = platformResult.practical.length === 0;
-    const distro = distros.find((d) => d.id === row.distroId)!;
-    const card = element(
-      'article',
-      undefined,
-      primary ? 'primary-result' : 'alternative-result',
-    );
-    card.dataset.distro = distro.id;
-    card.append(
-      element(
-        primary ? 'h1' : 'h3',
-        isVariant
-          ? platformCopy.asahiName(candidate.variant!.edition)
-          : distro.name,
-      ),
-      element('p', distro.archetype.name, 'eyebrow'),
-      element('p', isVariant ? platformCopy.asahiSummary : distro.summary),
-    );
-    if (primary) {
-      const heading = card.querySelector('h1')!;
-      heading.id = 'quest-heading';
-      heading.tabIndex = -1;
-      card.prepend(
-        element(
-          'p',
-          preferenceOnly ? platformCopy.preferencePath : copy.path,
-          'eyebrow',
-        ),
-      );
-      card.append(element('p', copy.match(percentMatch(row)), 'fit-label'));
-      card.append(platformNotice(candidate));
-    }
-    if (!primary) {
-      card.append(element('p', copy.match(percentMatch(row)), 'fit-label'));
-      card.append(
-        element('p', platformCopy.statuses[candidate.support], 'quiz-helper'),
-      );
-      if (
-        candidate.url &&
-        (candidate.support === 'native' ||
-          candidate.support === 'supported-with-special-path')
-      ) {
-        card.append(
-          element(
-            'p',
-            candidate.variant
-              ? platformCopy.asahiInstall
-              : platformCopy.effort[candidate.installation],
-            'quiz-helper',
-          ),
-          supportLink(candidate.url, platformCopy.install),
-        );
-      }
-    }
+  function capabilityStats(
+    candidate: PlatformCandidate,
+    matches: readonly CapabilityMatch[],
+    relevant = false,
+  ) {
+    const id = `${candidate.recommendation.distroId}-${relevant ? 'priorities' : 'full'}`;
     const stats = element('section', undefined, 'capability-stats');
-    const statsTitle = element(primary ? 'h2' : 'h4', copy.stats);
-    statsTitle.id = `stats-${distro.id}`;
-    stats.setAttribute('aria-labelledby', statsTitle.id);
+    if (!relevant) stats.setAttribute('aria-label', copy.stats);
     const bars = element('div', undefined, 'capability-grid');
-    for (const match of row.capabilityMatches) {
+    for (const match of matches) {
       const stat = element('div', undefined, 'capability-stat');
       const label = element('span', capabilityLabels[match.capability]);
-      label.id = `stat-${distro.id}-${match.capability}`;
+      label.id = `stat-${id}-${match.capability}`;
       const value = element('span', `${match.actual}/5`, 'capability-value');
       value.setAttribute('aria-hidden', 'true');
       const meter = element('div', undefined, 'capability-bar');
@@ -168,33 +123,188 @@ export function mountQuiz(root: HTMLElement) {
       meter.setAttribute('aria-valuenow', String(match.actual));
       meter.setAttribute('aria-valuetext', copy.statValue(match.actual));
       for (let segment = 0; segment < 10; segment++) {
-        const block = element('span');
-        block.className = segment < match.actual * 2 ? 'filled' : '';
+        const block = element(
+          'span',
+          undefined,
+          segment < match.actual * 2 ? 'filled' : undefined,
+        );
         block.setAttribute('aria-hidden', 'true');
         meter.append(block);
       }
       stat.append(label, value, meter);
       bars.append(stat);
     }
-    stats.append(statsTitle);
-    if (candidate.variant)
-      stats.append(element('p', copy.variantStatsNote, 'result-note'));
-    stats.append(bars);
-    if (primary) card.append(stats, element('h2', copy.why));
-    else {
-      const details = element('details', undefined, 'alternative-details');
-      details.append(element('summary', copy.stats), stats);
-      card.append(details);
+    if (relevant) {
+      const heading = element('h2', copy.relevantStats);
+      heading.id = `stats-${id}`;
+      stats.setAttribute('aria-labelledby', heading.id);
+      stats.append(
+        heading,
+        element(
+          'p',
+          candidate.variant ? copy.variantStatsNote : copy.statsNote,
+          'result-note',
+        ),
+      );
     }
+    stats.append(bars);
+    return stats;
+  }
+  function recommendationCard(
+    candidate: PlatformCandidate,
+    primary: boolean,
+    main?: Recommendation,
+  ) {
+    const row = candidate.recommendation;
+    const isVariant =
+      candidate.variant && candidate.support === 'supported-with-special-path';
+    const distro = distros.find((d) => d.id === row.distroId)!;
+    const card = element(
+      'article',
+      undefined,
+      primary ? 'primary-result' : 'alternative-result',
+    );
+    card.dataset.distro = distro.id;
+    const identity = element('div', undefined, 'result-identity');
+    const heading = element(
+      primary ? 'h1' : 'h3',
+      isVariant
+        ? platformCopy.asahiName(candidate.variant!.edition)
+        : distro.name,
+    );
+    if (primary) {
+      heading.id = 'quest-heading';
+      heading.tabIndex = -1;
+      identity.append(
+        element(
+          'p',
+          state.platformResult!.practical.length
+            ? copy.path
+            : platformCopy.preferencePath,
+          'eyebrow',
+        ),
+      );
+    }
+    identity.append(
+      heading,
+      element('p', distro.archetype.name, 'result-archetype'),
+      element(
+        'p',
+        isVariant ? platformCopy.asahiSummary : distro.summary,
+        'result-summary',
+      ),
+      element('p', copy.match(percentMatch(row)), 'fit-label'),
+    );
+    const intro = element('div', undefined, 'result-intro');
+    intro.append(identity);
+    if (primary) {
+      // Replace this single slot with supplied artwork; :empty collapses it safely.
+      const artwork = element('div', copy.artPlaceholder, 'result-artwork');
+      artwork.dataset.artwork = distro.id;
+      intro.append(artwork);
+    }
+    card.append(intro);
+    if (primary || candidate.variant)
+      card.append(
+        element(
+          'p',
+          candidate.variant
+            ? platformCopy.baseMatch(distro.name)
+            : copy.matchNote,
+          'result-note',
+        ),
+      );
+    const criticalPlatform =
+      candidate.support !== 'native' ||
+      state.platformResult!.platform !== 'x86-standard';
+    const supportedPath =
+      candidate.support === 'native' ||
+      candidate.support === 'supported-with-special-path';
+    if (primary && criticalPlatform)
+      card.append(platformNotice(candidate, supportedPath));
+    const deviceWarnings = row.cautions
+      .filter(
+        (code) => code.startsWith('nvidia.') || code.startsWith('handheld.'),
+      )
+      .map(explainCaution)
+      .filter((text): text is string => !!text);
+    if (deviceWarnings.length) {
+      const warnings = element('ul', undefined, 'compatibility-warnings');
+      deviceWarnings.forEach((warning) =>
+        warnings.append(element('li', warning)),
+      );
+      card.append(warnings);
+    }
+    if (primary) card.append(element('h2', copy.why));
+    const reasonTopic = (code: string) =>
+      code.startsWith('capability.')
+        ? code.split('.').slice(0, 2).join('.')
+        : code;
+    const primaryReasons = new Set(
+      main ? strongestReasons(main).map(reasonTopic) : [],
+    );
     const reasons = strongestReasons(row)
+      .filter((code) => primary || !primaryReasons.has(reasonTopic(code)))
       .map(explainReason)
       .filter((text): text is string => !!text);
-    const list = element('ul', undefined, 'result-reasons');
-    for (const reason of reasons.slice(0, primary ? 5 : 2))
-      list.append(element('li', reason));
-    if (reasons.length) card.append(list);
-    else card.append(element('p', copy.resultFallback));
-    // Keep every translated engine caution, including device-specific warnings.
+    if (reasons.length) {
+      const list = element('ul', undefined, 'result-reasons');
+      for (const reason of reasons.slice(0, primary ? 4 : 2))
+        list.append(element('li', reason));
+      card.append(list);
+    } else if (primary) card.append(element('p', copy.resultFallback));
+    if (!primary && main) {
+      const mainDistro = distros.find((d) => d.id === main.distroId)!;
+      const traits = element(
+        'p',
+        `${copy.workflow[row.workflow]} · ${copy.release[distro.traits.release]}`,
+        'result-traits',
+      );
+      card.append(traits);
+      const differences = [...row.capabilityMatches]
+        .filter(
+          (match) =>
+            match.weight > 0 &&
+            match.actual !==
+              main.capabilityMatches.find(
+                (m) => m.capability === match.capability,
+              )!.actual,
+        )
+        .sort((a, b) => {
+          const delta = (match: CapabilityMatch) =>
+            Math.abs(
+              match.actual -
+                main.capabilityMatches.find(
+                  (m) => m.capability === match.capability,
+                )!.actual,
+            ) * match.weight;
+          return delta(b) - delta(a);
+        })
+        .slice(0, 2);
+      if (differences.length) {
+        const comparison = element('div', undefined, 'result-comparison');
+        comparison.append(
+          element('p', copy.comparedWith(mainDistro.name), 'quiz-helper'),
+        );
+        const list = element('ul', undefined, 'result-reasons');
+        differences.forEach((match) =>
+          list.append(
+            element(
+              'li',
+              copy.capabilityComparison(
+                capabilityLabels[match.capability],
+                match.actual,
+                main.capabilityMatches.find(
+                  (m) => m.capability === match.capability,
+                )!.actual,
+              ),
+            ),
+          ),
+        );
+        comparison.append(list);
+        card.append(comparison);
+      }
+    }
     const warnings = [
       ...new Set([
         ...row.cautions
@@ -203,14 +313,77 @@ export function mountQuiz(root: HTMLElement) {
         ...distro.cautions.slice(0, primary ? 2 : 1),
       ]),
     ];
-    const cautionList = element('ul', undefined, 'result-cautions');
-    warnings.forEach((warning) => cautionList.append(element('li', warning)));
-    const details = element('details', undefined, 'alternative-details');
-    details.append(
-      element('summary', primary ? copy.tradeoffs : copy.alternativeDetails),
-      cautionList,
+    if (warnings.length) {
+      const cautionList = element('ul', undefined, 'result-cautions');
+      warnings.forEach((warning) => cautionList.append(element('li', warning)));
+      const details = element(
+        'details',
+        undefined,
+        primary
+          ? 'alternative-details result-tradeoffs'
+          : 'alternative-details',
+      );
+      details.append(
+        element('summary', primary ? copy.tradeoffs : copy.alternativeDetails),
+        cautionList,
+      );
+      // A concrete tradeoff stays visible on each alternative.
+      if (!primary)
+        card.append(
+          element('p', distro.cautions[0] ?? warnings[0], 'result-note'),
+        );
+      card.append(details);
+    }
+    if (primary && criticalPlatform && supportedPath) {
+      const guidance = element('details', undefined, 'alternative-details');
+      guidance.append(
+        element('summary', copy.installationGuidance),
+        platformNotice(candidate),
+      );
+      card.append(guidance);
+    }
+    if (primary && !criticalPlatform) {
+      const hardware = element('details', undefined, 'alternative-details');
+      hardware.append(
+        element('summary', platformCopy.standardInstallation),
+        platformNotice(candidate),
+      );
+      card.append(hardware);
+    } else if (!primary) {
+      if (
+        candidate.url &&
+        (candidate.support === 'native' ||
+          candidate.support === 'supported-with-special-path')
+      )
+        card.append(
+          element(
+            'p',
+            candidate.variant
+              ? platformCopy.asahiInstall
+              : platformCopy.effort[candidate.installation],
+            'quiz-helper',
+          ),
+          supportLink(candidate.url, platformCopy.install),
+        );
+    }
+    if (primary) {
+      const priorities = [...row.capabilityMatches]
+        .filter((match) => match.weight > 0 && match.target > 0)
+        .sort((a, b) => b.weight - a.weight)
+        .slice(0, 4);
+      if (priorities.length)
+        card.append(capabilityStats(candidate, priorities, true));
+    }
+    const stats = element(
+      'details',
+      undefined,
+      'alternative-details full-profile',
     );
-    card.append(details);
+    stats.append(
+      element('summary', copy.stats),
+      capabilityStats(candidate, row.capabilityMatches),
+    );
+    card.append(stats);
     return card;
   }
   function supportLink(url: string, text: string) {
@@ -218,13 +391,12 @@ export function mountQuiz(root: HTMLElement) {
     link.href = url;
     return link;
   }
-  function platformNotice(candidate: PlatformCandidate) {
+  function platformNotice(candidate: PlatformCandidate, brief = false) {
     const result = state.platformResult!;
     const notice = element('aside', undefined, 'platform-notice');
     notice.setAttribute('aria-label', platformCopy.title);
     notice.append(
       element('p', platformCopy.title, 'eyebrow'),
-      element('p', platformCopy.statuses[candidate.support]),
       element('p', platformCopy.notes[result.platform]),
     );
     const original = distros.find(
@@ -243,6 +415,7 @@ export function mountQuiz(root: HTMLElement) {
         ),
       );
     }
+    if (brief) return notice;
     if (
       candidate.variant &&
       candidate.support === 'supported-with-special-path'
@@ -293,10 +466,11 @@ export function mountQuiz(root: HTMLElement) {
     const actions = element('div', undefined, 'quiz-actions');
     actions.append(
       button(copy.revise, () => navigate(0), true),
-      button(copy.retake, restart),
+      Object.assign(button(copy.retake, restart), {
+        className: 'button button-tertiary',
+      }),
     );
     panel.append(actions);
-    panel.append(element('p', copy.matchNote, 'result-note'));
     const topics = preparationTopics(state.result!);
     if (topics.length) {
       const preparation = element('section', undefined, 'result-preparation');
@@ -316,8 +490,22 @@ export function mountQuiz(root: HTMLElement) {
             ? platformCopy.edition
             : copy.edition,
         ),
-        recommendationCard(sameEdition, false),
+        element('p', copy.editionNote, 'quiz-helper'),
       );
+      const edition = element('details', undefined, 'edition-details');
+      const name =
+        sameEdition.variant && !preferenceOnly
+          ? platformCopy.asahiName(sameEdition.variant.edition)
+          : distros.find((d) => d.id === sameEdition.recommendation.distroId)!
+              .name;
+      edition.append(
+        element(
+          'summary',
+          `${name} · ${copy.match(percentMatch(sameEdition.recommendation))}`,
+        ),
+        recommendationCard(sameEdition, false, primary.recommendation),
+      );
+      editions.append(edition);
       panel.append(editions);
     }
     function alternativeSection(
@@ -345,7 +533,11 @@ export function mountQuiz(root: HTMLElement) {
         );
       const cards = element('div', undefined, 'alternative-grid');
       for (const alternative of rows) {
-        const card = recommendationCard(alternative, false);
+        const card = recommendationCard(
+          alternative,
+          false,
+          primary.recommendation,
+        );
         if (alternative.recommendation.family === primary.recommendation.family)
           card.append(element('p', copy.sameFamily, 'quiz-helper'));
         cards.append(card);
@@ -370,22 +562,33 @@ export function mountQuiz(root: HTMLElement) {
       ? platformQuestions[followup.id]
       : en.questions[baseQuestion.id];
     const position = getQuizProgress(state);
-    const progressText = copy.progress(position.current, position.total);
+    const progressHeader = element('div', undefined, 'quest-progress');
+    const progressInfo = element('div', undefined, 'progress-info');
+    const progressLabel = element(
+      'p',
+      copy.progress(position.current, position.total),
+      'eyebrow',
+    );
+    const progressCount = element('p', undefined, 'progress-count');
     const progress = element('progress');
-    progress.max = position.total;
-    progress.value = position.current;
     progress.setAttribute('aria-label', copy.progressLabel);
-    progress.setAttribute('aria-valuetext', progressText);
-    const progressLabel = element('p', progressText, 'eyebrow');
-    panel.append(progressLabel, progress, title(content.prompt));
+    progressInfo.append(progressLabel, progressCount, progress);
+    progressHeader.append(progressInfo);
+    panel.append(progressHeader);
+    const branchNote = element('p', copy.macStep, 'result-note');
+    panel.append(branchNote);
     function updateProgress() {
-      const nextPosition = getQuizProgress(state);
-      const text = copy.progress(nextPosition.current, nextPosition.total);
-      progress.max = nextPosition.total;
-      progress.value = nextPosition.current;
-      progress.setAttribute('aria-valuetext', text);
-      progressLabel.textContent = text;
+      const pos = getQuizProgress(state);
+      const count = submitted.size;
+      progress.max = pos.total;
+      progress.value = count;
+      progress.setAttribute('aria-valuetext', copy.submitted(count, pos.total));
+      progressCount.textContent = copy.submitted(count, pos.total);
+      progressLabel.textContent = copy.progress(pos.current, pos.total);
+      branchNote.hidden = pos.total === questions.length;
     }
+    updateProgress();
+    panel.append(title(content.prompt));
     if (content.helper)
       panel.append(element('p', content.helper, 'quiz-helper'));
     if (followup)
@@ -439,61 +642,56 @@ export function mountQuiz(root: HTMLElement) {
         );
       const emoji = element('span', option.emoji, 'answer-emoji');
       emoji.setAttribute('aria-hidden', 'true');
-      if (question.selection === 'single') {
-        const choice = button('', () => {
-          state = selectAnswer(state, option.id);
-          updateProgress();
-          for (const other of options.querySelectorAll<HTMLButtonElement>(
-            '.answer-choice',
-          )) {
-            const active = other.dataset.option === option.id;
-            other.setAttribute('aria-pressed', String(active));
-            other.querySelector('.answer-mark')!.textContent = active
-              ? '✓'
-              : '○';
-          }
-          next.disabled = !hasValidAnswer(state);
-        });
-        choice.className = 'answer-choice';
-        choice.dataset.option = option.id;
-        choice.setAttribute(
-          'aria-pressed',
-          String(selected.includes(option.id)),
-        );
-        const mark = element(
-          'span',
-          selected.includes(option.id) ? '✓' : '○',
-          'answer-mark',
-        );
-        mark.setAttribute('aria-hidden', 'true');
-        choice.append(emoji, labelContent, mark);
-        options.append(choice);
-      } else {
-        const label = element('label', undefined, 'answer-choice');
-        const checkbox = element('input');
-        checkbox.type = 'checkbox';
-        checkbox.value = option.id;
-        checkbox.checked = selected.includes(option.id);
-        label.append(checkbox, emoji, labelContent);
-        checkbox.addEventListener('change', () => {
-          state = selectAnswer(state, option.id);
-          updateChecks();
-          next.disabled = !hasValidAnswer(state);
-        });
-        options.append(label);
-      }
+      const label = element('label', undefined, 'answer-choice');
+      label.dataset.option = option.id;
+      const input = element('input');
+      input.type = question.selection === 'single' ? 'radio' : 'checkbox';
+      input.name = question.id;
+      input.value = option.id;
+      input.checked = selected.includes(option.id);
+      label.append(input, emoji, labelContent);
+      input.addEventListener('change', () => {
+        submitted.delete(state.followup ? 'mac-followup' : baseQuestion.id);
+        if (baseQuestion.id === 'gpu' && !state.followup)
+          submitted.delete('mac-followup');
+        state = selectAnswer(state, option.id);
+        updateChecks();
+        updateProgress();
+        next.disabled = !hasValidAnswer(state);
+      });
+      options.append(label);
+    }
+    const selectionStatus = element('p', undefined, 'selection-status');
+    selectionStatus.id = 'selection-status';
+    selectionStatus.setAttribute('role', 'status');
+    selectionStatus.setAttribute('aria-live', 'polite');
+    selectionStatus.setAttribute('aria-atomic', 'true');
+    if (question.selection === 'multiple') {
+      panel.append(selectionStatus);
+      options.setAttribute(
+        'aria-describedby',
+        `${hint.id} ${selectionStatus.id}`,
+      );
     }
     function updateChecks() {
-      const checked = state.answers[baseQuestion.id] ?? [];
+      const checked = state.followup
+        ? state.platformAnswer
+          ? [state.platformAnswer]
+          : []
+        : (state.answers[baseQuestion.id] ?? []);
+      const limit =
+        question.selection === 'multiple' &&
+        checked.length >= question.maxSelections;
+      selectionStatus.textContent = `${copy.selectionCount(checked.length, question.maxSelections)}${limit ? `. ${copy.selectionLimit}` : ''}`;
+      selectionStatus.classList.toggle('at-limit', limit);
       for (const input of options.querySelectorAll<HTMLInputElement>('input')) {
         input.checked = checked.includes(input.value);
-        input.disabled =
-          !input.checked && checked.length >= question.maxSelections;
+        input.disabled = limit && !input.checked;
       }
     }
     updateChecks();
     panel.append(options);
-    const actions = element('div', undefined, 'quiz-actions');
+    const actions = element('div', undefined, 'quiz-actions question-actions');
     if (state.current > 0)
       actions.append(
         button(copy.back, () => {
@@ -502,7 +700,9 @@ export function mountQuiz(root: HTMLElement) {
         }),
       );
     actions.append(next);
-    actions.append(button(copy.restart, restart));
+    const restartButton = button(copy.restart, restart);
+    restartButton.classList.add('button-tertiary');
+    actions.append(restartButton);
     panel.append(actions);
     if (state.error) {
       const error = element('p', copy.error, 'quiz-error');
@@ -512,6 +712,7 @@ export function mountQuiz(root: HTMLElement) {
   }
   function render(focus = true) {
     panel.replaceChildren();
+    panel.classList.toggle('showing-results', state.completed);
     if (import.meta.env.DEV) {
       Object.assign(window, {
         distroquestDebug: {
@@ -524,7 +725,24 @@ export function mountQuiz(root: HTMLElement) {
     }
     if (state.completed) renderResults();
     else renderQuestion();
-    if (focus) panel.querySelector<HTMLElement>('#quest-heading')?.focus();
+    if (focus) {
+      panel
+        .querySelector<HTMLElement>('#quest-heading')
+        ?.focus({ preventScroll: true });
+      root.scrollIntoView({ block: 'start', behavior: 'instant' });
+    }
+    if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+      const target = state.completed
+        ? panel.querySelector('.result-intro')
+        : panel.querySelector('.quiz-title');
+      target?.animate(
+        [
+          { opacity: 0, transform: `translateY(${state.completed ? 8 : 4}px)` },
+          { opacity: 1, transform: 'translateY(0)' },
+        ],
+        { duration: state.completed ? 240 : 140, easing: 'ease-out' },
+      );
+    }
   }
   render(false);
 }
