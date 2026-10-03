@@ -151,11 +151,10 @@ lock. Unknown user evidence must not be assumed to satisfy hard requirements.
 The engine penalizes unmet soft conditions and rejects incomplete answer sets;
 see its scoring notes for the selected strengths.
 
-Conditions describe minimum experience, maintenance/learning tolerance, desire for system
-control, a use case, or a specific interest. Ordered thresholds are intermediate
-then advanced for experience, moderate then high for tolerance/control. They are
-eligibility vocabulary. Milestone 3 provides explicit user evidence using these
-values, extended with lower experience/tolerance levels; the engine evaluates those thresholds.
+Conditions describe minimum experience, upkeep/learning tolerance, system-control
+interest, purposes, or specific interests. Ordered minimums are intermediate/advanced
+for experience and moderate/high for tolerance/control; the preference builder
+supplies explicit evidence, including lower levels.
 
 - Kali requires security testing **and** at least intermediate Linux experience.
 - Arch, Gentoo, Slackware, Void, and Alpine require intermediate experience,
@@ -180,50 +179,37 @@ The 2026-10-03 eligibility review used [Arch's user-built base](https://archlinu
 [Slackware's manual administration and dependency handling](https://docs.slackware.com/slackbook:intro_to_slackware),
 and [NixOS's configuration/rebuild workflow](https://nixos.org/manual/nixos/stable/#sec-changing-config).
 These sources support the workflow distinction; the thresholds are editorial choices.
-Gentoo's overview remains an older cached snapshot, not fresh release evidence.
 
-## Assessment limits and tuning questions
+## Assessment rationale and limits
 
-Original source checks date to 2026-10-01; Bazzite handheld documentation and
-the creative integration sources above were checked on 2026-10-02. Project sources support
-mechanisms and focus; comparative scores remain DistroQuest's interpretation. Edition
-baselines are explicit in `assessmentBasis`. Sources can change; verify new releases
-before tuning. MX's project manual and Garuda's project-hosted support discussion
-provide narrower evidence than the other project overview pages; their main sites
-were unavailable to the research tool. Gentoo's overview was served from an older
-cached page, so it is not evidence of a newly verified release state.
+Review dates and sources live in each profile's `assessment`. Sources support
+mechanisms and focus; comparative scores remain editorial judgments for the edition
+named in `assessmentBasis`. Verify source changes before tuning. MX's manual and
+Garuda's project-hosted discussion provide narrower evidence than overview pages;
+their main sites were unavailable in the initial review. Gentoo's overview was
+served from an older cached page, not fresh release evidence.
 
-- Fedora Workstation emphasizes approachable, cohesive GNOME defaults (beginner
-  friendliness 4.5, customization 3, polish 5). Fedora KDE trades some initial
-  simplicity for built-in flexibility (3.5, 4.5, and 4.5 respectively). Workstation
-  now has low maintenance 4 (formerly 3.5), following persona review; these
-  convenience scores are editorial judgments. Workstation retains breadth 5; KDE
-  uses 4.5 to distinguish its audience without implying lower quality. Fedora's 4 gaming still assumes a modest driver/codec setup step.
-- Mint scores higher on newcomer convenience and conservative upkeep, but lower
-  on current graphics/toolchains and development than Fedora. Its Cinnamon baseline
-  prevents lightweight alternate editions from inflating the default hardware score.
-- Pop!_OS maintenance and stability are both 4 after model review. COSMIC polish
-  (4) and freshness (3.5) still deserve hands-on review of the current release.
-- PikaOS is modeled as Debian Sid-based and rolling, not Ubuntu-based. Stability
-  (2.5), maintenance (2.5), and gaming (4.5) need review against its younger ecosystem.
-- CachyOS/PikaOS old-hardware scores include optimized-build CPU requirements.
-  Minimum CPU/GPU compatibility will eventually need real hardware gates.
-- Bazzite/Bluefin have high maintenance scores and lower system control. Bazzite
-  scores 2 against Bluefin's 2.5, reflecting its more constrained gaming-oriented
-  host workflows; custom image possibilities do not determine default control.
-- Gentoo old-hardware fit is 2: hardware optimization potential does not establish
-  practical suitability for aging machines, especially given build resource costs.
-- Arch gaming is 3.5 for its current software stack; gaming focus remains false.
-  Its old-hardware score is 3 because current rolling packages and user-led setup
-  do not make it an older-machine specialist. Alpine scores 4.5 for its small
-  footprint without treating old-hardware desktop use as its primary purpose.
-- Alpine development (3) evaluates a workstation rather than merely its excellent
-  container footprint. Alpine/Arch/Gentoo polish measures what is supplied, not what
-  an expert could build. Slackware stability does not override its soft conditions.
+- Fedora Workstation emphasizes approachable GNOME defaults; KDE trades some
+  initial simplicity for flexibility. Their breadth distinction describes audience,
+  not quality. Fedora gaming assumes a modest driver/codec setup step. Mint favors
+  newcomer convenience and conservative upkeep over current graphics/toolchains;
+  its Cinnamon baseline excludes lighter editions from the default hardware score.
+- Pop!_OS's COSMIC polish and freshness need hands-on release review. PikaOS is
+  assessed as Debian Sid-based and rolling; stability, upkeep, and gaming readiness
+  need review against its younger ecosystem. CachyOS/PikaOS optimized-build CPU
+  requirements affect hardware suitability; exact CPU/GPU gates remain future work.
+- Bazzite/Bluefin favor low upkeep over host control. Bazzite's gaming-oriented host
+  is more constrained; custom images do not determine default control scores.
+- Gentoo's hardware optimization potential does not establish practical old-machine
+  suitability given build resource costs. Arch's current stack and user-led setup
+  do not make it an older-hardware specialist. Alpine's small footprint helps that
+  score; development evaluates a workstation rather than container strengths alone.
+- Alpine/Arch/Gentoo polish measures supplied defaults, not an expert's finished
+  setup. Slackware stability does not override its eligibility or soft preferences.
 
 ## Relative relationships and result diversity
 
-### CachyOS and Garuda review (2026-10-03)
+### CachyOS and Garuda gaming readiness
 
 The assessed baselines are CachyOS KDE on supported modern x86-64 hardware and
 Garuda Dr460nized Gaming KDE. Garuda's [current Gaming ISO package list](https://gitlab.com/garuda-linux/tools/iso-profiles/-/raw/master/garuda/dr460nized-gaming/Packages-Desktop)
@@ -240,14 +226,10 @@ Garuda's wiki also contains older guidance; current ISO package sources carry mo
 weight for bundled software. Its generic OBS package does not establish specialized
 creative integration under the existing criterion.
 
-Garuda gaming readiness is now 5 (formerly 4.5), reflecting the assessed Gaming
-edition's preinstalled setup. This is an editorial half-step, not a benchmark or
-compatibility guarantee. Its other scores, traits, breadth, and constraints are
-unchanged. Garuda now leads the experienced rolling-gamer fixture while Bazzite
-remains first for both existing gaming personas. The change has no effect when
-gaming intensity is below the maximum; development and creative intent can still
-favor CachyOS. Before this refinement, CachyOS equaled or exceeded Garuda on every
-capability and scoring trait and had higher breadth, preventing Garuda from winning.
+Garuda's assessed Gaming edition receives gaming readiness 5 for its preinstalled
+setup; CachyOS receives 4.5 for its documented post-install bundle. The distinction
+is initial convenience, not measured performance or compatibility. Current persona
+rankings live in [the examples](../recommendations/EXAMPLES.md).
 
 Dataset tests check beginner friendliness (Mint > Fedora > Tumbleweed > Arch >
 Gentoo), gaming readiness (Bazzite > Fedora), and old-hardware fit (MX > Mint).

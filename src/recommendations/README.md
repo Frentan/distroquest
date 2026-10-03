@@ -1,9 +1,7 @@
 # Recommendation engine, model v7
 
 The pure engine converts complete quiz answers into a deterministic ranking of
-all 25 distro profiles. Model v7 adds minimum eligibility requirements for manual
-desktops and NixOS, retaining the separate specialist intent matches. The shared
-trait cap, normalization scale, questionnaire, and ten capability axes are unchanged.
+all 25 distro profiles, with eligibility, score components, and explanation codes.
 
 ## API and boundaries
 
@@ -75,17 +73,11 @@ Adjustments use capability-score points and assessed traits, without distro-ID b
 The net adjustment is capped to −12…+12. `traitModifiers` retains uncapped entries
 and a `traits.cap` correction when needed; its sum reproduces `traitAdjustment`.
 
-Creative integration is documented for Nobara, Bazzite, PikaOS, CachyOS, Bluefin,
-and Solus. [The dataset review](../data/README.md#creative-integration-review)
-records each setup convenience and its official source (checked 2026-10-02).
-Other profiles are `unassessed`, with no penalty. Only explicit creative intent
-activates the modifier; the Creative kit tip remains. Neither the bonus nor a
-setup helper guarantees app, codec, plugin, or peripheral compatibility.
-
-Panel/menu credit applies across assessed desktops, without implying KDE or penalizing
-other layouts. Handheld credit currently applies only to Bazzite's documented path;
-all handheld results advise checking the device, and unassessed paths say so.
-See [the dataset notes](../data/README.md) for trait definitions and sources.
+[The dataset notes](../data/README.md) define assessed traits and document creative,
+layout, and handheld evidence. Only explicit creative intent activates its modifier;
+unassessed integration receives no penalty. Setup helpers do not guarantee app,
+codec, plugin, or peripheral compatibility. Handheld results always advise checking
+the specific device.
 
 Neutral release/atomic choices add nothing. Only NVIDIA evidence activates driver
 modifiers. A gaming checkbox cannot override zero intensity. FOSS policy does not
@@ -107,18 +99,15 @@ outside the ±12 trait cap. Existing general trait credits remain inside that ca
 Rules use assessed traits, without distro-ID bonuses or a new capability axis;
 eligibility is evaluated first and is never bypassed.
 
-Bazzite's [Handheld Wiki](https://docs.bazzite.gg/Handheld_and_HTPC_edition/Handheld_Wiki/)
-documents its separate handheld gaming path. Bluefin's
-[Developer Mode](https://docs.projectbluefin.io/bluefin-dx/) provides the
-container-oriented development environment; the standard desktop assessment does
-not imply that developer mode is already enabled. Both sources were checked on
-2026-10-03. Result explanations retain the device-check or developer-mode context.
+Bazzite's [documented handheld path](https://docs.bazzite.gg/Handheld_and_HTPC_edition/Handheld_Wiki/)
+requires a device check. Bluefin's [Developer Mode](https://docs.projectbluefin.io/bluefin-dx/)
+supplies the container-oriented tooling; the standard desktop assessment does not
+imply that it is enabled. Both sources were checked on 2026-10-03.
 
-Desktop gaming alone, a gaming checkbox with zero intensity, development without
-container-first intent, and containers without development receive no new credit.
-Creative setup conveniences retain their general trait modifier; platform
-installation paths remain separate from scores. Future extensions need specific
-user evidence, source-backed traits, scenario review, and a normalization review.
+Handheld credit requires positive gaming intensity; desktop gaming alone does not
+qualify. Container-development credit requires both explicit intents. Creative
+integration remains a general trait; platform installation paths remain separate
+from scores.
 
 ## Eligibility
 
@@ -162,7 +151,6 @@ Dataset tests check these upper bounds
 before normalization, so future changes cannot silently rely on clamping overflow.
 The scale is independent of other candidates and is not a probability or calibrated
 percentage. Revisit it when adding specialist matches or positive constraint rewards.
-Persist answers and recompute rankings after model changes.
 
 Sort by eligibility, descending unrounded raw score, then ascending distro ID for
 exact ties. The UI rounds fit to one decimal place; displayed ties can be close
@@ -189,31 +177,19 @@ npm run recommendations:review -- --answers /tmp/answers.json
 npm run recommendations:review -- --examples
 ```
 
-The 20 complete fixtures in `scripts/recommendation-personas.ts` cover beginners,
-gaming, development, old hardware, rolling/control/declarative workflows, security,
-FOSS, conservative updates, manual Unix use, simple polished desktops, convenient
-rolling desktops, rolling gaming, and expert minimal systems. Tests assert sensible top-N results,
-constraints, deterministic scores, and reconstructable diagnostics. Five paired
-creative scenarios check that the refinement leaves capability scores, expertise,
-and eligibility unchanged; baseline persona rankings remain unchanged.
+The 20 complete fixtures in `scripts/recommendation-personas.ts` cover ordinary
+and specialist desktop workflows. Tests check top-N results, eligibility boundaries,
+paired creative scenarios, deterministic scores, and reconstructable diagnostics.
+Across these fixtures, all 25 profiles appear on standard-PC shortlists as primary
+results, sibling editions, or alternatives. This does not require every profile
+to win or establish support on every platform.
 
 `formatRankingTable` prints all score components. JSON includes the full profile,
-reasons, cautions, trait modifiers, and capability/constraint diagnostics. Use
-`npm run --silent` for clean JSON. [Example rankings](EXAMPLES.md) contain all 20 full
-tables, including specialist fixtures; `--examples` derives its list from the persona
-registry so new fixtures are included automatically.
+reasons, cautions, modifiers, and capability/constraint diagnostics; use
+`npm run --silent` for clean JSON. [Example rankings](EXAMPLES.md) contain all 20
+full tables. `--examples` uses the persona registry, so new fixtures are included
+automatically.
 
-Across these fixtures, all 25 profiles appear on standard-PC shortlists through
-the actual platform presentation path. This includes primary results, sibling
-editions, and alternatives; it does not require every profile to win or establish
-support on every platform. Coverage tests also check that Void and Alpine satisfy
-their specialist conditions in the expert minimal-system scenarios.
-
-The beginner old-laptop fixture favors Mint, MX, and Debian; the Windows gamer favors
-Bazzite, Fedora Workstation, Pop!_OS, and Bluefin. Atomic development favors Bluefin;
-experienced security testing can favor Kali while beginners remain excluded.
-The penetration-tester fixture now puts Kali first at 110.44 raw points (95.2 fit);
-shared release/system preferences cannot absorb its separate specialist credit.
-These are reviewed scenarios, not user research or empirical calibration. Numeric
-assessments, freshness/gaming distance rules, small trait bonuses, and specialist
-penalties remain editorial tuning judgments. Verify real workflows and hardware.
+Scores are editorial judgments, not user research or empirical calibration. Changes
+need source-backed assessments, persona/focused-scenario review, a normalization
+check, and regenerated examples. Verify real workflows and hardware separately.
