@@ -41,11 +41,11 @@ export const platformCopy = {
   asahiSummary:
     'Fedora’s Apple Silicon path, with the Asahi project’s hardware support.',
   baseMatch: (name: string) =>
-    `Preference match uses the ${name} profile. Hardware support and available applications can differ on this Mac.`,
+    `Fit is based on ${name}. Hardware support and available apps can differ on this Mac.`,
   originalWinner: (name: string) =>
-    `Your preferences point first to ${name}. Your hardware narrows the practical installation paths below.`,
+    `Your answers lead to ${name}. Your hardware narrows the installation paths below.`,
   originalFit: (name: string) =>
-    `Your preferences point first to ${name}. Maintained T2 installation paths lead the practical shortlist.`,
+    `Your answers lead to ${name}. Maintained T2 installation paths come first below.`,
   sameFit:
     'Your preference match has a documented installation path for this platform.',
   asahiInstall:
@@ -55,7 +55,7 @@ export const platformCopy = {
   alternatives: 'Other practical paths',
   preferenceAlternatives: 'Other preference matches',
   preferenceOnly:
-    'These reflect your preferences. They are not verified native installation recommendations for this Mac.',
+    'These fit your preferences; native installation support on this Mac remains unverified.',
   edition: 'Another Fedora Asahi desktop',
   install: 'Explore the installation path',
   supportGuide: 'Check your model’s support',
@@ -67,7 +67,7 @@ export const platformCopy = {
     standard:
       'Use the appropriate x86_64 image; check your exact hardware first.',
     unverified:
-      'This quiz has not verified a native installation path for this platform.',
+      'Native installation support for this platform remains unverified.',
   },
   statuses: {
     native: 'Standard installation path',
@@ -78,13 +78,13 @@ export const platformCopy = {
   } satisfies Record<PlatformSupport, string>,
   notes: {
     'x86-standard':
-      'Your graphics choice follows the standard PC installation path. Check the exact hardware and driver requirements before installing.',
+      'Follow the standard PC installation path. Check your exact hardware and driver requirements before installing.',
     'intel-mac':
       'Intel Mac without T2: the usual x86_64 preference ranking applies. Wi-Fi, graphics, trackpad, and boot behavior vary by model.',
     'intel-mac-t2':
       'T2 Macs need special support for internal devices. Maintained installation paths come first; documented manual paths remain available. Check model-specific limitations before installing.',
     'intel-mac-unknown-t2':
-      'Check whether your Intel Mac has T2 before choosing an installer. The recommendations below show preference fit; their installation support is not yet confirmed.',
+      'Check whether your Intel Mac has T2 before choosing an installer. These paths fit your preferences; installation support is still unconfirmed.',
     'apple-silicon-m1-m2':
       'M1/M2 Macs have a documented Fedora Asahi Remix path. Check your exact model and the features you need before installing.',
     'apple-silicon-m3':
@@ -92,7 +92,7 @@ export const platformCopy = {
     'apple-silicon-m4-plus':
       'This quest has no verified native installation path for M4 or newer Macs. The current M4 support table lists no installer; newer chips need their own support check. Your preference match remains useful for exploration.',
     'apple-silicon-unknown':
-      'Identify your Apple chip before choosing a Linux installation path. Support differs substantially by generation. Your preference matches do not establish compatibility.',
+      'Identify your Apple chip first; support differs substantially by generation. Preference fit does not establish compatibility.',
     unknown:
       'Your platform is unconfirmed. These results show preference fit; check CPU architecture, graphics, and installation support before choosing an image.',
   } satisfies Record<Platform, string>,

@@ -352,7 +352,7 @@ export const distroContentEn = {
     ],
     cautions: [
       'Custom changes can diverge from Fedora guidance.',
-      'Smaller hobby project support surface.',
+      'Support comes from a smaller hobby project.',
       'Major upgrades deserve attention to project instructions.',
     ],
     idealFor: [
@@ -408,7 +408,7 @@ export const distroContentEn = {
     ],
     cautions: [
       'Host package installation follows a different model.',
-      'Homebrew, Flatpak, and containers add concepts to learn.',
+      'Homebrew, Flatpak, and containers bring new habits to learn.',
       'GNOME customization remains more limited than Plasma.',
     ],
     idealFor: [
@@ -464,7 +464,7 @@ export const distroContentEn = {
     ],
     cautions: [
       'Configuration and upgrades demand substantial attention.',
-      'Source builds can consume considerable time and resources.',
+      'Source builds can take time and give your hardware a workout.',
       'Desktop integration is the user’s responsibility.',
     ],
     idealFor: [
@@ -631,7 +631,7 @@ export const distroContentEn = {
       'Creator and compute tooling',
     ],
     cautions: [
-      'Younger project with less accumulated support history.',
+      'A younger project means less troubleshooting history to draw on.',
       'Optimized base requires compatible modern CPUs.',
       'Rolling custom repositories can need closer maintenance.',
     ],
@@ -687,7 +687,7 @@ export const distroContentEn = {
       'Established Unix-style workflows',
     ],
     cautions: [
-      'Official package tools do not resolve dependencies automatically.',
+      'Official package tools leave dependency resolution to you.',
       'Stable software can be substantially older.',
       'Modern desktop and vendor workflows need extra manual work.',
     ],
