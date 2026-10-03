@@ -23,6 +23,8 @@ export const scoringRules = Object.freeze({
   handheldMatch: 3,
   creativeIntegrationMatch: 2,
   specialistIntentMatch: 4,
+  handheldSpecialistMatch: 2,
+  containerDeveloperSpecialistMatch: 2,
   breadthMaximum: 2,
   normalizationMaximum: 116,
   unmetSoftCondition: 8,
@@ -197,23 +199,40 @@ function traitModifiers(
   return adjustments;
 }
 
-// Specialist intent is separate from general trait preferences. Only the
-// security-testing match is enabled; existing eligibility must already hold.
+// Specific intent and assessed purpose must coincide; eligibility still applies.
 function specialistModifiers(
   profile: RecommendationProfile,
   distro: DistroProfile,
   eligible: boolean,
 ): Adjustment[] {
-  return eligible &&
-    profile.traits.securityUseCase &&
-    distro.traits.focus.security
-    ? [
-        {
-          code: 'specialist.security-testing',
-          points: scoringRules.specialistIntentMatch,
-        },
-      ]
-    : [];
+  if (!eligible) return [];
+  const modifiers: Adjustment[] = [];
+  if (profile.traits.securityUseCase && distro.traits.focus.security)
+    modifiers.push({
+      code: 'specialist.security-testing',
+      points: scoringRules.specialistIntentMatch,
+    });
+  if (
+    profile.traits.deviceType === 'handheld' &&
+    profile.capabilities.gaming.target > 0 &&
+    distro.traits.focus.gaming &&
+    distro.traits.handheldSupport === 'documented'
+  )
+    modifiers.push({
+      code: 'specialist.handheld-gaming',
+      points: scoringRules.handheldSpecialistMatch,
+    });
+  if (
+    profile.traits.containerFirst &&
+    profile.traits.useCases.includes('development') &&
+    distro.traits.systemModel === 'image-based' &&
+    distro.traits.focus.development
+  )
+    modifiers.push({
+      code: 'specialist.container-development',
+      points: scoringRules.containerDeveloperSpecialistMatch,
+    });
+  return modifiers;
 }
 
 export function scoreDistro(
@@ -404,5 +423,5 @@ export function rankDistros(
 // Public boundary: accepts untrusted answers; existing validation rejects omissions.
 export function recommend(input: unknown): RecommendationResult {
   const profile = normalizePreferenceProfile(buildPreferenceProfile(input));
-  return { modelVersion: 5, profile, ranking: rankDistros(profile) };
+  return { modelVersion: 6, profile, ranking: rankDistros(profile) };
 }

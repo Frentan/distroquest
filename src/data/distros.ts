@@ -625,7 +625,7 @@ export const distroProfiles = [
       constraints: [],
     },
     assessment: {
-      reviewedOn: '2026-10-02',
+      reviewedOn: '2026-10-03',
       sources: [
         'https://github.com/ublue-os/bazzite/blob/main/README.md',
         'https://bazzite.gg/',
@@ -672,9 +672,10 @@ export const distroProfiles = [
       constraints: [],
     },
     assessment: {
-      reviewedOn: '2026-10-02',
+      reviewedOn: '2026-10-03',
       sources: [
         'https://docs.projectbluefin.io/administration/',
+        'https://docs.projectbluefin.io/bluefin-dx/',
         'https://docs.projectbluefin.io/',
       ],
     },

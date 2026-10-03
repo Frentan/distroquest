@@ -42,8 +42,9 @@ evidence. A pure engine ranks all 25 profiles; results explain matches and trade
 Creative intent adds a small bonus for documented setup conveniences, without a new
 capability axis. Gaming intensity comes from its dedicated question. Broad purposes
 never infer expertise or grant specialist eligibility.
-Eligible security-testing users receive a separate +4 specialist intent match;
-the general trait cap stays at ±12.
+Eligible security-testing users receive a separate +4 specialist intent match.
+Explicit handheld gaming and container-first development receive +2 on matching
+specialist profiles; the general trait cap stays at ±12.
 
 Displayed fit is an uncalibrated preference score, not a compatibility guarantee.
 The ten capability bars show assessed distro strengths out of 5. A separate platform

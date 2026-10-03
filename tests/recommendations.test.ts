@@ -136,7 +136,7 @@ test('genuine penetration tester: Kali is eligible and ranks highly', () => {
 
 test('qualified security intent has separate credit even when general traits are capped', () => {
   const result = recommend(personas.penetrationTester);
-  assert.equal(result.modelVersion, 5);
+  assert.equal(result.modelVersion, 6);
   const kali = result.ranking[0];
   assert.equal(kali.distroId, 'kali-linux');
   assert.equal(kali.traitAdjustment, 12);
@@ -188,12 +188,7 @@ test('specialist intent cannot grant eligibility or arise from aspiration or bro
     assert.equal(kali.specialistAdjustment, qualified ? 4 : 0);
     if (!qualified) assert.equal(kali.normalizedScore, 0);
   }
-  for (const answers of [
-    personas.highControl,
-    personas.securityCurious,
-    personas.gamingAppliance,
-    personas.atomicDeveloper,
-  ]) {
+  for (const answers of [personas.highControl, personas.securityCurious]) {
     assert.ok(
       recommend(answers).ranking.every((row) => row.specialistAdjustment === 0),
     );
@@ -205,7 +200,116 @@ test('specialist intent cannot grant eligibility or arise from aspiration or bro
   ]);
 });
 
+test('handheld gaming specialist credit needs gaming intensity and a documented gaming path', () => {
+  for (const gaming of ['occasional', 'important', 'main', 'none']) {
+    const result = recommend({ ...personas.gamingAppliance, gaming: [gaming] });
+    const bazzite = result.ranking.find((row) => row.distroId === 'bazzite')!;
+    assert.equal(bazzite.specialistAdjustment, gaming === 'none' ? 0 : 2);
+    assert.deepEqual(
+      bazzite.specialistModifiers,
+      gaming === 'none'
+        ? []
+        : [{ code: 'specialist.handheld-gaming', points: 2 }],
+    );
+    assert.ok(
+      result.ranking
+        .filter((row) => row !== bazzite)
+        .every((row) => row.specialistAdjustment === 0),
+    );
+  }
+  assert.equal(get('gamingFirst', 'bazzite').specialistAdjustment, 0);
+  const profile = recommend(personas.gamingAppliance).profile;
+  const distro = distroProfiles.find((row) => row.id === 'bazzite')!;
+  assert.equal(
+    scoreDistro(profile, { ...distro, id: 'debian' }).specialistAdjustment,
+    2,
+  );
+  for (const traits of [
+    { ...distro.traits, handheldSupport: 'unassessed' as const },
+    { ...distro.traits, focus: { ...distro.traits.focus, gaming: false } },
+  ])
+    assert.equal(
+      scoreDistro(profile, { ...distro, traits }).specialistAdjustment,
+      0,
+    );
+});
+
+test('container development specialist credit needs both explicit intents and an assessed workflow', () => {
+  const bluefin = get('atomicDeveloper', 'bluefin');
+  assert.deepEqual(bluefin.specialistModifiers, [
+    { code: 'specialist.container-development', points: 2 },
+  ]);
+  assert.equal(get('atomicDeveloper', 'bazzite').specialistAdjustment, 0);
+  assert.equal(get('atomicDeveloper', 'nixos').specialistAdjustment, 0);
+  for (const answers of [
+    { ...personas.atomicDeveloper, 'use-cases': ['homelab'] },
+    { ...personas.atomicDeveloper, 'system-model': ['protected'] },
+    { ...personas.atomicDeveloper, 'system-model': ['traditional'] },
+  ])
+    assert.ok(
+      recommend(answers).ranking.every((row) => row.specialistAdjustment === 0),
+    );
+  const profile = recommend(personas.atomicDeveloper).profile;
+  const distro = distroProfiles.find((row) => row.id === 'bluefin')!;
+  assert.equal(
+    scoreDistro(profile, { ...distro, id: 'debian' }).specialistAdjustment,
+    2,
+  );
+  for (const traits of [
+    { ...distro.traits, systemModel: 'declarative' as const },
+    { ...distro.traits, focus: { ...distro.traits.focus, development: false } },
+  ])
+    assert.equal(
+      scoreDistro(profile, { ...distro, traits }).specialistAdjustment,
+      0,
+    );
+});
+
+test('new specialist matches remain outside the trait cap and cannot bypass requirements', () => {
+  for (const [name, id] of [
+    ['gamingAppliance', 'bazzite'],
+    ['atomicDeveloper', 'bluefin'],
+  ] as const) {
+    const profile = recommend({
+      ...personas[name],
+      'system-model': ['containers'],
+      'use-cases': ['gaming', 'development', 'creative'],
+      gpu: ['nvidia'],
+    }).profile;
+    const distro = distroProfiles.find((row) => row.id === id)!;
+    const row = scoreDistro(profile, distro);
+    assert.equal(row.traitAdjustment, 12);
+    assert.equal(row.specialistAdjustment, 2);
+    const excluded = scoreDistro(profile, {
+      ...distro,
+      recommendation: {
+        ...distro.recommendation,
+        constraints: [
+          {
+            effect: 'require',
+            allOf: [{ kind: 'use-case', value: 'security-testing' }],
+          },
+        ],
+      },
+    });
+    assert.equal(excluded.eligible, false);
+    assert.equal(excluded.specialistAdjustment, 0);
+    assert.equal(excluded.normalizedScore, 0);
+  }
+});
+
 test('the current roster fits the fixed normalization ceiling before clamping', () => {
+  const profile = recommend(personas.penetrationTester).profile;
+  const allSpecialistIntents: RecommendationProfile = {
+    ...profile,
+    capabilities: { ...profile.capabilities, gaming: { target: 5, weight: 1 } },
+    traits: {
+      ...profile.traits,
+      containerFirst: true,
+      deviceType: 'handheld',
+      useCases: [...profile.traits.useCases, 'development'],
+    },
+  };
   for (const distro of distroProfiles) {
     const positiveConstraints =
       distro.recommendation.constraints.filter(
@@ -216,7 +320,7 @@ test('the current roster fits the fixed normalization ceiling before clamping', 
       scoringRules.traitLimit +
       positiveConstraints +
       (scoringRules.breadthMaximum * distro.recommendation.breadth) / 5 +
-      (distro.traits.focus.security ? scoringRules.specialistIntentMatch : 0);
+      scoreDistro(allSpecialistIntents, distro).specialistAdjustment;
     assert.ok(
       maximum <= scoringRules.normalizationMaximum,
       `${distro.id}: theoretical upper bound ${maximum}`,

@@ -150,6 +150,10 @@ export const reasonCopy: Record<string, string> = {
     'Its security-tool focus fits your security-testing use case.',
   'specialist.security-testing':
     'Its specialist focus matches the security-testing work you selected.',
+  'specialist.handheld-gaming':
+    'Its documented handheld gaming path matches your gaming plans; check your specific device before installing.',
+  'specialist.container-development':
+    'Its developer mode is built for the container-first development workflow you selected.',
   'nvidia.integrated':
     'Its integrated NVIDIA support fits the GPU you selected.',
   'software-policy.free-software-first':

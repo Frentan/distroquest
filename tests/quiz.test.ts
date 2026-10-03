@@ -188,6 +188,43 @@ test('specialist security fit is visible without duplicating the security-focus 
     1,
   );
 });
+test('handheld and container specialist explanations retain context without duplicate topics', () => {
+  for (const [name, specialist, overlapping, context] of [
+    [
+      'gamingAppliance',
+      'specialist.handheld-gaming',
+      'handheld.documented-support',
+      'check your specific device',
+    ],
+    [
+      'atomicDeveloper',
+      'specialist.container-development',
+      'focus.development',
+      'developer mode',
+    ],
+  ] as const) {
+    const row = recommend(personas[name]).ranking[0];
+    assert.equal(strongestReasons(row)[0], specialist);
+    const copy = explainReason(specialist)!;
+    assert.ok(copy.includes(context));
+    assert.ok(copy.startsWith('Its '));
+    assert.ok(copy.endsWith('.'));
+    const reasons = strongestReasons({
+      ...row,
+      reasons: [
+        specialist,
+        overlapping,
+        ...row.reasons.filter((code) => code.startsWith('capability.')),
+      ],
+    });
+    assert.equal(
+      reasons.filter((code) => code === specialist || code === overlapping)
+        .length,
+      1,
+    );
+  }
+});
+
 test('same-family derivatives remain distinct when their edition groups differ', () => {
   const result = recommend(personas.windowsGamer);
   const ranking: Recommendation[] = [

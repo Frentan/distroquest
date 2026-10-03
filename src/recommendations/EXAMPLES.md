@@ -1,4 +1,4 @@
-# Example rankings, model v5
+# Example rankings, model v6
 
 All 20 complete answer fixtures from
 [`scripts/recommendation-personas.ts`](../../scripts/recommendation-personas.ts).
@@ -273,7 +273,7 @@ Regenerate with `npm run --silent recommendations:review -- --examples > src/rec
 
 |   # | Distro              | Eligible |    Raw | Normalized | Capability | Traits | Specialist | Eligibility | Breadth |
 | --: | :------------------ | :------- | -----: | ---------: | ---------: | -----: | ---------: | ----------: | ------: |
-|   1 | bazzite             | true     | 108.38 |      93.43 |      98.78 |   8.00 |       0.00 |        0.00 |    1.60 |
+|   1 | bazzite             | true     | 110.38 |      95.16 |      98.78 |   8.00 |       2.00 |        0.00 |    1.60 |
 |   2 | nobara              | true     |  92.99 |      80.16 |      90.59 |   1.00 |       0.00 |        0.00 |    1.40 |
 |   3 | bluefin             | true     |  91.00 |      78.45 |      87.40 |   2.00 |       0.00 |        0.00 |    1.60 |
 |   4 | fedora-workstation  | true     |  90.85 |      78.32 |      90.85 |  -2.00 |       0.00 |        0.00 |    2.00 |
@@ -303,7 +303,7 @@ Regenerate with `npm run --silent recommendations:review -- --examples > src/rec
 
 |   # | Distro              | Eligible |    Raw | Normalized | Capability | Traits | Specialist | Eligibility | Breadth |
 | --: | :------------------ | :------- | -----: | ---------: | ---------: | -----: | ---------: | ----------: | ------: |
-|   1 | bluefin             | true     | 108.61 |      93.63 |      98.01 |   9.00 |       0.00 |        0.00 |    1.60 |
+|   1 | bluefin             | true     | 110.61 |      95.35 |      98.01 |   9.00 |       2.00 |        0.00 |    1.60 |
 |   2 | bazzite             | true     | 104.93 |      90.46 |      96.33 |   7.00 |       0.00 |        0.00 |    1.60 |
 |   3 | fedora-workstation  | true     |  95.10 |      81.98 |      97.10 |  -4.00 |       0.00 |        0.00 |    2.00 |
 |   4 | fedora-kde          | true     |  92.97 |      80.15 |      95.17 |  -4.00 |       0.00 |        0.00 |    1.80 |

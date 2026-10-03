@@ -43,16 +43,20 @@ export function strongestReasons(row: Recommendation): string[] {
   return signals
     .filter((code) => {
       const topic =
-        code === 'focus.development'
+        code === 'focus.development' ||
+        code === 'specialist.container-development'
           ? 'developerExperience'
-          : code === 'focus.gaming'
-            ? 'gaming'
-            : code === 'focus.security' ||
-                code === 'specialist.security-testing'
-              ? 'security-testing'
-              : code.startsWith('capability.')
-                ? code.split('.')[1]
-                : code;
+          : code === 'specialist.handheld-gaming' ||
+              code === 'handheld.documented-support'
+            ? 'handheld'
+            : code === 'focus.gaming'
+              ? 'gaming'
+              : code === 'focus.security' ||
+                  code === 'specialist.security-testing'
+                ? 'security-testing'
+                : code.startsWith('capability.')
+                  ? code.split('.')[1]
+                  : code;
       if (topics.has(topic)) return false;
       topics.add(topic);
       return true;

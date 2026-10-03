@@ -1,15 +1,16 @@
-# Recommendation engine, model v5
+# Recommendation engine, model v6
 
 The pure engine converts complete quiz answers into a deterministic ranking of
-all 25 distro profiles. Model v5 retains v4's separate specialist intent match for
-eligible security-testing users and includes the reviewed Garuda Gaming readiness
-assessment. The shared trait cap, questionnaire, and ten capability axes are unchanged.
+all 25 distro profiles. Model v6 adds +2 specialist matches for explicit handheld
+gaming and container-first development, retaining Kali's +4 security-testing match
+and the reviewed Garuda Gaming readiness assessment. The shared trait cap,
+questionnaire, and ten capability axes are unchanged.
 
 ## API and boundaries
 
 ```ts
 import { recommend } from './engine.ts';
-const result = recommend(answers); // { modelVersion: 5, profile, ranking }
+const result = recommend(answers); // { modelVersion: 6, profile, ranking }
 ```
 
 `recommend(unknown)` validates through the preference builder and throws
@@ -94,16 +95,31 @@ NixOS is declarative, not an image-based container workstation.
 
 ## Specialist intent
 
-An eligible user explicitly selecting security testing receives a separate +4
-match on profiles with assessed security focus. `specialistModifiers` explains
-the match and sums to `specialistAdjustment`, outside the ±12 trait cap. The existing
-+8 security-focus trait remains inside that cap. No distro-ID bonus or new capability
-axis is used; eligibility is evaluated first and is never bypassed.
+Specific user intent receives separate credit when it matches an assessed purpose:
 
-Only this security-testing match is enabled. Gaming appliances, container-oriented
-development, creative workflows, and platform installation paths receive no new
-specialist credit. Any extension needs specific user evidence, an assessed matching
-trait, scenario review, and a review of the normalization ceiling.
+| Explicit evidence                                | Assessed traits                           | Credit | Current match |
+| :----------------------------------------------- | :---------------------------------------- | -----: | :------------ |
+| Security-testing intent                          | Security focus                            |     +4 | Kali          |
+| Handheld device and positive gaming intensity    | Gaming focus and documented handheld path |     +2 | Bazzite       |
+| Development purpose and container-first workflow | Development focus and image-based system  |     +2 | Bluefin       |
+
+`specialistModifiers` explains each match and sums to `specialistAdjustment`,
+outside the ±12 trait cap. Existing general trait credits remain inside that cap.
+Rules use assessed traits, without distro-ID bonuses or a new capability axis;
+eligibility is evaluated first and is never bypassed.
+
+Bazzite's [Handheld Wiki](https://docs.bazzite.gg/Handheld_and_HTPC_edition/Handheld_Wiki/)
+documents its separate handheld gaming path. Bluefin's
+[Developer Mode](https://docs.projectbluefin.io/bluefin-dx/) provides the
+container-oriented development environment; the standard desktop assessment does
+not imply that developer mode is already enabled. Both sources were checked on
+2026-10-03. Result explanations retain the device-check or developer-mode context.
+
+Desktop gaming alone, a gaming checkbox with zero intensity, development without
+container-first intent, and containers without development receive no new credit.
+Creative setup conveniences retain their general trait modifier; platform
+installation paths remain separate from scores. Future extensions need specific
+user evidence, source-backed traits, scenario review, and a normalization review.
 
 ## Eligibility
 
@@ -134,7 +150,9 @@ normalized score   = 100 × clamp(raw score / 116, 0, 1)  # eligible only
 The fixed ceiling remains 116. Ordinary profiles allow 100 capability, 12 trait,
 2 satisfied-soft-constraint, and 2 breadth points. Kali, the only current security
 specialist, instead allows 100 capability, 12 trait, and 4 specialist points; it has
-zero breadth and no soft-constraint reward. Dataset tests check these upper bounds
+zero breadth and no soft-constraint reward. Bazzite and Bluefin each allow 100
+capability, 12 trait, 2 specialist, and 1.6 breadth points, totaling 115.6.
+Dataset tests check these upper bounds
 before normalization, so future changes cannot silently rely on clamping overflow.
 The scale is independent of other candidates and is not a probability or calibrated
 percentage. Revisit it when adding specialist matches or positive constraint rewards.
