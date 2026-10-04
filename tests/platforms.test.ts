@@ -24,7 +24,7 @@ import { recommendationPersonas as personas } from '../scripts/recommendation-pe
 
 const result = recommend(personas.beginner);
 
-test('the review personas expose all 25 profiles through standard-PC shortlists', () => {
+test('the review personas expose curated profiles through standard-PC shortlists', () => {
   const seen = new Set<string>();
   for (const answers of Object.values(personas)) {
     const view = platformShortlist(
@@ -100,7 +100,7 @@ test('graphics intake merges the open-driver path and keeps explicit Mac branche
     resolvePlatform({ gpu: ['intel-mac'] }, 'unknown'),
     'intel-mac-unknown-t2',
   );
-  assert.equal(distroIds.length, 25);
+  assert.equal(distroIds.length, 29);
 });
 test('ordinary PCs and Intel Macs retain the original eligible preference order and scores', () => {
   for (const platform of ['x86-standard', 'intel-mac'] as const) {
@@ -319,4 +319,16 @@ test('percent display rounds to tenths without changing ranking precision', () =
       percentMatch(recommendation),
       Math.round(recommendation.normalizedScore * 10) / 10,
     );
+});
+
+test('official atomic siblings do not inherit conventional Fedora Asahi or T2 support', () => {
+  for (const platform of ['apple-silicon-m1-m2', 'intel-mac-t2'] as const) {
+    const view = applyPlatform(recommend(personas.atomicDeveloper), platform);
+    const silverblue = view.candidates.find(
+      (c) => c.recommendation.distroId === 'fedora-silverblue',
+    )!;
+    assert.equal(silverblue.support, 'unknown');
+    assert.equal(silverblue.variant, undefined);
+    assert.ok(!view.practical.includes(silverblue));
+  }
 });

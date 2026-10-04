@@ -71,7 +71,7 @@ test('reviewed relative relationships remain coherent', () => {
   assert.equal(arch.traits.focus.gaming, false);
 });
 
-test('frozen roster contains exactly the requested 25 distributions', () => {
+test('frozen roster contains exactly the requested 29 distributions', () => {
   assert.deepEqual(
     getDistros(distroContentEn).map((distro) => distro.name),
     [
@@ -79,11 +79,13 @@ test('frozen roster contains exactly the requested 25 distributions', () => {
       'Ubuntu',
       'Fedora Workstation',
       'Fedora KDE',
+      'Fedora Silverblue',
       'Debian',
       'Pop!_OS',
       'Zorin OS',
       'elementary OS',
       'openSUSE Tumbleweed',
+      'openSUSE Aeon',
       'EndeavourOS',
       'Arch Linux',
       'CachyOS',
@@ -99,10 +101,12 @@ test('frozen roster contains exactly the requested 25 distributions', () => {
       'Solus',
       'PikaOS',
       'Alpine Linux',
+      'Vanilla OS',
+      'Rhino Linux',
       'Slackware',
     ],
   );
-  assert.equal(distroIds.length, 25);
+  assert.equal(distroIds.length, 29);
 });
 
 test('composition uses the supplied dictionary without mutating profiles', () => {
@@ -117,7 +121,7 @@ test('rejects roster omissions, substitutions, duplicates, and invalid slugs', (
   rejects(
     distroProfiles.slice(1),
     distroContentEn,
-    /exactly 25.*|missing frozen roster/,
+    /exactly 29.*|missing frozen roster/,
   );
   rejects(
     changeProfile({ id: 'unlisted' }),
@@ -358,4 +362,57 @@ test('rejects invalid provenance and handles wrong root shapes without throwing'
     'profiles: expected an array',
   ]);
   assert.ok(validateDataset([null], null).length > 0);
+});
+
+test('atomic additions keep architecture, official lineage and cautious scope explicit', () => {
+  const get = (id: (typeof distroIds)[number]) =>
+    distroProfiles.find((p) => p.id === id)!;
+  const silverblue = get('fedora-silverblue');
+  const aeon = get('opensuse-aeon');
+  const vanilla = get('vanilla-os');
+  const rhino = get('rhino-linux');
+  assert.equal(silverblue.traits.lineage, 'upstream');
+  assert.equal(silverblue.traits.release, 'fixed');
+  assert.equal(silverblue.traits.systemModel, 'image-based');
+  assert.equal(aeon.traits.systemModel, 'transactional');
+  assert.equal(aeon.traits.release, 'rolling');
+  for (const profile of [silverblue, aeon, vanilla]) {
+    assert.equal(profile.traits.baseMutability, 'protected');
+    assert.equal(profile.traits.atomicUpdates, true);
+    assert.ok(
+      profile.capabilities.systemControl <
+        get('opensuse-tumbleweed').capabilities.systemControl,
+    );
+  }
+  assert.equal(rhino.traits.family, 'debian');
+  assert.equal(rhino.traits.lineage, 'derivative');
+  assert.equal(rhino.traits.baseMutability, 'mutable');
+  assert.equal(rhino.traits.atomicUpdates, false);
+  assert.ok(
+    rhino.capabilities.lowMaintenance <
+      get('ubuntu').capabilities.lowMaintenance,
+  );
+  for (const profile of [vanilla, rhino]) {
+    assert.ok(profile.recommendation.breadth <= 3);
+    assert.ok(
+      profile.recommendation.constraints.some(
+        (c) => c.effect === 'strongly-prefer',
+      ),
+    );
+  }
+  assert.ok(
+    distroContentEn['fedora-silverblue'].editionNote.includes('Kinoite'),
+  );
+  assert.ok(!(distroIds as readonly string[]).includes('fedora-kinoite'));
+  assert.ok(!(distroIds as readonly string[]).includes('opensuse-leap'));
+  assert.match(
+    distroContentEn['opensuse-aeon'].cautions[0],
+    /release candidate/,
+  );
+  rejects(distroProfiles, changeContent({ editionNote: '' }), /editionNote/);
+  rejects(
+    changeProfile({ traits: { ...aeon.traits, baseMutability: 'mutable' } }),
+    distroContentEn,
+    /transactional profiles require/,
+  );
 });

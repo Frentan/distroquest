@@ -64,7 +64,11 @@ export function validateDataset(profiles: unknown, content: unknown): string[] {
     );
 
   if (!Array.isArray(profiles)) return ['profiles: expected an array'];
-  check(profiles.length === 25, 'profiles', 'expected exactly 25 records');
+  check(
+    profiles.length === distroIds.length,
+    'profiles',
+    `expected exactly ${distroIds.length} records`,
+  );
   const dictionary = object(content, 'content', distroIds);
   const ids = new Set<unknown>();
   const slugs = new Set<unknown>();
@@ -126,11 +130,14 @@ export function validateDataset(profiles: unknown, content: unknown): string[] {
         `${path}.traits.focus.${key}`,
         'expected boolean',
       );
-    if (traits.systemModel === 'image-based') {
+    if (
+      traits.systemModel === 'image-based' ||
+      traits.systemModel === 'transactional'
+    ) {
       check(
         traits.baseMutability === 'protected' && traits.atomicUpdates === true,
         `${path}.traits`,
-        'image-based profiles require protected base and atomic updates',
+        `${traits.systemModel} profiles require protected base and atomic updates`,
       );
     }
 
@@ -225,7 +232,8 @@ export function validateDataset(profiles: unknown, content: unknown): string[] {
   distroIds.forEach((id) => {
     check(ids.has(id), 'profiles', `missing frozen roster ID ${id}`);
     const path = `content.${id}`;
-    const entry = object(dictionary[id], path, [
+    const rawContent = dictionary[id];
+    const entry = object(rawContent, path, [
       'name',
       'archetype',
       'summary',
@@ -233,7 +241,11 @@ export function validateDataset(profiles: unknown, content: unknown): string[] {
       'cautions',
       'idealFor',
       'assessmentBasis',
+      ...(isObject(rawContent) && 'editionNote' in rawContent
+        ? ['editionNote']
+        : []),
     ]);
+    if ('editionNote' in entry) text(entry.editionNote, `${path}.editionNote`);
     for (const key of ['name', 'summary', 'assessmentBasis'])
       text(entry[key], `${path}.${key}`);
     const archetype = object(entry.archetype, `${path}.archetype`, [

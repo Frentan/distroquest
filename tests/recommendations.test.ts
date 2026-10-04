@@ -136,7 +136,7 @@ test('genuine penetration tester: Kali is eligible and ranks highly', () => {
 
 test('qualified security intent has separate credit even when general traits are capped', () => {
   const result = recommend(personas.penetrationTester);
-  assert.equal(result.modelVersion, 8);
+  assert.equal(result.modelVersion, 9);
   const kali = result.ranking[0];
   assert.equal(kali.distroId, 'kali-linux');
   assert.equal(kali.traitAdjustment, 12);
@@ -420,7 +420,7 @@ test('known weighted example gives 75 capability points; zero weights are ignore
   );
 });
 
-test('every persona has all 25 unique scores with finite reconstructable diagnostics', () => {
+test('every persona has curated unique scores with finite reconstructable diagnostics', () => {
   for (const answers of Object.values(personas)) {
     const result = recommend(answers);
     assert.deepEqual(
@@ -822,20 +822,20 @@ test('every questionnaire option remains scoreable through the real answer bound
         ...personas.beginner,
         [question.id]: [option.id],
       });
-      assert.equal(result.ranking.length, 25);
+      assert.equal(result.ranking.length, distroIds.length);
       assert.ok(result.ranking.every((row) => Number.isFinite(row.rawScore)));
     }
 });
 
 test('development helper prints all score components and supports personas/JSON/errors', () => {
   const table = formatRankingTable(recommend(personas.beginner));
-  assert.equal(table.split('\n').length, 27);
+  assert.equal(table.split('\n').length, distroIds.length + 2);
   assert.ok(table.includes('Eligibility | Breadth'));
   assert.ok(table.includes('kali-linux | false'));
   const json = JSON.parse(
     reviewRecommendations(['--persona', 'atomicDeveloper', '--json']),
   );
-  assert.equal(json.atomicDeveloper.ranking.length, 25);
+  assert.equal(json.atomicDeveloper.ranking.length, distroIds.length);
   assert.throws(() => reviewRecommendations(['--persona', 'missing']));
   assert.throws(() => reviewRecommendations(['--persona']));
   assert.throws(() =>
@@ -1060,7 +1060,7 @@ test('example review includes complete accessible tables for every persona', () 
   );
   assert.equal(
     (output.match(/^\| \d+ \|/gm) ?? []).length,
-    25 * Object.keys(personas).length,
+    distroIds.length * Object.keys(personas).length,
   );
   assert.ok(output.includes('[customizableDeveloper](#customizabledeveloper)'));
   assert.ok(output.includes('## penetrationTester'));
@@ -1182,5 +1182,84 @@ test('creative integration follows the assessed trait, remains capped, and is no
   assert.equal(capped.traitAdjustment, scoringRules.traitLimit);
   assert.ok(
     capped.traitModifiers.some((modifier) => modifier.code === 'traits.cap'),
+  );
+});
+
+test('official siblings use lineage, keep derivatives distinct and preserve platform boundaries', () => {
+  const result = recommend(personas.atomicDeveloper);
+  const byId = (id: string) => result.ranking.find((r) => r.distroId === id)!;
+  const official = ['fedora-workstation', 'fedora-kde', 'fedora-silverblue'];
+  assert.equal(
+    new Set(official.map((id) => byId(id).presentationGroup)).size,
+    1,
+  );
+  for (const id of ['bluefin', 'bazzite', 'nobara'])
+    assert.notEqual(
+      byId(id).presentationGroup,
+      byId('fedora-silverblue').presentationGroup,
+    );
+  assert.equal(
+    byId('opensuse-aeon').presentationGroup,
+    byId('opensuse-tumbleweed').presentationGroup,
+  );
+  assert.equal(byId('opensuse-aeon').workflow, 'atomic-desktop');
+  const aeon = distroProfiles.find((p) => p.id === 'opensuse-aeon')!;
+  const renamed = scoreDistro(result.profile, { ...aeon, id: 'fedora-kde' });
+  assert.equal(
+    renamed.presentationGroup,
+    byId('opensuse-aeon').presentationGroup,
+  );
+  assert.equal(renamed.rawScore, byId('opensuse-aeon').rawScore);
+});
+
+test('atomic and mutable rolling additions follow explicit workflow evidence without displacing ordinary beginners', () => {
+  within(
+    'atomicDeveloper',
+    ['bluefin', 'fedora-silverblue', 'opensuse-aeon'],
+    4,
+  );
+  assert.ok(
+    get('atomicDeveloper', 'bluefin').rawScore >
+      get('atomicDeveloper', 'fedora-silverblue').rawScore,
+  );
+  for (const id of ['fedora-silverblue', 'opensuse-aeon'])
+    assert.ok(
+      get('atomicDeveloper', id).rawScore >
+        get('atomicDeveloper', 'bazzite').rawScore,
+    );
+  outside(
+    'beginner',
+    ['fedora-silverblue', 'opensuse-aeon', 'vanilla-os', 'rhino-linux'],
+    4,
+  );
+  const rolling = recommend({
+    ...personas.atomicDeveloper,
+    release: ['rolling'],
+  });
+  assert.ok(
+    rolling.ranking.findIndex((r) => r.distroId === 'opensuse-aeon') < 4,
+  );
+  const aeon = rolling.ranking.find((r) => r.distroId === 'opensuse-aeon')!;
+  assert.ok(aeon.reasons.includes('containers.transactional'));
+  assert.equal(aeon.specialistAdjustment, 0);
+  within('rollingEnthusiast', ['rhino-linux'], 5);
+  const newcomer = recommend({
+    ...personas.beginner,
+    release: ['rolling'],
+    freshness: ['modern'],
+  });
+  const rhino = newcomer.ranking.find((r) => r.distroId === 'rhino-linux')!;
+  assert.ok(rhino.eligible);
+  assert.ok(rhino.eligibilityAdjustment < 0);
+  // Aspirations never satisfy the cautious experience recommendation.
+  const curious = recommend({
+    ...personas.beginner,
+    identity: ['understand'],
+    path: ['artisan'],
+  });
+  assert.equal(
+    curious.ranking.find((r) => r.distroId === 'rhino-linux')!.constraints[0]
+      .conditions[0].matched,
+    false,
   );
 });

@@ -175,23 +175,23 @@ export const questionContentEn: QuestionDictionary = {
     helper: 'The road splits ahead. Which way do you go?',
     options: {
       comfortable: {
-        label: 'The comfortable road',
+        label: 'The Comfortable Road',
         description: 'Reliable, friendly, easy to live with.',
       },
       modern: {
-        label: 'The modern road',
+        label: 'The Modern Road',
         description: 'Fresh technology without unnecessary drama.',
       },
       artisan: {
-        label: 'The artisan’s road',
+        label: 'The Artisan’s Road',
         description: 'Make the system truly yours.',
       },
       explorer: {
-        label: 'The explorer’s road',
+        label: 'The Explorer’s Road',
         description: 'Learn, experiment, and accept a few surprises.',
       },
       forbidden: {
-        label: 'The forbidden road',
+        label: 'The Forbidden Road',
         description: 'Maximum control. I accept the consequences.',
       },
     },

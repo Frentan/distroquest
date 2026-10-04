@@ -424,6 +424,12 @@ progress::-moz-progress-bar {
   font-style: italic;
   line-height: 1.3;
 }
+.result-archetype-description {
+  max-width: 58ch;
+  color: var(--muted);
+  font-size: 1rem;
+  line-height: 1.6;
+}
 .result-summary {
   max-width: 58ch;
 }

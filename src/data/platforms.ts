@@ -1,7 +1,7 @@
 import type { DistroId } from '../domain/distro.ts';
 import type { PlatformFollowup } from '../domain/platform.ts';
 
-// Compatibility data is separate from the 25 preference profiles and their scores.
+// Compatibility data is separate from the 29 preference profiles and their scores.
 export const platformFollowups = {
   'apple-silicon': {
     id: 'apple-generation',

@@ -21,11 +21,13 @@ export const distroIds = [
   'ubuntu',
   'fedora-workstation',
   'fedora-kde',
+  'fedora-silverblue',
   'debian',
   'pop-os',
   'zorin-os',
   'elementary-os',
   'opensuse-tumbleweed',
+  'opensuse-aeon',
   'endeavouros',
   'arch-linux',
   'cachyos',
@@ -41,6 +43,8 @@ export const distroIds = [
   'solus',
   'pikaos',
   'alpine-linux',
+  'vanilla-os',
+  'rhino-linux',
   'slackware',
 ] as const;
 export type DistroId = (typeof distroIds)[number];
@@ -49,7 +53,12 @@ export const traitValues = {
   family: ['debian', 'fedora', 'arch', 'suse', 'independent'],
   lineage: ['upstream', 'derivative'],
   release: ['fixed', 'rolling'],
-  systemModel: ['package-managed', 'image-based', 'declarative'],
+  systemModel: [
+    'package-managed',
+    'image-based',
+    'transactional',
+    'declarative',
+  ],
   baseMutability: ['mutable', 'protected'],
   softwarePolicy: ['free-software-first', 'pragmatic'],
   nvidiaSupport: ['integrated', 'guided', 'manual'],
@@ -128,6 +137,8 @@ export type DistroContent = Readonly<{
   idealFor: readonly string[];
   // Names the edition/configuration actually assessed; also translatable.
   assessmentBasis: string;
+  // Optional unranked edition guidance, localized with the profile content.
+  editionNote?: string;
 }>;
 export type DistroDictionary = Readonly<Record<DistroId, DistroContent>>;
 export type Distro = DistroProfile & DistroContent;

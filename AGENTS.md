@@ -34,7 +34,7 @@ Consult these guides before working on related tasks:
 
 ## Matching and assessments
 
-- Keep the roster at 25 profiles unless an expansion is explicitly requested.
+- Keep the roster at 29 profiles unless an expansion is explicitly requested.
   Assessment changes need source evidence for the specific edition being assessed.
 - Derive expertise and specialist eligibility from explicit answers. Broad purposes
   and aspirational answers must not grant experience or bypass requirements.

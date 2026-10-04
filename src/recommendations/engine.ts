@@ -153,10 +153,15 @@ function traitModifiers(
     );
   if (user.containerFirst)
     add(
-      traits.systemModel === 'image-based'
-        ? 'containers.image-based'
-        : 'containers.other-model',
-      traits.systemModel === 'image-based' ? 3 : -2,
+      traits.systemModel === 'transactional'
+        ? 'containers.transactional'
+        : traits.systemModel === 'image-based'
+          ? 'containers.image-based'
+          : 'containers.other-model',
+      traits.systemModel === 'image-based' ||
+        traits.systemModel === 'transactional'
+        ? 3
+        : -2,
     );
   const gaming = profile.capabilities.gaming;
   if (traits.focus.gaming) {
@@ -343,13 +348,18 @@ export function scoreDistro(
   return {
     distroId: distro.id,
     family: distro.traits.family,
-    presentationGroup: ['fedora-workstation', 'fedora-kde'].includes(distro.id)
-      ? 'fedora-desktop'
-      : distro.id,
+    // Upstream paths share an ecosystem; derivatives keep their own identity.
+    // Independent upstream projects have no shared parent.
+    presentationGroup:
+      distro.traits.lineage === 'upstream' &&
+      distro.traits.family !== 'independent'
+        ? `${distro.traits.family}-desktop`
+        : distro.id,
     workflow:
       distro.traits.systemModel === 'declarative'
         ? 'declarative-system'
-        : distro.traits.systemModel === 'image-based'
+        : distro.traits.atomicUpdates &&
+            distro.traits.baseMutability === 'protected'
           ? distro.traits.focus.gaming
             ? 'gaming-appliance'
             : 'atomic-desktop'
@@ -435,5 +445,5 @@ export function rankDistros(
 // Public boundary: accepts untrusted answers; existing validation rejects omissions.
 export function recommend(input: unknown): RecommendationResult {
   const profile = normalizePreferenceProfile(buildPreferenceProfile(input));
-  return { modelVersion: 8, profile, ranking: rankDistros(profile) };
+  return { modelVersion: 9, profile, ranking: rankDistros(profile) };
 }

@@ -185,9 +185,12 @@ export function mountQuiz(root: HTMLElement) {
         ),
       );
     }
+    const flavor = element('p', undefined, 'result-archetype-description');
+    flavor.append(element('em', distro.archetype.description));
     identity.append(
       heading,
       element('p', distro.archetype.name, 'result-archetype'),
+      flavor,
       element(
         'p',
         isVariant ? platformCopy.asahiSummary : distro.summary,
@@ -195,6 +198,8 @@ export function mountQuiz(root: HTMLElement) {
       ),
       element('p', copy.match(percentMatch(row)), 'fit-label'),
     );
+    if (distro.editionNote)
+      identity.append(element('p', distro.editionNote, 'result-note'));
     const intro = element('div', undefined, 'result-intro');
     intro.append(identity);
     if (primary) {

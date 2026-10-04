@@ -20,7 +20,8 @@ export const quizCopy = {
   comparedWith: (name: string) => `Compared with ${name}`,
   capabilityComparison: (label: string, value: number, primary: number) =>
     `${label}: ${value}/5 (main path: ${primary}/5)`,
-  editionNote: 'Same distribution, another desktop edition.',
+  editionNote:
+    'An official sibling path in the same family; its desktop or system workflow may differ.',
   workflow: {
     'conventional-desktop': 'Traditional desktop',
     'atomic-desktop': 'Atomic desktop',
@@ -58,7 +59,7 @@ export const quizCopy = {
   preparation: 'Pack for your sidequests',
   why: 'Why this fits you',
   tradeoffs: 'Before you set out',
-  edition: 'Another edition of this path',
+  edition: 'Another official path in this family',
   alternatives: 'Other paths to explore',
   sameFamily: 'Shared family with your top recommendation; a different path.',
   alternativeDetails: 'Tradeoffs',
@@ -167,6 +168,8 @@ const capabilityNearCopy: Record<Capability, string> = {
 export const reasonCopy: Record<string, string> = {
   'release.match': 'Its release model matches the update style you chose.',
   'atomic.match': 'Its system update model matches your preferred approach.',
+  'containers.transactional':
+    'Its protected transactional host suits your interest in container-based tools.',
   'containers.image-based':
     'Its image-based workflow suits your interest in container-based tools.',
   'focus.gaming': 'Its gaming focus puts your playtime on the main quest.',

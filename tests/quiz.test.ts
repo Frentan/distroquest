@@ -1,3 +1,4 @@
+import { distroIds } from '../src/domain/distro.ts';
 import assert from 'node:assert/strict';
 import { test } from 'node:test';
 import { questions } from '../src/data/questions.ts';
@@ -68,7 +69,7 @@ test('complete questionnaire passes the full exact answers to the real engine', 
     });
   }
   assert.equal(state.completed, true);
-  assert.equal(state.result!.ranking.length, 25);
+  assert.equal(state.result!.ranking.length, distroIds.length);
   assert.deepEqual(state.result, recommend(personas.beginner));
   state = goToQuestion(state, 0);
   assert.equal(state.completed, false);
@@ -137,7 +138,17 @@ test('shortlist preserves the winner and groups editions without changing scores
       ...ordered.ranking.filter((row) => row.distroId !== 'fedora-workstation'),
     ],
   };
-  assert.equal(shortlist(withExcluded).sameEdition, undefined);
+  assert.equal(
+    shortlist(withExcluded).sameEdition!.distroId,
+    'fedora-silverblue',
+  );
+  const noSibling = {
+    ...withExcluded,
+    ranking: withExcluded.ranking.filter(
+      (row) => row.distroId !== 'fedora-silverblue',
+    ),
+  };
+  assert.equal(shortlist(noSibling).sameEdition, undefined);
 });
 test('all public engine signals are translated, internal diagnostics stay out', () => {
   for (const answers of Object.values(personas)) {

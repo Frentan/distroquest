@@ -112,6 +112,37 @@ export const distroContentEn = {
     assessmentBasis:
       'Fedora KDE Plasma Desktop; desktop customization scores its built-in settings above GNOME.',
   },
+  'fedora-silverblue': {
+    name: 'Fedora Silverblue',
+    archetype: {
+      name: 'The Artificer',
+      description:
+        'The Artificer builds freely inside a carefully protected workshop. Fedora Silverblue suits people who want modern Fedora technology and container-based tools while keeping the underlying system predictable and easy to restore.',
+    },
+    summary:
+      'An official Fedora Atomic desktop combining GNOME, image-based updates, rollback, Flatpak applications, and container-oriented development.',
+    strengths: [
+      'Atomic system updates and rollback',
+      'Strong Toolbx and container development workflows',
+      'Modern Fedora software foundation',
+      'Clean separation between base system and applications',
+    ],
+    cautions: [
+      'Host package management differs from conventional Fedora; Flatpak and Toolbx require different habits.',
+      'Proprietary codecs and NVIDIA drivers need additional setup and may lag a new kernel.',
+      'GNOME customization is less extensive than KDE Plasma.',
+      'Regular Fedora release upgrades still need planning.',
+    ],
+    idealFor: [
+      'Developers using containers',
+      'Fedora users interested in atomic desktops',
+      'Users prioritizing rollback and a protected host',
+    ],
+    assessmentBasis:
+      'Fedora’s official GNOME Atomic Desktop, using OSTree/rpm-ostree, Flatpak and Toolbx on the normal Fedora release cadence. Fedora Kinoite is the official KDE Plasma counterpart, not a separately scored profile.',
+    editionNote:
+      'Prefer KDE Plasma? Fedora Kinoite provides the equivalent official Atomic Desktop path.',
+  },
   debian: {
     name: 'Debian',
     archetype: {
@@ -222,6 +253,35 @@ export const distroContentEn = {
       'Users happy with curated defaults',
     ],
     assessmentBasis: 'Default Pantheon desktop.',
+  },
+  'opensuse-aeon': {
+    name: 'openSUSE Aeon',
+    archetype: {
+      name: 'The Timekeeper',
+      description:
+        'The Timekeeper lets the system move forward while keeping yesterday close at hand. Aeon suits people who want current software, automatic transactional updates, and a desktop that asks for very little routine intervention.',
+    },
+    summary:
+      'A transactional openSUSE GNOME desktop built around automatic updates, snapshots, rollback, and a deliberately protected host system.',
+    strengths: [
+      'Transactional system updates and snapshot-based recovery',
+      'Current rolling software base',
+      'Low routine maintenance through automatic updates',
+      'Focused GNOME desktop with Flatpak and Distrobox',
+    ],
+    cautions: [
+      'Aeon is still a release candidate; check hardware and recovery requirements before relying on it.',
+      'Traditional host modification is unsupported; use Flatpak or Distrobox where possible.',
+      'Proprietary NVIDIA integration is not a supported turnkey path; graphics support needs individual checking.',
+      'The installer requires UEFI, replaces the selected disk, and has specific encryption requirements.',
+    ],
+    idealFor: [
+      'Users wanting a hands-off rolling desktop',
+      'People prioritizing rollback and recovery',
+      'Users comfortable with an opinionated protected-host workflow',
+    ],
+    assessmentBasis:
+      'Current Aeon GNOME release-candidate desktop from the openSUSE ecosystem: Tumbleweed packages, Btrfs transactional snapshots, systemd-boot rollback, Flatpak and Podman-backed Distrobox. Frequent rolling updates remain automated; host modification is unsupported.',
   },
   'opensuse-tumbleweed': {
     name: 'openSUSE Tumbleweed',
@@ -670,6 +730,64 @@ export const distroContentEn = {
     ],
     assessmentBasis:
       'Stable Alpine base with a manually assembled lightweight desktop; container strengths do not imply desktop convenience.',
+  },
+  'vanilla-os': {
+    name: 'Vanilla OS',
+    archetype: {
+      name: 'The Wayfarer',
+      description:
+        'The Wayfarer keeps a clean home base while carrying different environments for different journeys. Vanilla OS suits people who prefer an immutable foundation and isolated application spaces without committing their whole workflow to one ecosystem.',
+    },
+    summary:
+      'A general-purpose immutable desktop using image-based system management and isolated environments for applications and command-line workloads.',
+    strengths: [
+      'Protected host with ABRoot atomic updates and rollback',
+      'Apx environments supporting multiple Linux userspaces',
+      'Flatpak applications separated from the host',
+      'Integrated NVIDIA image options',
+    ],
+    cautions: [
+      'Apx, VSO and ABRoot introduce an unconventional workflow; allow at least 50 GB of disk space.',
+      'A small project with a recently released major revision has less established support than Fedora or Ubuntu.',
+      'Reunion changes subsystem workflows; upgrades from older configurations need attention.',
+      'NVIDIA images use unsigned modules; Secure Boot and GPU generation need checking.',
+    ],
+    idealFor: [
+      'Users curious about immutable desktops and willing to learn',
+      'Developers using multiple Linux environments',
+      'People wanting application environments separated from the host',
+    ],
+    assessmentBasis:
+      'Vanilla OS 3 Reunion GNOME desktop, released August 2026; hybrid Debian-derived OCI host with ABRoot, Apx v3, a Debian-testing VSO environment and Flatpak apps. Continuously updated images with named major revisions are modeled as rolling, not Ubuntu LTS. Included with caution for the small ecosystem and recent workflow changes.',
+  },
+  'rhino-linux': {
+    name: 'Rhino Linux',
+    archetype: {
+      name: 'The Trailblazer',
+      description:
+        'The Trailblazer follows familiar Ubuntu country without waiting for the next signpost. Rhino Linux suits people who want a rolling stream of current software while keeping the package culture and foundations of the Ubuntu world.',
+    },
+    summary:
+      'A rolling Ubuntu-family desktop combining current packages with Pacstall tooling and an opinionated lightweight desktop experience.',
+    strengths: [
+      'Rolling Ubuntu-development package base',
+      'Very current kernels and development software',
+      'Pacstall community packages and Rhino PKG integration',
+      'Lightweight and customizable Xfce-based Unicorn desktop',
+    ],
+    cautions: [
+      'Ubuntu development packages and rolling updates can introduce breakage requiring manual fixes.',
+      'A smaller project and support community than standard Ubuntu.',
+      'Pacstall community packages need independent judgment; they are not all Ubuntu-maintained.',
+      'Unsigned kernels affect Secure Boot setup; NVIDIA driver versions need checking.',
+    ],
+    idealFor: [
+      'Experienced Ubuntu users wanting rolling software',
+      'Developers wanting current toolchains',
+      'Desktop users comfortable with upkeep who prefer Debian-family systems over Arch',
+    ],
+    assessmentBasis:
+      'Rhino Linux 2026.1 Unicorn desktop snapshot: mutable Ubuntu devel base, Xfce, Pacstall and Rhino PKG (RPK2), with guided NVIDIA setup. UBXI desktops such as Lomiri are separate choices. Included with caution; the February 2026 Pacstall emergency fix illustrates real upkeep risk.',
   },
   slackware: {
     name: 'Slackware',

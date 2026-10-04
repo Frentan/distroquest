@@ -3,7 +3,7 @@
 **Stop distro-hopping before it starts.**
 
 A playful Linux distribution finder built with Astro, TypeScript, and plain CSS.
-Answer 16 questions to compare 25 distros, with explanations, tradeoffs, and
+Answer 16 questions to compare 29 distros, with explanations, tradeoffs, and
 edition-aware alternatives. Mac users get one extra hardware question.
 
 No signup, cookies, or tracking. Answers stay in memory and disappear on refresh;
@@ -38,7 +38,7 @@ URLs and the sitemap. No server adapter is needed.
 ## How matching works
 
 The quiz turns explicit answers into capability preferences, traits, and eligibility
-evidence. A pure engine ranks all 25 profiles and explains matches and tradeoffs.
+evidence. A pure engine ranks all 29 profiles and explains matches and tradeoffs.
 Gaming intensity comes from its dedicated question; broad purposes never infer
 expertise or bypass eligibility. [The engine reference](src/recommendations/README.md)
 documents the small trait/specialist refinements and minimum requirements.

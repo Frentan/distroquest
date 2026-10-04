@@ -1,13 +1,16 @@
-# Recommendation engine, model v8
+# Recommendation engine, model v9
 
 The pure engine converts complete quiz answers into a deterministic ranking of
-all 25 distro profiles, with eligibility, score components, and explanation codes.
+all 29 distro profiles, with eligibility, score components, and explanation codes.
+Model v9 records the four-profile atomic/rolling extension, transactional container
+matching, and generalized official-family/workflow presentation. The capability
+distance formula and previously published profile scores are unchanged.
 
 ## API and boundaries
 
 ```ts
 import { recommend } from './engine.ts';
-const result = recommend(answers); // { modelVersion: 8, profile, ranking }
+const result = recommend(answers); // { modelVersion: 9, profile, ranking }
 ```
 
 `recommend(unknown)` validates through the preference builder and throws
@@ -58,7 +61,7 @@ Adjustments use capability-score points and assessed traits, without distro-ID b
 | :------------------------------------------------------------ | :----------------------------------------------- |
 | Explicit rolling/fixed choice                                 | ±2 × strength (1 or 2)                           |
 | Explicit atomic/traditional choice                            | ±2 × strength (1 or 2)                           |
-| Container-first interest                                      | +3 image-based; −2 other models                  |
+| Container-first interest                                      | +3 image-based/transactional; −2 other models    |
 | Gaming focus, no gaming use case, intensity none / occasional | −6 / −3 (replaces the positive focus reward)     |
 | Positive gaming intensity and gaming focus, without mismatch  | +3 × normalized gaming importance                |
 | Development intent and development focus                      | +2                                               |
@@ -87,18 +90,20 @@ positive focus reward. Important/main intensity keeps its existing reward. An
 explicit gaming use case suppresses mismatch, but cannot override zero intensity
 to earn a reward. The modifier uses `focus.gaming-mismatch` in diagnostics and
 cautions, inside the existing trait cap. Surplus gaming capability remains free. FOSS policy does not
-guarantee free firmware. Atomic updates alone do not imply container-first interest;
+guarantee free firmware. Transactional hosts use `containers.transactional` for their match explanation;
+image-based hosts retain `containers.image-based`.
+Atomic updates alone do not imply container-first interest;
 NixOS is declarative, not an image-based container workstation.
 
 ## Specialist intent
 
 Specific user intent receives separate credit when it matches an assessed purpose:
 
-| Explicit evidence                                | Assessed traits                           | Credit | Current match |
-| :----------------------------------------------- | :---------------------------------------- | -----: | :------------ |
-| Security-testing intent                          | Security focus                            |     +4 | Kali          |
-| Handheld device and positive gaming intensity    | Gaming focus and documented handheld path |     +2 | Bazzite       |
-| Development purpose and container-first workflow | Development focus and image-based system  |     +2 | Bluefin       |
+| Explicit evidence                                | Assessed traits                           | Credit | Current match       |
+| :----------------------------------------------- | :---------------------------------------- | -----: | :------------------ |
+| Security-testing intent                          | Security focus                            |     +4 | Kali                |
+| Handheld device and positive gaming intensity    | Gaming focus and documented handheld path |     +2 | Bazzite             |
+| Development purpose and container-first workflow | Development focus and image-based system  |     +2 | Bluefin, Silverblue |
 
 `specialistModifiers` explains each match and sums to `specialistAdjustment`,
 outside the ±12 trait cap. Existing general trait credits remain inside that cap.
@@ -108,7 +113,9 @@ eligibility is evaluated first and is never bypassed.
 Bazzite's [documented handheld path](https://docs.bazzite.gg/Handheld_and_HTPC_edition/Handheld_Wiki/)
 requires a device check. Bluefin's [Developer Mode](https://docs.projectbluefin.io/bluefin-dx/)
 supplies the container-oriented tooling; the standard desktop assessment does not
-imply that it is enabled. Both sources were checked on 2026-10-03.
+imply that it is enabled. Those sources were checked on 2026-10-03. Silverblue also satisfies the existing
+image-based/development-focus predicate through its official Toolbx workflow,
+reviewed on 2026-10-04; it adds no new specialist rule.
 
 Handheld credit requires positive gaming intensity; desktop gaming alone does not
 qualify. Container-development credit requires both explicit intents. Creative
@@ -152,7 +159,7 @@ The fixed ceiling remains 116. Ordinary profiles allow 100 capability, 12 trait,
 2 satisfied-soft-constraint, and 2 breadth points. Kali, the only current security
 specialist, instead allows 100 capability, 12 trait, and 4 specialist points; it has
 zero breadth and no soft-constraint reward. Bazzite allows 100 capability, 12 trait, 2 specialist, and 1.2 breadth points,
-totaling 115.2; Bluefin allows 1.6 breadth points, totaling 115.6.
+totaling 115.2; Bluefin and Silverblue allow 1.6 breadth points, totaling 115.6.
 Dataset tests check these upper bounds
 before normalization, so future changes cannot silently rely on clamping overflow.
 The scale is independent of other candidates and is not a probability or calibrated
@@ -162,8 +169,10 @@ Sort by eligibility, descending unrounded raw score, then ascending distro ID fo
 exact ties. The UI rounds fit to one decimal place; displayed ties can be close
 scores or exact ties. Capability bars show assessed strengths out of 5, not fit.
 
-`family` describes ancestry; `presentationGroup` groups the two Fedora desktop
-editions while retaining distinct derivatives. `workflow` distinguishes conventional,
+`family` describes ancestry; `presentationGroup` derives official sibling paths
+from shared non-independent family and upstream lineage, retaining distinct
+derivatives. Fedora groups Workstation/KDE/Silverblue; openSUSE groups
+Tumbleweed/Aeon. `workflow` distinguishes conventional,
 atomic, gaming-appliance, and declarative desktops. Grouping never changes scores
 or imposes a one-per-family limit. The public shortlist offers a primary path,
 optional sibling edition, and distinct alternatives.
@@ -186,7 +195,7 @@ npm run recommendations:review -- --examples
 The 20 complete fixtures in `scripts/recommendation-personas.ts` cover ordinary
 and specialist desktop workflows. Tests check top-N results, eligibility boundaries,
 paired creative scenarios, deterministic scores, and reconstructable diagnostics.
-Across these fixtures, all 25 profiles appear on standard-PC shortlists as primary
+Across these fixtures, all 29 profiles appear on standard-PC shortlists as primary
 results, sibling editions, or alternatives. This does not require every profile
 to win or establish support on every platform.
 

@@ -21,7 +21,7 @@ export function formatRankingTable(result: RecommendationResult): string {
 
 export function formatExampleRankings(): string {
   return [
-    '# Example rankings, model v8',
+    '# Example rankings, model v9',
     '',
     `All ${examplePersonaNames.length} complete answer fixtures from`,
     '[`scripts/recommendation-personas.ts`](../../scripts/recommendation-personas.ts).',

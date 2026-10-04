@@ -1,6 +1,6 @@
-# Distro model, v1
+# Distro model, v2
 
-The 25 desktop assessments are editorial estimates informed by linked project
+The 29 desktop assessments are editorial estimates informed by linked project
 sources, not benchmarks, measured reliability, or published project ratings.
 [Preferences](../preferences/README.md) and [scoring](../recommendations/README.md)
 are separate models.
@@ -69,9 +69,12 @@ not separate derivatives. An independent family has no major-family parent.
 base release lineage even though images update continuously; atomic delivery and
 rolling release are separate concepts. NixOS is assessed on its stable channel.
 
-`systemModel` is package-managed, image-based, or declarative. `baseMutability`
-is mutable or protected: a protected base is normally changed through image updates
-or declarative rebuilds, not ordinary manual package/file editing. This includes
+`systemModel` is package-managed, image-based, transactional, or declarative.
+Transactional hosts update a new filesystem snapshot rather than downloading an
+OSTree/OCI system image; Aeon uses this model. `baseMutability`
+is mutable or protected: a protected base is normally changed through image updates,
+transactional snapshot deployment, or declarative rebuilds, not ordinary manual
+package/file editing. This includes
 NixOS's managed system/store and does not claim that every filesystem is read-only
 or that the machine is tamper-proof. `atomicUpdates` identifies system image or
 generation switching, not ordinary Btrfs snapshots or application updates.
@@ -119,7 +122,9 @@ plausible integrations. Six profiles qualify:
 | Bluefin | [OpenTabletDriver install/uninstall helper](https://docs.projectbluefin.io/administration/#application-installation-commands)                                                                                             |
 | Solus   | [Maintained ROCm integration for GPU-accelerated Blender](https://getsol.us/#for-content-creators)                                                                                                                        |
 
-The other 19 stay `unassessed`, without penalty. This is a bounded source pass,
+The other 19 profiles in that original 25-profile pass stay `unassessed`, without penalty.
+The four additions reviewed on 2026-10-04 also remain `unassessed`; no creative
+integration was established for their assessed defaults. This is a bounded source pass,
 not proof that they lack creative integrations. Zorin Pro's [creative bundle](https://help.zorin.com/docs/apps-games/alternatives-to-windows-apps/)
 is outside the Core baseline; separate Fedora/Ubuntu creative editions do not
 transfer to the assessed desktops. Pop!_OS's [Resolve guide](https://support.system76.com/support/install-davinci-resolve)
@@ -242,8 +247,14 @@ Dataset tests check beginner friendliness (Mint > Fedora > Tumbleweed > Arch >
 Gentoo), gaming readiness (Bazzite > Fedora), and old-hardware fit (MX > Mint).
 Breadth separately favors general-purpose reach; it is not quality.
 
-The engine groups Fedora Workstation/KDE as `fedora-desktop`; other distro IDs
-remain distinct. `family` describes ancestry, and `workflow` distinguishes
+The engine derives official sibling groups from upstream lineage and a shared
+non-independent family. Fedora Workstation/KDE/Silverblue share `fedora-desktop`;
+Tumbleweed/Aeon share `suse-desktop`. Derivatives retain their own groups. `family` describes ancestry, and `workflow` distinguishes
 conventional, atomic, gaming-appliance, and declarative systems. The quiz groups
 sibling editions without penalizing scores or enforcing one result per family.
 Platform support can independently reorder practical installation paths.
+
+The [2026-10-04 coverage review](ATOMIC-REVIEW.md) records the four-candidate
+inclusion gate, current architectures, calibration, sources and focused simulations.
+The roster is deliberately bounded at 29. `editionNote` is optional localized
+unranked guidance; Silverblue uses it for Kinoite without adding a scored profile.

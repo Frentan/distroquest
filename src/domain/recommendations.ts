@@ -35,7 +35,7 @@ export type CapabilityMatch = Preference &
 export type Recommendation = Readonly<{
   distroId: DistroId;
   family: DistroTraits['family'];
-  // Only editions of the same distribution share a group, not all derivatives.
+  // Official upstream paths share a family group; derivatives remain distinct.
   presentationGroup: string;
   workflow:
     | 'conventional-desktop'
@@ -59,7 +59,7 @@ export type Recommendation = Readonly<{
   cautions: readonly string[];
 }>;
 export type RecommendationResult = Readonly<{
-  modelVersion: 8;
+  modelVersion: 9;
   profile: RecommendationProfile;
   ranking: readonly Recommendation[];
 }>;
