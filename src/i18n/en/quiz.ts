@@ -15,13 +15,14 @@ export const quizCopy = {
   selectionLimit: 'Limit reached. Deselect an answer to choose another.',
   artPlaceholder: 'Character art placeholder',
   relevantStats: 'Capabilities for your priorities',
-  statsNote:
-    'Assessed capabilities out of 5, separate from preference fit and hardware support.',
+  statsNote: 'Capability ratings out of 5, not fit or hardware-support scores.',
   comparedWith: (name: string) => `Compared with ${name}`,
-  capabilityComparison: (label: string, value: number, primary: number) =>
-    `${label}: ${value}/5 (main path: ${primary}/5)`,
-  editionNote:
-    'An official sibling path in the same family; its desktop or system workflow may differ.',
+  capabilityComparison: (
+    label: string,
+    value: number,
+    primary: number,
+    name: string,
+  ) => `${label}: ${value}/5 versus ${name}’s ${primary}/5`,
   workflow: {
     'conventional-desktop': 'Traditional desktop',
     'atomic-desktop': 'Atomic desktop',
@@ -37,8 +38,7 @@ export const quizCopy = {
   retry: 'Try again',
   finish: 'Reveal my path',
   match: (percentage: number) => `${percentage.toFixed(1)}% preference fit`,
-  matchNote:
-    'Fit follows your answers; hardware support is checked separately.',
+  matchNote: 'Hardware support is checked separately.',
   restart: 'Restart quest',
   restartPrompt: 'Start over? Your current answers will be cleared.',
   confirmRestart: 'Start over',
@@ -101,47 +101,45 @@ export const capabilityCopy: Record<
   { reason: string; caution: string }
 > = {
   beginnerFriendly: {
-    reason: 'Its beginner guidance gives you the helping hand you asked for.',
+    reason: 'Beginner guidance gives you the helping hand you asked for.',
     caution: 'You may need more hands-on learning than you preferred.',
   },
   lowMaintenance: {
-    reason: 'Its upkeep stays within your chosen tinkering budget.',
+    reason: 'Upkeep fits your tinkering budget.',
     caution: 'Budget more time for routine upkeep than you planned.',
   },
   stability: {
-    reason: 'Its software predictability meets your need for steady ground.',
+    reason: 'Software predictability meets your need for steady ground.',
     caution: 'Expect less software predictability than you asked for.',
   },
   freshness: {
-    reason: 'Its software freshness matches your preferred pace.',
+    reason: 'Software freshness matches your preferred pace.',
     caution: 'Its software update pace differs from your preferred balance.',
   },
   customization: {
-    reason:
-      'Its customization options leave room for the desktop changes you have in mind.',
+    reason: 'Customization leaves room for your planned desktop changes.',
     caution: 'Your preferred customization may take more work here.',
   },
   systemControl: {
-    reason: 'Its system control gives you the room to tinker you asked for.',
+    reason: 'System control gives you the room to tinker you asked for.',
     caution: 'It offers less direct system control than you preferred.',
   },
   gaming: {
-    reason: 'Its gaming readiness suits the place games have in your setup.',
+    reason: 'Gaming readiness suits the place games have in your setup.',
     caution:
       'Your gaming setup may need more preparation here. Check support for your games and hardware.',
   },
   developerExperience: {
-    reason:
-      'Its development tools are a good foundation for your coding plans.',
+    reason: 'Developer tools give your coding plans a useful starting point.',
     caution: 'Your development workflow may need extra setup.',
   },
   oldHardware: {
-    reason: 'Its resource needs leave the breathing room you asked for.',
+    reason: 'Resource needs leave the breathing room you asked for.',
     caution:
       'Its resource needs may leave less breathing room than you wanted.',
   },
   desktopPolish: {
-    reason: 'Its desktop polish ticks your boxes for ready-to-use defaults.',
+    reason: 'Desktop polish ticks your boxes for ready-to-use defaults.',
     caution: 'Expect more desktop finishing touches than you asked for.',
   },
 };
@@ -166,15 +164,15 @@ const capabilityNearCopy: Record<Capability, string> = {
   desktopPolish: 'Its desktop polish covers almost all your wishlist.',
 };
 export const reasonCopy: Record<string, string> = {
-  'release.match': 'Its release model matches the update style you chose.',
-  'atomic.match': 'Its system update model matches your preferred approach.',
+  'release.match': 'The release model matches your chosen update style.',
+  'atomic.match': 'System updates match your preferred approach.',
   'containers.transactional':
-    'Its protected transactional host suits your interest in container-based tools.',
+    'A protected transactional host suits your interest in containers.',
   'containers.image-based':
-    'Its image-based workflow suits your interest in container-based tools.',
+    'An image-based workflow suits your interest in containers.',
   'focus.gaming': 'Its gaming focus puts your playtime on the main quest.',
   'creative.documented-integration':
-    'Its creative setup conveniences are documented; check your apps, plugins, media formats, and peripherals.',
+    'Documented creative setup conveniences support your creative plans.',
   'focus.development':
     'Its development focus puts coding at the heart of the setup.',
   'focus.security':
@@ -182,7 +180,7 @@ export const reasonCopy: Record<string, string> = {
   'specialist.security-testing':
     'Its specialist focus matches the security-testing work you selected.',
   'specialist.handheld-gaming':
-    'Its documented handheld gaming path matches your gaming plans; check your specific device before installing.',
+    'A documented handheld gaming path matches your gaming plans.',
   'specialist.container-development':
     'Its developer mode is built for the container-first development workflow you selected.',
   'nvidia.integrated':
@@ -196,7 +194,7 @@ export const reasonCopy: Record<string, string> = {
   'desktop-layout.match':
     'Its panels and menus fit your preference for a familiar layout.',
   'handheld.documented-support':
-    'Its documented handheld gaming path fits your device choice; check your specific device before installing.',
+    'A documented handheld gaming path fits your device choice.',
 };
 export const cautionCopy: Record<string, string> = {
   'focus.gaming-mismatch':

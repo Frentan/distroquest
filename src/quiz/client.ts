@@ -154,6 +154,7 @@ export function mountQuiz(root: HTMLElement) {
     candidate: PlatformCandidate,
     primary: boolean,
     main?: Recommendation,
+    showFit = true,
   ) {
     const row = candidate.recommendation;
     const isVariant =
@@ -196,8 +197,9 @@ export function mountQuiz(root: HTMLElement) {
         isVariant ? platformCopy.asahiSummary : distro.summary,
         'result-summary',
       ),
-      element('p', copy.match(percentMatch(row)), 'fit-label'),
     );
+    if (showFit)
+      identity.append(element('p', copy.match(percentMatch(row)), 'fit-label'));
     if (distro.editionNote)
       identity.append(element('p', distro.editionNote, 'result-note'));
     const intro = element('div', undefined, 'result-intro');
@@ -226,7 +228,7 @@ export function mountQuiz(root: HTMLElement) {
       candidate.support === 'native' ||
       candidate.support === 'supported-with-special-path';
     if (primary && criticalPlatform)
-      card.append(platformNotice(candidate, supportedPath));
+      card.append(platformNotice(candidate, supportedPath ? 'brief' : 'full'));
     const deviceWarnings = row.cautions
       .filter(
         (code) => code.startsWith('nvidia.') || code.startsWith('handheld.'),
@@ -302,6 +304,7 @@ export function mountQuiz(root: HTMLElement) {
                 main.capabilityMatches.find(
                   (m) => m.capability === match.capability,
                 )!.actual,
+                mainDistro.name,
               ),
             ),
           ),
@@ -317,10 +320,21 @@ export function mountQuiz(root: HTMLElement) {
           .filter((text): text is string => !!text),
         ...distro.cautions.slice(0, primary ? 2 : 1),
       ]),
-    ];
-    if (warnings.length) {
+    ].filter((warning) => !deviceWarnings.includes(warning));
+    // Visible device warnings and the alternative preview have one home.
+    const preview = !primary
+      ? (warnings.find((warning) => warning === distro.cautions[0]) ??
+        warnings[0])
+      : undefined;
+    if (preview) card.append(element('p', preview, 'result-note'));
+    const additionalWarnings = warnings.filter(
+      (warning) => warning !== preview,
+    );
+    if (additionalWarnings.length) {
       const cautionList = element('ul', undefined, 'result-cautions');
-      warnings.forEach((warning) => cautionList.append(element('li', warning)));
+      additionalWarnings.forEach((warning) =>
+        cautionList.append(element('li', warning)),
+      );
       const details = element(
         'details',
         undefined,
@@ -332,18 +346,13 @@ export function mountQuiz(root: HTMLElement) {
         element('summary', primary ? copy.tradeoffs : copy.alternativeDetails),
         cautionList,
       );
-      // A concrete tradeoff stays visible on each alternative.
-      if (!primary)
-        card.append(
-          element('p', distro.cautions[0] ?? warnings[0], 'result-note'),
-        );
       card.append(details);
     }
     if (primary && criticalPlatform && supportedPath) {
       const guidance = element('details', undefined, 'alternative-details');
       guidance.append(
         element('summary', copy.installationGuidance),
-        platformNotice(candidate),
+        platformNotice(candidate, 'guidance'),
       );
       card.append(guidance);
     }
@@ -396,18 +405,23 @@ export function mountQuiz(root: HTMLElement) {
     link.href = url;
     return link;
   }
-  function platformNotice(candidate: PlatformCandidate, brief = false) {
+  function platformNotice(
+    candidate: PlatformCandidate,
+    mode: 'full' | 'brief' | 'guidance' = 'full',
+  ) {
     const result = state.platformResult!;
     const notice = element('aside', undefined, 'platform-notice');
     notice.setAttribute('aria-label', platformCopy.title);
-    notice.append(
-      element('p', platformCopy.title, 'eyebrow'),
-      element('p', platformCopy.notes[result.platform]),
-    );
+    if (mode !== 'guidance')
+      notice.append(
+        element('p', platformCopy.title, 'eyebrow'),
+        element('p', platformCopy.notes[result.platform]),
+      );
     const original = distros.find(
       (d) => d.id === result.preferenceWinner.distroId,
     )!;
     if (
+      mode !== 'guidance' &&
       result.practical.length &&
       candidate.recommendation.distroId !== original.id
     ) {
@@ -420,19 +434,14 @@ export function mountQuiz(root: HTMLElement) {
         ),
       );
     }
-    if (brief) return notice;
+    if (mode === 'brief') return notice;
     if (
       candidate.variant &&
       candidate.support === 'supported-with-special-path'
     ) {
-      const base = distros.find(
-        (d) => d.id === candidate.variant!.baseDistroId,
-      )!;
-      notice.append(
-        element('p', platformCopy.asahiIntro),
-        element('p', platformCopy.baseMatch(base.name), 'quiz-helper'),
-      );
-    }
+      notice.append(element('p', platformCopy.asahiIntro));
+    } else if (mode === 'guidance')
+      notice.append(element('p', platformCopy.effort[candidate.installation]));
     if (candidate.url)
       notice.append(
         supportLink(
@@ -495,7 +504,6 @@ export function mountQuiz(root: HTMLElement) {
             ? platformCopy.edition
             : copy.edition,
         ),
-        element('p', copy.editionNote, 'quiz-helper'),
       );
       const edition = element('details', undefined, 'edition-details');
       const name =
@@ -508,7 +516,7 @@ export function mountQuiz(root: HTMLElement) {
           'summary',
           `${name} · ${copy.match(percentMatch(sameEdition.recommendation))}`,
         ),
-        recommendationCard(sameEdition, false, primary.recommendation),
+        recommendationCard(sameEdition, false, primary.recommendation, false),
       );
       editions.append(edition);
       panel.append(editions);

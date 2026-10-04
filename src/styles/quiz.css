@@ -111,7 +111,8 @@ progress::-moz-progress-bar {
   min-width: 0;
 }
 .primary-result h2,
-.result-section h2 {
+.result-section h2,
+.result-preparation h2 {
   font-size: 1.35rem;
 }
 .fit-label {
@@ -195,12 +196,14 @@ progress::-moz-progress-bar {
   font-size: 0.875rem;
   color: var(--muted);
 }
-.alternative-details summary {
+.alternative-details > summary,
+.edition-details > summary {
   cursor: pointer;
-  min-height: 44px;
+  min-height: 48px;
   display: list-item;
   padding-block: 0.6rem;
   font-weight: 600;
+  font-size: 1rem;
   color: var(--text);
 }
 .alternative-details[open] > :not(summary) {
@@ -228,19 +231,19 @@ progress::-moz-progress-bar {
 }
 .result-preparation {
   display: grid;
-  gap: 0.5rem;
+  gap: 1rem;
 }
-.result-preparation h2 {
-  font-size: 1.25rem;
-}
-.result-note {
+.result-note,
+.showing-results .quiz-helper {
   color: var(--muted);
   font-size: 0.875rem;
-  font-style: italic;
 }
 .capability-stats {
   display: grid;
   gap: 0.5rem;
+}
+.capability-stats > .result-note {
+  font-style: italic;
 }
 .capability-grid {
   display: grid;
@@ -477,9 +480,6 @@ progress::-moz-progress-bar {
   font-size: 0.875rem;
   color: var(--muted);
 }
-.result-comparison .quiz-helper {
-  font-size: 0.875rem;
-}
 .alternative-result {
   padding: 0;
   border: 0;
@@ -494,12 +494,8 @@ progress::-moz-progress-bar {
 .capability-stats {
   padding-block: 0.25rem;
 }
-.edition-details summary {
-  cursor: pointer;
-  padding-block: 0.6rem;
-  min-height: 48px;
+.edition-details > summary {
   color: var(--accent);
-  font-weight: 600;
 }
 .edition-details > article {
   padding-top: 0.5rem;
@@ -572,10 +568,6 @@ progress::-moz-progress-bar {
   }
 }
 
-.result-tradeoffs,
-.full-profile > summary {
-  font-size: 1rem;
-}
 @media (min-width: 601px) {
   .alternative-grid > .alternative-result + .alternative-result {
     border-left: 1px solid var(--line);

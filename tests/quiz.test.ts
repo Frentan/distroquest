@@ -17,7 +17,11 @@ import {
 } from '../src/quiz/presentation.ts';
 import { recommend } from '../src/recommendations/engine.ts';
 import { recommendationPersonas as personas } from '../scripts/recommendation-personas.ts';
-import { explainReason, explainCaution } from '../src/i18n/en/quiz.ts';
+import {
+  explainReason,
+  explainCaution,
+  preparationCopy,
+} from '../src/i18n/en/quiz.ts';
 import type { Recommendation } from '../src/domain/recommendations.ts';
 
 test('starts unanswered; cannot advance or skip; ignores unknown options', () => {
@@ -171,10 +175,10 @@ test('all public engine signals are translated, internal diagnostics stay out', 
     strongestReasons(nobara).includes('creative.documented-integration'),
   );
   assert.ok(
-    explainReason('creative.documented-integration')?.includes(
-      'check your apps',
-    ),
+    explainReason('creative.documented-integration')?.includes('Documented'),
   );
+  assert.ok(preparationTopics(creative).includes('creative'));
+  assert.ok(preparationCopy.creative.includes('check your must-have apps'));
   assert.equal(explainReason('breadth.prior'), undefined);
 });
 
@@ -205,7 +209,7 @@ test('handheld and container specialist explanations retain context without dupl
       'gamingAppliance',
       'specialist.handheld-gaming',
       'handheld.documented-support',
-      'check your specific device',
+      'documented handheld gaming path',
     ],
     [
       'atomicDeveloper',
@@ -218,8 +222,15 @@ test('handheld and container specialist explanations retain context without dupl
     assert.equal(strongestReasons(row)[0], specialist);
     const copy = explainReason(specialist)!;
     assert.ok(copy.includes(context));
-    assert.ok(copy.startsWith('Its '));
     assert.ok(copy.endsWith('.'));
+    if (name === 'gamingAppliance') {
+      assert.ok(row.cautions.includes('handheld.check-device-compatibility'));
+      assert.ok(
+        explainCaution('handheld.check-device-compatibility')?.includes(
+          'exact handheld model',
+        ),
+      );
+    }
     const reasons = strongestReasons({
       ...row,
       reasons: [
