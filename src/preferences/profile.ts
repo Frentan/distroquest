@@ -135,7 +135,6 @@ export function buildPreferenceProfile(input: unknown): UserPreferenceProfile {
       atomicStrength: traits.atomicStrength ?? 0,
       containerFirst: traits.containerFirst ?? false,
       fossPreference: traits.fossPreference,
-      securityUseCase: useCases.has('security-testing'),
       gpu: traits.gpu,
       hardware: traits.hardware,
       deviceType: traits.deviceType ?? 'desktop-or-laptop',

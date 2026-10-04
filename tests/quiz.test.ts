@@ -12,9 +12,10 @@ import {
 import {
   percentMatch,
   preparationTopics,
-  shortlist,
   strongestReasons,
 } from '../src/quiz/presentation.ts';
+import { platformShortlist } from '../src/quiz/platform-presentation.ts';
+import { applyPlatform } from '../src/platforms/compatibility.ts';
 import { recommend } from '../src/recommendations/engine.ts';
 import { recommendationPersonas as personas } from '../scripts/recommendation-personas.ts';
 import {
@@ -97,13 +98,26 @@ test('computation failure keeps answers and permits a retry', () => {
     current: questions.length - 1,
     answers: personas.beginner,
   };
-  const failed = nextQuestion(state, () => {
-    throw new Error('test failure');
-  });
+  const cause = new Error('test failure');
+  const reported: unknown[] = [];
+  const failed = nextQuestion(
+    state,
+    () => {
+      throw cause;
+    },
+    (error) => reported.push(error),
+  );
+  assert.deepEqual(reported, [cause]);
   assert.equal(failed.error, true);
   assert.equal(failed.completed, false);
   assert.deepEqual(failed.answers, personas.beginner);
   assert.equal(nextQuestion(failed).completed, true);
+  assert.equal(
+    nextQuestion(state, () => {
+      throw cause;
+    }).error,
+    true,
+  );
 });
 test('shortlist preserves the winner and groups editions without changing scores', () => {
   const result = recommend(personas.customizableDeveloper);
@@ -127,11 +141,11 @@ test('shortlist preserves the winner and groups editions without changing scores
       ),
     ],
   };
-  const view = shortlist(ordered);
-  assert.equal(view.primary, ordered.ranking[0]);
-  assert.equal(view.sameEdition!.distroId, 'fedora-workstation');
+  const view = platformShortlist(applyPlatform(ordered, 'x86-standard'));
+  assert.equal(view.primary.recommendation, ordered.ranking[0]);
+  assert.equal(view.sameEdition!.recommendation.distroId, 'fedora-workstation');
   assert.deepEqual(
-    view.alternatives.map((row) => row.distroId),
+    view.alternatives.map((row) => row.recommendation.distroId),
     ['opensuse-tumbleweed', 'cachyos'],
   );
   assert.deepEqual(rows, result.ranking);
@@ -143,7 +157,8 @@ test('shortlist preserves the winner and groups editions without changing scores
     ],
   };
   assert.equal(
-    shortlist(withExcluded).sameEdition!.distroId,
+    platformShortlist(applyPlatform(withExcluded, 'x86-standard')).sameEdition!
+      .recommendation.distroId,
     'fedora-silverblue',
   );
   const noSibling = {
@@ -152,19 +167,39 @@ test('shortlist preserves the winner and groups editions without changing scores
       (row) => row.distroId !== 'fedora-silverblue',
     ),
   };
-  assert.equal(shortlist(noSibling).sameEdition, undefined);
+  assert.equal(
+    platformShortlist(applyPlatform(noSibling, 'x86-standard')).sameEdition,
+    undefined,
+  );
 });
 test('all public engine signals are translated, internal diagnostics stay out', () => {
-  for (const answers of Object.values(personas)) {
+  const answersToCheck = [
+    ...Object.values(personas),
+    ...questions.flatMap((question) =>
+      question.options.map((option) => ({
+        ...personas.beginner,
+        [question.id]: [option.id],
+      })),
+    ),
+  ];
+  for (const answers of answersToCheck) {
     const result = recommend(answers);
     for (const row of result.ranking) {
-      for (const code of strongestReasons(row))
-        assert.ok(explainReason(code), code);
+      for (const code of row.reasons) {
+        if (code === 'breadth.prior' || /^constraint\.\d+\.met$/.test(code))
+          assert.equal(explainReason(code), undefined, code);
+        else assert.ok(explainReason(code), code);
+      }
       for (const code of row.cautions)
         if (code !== 'eligibility.excluded')
           assert.ok(explainCaution(code), code);
     }
-    assert.ok(strongestReasons(shortlist(result).primary).length >= 3);
+    assert.ok(
+      strongestReasons(
+        platformShortlist(applyPlatform(result, 'x86-standard')).primary
+          .recommendation,
+      ).length >= 3,
+    );
   }
   const creative = recommend({
     ...personas.beginner,
@@ -180,6 +215,17 @@ test('all public engine signals are translated, internal diagnostics stay out', 
   assert.ok(preparationTopics(creative).includes('creative'));
   assert.ok(preparationCopy.creative.includes('check your must-have apps'));
   assert.equal(explainReason('breadth.prior'), undefined);
+});
+
+test('container-development explanation covers both Bluefin and Silverblue workflows', () => {
+  const result = recommend(personas.atomicDeveloper);
+  for (const id of ['bluefin', 'fedora-silverblue']) {
+    const row = result.ranking.find((candidate) => candidate.distroId === id)!;
+    assert.ok(row.reasons.includes('specialist.container-development'));
+    const explanation = explainReason('specialist.container-development')!;
+    assert.match(explanation, /container-based development tools/);
+    assert.doesNotMatch(explanation, /developer mode/i);
+  }
 });
 
 test('specialist security fit is visible without duplicating the security-focus explanation', () => {
@@ -215,7 +261,7 @@ test('handheld and container specialist explanations retain context without dupl
       'atomicDeveloper',
       'specialist.container-development',
       'focus.development',
-      'developer mode',
+      'container-based development tools',
     ],
   ] as const) {
     const row = recommend(personas[name]).ranking[0];
@@ -254,10 +300,12 @@ test('same-family derivatives remain distinct when their edition groups differ',
     'bluefin',
     'fedora-workstation',
   ].map((id) => result.ranking.find((row) => row.distroId === id)!);
-  const view = shortlist({ ...result, ranking });
+  const view = platformShortlist(
+    applyPlatform({ ...result, ranking }, 'x86-standard'),
+  );
   assert.equal(view.sameEdition, undefined);
   assert.deepEqual(
-    view.alternatives.map((row) => row.distroId),
+    view.alternatives.map((row) => row.recommendation.distroId),
     ['bluefin', 'fedora-workstation'],
   );
 });

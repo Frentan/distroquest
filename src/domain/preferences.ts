@@ -94,7 +94,6 @@ export type UserTraits = Readonly<{
   atomicStrength: 0 | 1 | 2;
   containerFirst: boolean;
   fossPreference: Score;
-  securityUseCase: boolean;
   gpu: Gpu;
   hardware: Hardware;
   deviceType: DeviceType;

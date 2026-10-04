@@ -182,7 +182,7 @@ export const reasonCopy: Record<string, string> = {
   'specialist.handheld-gaming':
     'A documented handheld gaming path matches your gaming plans.',
   'specialist.container-development':
-    'Its developer mode is built for the container-first development workflow you selected.',
+    'Its container-based development tools suit the workflow you selected.',
   'nvidia.integrated':
     'Its NVIDIA setup conveniences suit your graphics choice.',
   'software-policy.free-software-first':

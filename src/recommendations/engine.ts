@@ -186,7 +186,8 @@ function traitModifiers(
       'creative.documented-integration',
       scoringRules.creativeIntegrationMatch,
     );
-  if (user.securityUseCase && traits.focus.security) add('focus.security', 8);
+  if (user.useCases.includes('security-testing') && traits.focus.security)
+    add('focus.security', 8);
   if (user.gpu === 'nvidia')
     add(
       `nvidia.${traits.nvidiaSupport}`,
@@ -224,7 +225,10 @@ function specialistModifiers(
 ): Adjustment[] {
   if (!eligible) return [];
   const modifiers: Adjustment[] = [];
-  if (profile.traits.securityUseCase && distro.traits.focus.security)
+  if (
+    profile.traits.useCases.includes('security-testing') &&
+    distro.traits.focus.security
+  )
     modifiers.push({
       code: 'specialist.security-testing',
       points: scoringRules.specialistIntentMatch,

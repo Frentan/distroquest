@@ -464,48 +464,6 @@ nav {
   color: var(--gold);
   margin-left: 8px;
 }
-.placeholder {
-  text-align: center;
-  max-width: 720px;
-  padding-block: 80px 100px;
-  min-height: 72vh;
-}
-.placeholder-emblem {
-  display: grid;
-  place-items: center;
-  margin: 0 auto 30px;
-  width: 72px;
-  height: 72px;
-  font-size: 34px;
-  color: var(--gold);
-  background: var(--accent-soft);
-  border: 1px solid var(--line);
-  box-shadow: 4px 4px 0 var(--shadow);
-}
-.placeholder h1 {
-  font-size: clamp(36px, 5.5vw, 58px);
-  letter-spacing: -1.6px;
-  margin-block: 18px 24px;
-}
-.placeholder > p:not(.eyebrow) {
-  max-width: 440px;
-  margin-inline: auto;
-  color: var(--muted);
-}
-.placeholder-details {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  gap: 10px 20px;
-  margin-block: 28px;
-  color: var(--accent);
-  font-size: 0.875rem;
-}
-.placeholder .placeholder-footnote {
-  font-size: 0.875rem;
-  margin-top: 28px;
-}
-
 @media (max-width: 960px) {
   .hero {
     gap: 32px;

@@ -4,26 +4,6 @@ import type {
 } from '../domain/recommendations.ts';
 import type { UseCase } from '../domain/preferences.ts';
 
-// Shortlist presentation only: preserve engine ordering and scores. Editions
-// share a group; derivatives with different workflows remain distinct paths.
-export function shortlist(result: RecommendationResult) {
-  const eligible = result.ranking.filter((row) => row.eligible);
-  const primary = eligible[0];
-  if (!primary) throw new Error('No eligible recommendations');
-  const sameEdition = eligible.find(
-    (row) =>
-      row !== primary && row.presentationGroup === primary.presentationGroup,
-  );
-  const groups = new Set([primary.presentationGroup]);
-  const alternatives = eligible
-    .filter((row) => {
-      if (groups.has(row.presentationGroup)) return false;
-      groups.add(row.presentationGroup);
-      return true;
-    })
-    .slice(0, 2);
-  return { primary, sameEdition, alternatives };
-}
 export function strongestReasons(row: Recommendation): string[] {
   const capabilities = [...row.capabilityMatches]
     .sort((a, b) => b.contribution - a.contribution)

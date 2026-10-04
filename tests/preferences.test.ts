@@ -15,6 +15,65 @@ import { preferenceExamples } from '../scripts/preference-examples.ts';
 const base = preferenceExamples.newcomer;
 const profile = buildPreferenceProfile;
 
+test('scalar evidence has one owning question; required direct evidence covers every option', () => {
+  // Use cases and interests accumulate across questions; scalar evidence must
+  // not silently depend on which question happens to come last in the schema.
+  const owners: Record<string, string> = {
+    'traits.wantsRolling': 'release',
+    'traits.rollingStrength': 'release',
+    'traits.wantsAtomic': 'system-model',
+    'traits.atomicStrength': 'system-model',
+    'traits.containerFirst': 'system-model',
+    'traits.fossPreference': 'software-freedom',
+    'traits.gpu': 'gpu',
+    'traits.hardware': 'hardware',
+    'traits.deviceType': 'hardware',
+    'traits.freshnessIntent': 'freshness',
+    'traits.desktopLayoutPreference': 'customization',
+    'eligibility.experience': 'experience',
+    'eligibility.maintenanceTolerance': 'maintenance',
+    'eligibility.learningTolerance': 'troubleshooting',
+    'eligibility.systemControl': 'control',
+  };
+  const required = new Set([
+    'traits.fossPreference',
+    'traits.gpu',
+    'traits.hardware',
+    'traits.freshnessIntent',
+    'eligibility.experience',
+    'eligibility.maintenanceTolerance',
+    'eligibility.learningTolerance',
+    'eligibility.systemControl',
+  ]);
+  const seen = new Set<string>();
+  for (const question of questions) {
+    for (const option of question.options) {
+      const supplied = new Set<string>();
+      for (const group of ['traits', 'eligibility'] as const) {
+        for (const key of Object.keys(option.effects[group] ?? {})) {
+          if (group === 'traits' && (key === 'useCase' || key === 'interest'))
+            continue;
+          const field = `${group}.${key}`;
+          assert.equal(
+            owners[field],
+            question.id,
+            `${question.id}/${option.id}: ${field}`,
+          );
+          supplied.add(field);
+          seen.add(field);
+        }
+      }
+      for (const field of required)
+        if (owners[field] === question.id)
+          assert.ok(
+            supplied.has(field),
+            `${question.id}/${option.id}: missing ${field}`,
+          );
+    }
+  }
+  assert.deepEqual([...seen].sort(), Object.keys(owners).sort());
+});
+
 test('16 questions have the requested sections, complete localized copy, and bounded effects', () => {
   assert.equal(QUESTION_COUNT, 16);
   assert.deepEqual(
@@ -137,7 +196,7 @@ test('playful identity and final road cannot invent experience or willingness to
   assert.equal(result.eligibility.maintenanceTolerance, 'low');
   assert.equal(result.eligibility.systemControl, 'low');
   assert.equal(result.eligibility.learningTolerance, 'high');
-  assert.equal(result.traits.securityUseCase, true);
+  assert.ok(result.traits.useCases.includes('security-testing'));
   assert.ok(result.traits.interests.includes('declarative-configuration'));
 });
 

@@ -195,6 +195,9 @@ npm run recommendations:review -- --examples
 The 20 complete fixtures in `scripts/recommendation-personas.ts` cover ordinary
 and specialist desktop workflows. Tests check top-N results, eligibility boundaries,
 paired creative scenarios, deterministic scores, and reconstructable diagnostics.
+Explanation tests check every emitted public reason and caution across the personas
+and individual answer options, including reasons omitted from the visible shortlist.
+Internal breadth and satisfied-constraint diagnostics remain untranslated.
 Across these fixtures, all 29 profiles appear on standard-PC shortlists as primary
 results, sibling editions, or alternatives. This does not require every profile
 to win or establish support on every platform.

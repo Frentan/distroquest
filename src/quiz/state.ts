@@ -121,6 +121,7 @@ export function previousQuestion(state: QuizState): QuizState {
 export function nextQuestion(
   state: QuizState,
   compute: (answers: AnswerSet) => RecommendationResult = recommend,
+  reportError?: (error: unknown) => void,
 ): QuizState {
   if (!hasValidAnswer(state)) return state;
   if (
@@ -143,7 +144,8 @@ export function nextQuestion(
       resolvePlatform(answers, state.platformAnswer),
     );
     return { ...state, result, platformResult, completed: true, error: false };
-  } catch {
+  } catch (error) {
+    reportError?.(error);
     return {
       ...state,
       completed: false,

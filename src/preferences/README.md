@@ -138,6 +138,8 @@ Mixed answers blend rather than discard evidence: newcomers can want deep contro
 experienced users can want low upkeep, and current software can accompany fixed
 releases. `useCases`, `interests`, and explicit `eligibility` supply evidence for
 the engine's constraints; broad intent cannot bypass their minimum requirements.
+Security intent comes from `useCases` membership (`security-testing`), without a
+separate boolean that can disagree with it.
 
 ## Copy and platform intake
 
@@ -156,3 +158,6 @@ bounded deterministic output, canonical ordering, nonmutation, monotonic direct
 signals, neutral traits, GPU separation, gaming zero, explicit eligibility, and
 limited finale influence. The builder preserves its target/importance contract;
 scoring lives in the engine and interactive state/presentation in `src/quiz/`.
+Schema tests enforce one owning question for each scalar trait/eligibility field
+and require every option in its owning question to provide mandatory evidence.
+Use cases and interests accumulate instead; capability signals blend by weight.

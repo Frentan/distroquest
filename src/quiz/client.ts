@@ -87,7 +87,13 @@ export function mountQuiz(root: HTMLElement) {
     submitted.add(
       state.followup ? 'mac-followup' : questions[state.current].id,
     );
-    state = nextQuestion(state);
+    state = nextQuestion(
+      state,
+      undefined,
+      import.meta.env.DEV
+        ? (error) => console.error('DistroQuest computation failed', error)
+        : undefined,
+    );
     render();
   }
   function navigate(index: number) {
