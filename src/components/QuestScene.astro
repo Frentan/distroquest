@@ -1,29 +1,12 @@
 ---
 import QuestLandscape from './QuestLandscape.astro';
-import { defaultLocale, getMessages, type PublishedLocale } from '../i18n';
+import { defaultLocale, type PublishedLocale } from '../i18n';
 interface Props {
   locale?: PublishedLocale;
 }
 const { locale = defaultLocale } = Astro.props;
-const copy = getMessages(locale).scene;
 ---
 
-<!-- Original, code-native artwork: no image downloads or client-side rendering. -->
-<div class="quest-scene">
-  <div class="scene-heading">
-    <span>
-      <span class="status-dot"></span> {copy.heading}
-    </span>
-    <span aria-hidden="true">01 / ∞</span>
-  </div>
+<div class="quest-scene" aria-hidden="true">
   <QuestLandscape locale={locale} />
-  <div class="scene-caption">
-    <span class="scene-badge" aria-hidden="true">
-      ✦
-    </span>
-    <div>
-      <strong>{copy.caption}</strong>
-      <p>{copy.captionDetail}</p>
-    </div>
-  </div>
 </div>

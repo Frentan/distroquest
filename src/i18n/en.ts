@@ -17,6 +17,16 @@ export const en = {
     howLink: 'How it works',
     footer: 'A small quest. A fresh start.',
     footerCredit: 'Made for the Linux-curious.',
+    github: 'GitHub',
+    languageLabel: 'Language',
+    languageNames: {
+      en: 'English',
+      it: 'Italiano',
+      es: 'Español',
+      pt: 'Português',
+      fr: 'Français',
+      de: 'Deutsch',
+    },
   },
   theme: {
     light: 'Light mode',

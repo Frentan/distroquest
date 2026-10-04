@@ -232,7 +232,7 @@ nav {
   grid-template-columns: 1.12fr 1fr;
   align-items: center;
   gap: 64px;
-  padding-block: 84px 90px;
+  padding-block: 48px 64px;
 }
 .eyebrow {
   color: var(--accent);
@@ -323,62 +323,99 @@ nav {
   color: var(--muted);
   margin-top: 10px;
 }
-.quest-scene {
-  border: 1px solid var(--line);
-  background: var(--surface);
-  box-shadow: 7px 7px 0 var(--shadow);
-  border-radius: 4px;
+/* Shared SVG symbols are painted only through the visible <use> instances. */
+.journey-symbols {
+  position: absolute;
+  width: 0;
+  height: 0;
   overflow: hidden;
+  pointer-events: none;
 }
-.scene-heading {
-  flex-wrap: wrap;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 12px;
-  padding: 16px 20px;
-  color: var(--muted);
-  font:
-    0.875rem/1.5 ui-monospace,
-    monospace;
-  letter-spacing: 1px;
-}
-.status-dot {
-  display: inline-block;
-  width: 6px;
-  height: 6px;
-  background: var(--accent);
-  margin-right: 6px;
+.quest-scene {
+  width: 100%;
+  max-width: 480px;
+  justify-self: end;
+  overflow: hidden;
 }
 .quest-art {
   width: 100%;
   height: auto;
-  border-block: 1px solid var(--line);
 }
-.scene-caption {
+.hero-information {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+  margin-top: 28px;
+  padding-top: 20px;
+  border-top: 1px solid var(--line);
+}
+.information-tile {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  min-width: 0;
+}
+.information-tile > svg {
+  flex: 0 0 auto;
+  color: var(--accent);
+  width: 24px;
+  height: 28px;
+}
+.hero-information .quest-facts {
+  display: grid;
+  gap: 6px;
+  margin: 0;
+  color: var(--text);
+}
+.hero-information .quest-facts li::before {
+  display: none;
+}
+.hero-information .preview-note {
+  margin: 0;
+}
+.header-controls {
   display: flex;
   align-items: center;
-  gap: 14px;
-  padding: 18px 20px;
+  justify-content: flex-end;
+  gap: 8px;
+  /* An empty 44px reservation; no inert or unpublished locale control. */
+  padding-left: 52px;
 }
-.scene-badge {
-  display: grid;
-  place-items: center;
-  width: 36px;
-  height: 36px;
-  flex: 0 0 auto;
-  border: 1px solid var(--line);
-  color: var(--gold);
-  background: var(--accent-soft);
+.header-controls:has(.language-control) {
+  padding-left: 0;
 }
-.scene-caption strong {
-  font-size: 14px;
-  font-weight: 650;
-}
-.scene-caption p {
+.language-control {
+  position: relative;
   font-size: 0.875rem;
-  color: var(--muted);
-  margin-top: 2px;
+}
+.language-control summary {
+  min-width: 44px;
+  min-height: 44px;
+  padding: 10px 6px;
+  cursor: pointer;
+}
+.language-control ul {
+  position: absolute;
+  z-index: 3;
+  right: 0;
+  min-width: 150px;
+  list-style: none;
+  margin: 4px 0 0;
+  padding: 6px;
+  background: var(--surface);
+  border: 1px solid var(--control-line);
+}
+.language-control a {
+  display: block;
+  padding: 10px;
+  min-height: 44px;
+}
+.footer-github {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  min-height: 44px;
+  text-underline-offset: 4px;
 }
 .how-section {
   padding-block: 44px 50px;
@@ -473,14 +510,6 @@ nav {
     font-size: 48px;
     letter-spacing: -2.5px;
   }
-  .scene-caption {
-    padding: 16px;
-    gap: 10px;
-  }
-  .scene-heading {
-    padding: 14px;
-    font-size: 0.875rem;
-  }
   .privacy-label {
     display: none;
   }
@@ -510,8 +539,11 @@ nav {
     display: none;
   }
   .quest-scene {
-    width: min(100%, 480px);
-    margin-inline: auto;
+    width: min(100%, 240px);
+    justify-self: center;
+  }
+  .hero-information {
+    max-width: 510px;
   }
   .steps {
     grid-template-columns: 1fr;
@@ -542,12 +574,6 @@ nav {
   .theme-toggle .theme-label {
     font-size: 0.875rem;
   }
-  .scene-caption strong {
-    font-size: 0.875rem;
-  }
-  .scene-caption p {
-    font-size: 0.875rem;
-  }
 }
 @media (prefers-reduced-motion: no-preference) {
   .button {
@@ -563,7 +589,7 @@ nav {
   }
   .site-header {
     flex-wrap: nowrap;
-    gap: 8px;
+    gap: 6px;
     padding-block: 12px;
   }
   .brand {
@@ -583,5 +609,14 @@ nav {
   .hero {
     padding-block: 32px 40px;
     gap: 28px;
+  }
+}
+
+/* Desktop terrain has a narrower dirt trail; compact mobile paths keep gold. */
+@media (min-width: 761px) {
+  .quest-art,
+  .journey-desktop {
+    --journey-trail: #b18a62;
+    --journey-trail-edge: #74553a;
   }
 }

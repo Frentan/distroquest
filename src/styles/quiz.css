@@ -1,5 +1,5 @@
 .quiz-shell {
-  max-width: 880px;
+  max-width: 1040px;
   padding-block: 1.25rem 2.5rem;
 }
 .quiz-panel {
@@ -128,7 +128,7 @@ progress::-moz-progress-bar {
 }
 .alternative-grid {
   display: grid;
-  grid-template-columns: repeat(2, minmax(0, 1fr));
+  grid-template-columns: 1fr;
   align-items: start;
   gap: 1.5rem;
 }
@@ -275,7 +275,7 @@ progress::-moz-progress-bar {
 }
 
 .quiz-panel:not(.showing-results) {
-  max-width: 660px;
+  max-width: 1040px;
   margin-inline: auto;
   gap: 0.75rem;
 }
@@ -383,7 +383,7 @@ progress::-moz-progress-bar {
 }
 .result-intro {
   display: grid;
-  grid-template-columns: minmax(0, 1fr) 176px;
+  grid-template-columns: minmax(0, 1fr) 208px;
   align-items: center;
   gap: 1.5rem;
 }
@@ -535,8 +535,76 @@ progress::-moz-progress-bar {
 }
 
 @media (min-width: 601px) {
+  .alternative-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
   .alternative-grid > .alternative-result + .alternative-result {
     border-left: 1px solid var(--line);
     padding-left: 1.5rem;
+  }
+}
+.showing-results {
+  max-width: 880px;
+  margin-inline: auto;
+}
+.journey-arrival {
+  width: 96px;
+  height: 32px;
+}
+.question-journey {
+  min-width: 0;
+}
+.journey-desktop {
+  width: 100%;
+  height: auto;
+}
+.journey-mobile {
+  display: none;
+}
+@media (min-width: 761px) {
+  .quiz-panel:not(.showing-results) {
+    max-width: 964px;
+    grid-template-columns: 248px minmax(0, 1fr);
+    column-gap: clamp(24px, 4vw, 56px);
+    justify-content: center;
+    position: relative;
+    min-height: 560px;
+    padding-block: 16px;
+  }
+  .quiz-panel:not(.showing-results) > :not(.question-journey) {
+    grid-column: 2;
+  }
+  .question-journey {
+    grid-column: 1;
+    position: absolute;
+    top: 16px;
+    left: 0;
+    width: 248px;
+    height: 560px;
+    overflow: hidden;
+  }
+  .journey-desktop {
+    width: 420px;
+    height: 560px;
+    max-width: none;
+    margin-left: -86px;
+  }
+}
+@media (max-width: 760px) {
+  .quiz-panel:not(.showing-results) {
+    max-width: 660px;
+  }
+  .journey-desktop {
+    display: none;
+  }
+  .journey-mobile {
+    display: block;
+    width: 100%;
+    height: 64px;
+  }
+}
+@media (max-width: 600px) {
+  .alternative-grid .capability-grid {
+    grid-template-columns: 1fr;
   }
 }

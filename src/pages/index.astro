@@ -30,12 +30,37 @@ const copy = getMessages(locale);
         <a class="button button-primary" href={localePath('/quiz/', locale)}>
           {copy.home.begin} <span aria-hidden="true">→</span>
         </a>
-        <ul class="quest-facts" aria-label={copy.home.factsLabel}>
-          {copy.home.facts.map((fact) => (
-            <li>{fact}</li>
-          ))}
-        </ul>
-        <p class="preview-note">{copy.home.preview}</p>
+        <div class="hero-information">
+          <div class="information-tile">
+            <svg
+              width="24"
+              height="28"
+              viewBox="0 0 24 28"
+              aria-hidden="true"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+            >
+              <path d="M6 4H2v22h20V4h-4M6 2h12v6H6zM6 14h2m4 0h6M6 20h2m4 0h6" />
+            </svg>
+            <ul class="quest-facts" aria-label={copy.home.factsLabel}>
+              {copy.home.facts.map((fact) => (
+                <li>{fact}</li>
+              ))}
+            </ul>
+          </div>
+          <div class="information-tile">
+            <svg width="24" height="28" viewBox="0 0 24 28" aria-hidden="true">
+              <path
+                d="M8 2h8v2h2v8h-2v2H8v-2H6V4h2zM6 16h12v2h4v8H2v-8h4z"
+                fill="currentColor"
+              />
+              <path d="M2 26L22 2" stroke="var(--bg)" stroke-width="5" />
+              <path d="M2 26L22 2" stroke="var(--gold)" stroke-width="2" />
+            </svg>
+            <p class="preview-note">{copy.home.preview}</p>
+          </div>
+        </div>
       </div>
       <QuestScene locale={locale} />
     </section>

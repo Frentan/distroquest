@@ -31,6 +31,7 @@ import {
   strongestReasons,
 } from './presentation.ts';
 import { platformShortlist } from './platform-presentation.ts';
+import { questionJourney, arrivalJourney } from './journey.ts';
 
 function element<K extends keyof HTMLElementTagNameMap>(
   tag: K,
@@ -482,7 +483,7 @@ export function mountQuiz(root: HTMLElement) {
     const result = state.platformResult!;
     const { primary, sameEdition, alternatives, comparisons, preferenceOnly } =
       platformShortlist(result);
-    panel.append(recommendationCard(primary, true));
+    panel.append(arrivalJourney(), recommendationCard(primary, true));
     const actions = element('div', undefined, 'quiz-actions');
     actions.append(
       button(copy.revise, () => navigate(0), true),
@@ -581,6 +582,14 @@ export function mountQuiz(root: HTMLElement) {
       ? platformQuestions[followup.id]
       : en.questions[baseQuestion.id];
     const position = getQuizProgress(state);
+    panel.append(
+      questionJourney(
+        position.current,
+        position.total,
+        submitted.size,
+        !state.followup && state.current === questions.length - 1,
+      ),
+    );
     const progressHeader = element('div', undefined, 'quest-progress');
     const progressInfo = element('div', undefined, 'progress-info');
     const progressLabel = element(
