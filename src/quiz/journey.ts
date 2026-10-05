@@ -1,4 +1,4 @@
-import { ascentPosition } from '../artwork/journey';
+import { ascentPosition, ascentFacing } from '../artwork/journey';
 
 function svg(viewBox: string, className: string) {
   const node = document.createElementNS('http://www.w3.org/2000/svg', 'svg');
@@ -28,14 +28,8 @@ function use(
     symbol.setAttribute(key, String(value));
   if (className) symbol.setAttribute('class', className);
   node.append(symbol);
+  return symbol;
 }
-function path(node: SVGSVGElement, d: string) {
-  const shape = document.createElementNS(node.namespaceURI, 'path');
-  shape.setAttribute('d', d);
-  shape.setAttribute('fill', 'var(--scene-path)');
-  node.append(shape);
-}
-
 /** Capture submitted stage at question render. Selection updates never move it.
  * Back uses the submitted prefix preceding the active question, not future answers.
  */
@@ -55,27 +49,49 @@ export function questionJourney(
   use(desktop, 'landscape', 0, 0, 192, 256);
   use(desktop, 'flag', 116, 6, 12, 18);
   const [x, y] = ascentPosition(fraction);
-  use(desktop, 'traveler', x - 6, y - 18, 12, 18, 'journey-traveler');
+  const traveler = use(
+    desktop,
+    'traveler',
+    x - 8,
+    y - 24,
+    16,
+    24,
+    'journey-traveler',
+  );
+  if (ascentFacing(fraction) === -1)
+    traveler.setAttribute('transform', `translate(${2 * x} 0) scale(-1 1)`);
   const mobile = svg('0 0 288 56', 'journey-mobile');
-  path(mobile, 'M8 44h66v-4h66v-4h64v4h60v-4h16v4h-12v4h-68v-4h-56v4H78v4H8z');
-  use(mobile, 'pine', 2, 10, 12, 24);
-  use(mobile, 'pine', 38, 4, 8, 16);
-  use(mobile, 'pine', 114, 0, 8, 16);
-  use(mobile, 'pine', 208, 2, 8, 16);
-  use(mobile, 'pine', 272, 8, 12, 24);
-  path(mobile, 'M32 50h8v2h-8zM96 48h6v2h-6zM192 46h8v2h-8z');
-  mobile.lastElementChild?.setAttribute('fill', 'var(--grass)');
-  use(mobile, 'flag', 262, 14, 12, 18);
+  use(mobile, 'mobile-path', 0, 0, 288, 56);
   const mx = Math.round((20 + fraction * 238) / 2) * 2;
   const my = mx < 74 ? 44 : mx < 140 ? 40 : mx < 204 ? 36 : mx < 264 ? 40 : 36;
-  use(mobile, 'traveler', mx - 6, my - 18, 12, 18, 'journey-traveler');
+  use(mobile, 'traveler', mx - 8, my - 24, 16, 24, 'journey-traveler');
   wrap.append(desktop, mobile);
   return wrap;
 }
 
 export function arrivalJourney() {
-  const node = svg('0 0 96 32', 'journey-arrival');
-  use(node, 'camp', 2, 0, 64, 32);
-  use(node, 'flag', 74, 0, 16, 24);
-  return node;
+  // The same crest, cropped to a quiet fragment rather than another landscape.
+  const node = svg('84 0 64 60', 'journey-arrival journey-final');
+  use(node, 'crest', 0, 0, 192, 256);
+  use(node, 'flag', 116, 6, 12, 18);
+  use(node, 'traveler', 100, 4, 16, 24).setAttribute(
+    'transform',
+    'translate(216 0) scale(-1 1)',
+  );
+  const sky = document.createElement('div');
+  sky.className = 'journey-arrival-scene journey-final';
+  sky.setAttribute('aria-hidden', 'true');
+  const sun = svg('0 0 24 12', 'arrival-sun');
+  use(sun, 'sun', 0, 0, 24, 12);
+  for (const className of [
+    'arrival-cloud',
+    'arrival-cloud arrival-cloud-far',
+    'arrival-cloud arrival-cloud-third',
+  ]) {
+    const cloud = svg('0 0 64 24', className);
+    use(cloud, 'cloud', 0, 0, 64, 24);
+    sky.append(cloud);
+  }
+  sky.append(sun, node);
+  return sky;
 }

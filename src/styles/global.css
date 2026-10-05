@@ -10,6 +10,7 @@
   --accent: #315b46;
   --accent-soft: #e7eddf;
   --gold: #80591d;
+  --art-frame: #b69b66;
   --button-bg: #315b46;
   --button-text: #fffdf2;
   --shadow: #c8d0bf;
@@ -29,6 +30,8 @@
   --computer-screen: #304b3d;
   --screen-ink: #e4ce8b;
   --grass: #9db886;
+  --rock-face: #596963;
+  --rock-light: #87907c;
   font-family:
     'Segoe UI',
     system-ui,
@@ -71,6 +74,8 @@
     --computer-screen: #1b3028;
     --screen-ink: #e4ce8b;
     --grass: #678455;
+    --rock-face: #384d43;
+    --rock-light: #6d8068;
   }
 }
 :root[data-theme='dark'] {
@@ -103,6 +108,8 @@
   --computer-screen: #1b3028;
   --screen-ink: #e4ce8b;
   --grass: #678455;
+  --rock-face: #384d43;
+  --rock-light: #6d8068;
 }
 
 * {
@@ -333,11 +340,12 @@ nav {
 }
 .quest-scene {
   width: 100%;
-  max-width: 480px;
+  max-width: 448px;
   justify-self: end;
   overflow: hidden;
 }
 .quest-art {
+  display: block;
   width: 100%;
   height: auto;
 }
@@ -615,8 +623,65 @@ nav {
 /* Desktop terrain has a narrower dirt trail; compact mobile paths keep gold. */
 @media (min-width: 761px) {
   .quest-art,
-  .journey-desktop {
+  .journey-desktop,
+  .journey-arrival {
     --journey-trail: #b18a62;
     --journey-trail-edge: #74553a;
+  }
+}
+
+/* Compact pines need more separation from the dark page background. */
+:root[data-theme='dark'] :is(.journey-mobile, .home-journey-mobile) {
+  --tree: #355742;
+  --tree-light: #54745c;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme='light']) :is(.journey-mobile, .home-journey-mobile) {
+    --tree: #355742;
+    --tree-light: #54745c;
+  }
+}
+
+/* Crest light changes the atmosphere, never the composition or movement. */
+.journey-final {
+  --scene-sky: #ead9b8;
+  --scene-cloud: #f5e9ce;
+  --mountain-snow: #eee0b9;
+}
+:root[data-theme='dark'] .journey-final {
+  --scene-sky: #3a3831;
+  --scene-cloud: #544b3b;
+  --mountain-snow: #b4ac86;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme='light']) .journey-final {
+    --scene-sky: #3a3831;
+    --scene-cloud: #544b3b;
+    --mountain-snow: #b4ac86;
+  }
+}
+
+.home-journey-mobile {
+  display: none;
+}
+@media (max-width: 760px) {
+  .quest-scene {
+    width: 100%;
+    max-width: 510px;
+    justify-self: start;
+  }
+  .quest-scene .quest-art {
+    display: none;
+  }
+  .home-journey-mobile {
+    display: block;
+    width: 100%;
+    height: 64px;
+  }
+}
+
+@media (min-width: 761px) {
+  .quest-scene {
+    border: 2px solid var(--art-frame);
   }
 }

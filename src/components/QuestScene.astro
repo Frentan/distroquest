@@ -9,4 +9,13 @@ const { locale = defaultLocale } = Astro.props;
 
 <div class="quest-scene" aria-hidden="true">
   <QuestLandscape locale={locale} />
+  <svg
+    class="home-journey-mobile"
+    viewBox="0 0 288 56"
+    shape-rendering="crispEdges"
+    aria-hidden="true"
+  >
+    <use href="#journey-mobile-path" width="288" height="56" />
+    <use href="#journey-traveler" x="12" y="20" width="16" height="24" />
+  </svg>
 </div>
