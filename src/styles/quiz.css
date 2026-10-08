@@ -383,7 +383,7 @@ progress::-moz-progress-bar {
 }
 .result-intro {
   display: grid;
-  grid-template-columns: minmax(0, 1fr) 208px;
+  grid-template-columns: minmax(0, 1fr) 272px;
   align-items: center;
   gap: 1.5rem;
 }
@@ -414,17 +414,10 @@ progress::-moz-progress-bar {
   max-width: 58ch;
 }
 .result-artwork {
-  width: 100%;
+  width: 256px;
   aspect-ratio: 1;
-  border: 1px dashed var(--control-line);
-  border-radius: 3px;
-  padding: 1rem;
   display: grid;
   place-items: center;
-  text-align: center;
-  overflow-wrap: anywhere;
-  font-size: 0.875rem;
-  color: var(--muted);
 }
 .result-artwork:empty {
   display: none;
@@ -433,8 +426,10 @@ progress::-moz-progress-bar {
   grid-template-columns: 1fr;
 }
 .result-artwork img {
-  max-width: 100%;
-  height: auto;
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
   image-rendering: pixelated;
 }
 .alternative-result .result-intro {
@@ -471,40 +466,44 @@ progress::-moz-progress-bar {
 .edition-details > article {
   padding-top: 0.5rem;
 }
+@media (max-width: 760px) {
+  .result-identity .eyebrow {
+    letter-spacing: 1px;
+  }
+  .primary-result h1 {
+    font-size: 1.75rem;
+  }
+  .result-intro:has(.result-artwork:not(:empty)) {
+    grid-template-columns: minmax(0, 1fr) 144px;
+    align-items: start;
+    gap: 0.65rem 1rem;
+  }
+  .result-intro:has(.result-artwork:not(:empty)) .result-identity {
+    display: contents;
+  }
+  .result-intro:has(.result-artwork:not(:empty)) .result-identity > * {
+    grid-column: 1 / -1;
+  }
+  .result-intro:has(.result-artwork:not(:empty))
+    .result-identity
+    > :is(.eyebrow, h1, .result-archetype) {
+    grid-column: 1;
+  }
+  .result-artwork {
+    grid-column: 2;
+    grid-row: 1 / span 3;
+    width: 144px;
+  }
+  .result-intro:not(:has(.result-artwork:not(:empty))) {
+    display: block;
+  }
+}
 @media (max-width: 600px) {
   .primary-result {
     padding: 1rem 0;
     border-inline: 0;
     border-bottom: 0;
     background: transparent;
-  }
-  .result-artwork {
-    padding: 0.5rem;
-  }
-  .result-identity .eyebrow {
-    letter-spacing: 1px;
-  }
-  .primary-result h1 {
-    font-size: 2rem;
-  }
-  .result-intro:has(.result-artwork:not(:empty)) {
-    position: relative;
-    display: block;
-  }
-  .result-intro:has(.result-artwork:not(:empty)) .eyebrow {
-    padding-right: 136px;
-    min-height: 128px;
-    display: flex;
-    align-items: center;
-  }
-  .result-artwork {
-    position: absolute;
-    top: 24px;
-    right: 0;
-    width: 128px;
-  }
-  .result-intro:not(:has(.result-artwork:not(:empty))) {
-    display: block;
   }
   .quest-progress {
     gap: 0.75rem;
@@ -525,6 +524,17 @@ progress::-moz-progress-bar {
   }
   .capability-grid {
     grid-template-columns: 1fr;
+  }
+}
+@media (max-width: 360px) {
+  .result-intro:has(.result-artwork:not(:empty)) {
+    grid-template-columns: minmax(0, 1fr) 112px;
+  }
+  .result-artwork {
+    width: 112px;
+  }
+  .primary-result h1 {
+    font-size: 1.5rem;
   }
 }
 

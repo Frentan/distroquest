@@ -212,9 +212,16 @@ export function mountQuiz(root: HTMLElement) {
     const intro = element('div', undefined, 'result-intro');
     intro.append(identity);
     if (primary) {
-      // Replace this single slot with supplied artwork; :empty collapses it safely.
-      const artwork = element('div', copy.artPlaceholder, 'result-artwork');
+      const artwork = element('div', undefined, 'result-artwork');
       artwork.dataset.artwork = distro.id;
+      const sprite = element('img');
+      sprite.alt = '';
+      sprite.width = 512;
+      sprite.height = 512;
+      sprite.decoding = 'async';
+      sprite.addEventListener('error', () => artwork.remove(), { once: true });
+      sprite.src = `/characters/${distro.id}.png`;
+      artwork.append(sprite);
       intro.append(artwork);
     }
     card.append(intro);

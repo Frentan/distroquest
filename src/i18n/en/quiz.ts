@@ -13,7 +13,6 @@ export const quizCopy = {
   macStep: 'Includes one Mac hardware question.',
   selectionCount: (count: number, max: number) => `${count} of ${max} selected`,
   selectionLimit: 'Limit reached. Deselect an answer to choose another.',
-  artPlaceholder: 'Character art placeholder',
   relevantStats: 'Capabilities for your priorities',
   statsNote: 'Capability ratings out of 5, not fit or hardware-support scores.',
   comparedWith: (name: string) => `Compared with ${name}`,
