@@ -63,6 +63,20 @@ Support changes; check current device, app, and game requirements before install
 
 ## Development references
 
+Routing and metadata share the two page identities in `src/routing.ts`: `home`
+and `quiz`. English stays at `/` and `/quiz/`; planned translations use
+`/{locale}/` and `/{locale}/quiz/` for `it`, `es`, `pt`, `fr`, and `de`.
+`pagePath()` constructs planned paths; `publishedPagePath()` gates public links
+using `src/i18n/locales.ts`. Add a locale there only after reviewed content and
+both static routes are ready. Helpers do not create Astro routes.
+
+The layout checks its page identity against the route and emits self-referencing
+canonicals and Open Graph URLs when `SITE_URL` is configured. Alternate-language
+links connect published equivalents once multiple languages are ready. The sitemap
+lists only published homepages; each complete quiz remains `noindex, follow`, with
+questions, follow-ups, and results held in memory on its single route. No origin
+means no absolute metadata and an empty sitemap.
+
 User-facing copy, metadata, and accessible labels live in `src/i18n/`.
 `src/quiz/` owns in-memory navigation and result presentation; `src/platforms/`
 owns the hardware overlay. Development builds expose answers, profiles, rankings,

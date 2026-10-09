@@ -1,12 +1,14 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
 import QuestScene from '../components/QuestScene.astro';
-import { defaultLocale, getMessages, localePath } from '../i18n';
+import { defaultLocale, getMessages } from '../i18n';
+import { publishedPagePath } from '../routing';
 const locale = defaultLocale;
 const copy = getMessages(locale);
 ---
 
 <BaseLayout
+  page="home"
   locale={locale}
   title={copy.home.title}
   description={copy.home.description}
@@ -27,7 +29,10 @@ const copy = getMessages(locale);
           <br class="desktop-break" /> {copy.home.tagline[1]}
         </p>
         <p class="hero-description">{copy.home.introduction}</p>
-        <a class="button button-primary" href={localePath('/quiz/', locale)}>
+        <a
+          class="button button-primary"
+          href={publishedPagePath('quiz', locale)}
+        >
           {copy.home.begin} <span aria-hidden="true">→</span>
         </a>
         <div class="hero-information">
