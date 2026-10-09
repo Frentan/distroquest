@@ -23,6 +23,7 @@ export type ConstraintOutcome = Readonly<{
   matched: boolean;
   adjustment: number;
 }>;
+// weight is the effective scoring weight; profile weights remain on 0–1.
 export type CapabilityMatch = Preference &
   Readonly<{
     capability: Capability;
@@ -59,7 +60,7 @@ export type Recommendation = Readonly<{
   cautions: readonly string[];
 }>;
 export type RecommendationResult = Readonly<{
-  modelVersion: 11;
+  modelVersion: 12;
   profile: RecommendationProfile;
   ranking: readonly Recommendation[];
 }>;

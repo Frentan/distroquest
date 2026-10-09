@@ -136,7 +136,7 @@ test('genuine penetration tester: Kali is eligible and ranks highly', () => {
 
 test('qualified security intent has separate credit even when general traits are capped', () => {
   const result = recommend(personas.penetrationTester);
-  assert.equal(result.modelVersion, 11);
+  assert.equal(result.modelVersion, 12);
   const kali = result.ranking[0];
   assert.equal(kali.distroId, 'kali-linux');
   assert.equal(kali.traitAdjustment, 12);
@@ -996,6 +996,102 @@ test('NVIDIA affects setup refinement, not eligibility or capability scores', ()
     assert.equal(row.capabilityScore, other.capabilityScore);
     assert.equal(row.eligible, other.eligible);
     assert.ok(Math.abs(row.traitAdjustment - other.traitAdjustment) <= 2);
+  }
+});
+
+test('resource priority requires limited hardware or aging hardware with explicit purpose', () => {
+  const source = recommend(personas.oldLaptop).profile;
+  const profile: RecommendationProfile = {
+    ...source,
+    capabilities: Object.fromEntries(
+      capabilityKeys.map((key) => [key, { target: 0, weight: 0 }]),
+    ) as RecommendationProfile['capabilities'],
+  };
+  // Mint meets beginner needs (1.0 similarity) and has resource similarity 0.7.
+  const focused: RecommendationProfile = {
+    ...profile,
+    capabilities: {
+      ...profile.capabilities,
+      beginnerFriendly: { target: 5, weight: 1 },
+      oldHardware: { target: 5, weight: 1 },
+    },
+  };
+  const original = structuredClone(focused);
+  const mint = distroProfiles.find((distro) => distro.id === 'linux-mint')!;
+  for (const hardware of [
+    'limited',
+    'aging',
+    'recent',
+    'powerful',
+    'unspecified',
+  ] as const) {
+    for (const selected of [false, true]) {
+      const useCases = selected ? (['old-hardware'] as const) : [];
+      const priority =
+        hardware === 'limited' || (hardware === 'aging' && selected);
+      const row = scoreDistro(
+        {
+          ...focused,
+          traits: { ...focused.traits, hardware, useCases },
+        },
+        mint,
+      );
+      const resource = row.capabilityMatches.find(
+        (m) => m.capability === 'oldHardware',
+      )!;
+      assert.equal(resource.target, 5);
+      assert.equal(resource.actual, 3.5);
+      assert.equal(resource.weight, priority ? 1.5 : 1);
+      assert.ok(Math.abs(row.capabilityScore - (priority ? 82 : 85)) < 1e-10);
+      assert.equal(
+        row.capabilityScore,
+        row.capabilityMatches.reduce((sum, m) => sum + m.contribution, 0),
+      );
+      const regular = scoreDistro(
+        {
+          ...focused,
+          traits: { ...focused.traits, hardware: 'recent', useCases },
+        },
+        mint,
+      );
+      assert.deepEqual(row.constraints, regular.constraints);
+      assert.deepEqual(row.traitModifiers, regular.traitModifiers);
+      assert.deepEqual(row.specialistModifiers, regular.specialistModifiers);
+    }
+  }
+  assert.deepEqual(focused, original);
+});
+
+test('limited-laptop resource priority needs no purpose checkbox and preserves newcomer suitability', () => {
+  for (const experience of ['new', 'regular', 'terminal']) {
+    const selected = recommend({
+      ...personas.oldLaptop,
+      experience: [experience],
+    });
+    const unselected = recommend({
+      ...personas.oldLaptop,
+      experience: [experience],
+      'use-cases': ['everyday'],
+    });
+    assert.deepEqual(selected.ranking, unselected.ranking);
+    assert.equal(
+      selected.ranking[0].distroId,
+      experience === 'new' ? 'linux-mint' : 'debian',
+    );
+    assert.equal(selected.ranking[1].distroId, 'mx-linux');
+    assert.equal(selected.profile.capabilities.oldHardware.target, 5);
+    assert.equal(selected.profile.capabilities.oldHardware.weight, 1);
+    for (const row of selected.ranking) {
+      assert.equal(
+        row.capabilityMatches.find((m) => m.capability === 'oldHardware')!
+          .weight,
+        1.5,
+      );
+      assert.equal(
+        row.normalizedScore,
+        row.eligible ? 100 * Math.max(0, Math.min(1, row.rawScore / 116)) : 0,
+      );
+    }
   }
 });
 

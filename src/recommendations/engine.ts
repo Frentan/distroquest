@@ -31,6 +31,7 @@ export const scoringRules = Object.freeze({
   normalizationMaximum: 116,
   unmetSoftCondition: 8,
   moderateMaintenanceShortfall: 4,
+  resourceImportanceMultiplier: 1.5,
   softConstraintLimit: 24,
   satisfiedSoftConstraint: 2,
   excludedAdjustment: -100,
@@ -265,12 +266,22 @@ export function scoreDistro(
   profile: RecommendationProfile,
   distro: DistroProfile,
 ): Recommendation {
+  const resourcePriority =
+    profile.traits.hardware === 'limited' ||
+    (profile.traits.hardware === 'aging' &&
+      profile.traits.useCases.includes('old-hardware'));
+  const scoringWeight = (capability: Capability) =>
+    profile.capabilities[capability].weight *
+    (capability === 'oldHardware' && resourcePriority
+      ? scoringRules.resourceImportanceMultiplier
+      : 1);
   const totalWeight = capabilityKeys.reduce(
-    (sum, key) => sum + profile.capabilities[key].weight,
+    (sum, key) => sum + scoringWeight(key),
     0,
   );
   const capabilityMatches = capabilityKeys.map((capability) => {
-    const { target, weight } = profile.capabilities[capability];
+    const { target } = profile.capabilities[capability];
+    const weight = scoringWeight(capability);
     const actual = distro.capabilities[capability];
     const similarity = capabilitySimilarity(
       capability,
@@ -467,5 +478,5 @@ export function rankDistros(
 // Public boundary: accepts untrusted answers; existing validation rejects omissions.
 export function recommend(input: unknown): RecommendationResult {
   const profile = normalizePreferenceProfile(buildPreferenceProfile(input));
-  return { modelVersion: 11, profile, ranking: rankDistros(profile) };
+  return { modelVersion: 12, profile, ranking: rankDistros(profile) };
 }

@@ -1,17 +1,18 @@
-# Recommendation engine, model v11
+# Recommendation engine, model v12
 
 The pure engine converts complete quiz answers into a deterministic ranking of
 all 29 distro profiles, with eligibility, score components, and explanation codes.
-Model v11 grades one soft upkeep shortfall: explicit moderate maintenance tolerance
-incurs −4 when high tolerance is preferred, rather than the usual −8. Hard
-requirements, all other soft penalties, capability fit, assessments, and the model
-v10 gaming-consistency rule are unchanged.
+Model v12 multiplies old-hardware scoring importance by 1.5 for limited hardware,
+or for aging hardware with explicit old-hardware purpose. Aging hardware without
+that purpose, recent, powerful, and handheld hardware are unchanged. Targets,
+assessments, eligibility, the model v11 upkeep rule, and model v10 gaming consistency
+stay unchanged.
 
 ## API and boundaries
 
 ```ts
 import { recommend } from './engine.ts';
-const result = recommend(answers); // { modelVersion: 11, profile, ranking }
+const result = recommend(answers); // { modelVersion: 12, profile, ranking }
 ```
 
 `recommend(unknown)` validates through the preference builder and throws
@@ -38,7 +39,9 @@ balanced freshness     = max(0, raw distance - 1) when d > t
 other freshness        = raw distance
 gaming distance        = min(5, 2 × raw distance)
 similarity             = 1 - effective distance / 5
-axis contribution      = 100 × w × similarity / sum(all weights)
+resource priority      = limited hardware OR (aging hardware AND old-hardware purpose)
+scoring weight         = w × 1.5 for oldHardware with resource priority; w otherwise
+axis contribution      = 100 × scoring weight × similarity / sum(scoring weights)
 capability score       = sum(axis contributions)
 ```
 
@@ -48,6 +51,15 @@ extra point above its blended target. Older packages still incur the full penalt
 secondary answers cannot overwrite `freshnessIntent`. Gaming shortfalls count twice.
 Zero weights contribute nothing; an all-zero profile defensively yields zero points.
 Valid quiz profiles always carry freshness importance.
+
+The resource-priority multiplier applies to limited hardware with or without the
+old-hardware purpose checkbox, and to aging hardware only with that explicit purpose.
+It changes relative importance within the weighted average, not targets,
+distances, assessments, or an additive distro bonus. The preference profile retains
+its original 0–1 weights; `capabilityMatches.weight` exposes the effective scoring
+weight (up to 1.5 for oldHardware), and contributions use that weight consistently.
+Trait and specialist refinements still use the original profile. Aging hardware
+without old-hardware purpose receives no multiplier.
 
 `capabilityMatches` exposes target, weight, actual value, raw/effective distance,
 similarity, and contribution. Reason `.met` means zero effective distance; `.near`
