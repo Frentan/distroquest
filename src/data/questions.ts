@@ -66,11 +66,10 @@ export const questions: readonly Question[] = [
       '🧰',
       mood({ lowMaintenance: 2.5, desktopPolish: 2.5, systemControl: 4 }, 1),
     ),
-    option(
-      'build',
-      '🏗️',
-      mood({ lowMaintenance: 1, desktopPolish: 1, systemControl: 5 }, 1),
-    ),
+    option('build', '🏗️', {
+      ...mood({ lowMaintenance: 1, desktopPolish: 1, systemControl: 5 }, 1),
+      traits: { selfBuild: true },
+    }),
   ]),
   single('freshness', 'core', [
     option('proven', '🪨', {

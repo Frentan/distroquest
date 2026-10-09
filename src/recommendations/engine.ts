@@ -32,6 +32,7 @@ export const scoringRules = Object.freeze({
   unmetSoftCondition: 8,
   moderateMaintenanceShortfall: 4,
   resourceImportanceMultiplier: 1.5,
+  selfBuildPolishMultiplier: 0.5,
   softConstraintLimit: 24,
   satisfiedSoftConstraint: 2,
   excludedAdjustment: -100,
@@ -270,11 +271,18 @@ export function scoreDistro(
     profile.traits.hardware === 'limited' ||
     (profile.traits.hardware === 'aging' &&
       profile.traits.useCases.includes('old-hardware'));
+  const selfBuildPriority =
+    profile.traits.selfBuild &&
+    (profile.eligibility.experience === 'intermediate' ||
+      profile.eligibility.experience === 'advanced') &&
+    profile.eligibility.systemControl === 'high';
   const scoringWeight = (capability: Capability) =>
     profile.capabilities[capability].weight *
     (capability === 'oldHardware' && resourcePriority
       ? scoringRules.resourceImportanceMultiplier
-      : 1);
+      : capability === 'desktopPolish' && selfBuildPriority
+        ? scoringRules.selfBuildPolishMultiplier
+        : 1);
   const totalWeight = capabilityKeys.reduce(
     (sum, key) => sum + scoringWeight(key),
     0,
@@ -478,5 +486,5 @@ export function rankDistros(
 // Public boundary: accepts untrusted answers; existing validation rejects omissions.
 export function recommend(input: unknown): RecommendationResult {
   const profile = normalizePreferenceProfile(buildPreferenceProfile(input));
-  return { modelVersion: 12, profile, ranking: rankDistros(profile) };
+  return { modelVersion: 13, profile, ranking: rankDistros(profile) };
 }

@@ -24,6 +24,7 @@ test('scalar evidence has one owning question; required direct evidence covers e
     'traits.wantsAtomic': 'system-model',
     'traits.atomicStrength': 'system-model',
     'traits.containerFirst': 'system-model',
+    'traits.selfBuild': 'setup',
     'traits.fossPreference': 'software-freedom',
     'traits.gpu': 'gpu',
     'traits.hardware': 'hardware',
@@ -198,6 +199,21 @@ test('playful identity and final road cannot invent experience or willingness to
   assert.equal(result.eligibility.learningTolerance, 'high');
   assert.ok(result.traits.useCases.includes('security-testing'));
   assert.ok(result.traits.interests.includes('declarative-configuration'));
+});
+
+test('only the explicit build setup answer supplies self-build intent', () => {
+  for (const setup of ['ready', 'little', 'configure', 'build']) {
+    for (const identity of ['shape', 'understand', 'minimal', 'unix']) {
+      const result = profile({
+        ...base,
+        setup: [setup],
+        identity: [identity],
+        path: ['forbidden'],
+      });
+      assert.equal(result.traits.selfBuild, setup === 'build');
+      assert.deepEqual(result.eligibility, profile(base).eligibility);
+    }
+  }
 });
 
 test('final path reinforces primary preferences with at most a small change', () => {

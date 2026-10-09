@@ -134,6 +134,7 @@ export function buildPreferenceProfile(input: unknown): UserPreferenceProfile {
         : { wantsAtomic: traits.wantsAtomic }),
       atomicStrength: traits.atomicStrength ?? 0,
       containerFirst: traits.containerFirst ?? false,
+      selfBuild: traits.selfBuild ?? false,
       fossPreference: traits.fossPreference,
       gpu: traits.gpu,
       hardware: traits.hardware,

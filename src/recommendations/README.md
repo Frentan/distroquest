@@ -1,18 +1,18 @@
-# Recommendation engine, model v12
+# Recommendation engine, model v13
 
 The pure engine converts complete quiz answers into a deterministic ranking of
 all 29 distro profiles, with eligibility, score components, and explanation codes.
-Model v12 multiplies old-hardware scoring importance by 1.5 for limited hardware,
-or for aging hardware with explicit old-hardware purpose. Aging hardware without
-that purpose, recent, powerful, and handheld hardware are unchanged. Targets,
-assessments, eligibility, the model v11 upkeep rule, and model v10 gaming consistency
-stay unchanged.
+Model v13 halves supplied-default polish scoring importance for explicit self-build
+setup with intermediate/advanced experience and high system-control appetite.
+Model v12's 1.5× old-hardware importance remains in place for limited hardware,
+or aging hardware with explicit old-hardware purpose. Targets, assessments,
+eligibility, the model v11 upkeep rule, and model v10 gaming consistency stay unchanged.
 
 ## API and boundaries
 
 ```ts
 import { recommend } from './engine.ts';
-const result = recommend(answers); // { modelVersion: 12, profile, ranking }
+const result = recommend(answers); // { modelVersion: 13, profile, ranking }
 ```
 
 `recommend(unknown)` validates through the preference builder and throws
@@ -40,7 +40,10 @@ other freshness        = raw distance
 gaming distance        = min(5, 2 × raw distance)
 similarity             = 1 - effective distance / 5
 resource priority      = limited hardware OR (aging hardware AND old-hardware purpose)
-scoring weight         = w × 1.5 for oldHardware with resource priority; w otherwise
+self-build priority    = explicit build setup AND intermediate/advanced AND high control
+scoring weight         = w × 1.5 for oldHardware with resource priority
+                       = w × 0.5 for desktopPolish with self-build priority
+                       = w otherwise
 axis contribution      = 100 × scoring weight × similarity / sum(scoring weights)
 capability score       = sum(axis contributions)
 ```
@@ -59,7 +62,17 @@ distances, assessments, or an additive distro bonus. The preference profile reta
 its original 0–1 weights; `capabilityMatches.weight` exposes the effective scoring
 weight (up to 1.5 for oldHardware), and contributions use that weight consistently.
 Trait and specialist refinements still use the original profile. Aging hardware
-without old-hardware purpose receives no multiplier.
+without old-hardware purpose receives no resource multiplier.
+
+The self-build multiplier requires `traits.selfBuild`, supplied only by the explicit
+build setup answer, plus intermediate/advanced experience and high system-control
+appetite. Enjoying configuration alone does not qualify; identity and finale answers
+cannot supply this evidence. It reduces the importance of supplied defaults without
+removing the shortfall penalty when the user also requests polish. It neither changes
+eligibility nor grants technical experience. The profile's polish target and weight
+stay unchanged; `capabilityMatches.weight` records the halved effective weight.
+Both multipliers compose in the same weighted average, so reducing polish importance
+can lower absolute scores when other shortfalls gain relative weight.
 
 `capabilityMatches` exposes target, weight, actual value, raw/effective distance,
 similarity, and contribution. Reason `.met` means zero effective distance; `.near`

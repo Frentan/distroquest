@@ -136,7 +136,7 @@ test('genuine penetration tester: Kali is eligible and ranks highly', () => {
 
 test('qualified security intent has separate credit even when general traits are capped', () => {
   const result = recommend(personas.penetrationTester);
-  assert.equal(result.modelVersion, 12);
+  assert.equal(result.modelVersion, 13);
   const kali = result.ranking[0];
   assert.equal(kali.distroId, 'kali-linux');
   assert.equal(kali.traitAdjustment, 12);
@@ -1093,6 +1093,117 @@ test('limited-laptop resource priority needs no purpose checkbox and preserves n
       );
     }
   }
+});
+
+test('self-build polish priority requires explicit setup, experience, and high control', () => {
+  for (const experience of ['new', 'tried', 'regular', 'terminal', 'init']) {
+    for (const setup of ['ready', 'little', 'configure', 'build']) {
+      for (const control of [
+        'drive',
+        'understand',
+        'components',
+        'everything',
+      ]) {
+        const result = recommend({
+          ...personas.highControl,
+          experience: [experience],
+          setup: [setup],
+          control: [control],
+          customization: ['defaults'],
+        });
+        const priority =
+          setup === 'build' &&
+          ['regular', 'terminal', 'init'].includes(experience) &&
+          ['components', 'everything'].includes(control);
+        assert.equal(result.profile.traits.selfBuild, setup === 'build');
+        for (const row of result.ranking) {
+          const polish = row.capabilityMatches.find(
+            (m) => m.capability === 'desktopPolish',
+          )!;
+          assert.equal(
+            polish.target,
+            result.profile.capabilities.desktopPolish.target,
+          );
+          assert.equal(
+            polish.weight,
+            result.profile.capabilities.desktopPolish.weight *
+              (priority ? 0.5 : 1),
+          );
+        }
+        // Even a keen new builder cannot gain specialist eligibility.
+        if (experience === 'new' || experience === 'tried') {
+          assert.equal(
+            result.ranking.find((r) => r.distroId === 'arch-linux')!.eligible,
+            false,
+          );
+          assert.equal(
+            result.ranking.find((r) => r.distroId === 'kali-linux')!.eligible,
+            false,
+          );
+        }
+      }
+    }
+  }
+  const builder = recommend({
+    ...personas.highControl,
+    customization: ['touches'],
+  });
+  assert.equal(builder.ranking[0].distroId, 'arch-linux');
+  const polishDefault = recommend({
+    ...personas.highControl,
+    customization: ['defaults'],
+  });
+  assert.equal(polishDefault.ranking[0].distroId, 'endeavouros');
+  assert.ok(
+    polishDefault.ranking
+      .find((r) => r.distroId === 'arch-linux')!
+      .capabilityMatches.find((m) => m.capability === 'desktopPolish')!
+      .effectiveDistance > 0,
+  );
+});
+
+test('self-build and resource weights compose without changing refinements or inputs', () => {
+  const base = recommend(personas.highControl).profile;
+  const focused: RecommendationProfile = {
+    ...base,
+    capabilities: {
+      ...Object.fromEntries(
+        capabilityKeys.map((key) => [key, { target: 0, weight: 0 }]),
+      ),
+      beginnerFriendly: { target: 5, weight: 1 },
+      oldHardware: { target: 5, weight: 1 },
+      desktopPolish: { target: 5, weight: 1 },
+    } as RecommendationProfile['capabilities'],
+    traits: { ...base.traits, hardware: 'limited' },
+  };
+  const original = structuredClone(focused);
+  const mint = distroProfiles.find((d) => d.id === 'linux-mint')!;
+  const row = scoreDistro(focused, mint);
+  // Similarities: beginner 1, resources 0.7, polish 0.8; weights 1, 1.5, 0.5.
+  assert.ok(Math.abs(row.capabilityScore - 245 / 3) < 1e-10);
+  const W = row.capabilityMatches.reduce((sum, m) => sum + m.weight, 0);
+  assert.equal(W, 3);
+  for (const m of row.capabilityMatches)
+    assert.equal(m.contribution, (100 * m.weight * m.similarity) / W);
+  assert.equal(
+    row.capabilityScore,
+    row.capabilityMatches.reduce((sum, m) => sum + m.contribution, 0),
+  );
+  assert.equal(row.normalizedScore, (100 * row.rawScore) / 116);
+  const noBuild = {
+    ...focused,
+    traits: { ...focused.traits, selfBuild: false },
+  };
+  for (const distro of distroProfiles) {
+    const a = scoreDistro(focused, distro),
+      b = scoreDistro(noBuild, distro);
+    assert.equal(a.eligible, b.eligible);
+    assert.deepEqual(a.constraints, b.constraints);
+    assert.deepEqual(a.traitModifiers, b.traitModifiers);
+    assert.deepEqual(a.specialistModifiers, b.specialistModifiers);
+    assert.equal(a.breadthAdjustment, b.breadthAdjustment);
+  }
+  assert.deepEqual(focused, original);
 });
 
 test('balanced freshness allows limited extra currency; conservative answers remain strict', () => {

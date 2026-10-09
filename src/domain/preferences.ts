@@ -50,6 +50,7 @@ export type PreferenceEffect = Readonly<{
     wantsAtomic?: boolean;
     atomicStrength?: 1 | 2;
     containerFirst?: boolean;
+    selfBuild?: boolean;
     fossPreference?: Score;
     gpu?: Gpu;
     hardware?: Hardware;
@@ -93,6 +94,7 @@ export type UserTraits = Readonly<{
   wantsAtomic?: boolean;
   atomicStrength: 0 | 1 | 2;
   containerFirst: boolean;
+  selfBuild: boolean;
   fossPreference: Score;
   gpu: Gpu;
   hardware: Hardware;

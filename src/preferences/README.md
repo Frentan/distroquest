@@ -52,7 +52,7 @@ The question order follows the requested 8 / 4 / 3 / 1 structure:
 |   # | ID               | Main evidence                                              |
 | --: | :--------------- | :--------------------------------------------------------- |
 |   1 | experience       | Beginner needs; reported Linux experience                  |
-|   2 | setup            | Default polish, convenience, system setup appetite         |
+|   2 | setup            | Default polish, convenience, explicit self-build intent    |
 |   3 | freshness        | Desired software currency and conservatism                 |
 |   4 | maintenance      | Convenience, conservatism; upkeep tolerance                |
 |   5 | control          | System control; explicit control appetite                  |
@@ -103,6 +103,10 @@ and surplus beginner support or polish is not a mismatch.
 
 ## Explicit evidence and mixed answers
 
+- Setup supplies `traits.selfBuild` only for “Half the fun is building the system”;
+  all other setup answers leave it false. It preserves an explicit answer separately
+  from blended targets, without changing targets or eligibility. The engine uses it
+  with explicit experience and control evidence to reduce supplied-polish importance.
 - Experience comes only from question 1: regular use is intermediate; terminal
   confidence and init-system familiarity are advanced self-reports. Aspirations
   and troubleshooting never promote experience. Upkeep tolerance comes from
