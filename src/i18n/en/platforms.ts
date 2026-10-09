@@ -1,3 +1,4 @@
+import { message } from '../message.ts';
 import type { Platform, PlatformFollowupId } from '../../domain/platform.ts';
 export const platformQuestions: Record<
   PlatformFollowupId,
@@ -32,16 +33,23 @@ export const platformCopy = {
   title: 'YOUR HARDWARE PATH',
   preferencePath: 'YOUR PREFERENCE MATCH',
   preferenceTop: 'Preference match; installation needs a support check',
-  asahiName: (edition: 'kde' | 'gnome') =>
-    `Fedora Asahi Remix ${edition === 'kde' ? 'KDE' : 'GNOME'}`,
+  asahiName: message('Fedora Asahi Remix {edition}', [
+    { name: 'edition', kind: 'choice', values: { kde: 'KDE', gnome: 'GNOME' } },
+  ]),
   asahiSummary:
     'Fedora’s Apple Silicon path, with the Asahi project’s hardware support.',
-  baseMatch: (name: string) =>
-    `Fit is based on ${name}. Hardware support and available apps can differ on this Mac.`,
-  originalWinner: (name: string) =>
-    `Your answers lead to ${name}. Your hardware narrows the installation paths below.`,
-  originalFit: (name: string) =>
-    `Your answers lead to ${name}. Maintained T2 installation paths come first below.`,
+  baseMatch: message(
+    'Fit is based on {name}. Hardware support and available apps can differ on this Mac.',
+    [{ name: 'name', kind: 'text' }],
+  ),
+  originalWinner: message(
+    'Your answers lead to {name}. Your hardware narrows the installation paths below.',
+    [{ name: 'name', kind: 'text' }],
+  ),
+  originalFit: message(
+    'Your answers lead to {name}. Maintained T2 installation paths come first below.',
+    [{ name: 'name', kind: 'text' }],
+  ),
   sameFit:
     'Your preference match has a documented installation path for this platform.',
   asahiInstall:

@@ -1,0 +1,106 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import QuestScene from './QuestScene.astro';
+import { defaultLocale, getMessages, type PublishedLocale } from '../i18n';
+import { publishedPagePath } from '../routing';
+interface Props {
+  locale?: PublishedLocale;
+}
+const { locale = defaultLocale } = Astro.props;
+const copy = getMessages(locale);
+---
+
+<BaseLayout
+  page="home"
+  locale={locale}
+  title={copy.home.title}
+  description={copy.home.description}
+>
+  <div class="container">
+    <section class="hero" aria-labelledby="hero-title">
+      <div class="hero-copy">
+        <p class="eyebrow">
+          <span aria-hidden="true">✦</span> {copy.home.eyebrow}
+        </p>
+        <h1 id="hero-title">
+          {copy.site.wordmark[0]}
+          <span>{copy.site.wordmark[1]}</span>
+          <span class="title-dot">.</span>
+        </h1>
+        <p class="tagline">
+          {copy.home.tagline[0]}
+          <br class="desktop-break" /> {copy.home.tagline[1]}
+        </p>
+        <p class="hero-description">{copy.home.introduction}</p>
+        <a
+          class="button button-primary"
+          href={publishedPagePath('quiz', locale)}
+        >
+          {copy.home.begin} <span aria-hidden="true">→</span>
+        </a>
+        <div class="hero-information">
+          <div class="information-tile">
+            <svg
+              width="24"
+              height="28"
+              viewBox="0 0 24 28"
+              aria-hidden="true"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+            >
+              <path d="M6 4H2v22h20V4h-4M6 2h12v6H6zM6 14h2m4 0h6M6 20h2m4 0h6" />
+            </svg>
+            <ul class="quest-facts" aria-label={copy.home.factsLabel}>
+              {copy.home.facts.map((fact) => (
+                <li>{fact}</li>
+              ))}
+            </ul>
+          </div>
+          <div class="information-tile">
+            <svg width="24" height="28" viewBox="0 0 24 28" aria-hidden="true">
+              <path
+                d="M8 2h8v2h2v4h-4v4h-2v2H8v-2H6V4h2zM6 16h12v2h4v8H2v-8h4z"
+                fill="currentColor"
+              />
+              <path d="M2 26L22 2" stroke="var(--bg)" stroke-width="5" />
+              <path d="M2 26L22 2" stroke="currentColor" stroke-width="2" />
+            </svg>
+            <p class="preview-note">{copy.home.preview}</p>
+          </div>
+        </div>
+      </div>
+      <QuestScene locale={locale} />
+    </section>
+    <section class="how-section" id="how-it-works" aria-labelledby="how-title">
+      <div class="section-heading">
+        <p class="eyebrow">{copy.home.howEyebrow}</p>
+        <h2 id="how-title">{copy.home.howTitle}</h2>
+        <p>{copy.home.howIntroduction}</p>
+      </div>
+      <ol class="steps">
+        {copy.home.steps.map((step, index) => (
+          <li>
+            <span class="step-number" aria-hidden="true">
+              {new Intl.NumberFormat(locale, {
+                minimumIntegerDigits: 2,
+                useGrouping: false,
+              }).format(index + 1)}
+            </span>
+            <h3>{step.title}</h3>
+            <p>{step.description}</p>
+          </li>
+        ))}
+      </ol>
+    </section>
+    <aside class="privacy-note" aria-label={copy.home.privacyLabel}>
+      <span class="privacy-icon" aria-hidden="true">
+        ◇
+      </span>
+      <p>
+        <strong>{copy.home.privacyTitle}</strong> {copy.home.privacyDescription}
+      </p>
+      <span class="privacy-label">{copy.home.privacyBadge}</span>
+    </aside>
+  </div>
+</BaseLayout>

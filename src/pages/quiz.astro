@@ -1,16 +1,5 @@
 ---
-import BaseLayout from '../layouts/BaseLayout.astro';
-import Quiz from '../components/Quiz.astro';
-import { defaultLocale, getMessages } from '../i18n';
-const locale = defaultLocale;
-const copy = getMessages(locale).quiz;
+import QuizPage from '../components/QuizPage.astro';
 ---
 
-<BaseLayout
-  page="quiz"
-  locale={locale}
-  title={copy.title}
-  description={copy.description}
->
-  <Quiz />
-</BaseLayout>
+<QuizPage />

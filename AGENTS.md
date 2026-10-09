@@ -11,6 +11,12 @@ Manage the background server with `npm run dev:stop`, `npm run dev:status`, and
 
 ## Documentation
 
+- Keep ignored `docs/V1-PLAN.md` and `docs/DEVELOPMENT.md` current as work progresses
+  and before each commit; record the verified scope and delivery after each commit.
+- Public READMEs describe usage and durable technical contracts. Keep editorial
+  proposals, review dialogue, and session checkpoints under ignored `docs/`.
+  Machine-readable translation approval records remain tracked.
+
 Full documentation: https://docs.astro.build
 
 Consult these guides before working on related tasks:
@@ -28,7 +34,9 @@ Consult these guides before working on related tasks:
   without an explicit request. Local planning notes may exist in the ignored `docs/`
   folder, but tracked instructions must remain useful without those notes.
 - Keep user-facing text, metadata, and accessible labels in `src/i18n/`.
-  English is published; Italian, Spanish, Portuguese, French, and German are planned.
+  English is published; Spanish, Italian, and Portuguese are planned. French and
+  German are deferred indefinitely; preserve their reserved IDs without starting
+  translation or publication work.
   Do not expose untranslated routes or a language selector before content is ready.
 - Use at least `0.875rem` for small readable text; do not shrink it further on mobile.
 

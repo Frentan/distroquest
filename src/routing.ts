@@ -1,6 +1,6 @@
 import {
   defaultLocale,
-  plannedLocales,
+  knownLocales,
   publishedLocales,
   type Locale,
 } from './i18n/locales.ts';
@@ -12,7 +12,8 @@ export const pages = {
 } as const;
 export type Page = keyof typeof pages;
 
-// Path construction supports planned locales; it does not establish publication.
+// Path construction preserves known locale paths, including reserved IDs.
+// Neither planning nor path resolution establishes publication.
 export function localePath(
   path: string,
   locale: Locale = defaultLocale,
@@ -21,7 +22,7 @@ export function localePath(
   const pathname = boundary < 0 ? path : path.slice(0, boundary);
   const suffix = boundary < 0 ? '' : path.slice(boundary);
   const segments = pathname.split('/').filter(Boolean);
-  if (plannedLocales.some((language) => language === segments[0]))
+  if (knownLocales.some((language) => language === segments[0]))
     segments.shift();
   const relative = segments.length ? `/${segments.join('/')}/` : '/';
   return `${locale === defaultLocale ? '' : `/${locale}`}${relative}${suffix}`;
@@ -35,7 +36,7 @@ export function resolvePage(
   path: string,
 ): { page: Page; locale: Locale } | undefined {
   const pathname = path.split(/[?#]/, 1)[0];
-  for (const locale of plannedLocales) {
+  for (const locale of knownLocales) {
     for (const page of Object.keys(pages) as Page[]) {
       const expected = pagePath(page, locale);
       if (

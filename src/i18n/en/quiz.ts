@@ -1,3 +1,4 @@
+import { message } from '../message.ts';
 import type { Capability } from '../../domain/distro.ts';
 import type { UseCase } from '../../domain/preferences.ts';
 
@@ -6,22 +7,35 @@ export const quizCopy = {
   description:
     'A short, private Linux quiz. Find a distribution that fits your habits, hardware, and appetite for tinkering.',
   eyebrow: 'YOUR QUEST',
-  progress: (current: number, total: number) =>
-    `Question ${current} of ${total}`,
+  progress: message('Question {current} of {total}', [
+    { name: 'current', kind: 'number' },
+    { name: 'total', kind: 'number' },
+  ]),
   progressLabel: 'Submitted answers',
-  submitted: (count: number, total: number) => `${count} of ${total} submitted`,
+  submitted: message('{count} of {total} submitted', [
+    { name: 'count', kind: 'number' },
+    { name: 'total', kind: 'number' },
+  ]),
   macStep: 'Includes one Mac hardware question.',
-  selectionCount: (count: number, max: number) => `${count} of ${max} selected`,
+  selectionCount: message('{count} of {max} selected', [
+    { name: 'count', kind: 'number' },
+    { name: 'max', kind: 'number' },
+  ]),
   selectionLimit: 'Limit reached. Deselect an answer to choose another.',
   relevantStats: 'Capabilities for your priorities',
   statsNote: 'Capability ratings out of 5, not fit or hardware-support scores.',
-  comparedWith: (name: string) => `Compared with ${name}`,
-  capabilityComparison: (
-    label: string,
-    value: number,
-    primary: number,
-    name: string,
-  ) => `${label}: ${value}/5 versus ${name}’s ${primary}/5`,
+  comparedWith: message('Compared with {name}', [
+    { name: 'name', kind: 'text' },
+  ]),
+  capabilityComparison: message(
+    '{label}: {value}/5 versus {name}’s {primary}/5',
+    [
+      { name: 'label', kind: 'text' },
+      { name: 'value', kind: 'number' },
+      { name: 'primary', kind: 'number' },
+      { name: 'name', kind: 'text' },
+    ],
+  ),
   workflow: {
     'conventional-desktop': 'Traditional desktop',
     'atomic-desktop': 'Atomic desktop',
@@ -31,12 +45,14 @@ export const quizCopy = {
   release: { fixed: 'Fixed releases', rolling: 'Rolling releases' },
   singleHint: 'Choose one.',
   finalHint: 'Choose one to reveal your path.',
-  multipleHint: (max: number) => `Choose 1–${max}.`,
+  multipleHint: message('Choose 1–{max}.', [{ name: 'max', kind: 'number' }]),
   back: 'Back',
   next: 'Continue',
   retry: 'Try again',
   finish: 'Reveal my path',
-  match: (percentage: number) => `${percentage.toFixed(1)}% preference fit`,
+  match: message('{percentage}% preference fit', [
+    { name: 'percentage', kind: 'number', digits: 1 },
+  ]),
   matchNote: 'Hardware support is checked separately.',
   restart: 'Restart quest',
   restartPrompt: 'Start over? Your current answers will be cleared.',
@@ -54,7 +70,8 @@ export const quizCopy = {
   installationGuidance: 'Installation guidance',
   variantStatsNote:
     'Base Fedora capabilities out of 5; Asahi is not rated separately.',
-  statValue: (value: number) => `${value} out of 5`,
+  statScore: message('{value}/5', [{ name: 'value', kind: 'number' }]),
+  statValue: message('{value} out of 5', [{ name: 'value', kind: 'number' }]),
   preparation: 'Pack for your sidequests',
   why: 'Why this fits you',
   tradeoffs: 'Before you set out',
@@ -144,7 +161,7 @@ export const capabilityCopy: Record<
 };
 // A near match can also carry a shortfall caution. Describe it as close,
 // rather than saying it fully meets the preference on the same result screen.
-const capabilityNearCopy: Record<Capability, string> = {
+export const capabilityNearCopy: Record<Capability, string> = {
   beginnerFriendly:
     'Its beginner guidance offers nearly the support you asked for.',
   lowMaintenance:
@@ -218,18 +235,3 @@ export const cautionCopy: Record<string, string> = {
   constraint:
     'This path asks for more experience or specialist interest than your answers suggest. Review the learning and upkeep it needs.',
 };
-export function explainReason(code: string): string | undefined {
-  if (code.startsWith('capability.')) {
-    const [, capability, outcome] = code.split('.');
-    return outcome === 'near'
-      ? capabilityNearCopy[capability as Capability]
-      : capabilityCopy[capability as Capability]?.reason;
-  }
-  return reasonCopy[code];
-}
-export function explainCaution(code: string): string | undefined {
-  if (code.startsWith('capability.'))
-    return capabilityCopy[code.split('.')[1] as Capability]?.caution;
-  if (code.startsWith('constraint.')) return cautionCopy.constraint;
-  return cautionCopy[code];
-}

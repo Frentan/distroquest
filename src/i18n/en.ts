@@ -1,6 +1,15 @@
 import { distroContentEn } from './en/distros.ts';
 import { questionContentEn } from './en/questions.ts';
-import { quizCopy } from './en/quiz.ts';
+import {
+  quizCopy,
+  capabilityLabels,
+  preparationCopy,
+  capabilityCopy,
+  capabilityNearCopy,
+  reasonCopy,
+  cautionCopy,
+} from './en/quiz.ts';
+import { platformCopy, platformQuestions } from './en/platforms.ts';
 import { QUESTION_COUNT } from '../data/questions.ts';
 
 // All English UI copy, including metadata and accessible labels, lives here.
@@ -82,4 +91,14 @@ export const en = {
     captionDetail: 'Every good quest starts with the right kit.',
   },
   quiz: quizCopy,
+  capabilityLabels,
+  preparationCopy,
+  explanations: {
+    capability: capabilityCopy,
+    near: capabilityNearCopy,
+    reasons: reasonCopy,
+    cautions: cautionCopy,
+  },
+  platform: platformCopy,
+  platformQuestions,
 };

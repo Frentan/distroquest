@@ -18,11 +18,10 @@ import { platformShortlist } from '../src/quiz/platform-presentation.ts';
 import { applyPlatform } from '../src/platforms/compatibility.ts';
 import { recommend } from '../src/recommendations/engine.ts';
 import { recommendationPersonas as personas } from '../scripts/recommendation-personas.ts';
-import {
-  explainReason,
-  explainCaution,
-  preparationCopy,
-} from '../src/i18n/en/quiz.ts';
+import { preparationCopy } from '../src/i18n/en/quiz.ts';
+import { en } from '../src/i18n/en.ts';
+import { createExplanations } from '../src/i18n/explanations.ts';
+const { explainReason, explainCaution } = createExplanations(en.explanations);
 import type { Recommendation } from '../src/domain/recommendations.ts';
 
 test('starts unanswered; cannot advance or skip; ignores unknown options', () => {

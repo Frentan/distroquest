@@ -1,19 +1,16 @@
 import { questions } from '../data/questions.ts';
 import { getDistros } from '../data/index.ts';
-import { en } from '../i18n/en.ts';
 import {
-  quizCopy as copy,
-  explainReason,
-  explainCaution,
-  capabilityLabels,
-  preparationCopy,
-} from '../i18n/en/quiz.ts';
+  getMessages,
+  defaultLocale,
+  type PublishedLocale,
+} from '../i18n/index.ts';
+import { createExplanations } from '../i18n/explanations.ts';
 import type {
   Recommendation,
   CapabilityMatch,
 } from '../domain/recommendations.ts';
 import type { PlatformCandidate } from '../domain/platform.ts';
-import { platformCopy, platformQuestions } from '../i18n/en/platforms.ts';
 import { platformSources } from '../data/platforms.ts';
 import { getPlatformFollowup } from '../platforms/compatibility.ts';
 import {
@@ -53,10 +50,24 @@ function button(text: string, action: () => void, primary = false) {
   node.addEventListener('click', action);
   return node;
 }
-export function mountQuiz(root: HTMLElement) {
+export function mountQuiz(
+  root: HTMLElement,
+  locale: PublishedLocale = defaultLocale,
+) {
+  const messages = getMessages(locale);
+  const {
+    quiz: copy,
+    capabilityLabels,
+    preparationCopy,
+    platform: platformCopy,
+    platformQuestions,
+  } = messages;
+  const { explainReason, explainCaution } = createExplanations(
+    messages.explanations,
+  );
   let state = startQuiz();
   const submitted = new Set<string>();
-  const distros = getDistros(en.distros);
+  const distros = getDistros(messages.distros);
   const panel = element('div', undefined, 'quiz-panel');
   const restartDialog = element('dialog', undefined, 'restart-dialog');
   restartDialog.setAttribute('aria-labelledby', 'restart-title');
@@ -120,7 +131,11 @@ export function mountQuiz(root: HTMLElement) {
       const stat = element('div', undefined, 'capability-stat');
       const label = element('span', capabilityLabels[match.capability]);
       label.id = `stat-${id}-${match.capability}`;
-      const value = element('span', `${match.actual}/5`, 'capability-value');
+      const value = element(
+        'span',
+        copy.statScore(match.actual),
+        'capability-value',
+      );
       value.setAttribute('aria-hidden', 'true');
       const meter = element('div', undefined, 'capability-bar');
       meter.setAttribute('role', 'meter');
@@ -587,7 +602,7 @@ export function mountQuiz(root: HTMLElement) {
       : baseQuestion;
     const content = followup
       ? platformQuestions[followup.id]
-      : en.questions[baseQuestion.id];
+      : messages.questions[baseQuestion.id];
     const position = getQuizProgress(state);
     panel.append(
       questionJourney(

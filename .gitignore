@@ -24,7 +24,7 @@ pnpm-debug.log*
 .idea/
 /.vscode/
 
-# local planning and internal development notes
+# local planning, editorial review artifacts, and internal development notes
 /docs/
 
 # local agent and tool state

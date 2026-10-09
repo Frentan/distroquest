@@ -1,6 +1,11 @@
 import assert from 'node:assert/strict';
 import { test } from 'node:test';
-import { plannedLocales, publishedLocales } from '../src/i18n/locales.ts';
+import {
+  plannedLocales,
+  deferredLocales,
+  knownLocales,
+  publishedLocales,
+} from '../src/i18n/locales.ts';
 import {
   localePath,
   pagePath,
@@ -12,8 +17,8 @@ import {
 
 const site = new URL('https://distroquest.example/?campaign=test#section');
 
-test('planned home and quiz paths keep English unprefixed and use trailing slashes', () => {
-  for (const locale of plannedLocales) {
+test('known home and quiz paths keep English unprefixed and preserve reserved paths', () => {
+  for (const locale of knownLocales) {
     const prefix = locale === 'en' ? '' : `/${locale}`;
     assert.equal(pagePath('home', locale), `${prefix}/`);
     assert.equal(pagePath('quiz', locale), `${prefix}/quiz/`);
@@ -49,7 +54,7 @@ test('planned locales do not become public links, metadata, or sitemap entries',
   assert.deepEqual(publishedLocales, ['en']);
   assert.equal(publishedPagePath('home', 'en'), '/');
   assert.equal(publishedPagePath('quiz', 'en'), '/quiz/');
-  for (const locale of plannedLocales.filter((locale) => locale !== 'en')) {
+  for (const locale of knownLocales.filter((locale) => locale !== 'en')) {
     assert.equal(publishedPagePath('home', locale), undefined);
     assert.equal(publishedPagePath('quiz', locale), undefined);
     assert.equal(pageMetadata('home', locale, site).canonical, undefined);
@@ -102,4 +107,14 @@ test('future publication produces reciprocal page equivalents and self-canonical
     'https://distroquest.example/',
     'https://distroquest.example/es/',
   ]);
+});
+
+test('French and German remain reserved but outside the active localization plan', () => {
+  assert.deepEqual(plannedLocales, ['en', 'it', 'es', 'pt']);
+  assert.deepEqual(deferredLocales, ['fr', 'de']);
+  for (const locale of deferredLocales) {
+    assert.ok(!(plannedLocales as readonly string[]).includes(locale));
+    assert.equal(publishedPagePath('home', locale), undefined);
+    assert.equal(publishedPagePath('quiz', locale), undefined);
+  }
 });

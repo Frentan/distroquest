@@ -30,12 +30,11 @@ npm run format:check
 npm run build
 ```
 
-`npm run format` formats the source. The static production build writes to `dist/`.
-For Cloudflare Pages, use `npm run build` and output directory `dist`. Set `SITE_URL`
-to the final public origin, including `https://`, before building for canonical
-URLs and the sitemap. No server adapter is needed.
+The static build writes to `dist/`. Set `SITE_URL` to the public HTTPS origin for
+canonical URLs and the sitemap. On Cloudflare Pages, use `npm run build` and output
+directory `dist`; no server adapter is needed.
 
-## How matching works
+## Matching and development
 
 The quiz turns explicit answers into capability preferences, traits, and eligibility
 evidence. A pure engine ranks all 29 profiles and explains matches and tradeoffs.
@@ -54,43 +53,13 @@ layer orders practical installation paths while preserving the engine's scores:
 - M3 is experimental. M4/newer and unidentified chips have no verified supported
   path in this dataset.
 
-Platform evidence was checked on 2026-10-02 against [Asahi](https://asahilinux.org/fedora/),
-its [M3](https://asahilinux.org/docs/platform/feature-support/m3/) and
-[M4](https://asahilinux.org/docs/platform/feature-support/m4/) tables,
-[t2linux](https://wiki.t2linux.org/guides/preinstall/), and
-[CachyOS](https://wiki.cachyos.org/installation/installation_t2macbook/).
-Support changes; check current device, app, and game requirements before installing.
+Technical references:
 
-## Development references
-
-Routing and metadata share the two page identities in `src/routing.ts`: `home`
-and `quiz`. English stays at `/` and `/quiz/`; planned translations use
-`/{locale}/` and `/{locale}/quiz/` for `it`, `es`, `pt`, `fr`, and `de`.
-`pagePath()` constructs planned paths; `publishedPagePath()` gates public links
-using `src/i18n/locales.ts`. Add a locale there only after reviewed content and
-both static routes are ready. Helpers do not create Astro routes.
-
-The layout checks its page identity against the route and emits self-referencing
-canonicals and Open Graph URLs when `SITE_URL` is configured. Alternate-language
-links connect published equivalents once multiple languages are ready. The sitemap
-lists only published homepages; each complete quiz remains `noindex, follow`, with
-questions, follow-ups, and results held in memory on its single route. No origin
-means no absolute metadata and an empty sitemap.
-
-User-facing copy, metadata, and accessible labels live in `src/i18n/`.
-`src/quiz/` owns in-memory navigation and result presentation; `src/platforms/`
-owns the hardware overlay. Development builds expose answers, profiles, rankings,
-and platform diagnostics through `window.distroquestDebug`; production excludes it.
-
-| Reference                                           | Review command                                 | Covers                                    |
-| :-------------------------------------------------- | :--------------------------------------------- | :---------------------------------------- |
-| [Distro model](src/data/README.md)                  | `npm run data:review`                          | Assessments, traits, constraints, sources |
-| [Preference model](src/preferences/README.md)       | `npm run preferences:review`                   | Answer validation and evidence weights    |
-| [Scoring engine](src/recommendations/README.md)     | `npm run recommendations:review`               | Formulas, diagnostics, and 20 personas    |
-| [Example rankings](src/recommendations/EXAMPLES.md) | `npm run recommendations:review -- --examples` | All 20 complete ranking tables            |
-
-Review commands accept `--json`. Preferences and recommendations also accept
-`--answers /tmp/answers.json`; recommendations accept `--persona atomicDeveloper`.
+- [Distro assessments and sources](src/data/README.md)
+- [Platform support](src/data/SUPPORT-REVIEW.md)
+- [Preference model](src/preferences/README.md)
+- [Scoring engine](src/recommendations/README.md) and [example rankings](src/recommendations/EXAMPLES.md)
+- [Routing, translations, and publication checks](src/i18n/README.md)
 
 ## License
 

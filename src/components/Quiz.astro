@@ -1,12 +1,17 @@
 ---
-import { quizCopy } from '../i18n/en/quiz';
+import { defaultLocale, getMessages, type PublishedLocale } from '../i18n';
+interface Props {
+  locale?: PublishedLocale;
+}
+const { locale = defaultLocale } = Astro.props;
+const quizCopy = getMessages(locale).quiz;
 import ResultArtworkFilters from './ResultArtworkFilters.astro';
 import '../styles/quiz.css';
 ---
 
 <section class="quiz-shell container" aria-label={quizCopy.eyebrow}>
   <ResultArtworkFilters />
-  <div id="quiz-root">
+  <div id="quiz-root" data-locale={locale}>
     <p>{quizCopy.loading}</p>
   </div>
   <noscript>
@@ -14,7 +19,11 @@ import '../styles/quiz.css';
   </noscript>
 </section>
 <script>
+  import { publishedLocales } from '../i18n/locales';
   import { mountQuiz } from '../quiz/client';
   const root = document.querySelector<HTMLElement>('#quiz-root');
-  if (root) mountQuiz(root);
+  const locale = publishedLocales.find(
+    (locale) => locale === root?.dataset.locale,
+  );
+  if (root && locale) mountQuiz(root, locale);
 </script>

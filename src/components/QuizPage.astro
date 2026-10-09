@@ -1,0 +1,19 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Quiz from './Quiz.astro';
+import { defaultLocale, getMessages, type PublishedLocale } from '../i18n';
+interface Props {
+  locale?: PublishedLocale;
+}
+const { locale = defaultLocale } = Astro.props;
+const copy = getMessages(locale).quiz;
+---
+
+<BaseLayout
+  page="quiz"
+  locale={locale}
+  title={copy.title}
+  description={copy.description}
+>
+  <Quiz locale={locale} />
+</BaseLayout>
