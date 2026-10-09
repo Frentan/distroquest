@@ -77,16 +77,17 @@ export const questionContentEn: QuestionDictionary = {
     },
   },
   'system-model': {
-    prompt:
-      'Would you like a protected base with a different way to change it?',
+    prompt: 'How would you prefer to manage the system underneath your apps?',
     helper:
-      'Atomic systems update the core OS as an image or generation, often with rollback. Apps and containers can live around it.',
+      'Atomic systems update the base as a unit, often with rollback. Apps and tools commonly live separately, using Flatpak or containers. Changing the base works differently from a traditional package-managed system.',
     options: {
       traditional: {
         label: 'I want a traditional system I can modify directly.',
       },
       either: { label: 'No preference.' },
-      protected: { label: 'A protected base sounds appealing.' },
+      protected: {
+        label: 'An atomic base sounds appealing; I can learn its ways.',
+      },
       containers: { label: 'Give me the atomic, container-first approach.' },
     },
   },
