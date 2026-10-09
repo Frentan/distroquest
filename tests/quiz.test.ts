@@ -385,3 +385,28 @@ test('broad purposes tailor preparation without inventing expertise or gaming ev
   assert.deepEqual(preparationTopics(activeGamer), ['gaming']);
   assert.notDeepEqual(activeGamer.ranking, combined.ranking);
 });
+
+test('narrow specialist explanations are visible without repeating minimalism', () => {
+  const arch = recommend(personas.highControl).ranking[0];
+  assert.equal(strongestReasons(arch)[0], 'specialist.minimalist-self-build');
+  assert.ok(explainReason('specialist.minimalist-self-build'));
+  const overlapping = {
+    ...arch,
+    reasons: [
+      'specialist.minimalist-self-build',
+      'focus.minimalism',
+      ...arch.reasons.filter((code) => code.startsWith('capability.')),
+    ],
+  };
+  assert.equal(
+    strongestReasons(overlapping).filter(
+      (code) =>
+        code === 'specialist.minimalist-self-build' ||
+        code === 'focus.minimalism',
+    ).length,
+    1,
+  );
+  const slack = recommend(personas.unixAdministrator).ranking[0];
+  assert.equal(strongestReasons(slack)[0], 'specialist.traditional-unix');
+  assert.ok(explainReason('specialist.traditional-unix'));
+});

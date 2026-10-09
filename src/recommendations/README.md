@@ -1,18 +1,18 @@
-# Recommendation engine, model v13
+# Recommendation engine, model v14
 
 The pure engine converts complete quiz answers into a deterministic ranking of
 all 29 distro profiles, with eligibility, score components, and explanation codes.
-Model v13 halves supplied-default polish scoring importance for explicit self-build
-setup with intermediate/advanced experience and high system-control appetite.
-Model v12's 1.5× old-hardware importance remains in place for limited hardware,
-or aging hardware with explicit old-hardware purpose. Targets, assessments,
-eligibility, the model v11 upkeep rule, and model v10 gaming consistency stay unchanged.
+Model v14 adds two narrow +0.5 specialist intent credits for fully qualified
+minimalist self-build and traditional Unix workflows. Model v13's halved polish
+importance, model v12's resource importance, model v11's upkeep grading and model
+v10's gaming consistency remain unchanged. No question, assessment, eligibility
+or support-continuity score changes are introduced.
 
 ## API and boundaries
 
 ```ts
 import { recommend } from './engine.ts';
-const result = recommend(answers); // { modelVersion: 13, profile, ranking }
+const result = recommend(answers); // { modelVersion: 14, profile, ranking }
 ```
 
 `recommend(unknown)` validates through the preference builder and throws
@@ -133,6 +133,23 @@ Specific user intent receives separate credit when it matches an assessed purpos
 | Handheld device and positive gaming intensity    | Gaming focus and documented handheld path |     +2 | Bazzite             |
 | Development purpose and container-first workflow | Development focus and image-based system  |     +2 | Bluefin, Silverblue |
 
+Two additional credits use existing constraints as the specialist contract:
+
+- Minimalist self-build: +0.5 for minimal focus, explicit self-build setup,
+  high control and minimalism interest, when eligible and all soft groups match.
+  Current recipients are Arch, Gentoo, Void and Alpine.
+- Traditional Unix: +0.5 for explicit traditional Unix interest, when eligible,
+  all soft groups match, and a soft group explicitly assesses that same interest.
+  The current recipient is Slackware.
+
+Both require at least one hard requirement and one soft-preference group. This
+separates qualified specialist fit from general minimalism or aspiration without
+using distro IDs. Partial soft fit receives no new credit; its existing penalty
+is unchanged. The credits reinforce an already matched workflow rather than
+establishing a new capability. Void's Xfce baseline need not be manually assembled.
+Minimalism and Unix identity are mutually exclusive in the current quiz, so both
+credits cannot activate in the same valid completion. No experience is inferred.
+
 `specialistModifiers` explains each match and sums to `specialistAdjustment`,
 outside the ±12 trait cap. Existing general trait credits remain inside that cap.
 Rules use assessed traits, without distro-ID bonuses or a new capability axis;
@@ -191,7 +208,8 @@ The fixed ceiling remains 116. Ordinary profiles allow 100 capability, 12 trait,
 specialist, instead allows 100 capability, 12 trait, and 4 specialist points; it has
 zero breadth and no soft-constraint reward. Bazzite allows 100 capability, 12 trait, 2 specialist, and 1.2 breadth points,
 totaling 115.2; Bluefin and Silverblue allow 1.6 breadth points, totaling 115.6.
-Dataset tests check these upper bounds
+The new narrow credits also fit: Arch's upper bound is 115.3, Gentoo's 114.9,
+Void's 115.1, Alpine's 114.7 and Slackware's 114.9. Dataset tests check these upper bounds
 before normalization, so future changes cannot silently rely on clamping overflow.
 The scale is independent of other candidates and is not a probability or calibrated
 percentage. Revisit it when adding specialist matches or positive constraint rewards.

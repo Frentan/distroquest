@@ -25,6 +25,7 @@ export const scoringRules = Object.freeze({
   handheldMatch: 3,
   creativeIntegrationMatch: 2,
   specialistIntentMatch: 4,
+  narrowSpecialistIntentMatch: 0.5,
   handheldSpecialistMatch: 2,
   containerDeveloperSpecialistMatch: 2,
   breadthMaximum: 2,
@@ -229,9 +230,45 @@ function specialistModifiers(
   profile: RecommendationProfile,
   distro: DistroProfile,
   eligible: boolean,
+  constraints: Recommendation['constraints'],
 ): Adjustment[] {
   if (!eligible) return [];
   const modifiers: Adjustment[] = [];
+  // A specialist floor plus full soft fit distinguishes qualified intent from
+  // general minimalism or enthusiasm. Constraint evidence stays authoritative.
+  const soft = constraints.filter(
+    (constraint) => constraint.effect === 'strongly-prefer',
+  );
+  const qualified =
+    constraints.some((constraint) => constraint.effect === 'require') &&
+    soft.length > 0 &&
+    soft.every((constraint) => constraint.matched);
+  if (
+    qualified &&
+    distro.traits.focus.minimal &&
+    profile.traits.selfBuild &&
+    profile.eligibility.systemControl === 'high' &&
+    profile.traits.interests.includes('minimalism')
+  )
+    modifiers.push({
+      code: 'specialist.minimalist-self-build',
+      points: scoringRules.narrowSpecialistIntentMatch,
+    });
+  if (
+    qualified &&
+    profile.traits.interests.includes('traditional-unix') &&
+    soft.some((constraint) =>
+      constraint.conditions.some(
+        ({ condition }) =>
+          condition.kind === 'interest' &&
+          condition.value === 'traditional-unix',
+      ),
+    )
+  )
+    modifiers.push({
+      code: 'specialist.traditional-unix',
+      points: scoringRules.narrowSpecialistIntentMatch,
+    });
   if (
     profile.traits.useCases.includes('security-testing') &&
     distro.traits.focus.security
@@ -373,7 +410,12 @@ export function scoreDistro(
   );
   if (uncapped !== traitAdjustment)
     modifiers.push({ code: 'traits.cap', points: traitAdjustment - uncapped });
-  const specialists = specialistModifiers(profile, distro, eligible);
+  const specialists = specialistModifiers(
+    profile,
+    distro,
+    eligible,
+    constraints,
+  );
   const specialistAdjustment = specialists.reduce(
     (sum, modifier) => sum + modifier.points,
     0,
@@ -486,5 +528,5 @@ export function rankDistros(
 // Public boundary: accepts untrusted answers; existing validation rejects omissions.
 export function recommend(input: unknown): RecommendationResult {
   const profile = normalizePreferenceProfile(buildPreferenceProfile(input));
-  return { modelVersion: 13, profile, ranking: rankDistros(profile) };
+  return { modelVersion: 14, profile, ranking: rankDistros(profile) };
 }

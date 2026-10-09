@@ -5,6 +5,9 @@ sources, not benchmarks, measured reliability, or published project ratings.
 [Preferences](../preferences/README.md) and [scoring](../recommendations/README.md)
 are separate models.
 
+The dated [support continuity review](SUPPORT-REVIEW.md) records the 29-profile
+evidence and the decision to keep project longevity out of numeric matching.
+
 ## Inspect and validate
 
 ```sh

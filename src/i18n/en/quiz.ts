@@ -180,6 +180,10 @@ export const reasonCopy: Record<string, string> = {
     'Its specialist focus matches the security-testing work you selected.',
   'specialist.handheld-gaming':
     'A documented handheld gaming path matches your gaming plans.',
+  'specialist.minimalist-self-build':
+    'Its minimal approach suits your plans to build and shape your own system.',
+  'specialist.traditional-unix':
+    'Its traditional administration style suits the Unix path you selected.',
   'specialist.container-development':
     'Its container-based development tools suit the workflow you selected.',
   'nvidia.integrated':

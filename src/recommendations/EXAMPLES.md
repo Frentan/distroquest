@@ -1,4 +1,4 @@
-# Example rankings, model v13
+# Example rankings, model v14
 
 All 20 complete answer fixtures from
 [`scripts/recommendation-personas.ts`](../../scripts/recommendation-personas.ts).
@@ -203,16 +203,16 @@ Regenerate with `npm run --silent recommendations:review -- --examples > src/rec
 
 |   # | Distro              | Eligible |    Raw | Normalized | Capability | Traits | Specialist | Eligibility | Breadth |
 | --: | :------------------ | :------- | -----: | ---------: | ---------: | -----: | ---------: | ----------: | ------: |
-|   1 | arch-linux          | true     | 113.40 |      97.76 |     100.00 |  10.60 |       0.00 |        2.00 |    0.80 |
-|   2 | gentoo              | true     | 108.55 |      93.58 |      95.55 |  10.60 |       0.00 |        2.00 |    0.40 |
+|   1 | arch-linux          | true     | 113.90 |      98.19 |     100.00 |  10.60 |       0.50 |        2.00 |    0.80 |
+|   2 | gentoo              | true     | 109.05 |      94.01 |      95.55 |  10.60 |       0.50 |        2.00 |    0.40 |
 |   3 | endeavouros         | true     | 107.03 |      92.27 |      95.23 |  10.60 |       0.00 |        0.00 |    1.20 |
-|   4 | void-linux          | true     | 104.27 |      89.89 |      91.07 |  10.60 |       0.00 |        2.00 |    0.60 |
+|   4 | void-linux          | true     | 104.77 |      90.32 |      91.07 |  10.60 |       0.50 |        2.00 |    0.60 |
 |   5 | opensuse-tumbleweed | true     | 103.47 |      89.20 |      92.67 |   9.20 |       0.00 |        0.00 |    1.60 |
 |   6 | rhino-linux         | true     | 100.67 |      86.78 |      90.07 |   7.60 |       0.00 |        2.00 |    1.00 |
 |   7 | cachyos             | true     |  98.03 |      84.51 |      95.23 |   1.60 |       0.00 |        0.00 |    1.20 |
 |   8 | garuda-linux        | true     |  97.83 |      84.34 |      95.23 |   1.60 |       0.00 |        0.00 |    1.00 |
-|   9 | fedora-kde          | true     |  91.03 |      78.47 |      88.03 |   1.20 |       0.00 |        0.00 |    1.80 |
-|  10 | alpine-linux        | true     |  90.90 |      78.36 |      86.10 |   2.60 |       0.00 |        2.00 |    0.20 |
+|   9 | alpine-linux        | true     |  91.40 |      78.79 |      86.10 |   2.60 |       0.50 |        2.00 |    0.20 |
+|  10 | fedora-kde          | true     |  91.03 |      78.47 |      88.03 |   1.20 |       0.00 |        0.00 |    1.80 |
 |  11 | pikaos              | true     |  88.03 |      75.89 |      85.43 |   1.60 |       0.00 |        0.00 |    1.00 |
 |  12 | solus               | true     |  84.38 |      72.74 |      75.58 |   7.60 |       0.00 |        0.00 |    1.20 |
 |  13 | fedora-workstation  | true     |  83.43 |      71.92 |      80.23 |   1.20 |       0.00 |        0.00 |    2.00 |
@@ -509,7 +509,7 @@ Regenerate with `npm run --silent recommendations:review -- --examples > src/rec
 
 |   # | Distro              | Eligible |    Raw | Normalized | Capability | Traits | Specialist | Eligibility | Breadth |
 | --: | :------------------ | :------- | -----: | ---------: | ---------: | -----: | ---------: | ----------: | ------: |
-|   1 | slackware           | true     | 105.94 |      91.33 |      95.54 |   8.00 |       0.00 |        2.00 |    0.40 |
+|   1 | slackware           | true     | 106.44 |      91.76 |      95.54 |   8.00 |       0.50 |        2.00 |    0.40 |
 |   2 | debian              | true     | 101.20 |      87.24 |      91.40 |   8.00 |       0.00 |        0.00 |    1.80 |
 |   3 | mx-linux            | true     |  94.77 |      81.70 |      85.17 |   8.00 |       0.00 |        0.00 |    1.60 |
 |   4 | linux-mint          | true     |  92.82 |      80.02 |      82.82 |   8.00 |       0.00 |        0.00 |    2.00 |
@@ -645,11 +645,11 @@ Regenerate with `npm run --silent recommendations:review -- --examples > src/rec
 
 |   # | Distro              | Eligible |    Raw | Normalized | Capability | Traits | Specialist | Eligibility | Breadth |
 | --: | :------------------ | :------- | -----: | ---------: | ---------: | -----: | ---------: | ----------: | ------: |
-|   1 | void-linux          | true     | 105.41 |      90.87 |      92.21 |  10.60 |       0.00 |        2.00 |    0.60 |
-|   2 | arch-linux          | true     | 100.10 |      86.29 |      86.70 |  10.60 |       0.00 |        2.00 |    0.80 |
+|   1 | void-linux          | true     | 105.91 |      91.30 |      92.21 |  10.60 |       0.50 |        2.00 |    0.60 |
+|   2 | arch-linux          | true     | 100.60 |      86.72 |      86.70 |  10.60 |       0.50 |        2.00 |    0.80 |
 |   3 | endeavouros         | true     |  97.87 |      84.37 |      86.07 |  10.60 |       0.00 |        0.00 |    1.20 |
-|   4 | gentoo              | true     |  94.31 |      81.31 |      81.31 |  10.60 |       0.00 |        2.00 |    0.40 |
-|   5 | alpine-linux        | true     |  93.40 |      80.52 |      88.60 |   2.60 |       0.00 |        2.00 |    0.20 |
+|   4 | gentoo              | true     |  94.81 |      81.74 |      81.31 |  10.60 |       0.50 |        2.00 |    0.40 |
+|   5 | alpine-linux        | true     |  93.90 |      80.95 |      88.60 |   2.60 |       0.50 |        2.00 |    0.20 |
 |   6 | opensuse-tumbleweed | true     |  92.67 |      79.89 |      81.87 |   9.20 |       0.00 |        0.00 |    1.60 |
 |   7 | rhino-linux         | true     |  88.89 |      76.63 |      78.29 |   7.60 |       0.00 |        2.00 |    1.00 |
 |   8 | fedora-kde          | true     |  84.52 |      72.86 |      81.52 |   1.20 |       0.00 |        0.00 |    1.80 |
@@ -679,7 +679,7 @@ Regenerate with `npm run --silent recommendations:review -- --examples > src/rec
 
 |   # | Distro              | Eligible |    Raw | Normalized | Capability | Traits | Specialist | Eligibility | Breadth |
 | --: | :------------------ | :------- | -----: | ---------: | ---------: | -----: | ---------: | ----------: | ------: |
-|   1 | alpine-linux        | true     | 104.31 |      89.92 |      91.51 |  10.60 |       0.00 |        2.00 |    0.20 |
+|   1 | alpine-linux        | true     | 104.81 |      90.36 |      91.51 |  10.60 |       0.50 |        2.00 |    0.20 |
 |   2 | debian              | true     |  96.29 |      83.01 |      85.29 |   9.20 |       0.00 |        0.00 |    1.80 |
 |   3 | mx-linux            | true     |  95.04 |      81.93 |      85.84 |   7.60 |       0.00 |        0.00 |    1.60 |
 |   4 | fedora-kde          | true     |  91.89 |      79.21 |      80.89 |   9.20 |       0.00 |        0.00 |    1.80 |

@@ -34,9 +34,12 @@ export function strongestReasons(row: Recommendation): string[] {
               : code === 'focus.security' ||
                   code === 'specialist.security-testing'
                 ? 'security-testing'
-                : code.startsWith('capability.')
-                  ? code.split('.')[1]
-                  : code;
+                : code === 'focus.minimalism' ||
+                    code === 'specialist.minimalist-self-build'
+                  ? 'minimalism'
+                  : code.startsWith('capability.')
+                    ? code.split('.')[1]
+                    : code;
       if (topics.has(topic)) return false;
       topics.add(topic);
       return true;

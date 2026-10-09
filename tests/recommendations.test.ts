@@ -136,7 +136,7 @@ test('genuine penetration tester: Kali is eligible and ranks highly', () => {
 
 test('qualified security intent has separate credit even when general traits are capped', () => {
   const result = recommend(personas.penetrationTester);
-  assert.equal(result.modelVersion, 13);
+  assert.equal(result.modelVersion, 14);
   const kali = result.ranking[0];
   assert.equal(kali.distroId, 'kali-linux');
   assert.equal(kali.traitAdjustment, 12);
@@ -190,7 +190,12 @@ test('specialist intent cannot grant eligibility or arise from aspiration or bro
   }
   for (const answers of [personas.highControl, personas.securityCurious]) {
     assert.ok(
-      recommend(answers).ranking.every((row) => row.specialistAdjustment === 0),
+      recommend(answers).ranking.every(
+        (row) =>
+          !row.specialistModifiers.some(
+            (m) => m.code === 'specialist.security-testing',
+          ),
+      ),
     );
   }
   assert.deepEqual(top('securityCurious', 3), [
@@ -303,9 +308,22 @@ test('the current roster fits the fixed normalization ceiling before clamping', 
   const allSpecialistIntents: RecommendationProfile = {
     ...profile,
     capabilities: { ...profile.capabilities, gaming: { target: 5, weight: 1 } },
+    eligibility: {
+      experience: 'advanced',
+      maintenanceTolerance: 'high',
+      systemControl: 'high',
+      learningTolerance: 'high',
+    },
     traits: {
       ...profile.traits,
       containerFirst: true,
+      selfBuild: true,
+      interests: [
+        'minimalism',
+        'traditional-unix',
+        'technical-learning',
+        'declarative-configuration',
+      ],
       deviceType: 'handheld',
       useCases: [...profile.traits.useCases, 'development'],
     },
@@ -1174,7 +1192,8 @@ test('self-build and resource weights compose without changing refinements or in
       oldHardware: { target: 5, weight: 1 },
       desktopPolish: { target: 5, weight: 1 },
     } as RecommendationProfile['capabilities'],
-    traits: { ...base.traits, hardware: 'limited' },
+    // Isolate the weight rules from the separate minimalist intent credit.
+    traits: { ...base.traits, hardware: 'limited', interests: [] },
   };
   const original = structuredClone(focused);
   const mint = distroProfiles.find((d) => d.id === 'linux-mint')!;
@@ -1581,5 +1600,107 @@ test('atomic and mutable rolling additions follow explicit workflow evidence wit
     curious.ranking.find((r) => r.distroId === 'rhino-linux')!.constraints[0]
       .conditions[0].matched,
     false,
+  );
+});
+
+test('narrow minimalist credit needs self-build, high control and full eligible soft fit', () => {
+  const answers = {
+    ...personas.minimalLearningDesktop,
+    setup: ['build'],
+    control: ['everything'],
+    experience: ['init'],
+    maintenance: ['hobby'],
+    identity: ['minimal'],
+    'use-cases': ['learning'],
+  };
+  const result = recommend(answers);
+  const recipients = result.ranking.filter((row) =>
+    row.specialistModifiers.some(
+      (m) => m.code === 'specialist.minimalist-self-build',
+    ),
+  );
+  assert.deepEqual(recipients.map((row) => row.distroId).sort(), [
+    'alpine-linux',
+    'arch-linux',
+    'gentoo',
+    'void-linux',
+  ]);
+  for (const row of recipients) {
+    assert.equal(row.specialistAdjustment, 0.5);
+    assert.ok(row.eligible);
+    assert.ok(row.constraints.every((c) => c.matched));
+    assert.ok(row.reasons.includes('specialist.minimalist-self-build'));
+  }
+  for (const change of [
+    { setup: ['configure'] },
+    { control: ['understand'] },
+    { identity: ['understand'] },
+    { experience: ['tried'] },
+  ]) {
+    assert.ok(
+      recommend({ ...answers, ...change }).ranking.every(
+        (row) =>
+          !row.specialistModifiers.some(
+            (m) => m.code === 'specialist.minimalist-self-build',
+          ),
+      ),
+    );
+  }
+  const partial = recommend({ ...answers, maintenance: ['sometimes'] });
+  for (const id of ['arch-linux', 'gentoo', 'void-linux']) {
+    const row = partial.ranking.find((row) => row.distroId === id)!;
+    assert.ok(row.eligible);
+    assert.equal(row.specialistAdjustment, 0);
+  }
+  // The contract follows focus and constraints, not an ID or supplied desktop.
+  const arch = distroProfiles.find((d) => d.id === 'arch-linux')!;
+  const renamed = { ...arch, id: 'ubuntu' as const };
+  assert.deepEqual(
+    scoreDistro(result.profile, renamed).specialistModifiers,
+    scoreDistro(result.profile, arch).specialistModifiers,
+  );
+  assert.equal(
+    scoreDistro(result.profile, {
+      ...arch,
+      recommendation: { ...arch.recommendation, constraints: [] },
+    }).specialistAdjustment,
+    0,
+  );
+});
+
+test('traditional Unix credit needs the explicit soft interest and full specialist fit', () => {
+  const answers = {
+    ...personas.unixAdministrator,
+    experience: ['init'],
+    maintenance: ['hobby'],
+    identity: ['unix'],
+  };
+  const r = recommend(answers);
+  assert.deepEqual(
+    r.ranking
+      .filter((row) =>
+        row.specialistModifiers.some(
+          (m) => m.code === 'specialist.traditional-unix',
+        ),
+      )
+      .map((row) => row.distroId),
+    ['slackware'],
+  );
+  const slack = distroProfiles.find((d) => d.id === 'slackware')!;
+  assert.equal(scoreDistro(r.profile, slack).specialistAdjustment, 0.5);
+  for (const change of [
+    { identity: ['minimal'] },
+    { experience: ['regular'] },
+    { maintenance: ['sometimes'] },
+    { experience: ['tried'] },
+  ]) {
+    const row = recommend({ ...answers, ...change }).ranking.find(
+      (row) => row.distroId === 'slackware',
+    )!;
+    assert.equal(row.specialistAdjustment, 0);
+  }
+  assert.equal(
+    scoreDistro(r.profile, { ...slack, id: 'ubuntu' }).specialistAdjustment,
+    0.5,
   );
 });
