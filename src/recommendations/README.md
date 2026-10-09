@@ -2,11 +2,9 @@
 
 The pure engine converts complete quiz answers into a deterministic ranking of
 all 29 distro profiles, with eligibility, score components, and explanation codes.
-Model v14 adds two narrow +0.5 specialist intent credits for fully qualified
-minimalist self-build and traditional Unix workflows. Model v13's halved polish
-importance, model v12's resource importance, model v11's upkeep grading and model
-v10's gaming consistency remain unchanged. No question, assessment, eligibility
-or support-continuity score changes are introduced.
+Model v14 combines effective resource/polish importance with small trait and
+specialist credits. The current rules preserve the 16-question schema, distro
+assessments and explicit eligibility requirements. Support continuity is not scored.
 
 ## API and boundaries
 
@@ -55,23 +53,17 @@ secondary answers cannot overwrite `freshnessIntent`. Gaming shortfalls count tw
 Zero weights contribute nothing; an all-zero profile defensively yields zero points.
 Valid quiz profiles always carry freshness importance.
 
-The resource-priority multiplier applies to limited hardware with or without the
-old-hardware purpose checkbox, and to aging hardware only with that explicit purpose.
-It changes relative importance within the weighted average, not targets,
-distances, assessments, or an additive distro bonus. The preference profile retains
-its original 0–1 weights; `capabilityMatches.weight` exposes the effective scoring
-weight (up to 1.5 for oldHardware), and contributions use that weight consistently.
-Trait and specialist refinements still use the original profile. Aging hardware
-without old-hardware purpose receives no resource multiplier.
+Both multipliers change relative importance within the weighted average, not
+profile targets/weights, distances, assessments or eligibility. Trait and specialist
+refinements use the original profile. `capabilityMatches.weight` records the effective
+weight, up to 1.5 for oldHardware.
 
-The self-build multiplier requires `traits.selfBuild`, supplied only by the explicit
-build setup answer, plus intermediate/advanced experience and high system-control
-appetite. Enjoying configuration alone does not qualify; identity and finale answers
-cannot supply this evidence. It reduces the importance of supplied defaults without
-removing the shortfall penalty when the user also requests polish. It neither changes
-eligibility nor grants technical experience. The profile's polish target and weight
-stay unchanged; `capabilityMatches.weight` records the halved effective weight.
-Both multipliers compose in the same weighted average, so reducing polish importance
+Resource priority applies to limited hardware regardless of purpose, or aging
+hardware with explicit old-hardware purpose. Self-build priority requires
+`traits.selfBuild` from the build setup answer, intermediate/advanced experience
+and high control. Identity, finale and enthusiasm for configuration cannot supply
+that setup evidence. Halving supplied-polish importance retains a penalty if the
+user also requests polish. The multipliers compose; reducing polish importance
 can lower absolute scores when other shortfalls gain relative weight.
 
 `capabilityMatches` exposes target, weight, actual value, raw/effective distance,
@@ -111,17 +103,11 @@ unassessed integration receives no penalty. Setup helpers do not guarantee app,
 codec, plugin, or peripheral compatibility. Handheld results always advise checking
 the specific device.
 
-Neutral release/atomic choices add nothing. Only NVIDIA evidence activates driver
-modifiers. Gaming focus is distinct from gaming capability: none (target 0)
-incurs −6 regardless of purpose selection. Occasional gaming (target 2) incurs
-−3 without an explicit gaming purpose and receives no modifier with it.
-Important/main intensity keeps its existing reward. The modifier uses
-`focus.gaming-mismatch` in diagnostics and cautions, inside the existing trait cap.
-Surplus gaming capability remains free. FOSS policy does not
-guarantee free firmware. Transactional hosts use `containers.transactional` for their match explanation;
-image-based hosts retain `containers.image-based`.
-Atomic updates alone do not imply container-first interest;
-NixOS is declarative, not an image-based container workstation.
+Neutral release/atomic choices add nothing. Gaming mismatch uses
+`focus.gaming-mismatch` in diagnostics and cautions, inside the trait cap.
+FOSS policy does not guarantee free firmware. Transactional and image-based hosts
+use separate container-match explanation codes. Atomic preference does not imply
+container-first interest; declarative NixOS is not an image-based workstation.
 
 ## Specialist intent
 
@@ -142,11 +128,9 @@ Two additional credits use existing constraints as the specialist contract:
   all soft groups match, and a soft group explicitly assesses that same interest.
   The current recipient is Slackware.
 
-Both require at least one hard requirement and one soft-preference group. This
-separates qualified specialist fit from general minimalism or aspiration without
-using distro IDs. Partial soft fit receives no new credit; its existing penalty
-is unchanged. The credits reinforce an already matched workflow rather than
-establishing a new capability. Void's Xfce baseline need not be manually assembled.
+Both require a hard requirement and a nonempty soft-preference group. Partial
+soft fit receives no new credit; its penalty is unchanged. These credits reinforce
+a qualified workflow using existing evidence, without distro IDs or a new capability. Void's Xfce baseline need not be manually assembled.
 Minimalism and Unix identity are mutually exclusive in the current quiz, so both
 credits cannot activate in the same valid completion. No experience is inferred.
 
@@ -161,11 +145,6 @@ supplies the container-oriented tooling; the standard desktop assessment does no
 imply that it is enabled. Those sources were checked on 2026-10-03. Silverblue also satisfies the existing
 image-based/development-focus predicate through its official Toolbx workflow,
 reviewed on 2026-10-04; it adds no new specialist rule.
-
-Handheld credit requires positive gaming intensity; desktop gaming alone does not
-qualify. Container-development credit requires both explicit intents. Creative
-integration remains a general trait; platform installation paths remain separate
-from scores.
 
 ## Eligibility
 
@@ -208,9 +187,9 @@ The fixed ceiling remains 116. Ordinary profiles allow 100 capability, 12 trait,
 specialist, instead allows 100 capability, 12 trait, and 4 specialist points; it has
 zero breadth and no soft-constraint reward. Bazzite allows 100 capability, 12 trait, 2 specialist, and 1.2 breadth points,
 totaling 115.2; Bluefin and Silverblue allow 1.6 breadth points, totaling 115.6.
-The new narrow credits also fit: Arch's upper bound is 115.3, Gentoo's 114.9,
-Void's 115.1, Alpine's 114.7 and Slackware's 114.9. Dataset tests check these upper bounds
-before normalization, so future changes cannot silently rely on clamping overflow.
+Narrow specialist bounds are also below 116: Arch 115.3, Gentoo 114.9, Void 115.1,
+Alpine 114.7 and Slackware 114.9. Tests check bounds before normalization, so future
+changes cannot silently rely on clamping overflow.
 The scale is independent of other candidates and is not a probability or calibrated
 percentage. Revisit it when adding specialist matches or positive constraint rewards.
 

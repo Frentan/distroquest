@@ -1,12 +1,10 @@
 # Support continuity review
 
 Reviewed 2026-10-09 against engine model 13 (`8d5319d`), following the first five
-quiz-balancing passes. This is a dated research and design record, not live policy
-or an implemented support model. These are
-policy and workflow observations, not scores or predictions of project survival.
-Edition scope follows the current repository assessment. Upstream statements
-establish a documented mechanism; they do not independently establish its success
-rate, response time, or future funding.
+quiz-balancing passes. This dated record preserves policy/workflow evidence and
+design intent for the assessed editions. It does not implement support scoring or
+predict project survival. Upstream statements document mechanisms, not independently
+verified success rates, response times or future funding.
 
 Evidence labels: **policy** means a retrieved explicit support window or package
 scope; **workflow** means retrieved update, maintenance, security, or release
@@ -48,10 +46,9 @@ review's evidence, not project quality. Retrieval failures are not negative evid
 
 ## Decision and intent
 
-The review does not justify adding a numeric support or project-longevity prior.
-Keep the matching model unchanged on this dimension. Project age, size, base
-ancestry and our ability to retrieve a web page must not become automatic quality
-bonuses or penalties. A smaller project can document a careful release process;
+The review does not justify a numeric support or project-longevity prior. Project
+age, size, base ancestry and page-retrieval success must not become automatic
+quality bonuses or penalties. A smaller project can document a careful release process;
 a long-lived upstream does not guarantee maintenance of derivative integrations.
 
 If support information is added to the structured assessment later, keep separate
