@@ -5,6 +5,11 @@ import type {
 import type { UseCase } from '../domain/preferences.ts';
 
 export function strongestReasons(row: Recommendation): string[] {
+  const points = new Map(
+    [...row.traitModifiers, ...row.specialistModifiers].map(
+      ({ code, points }) => [code, points],
+    ),
+  );
   const capabilities = [...row.capabilityMatches]
     .sort((a, b) => b.contribution - a.contribution)
     .flatMap((match) =>
@@ -12,16 +17,25 @@ export function strongestReasons(row: Recommendation): string[] {
         code.startsWith(`capability.${match.capability}.`),
       ),
     );
-  const traits = row.reasons.filter(
-    (code) =>
-      !code.startsWith('capability.') &&
-      !code.startsWith('constraint.') &&
-      code !== 'breadth.prior',
-  );
-  const signals = [...traits.slice(0, 2), ...capabilities];
+  // Specialists retain priority; other traits use their existing contribution.
+  // Stable ties retain engine order. Selection never changes scoring or ranking.
+  const traits = row.reasons
+    .filter(
+      (code) =>
+        !code.startsWith('capability.') &&
+        !code.startsWith('constraint.') &&
+        code !== 'breadth.prior',
+    )
+    .sort(
+      (a, b) =>
+        Number(b.startsWith('specialist.')) -
+          Number(a.startsWith('specialist.')) ||
+        (points.get(b) ?? 0) - (points.get(a) ?? 0),
+    );
   const topics = new Set<string>();
-  return signals
-    .filter((code) => {
+  function takeDistinct(codes: readonly string[], limit: number): string[] {
+    const selected: string[] = [];
+    for (const code of codes) {
       const topic =
         code === 'focus.development' ||
         code === 'specialist.container-development'
@@ -40,11 +54,18 @@ export function strongestReasons(row: Recommendation): string[] {
                   : code.startsWith('capability.')
                     ? code.split('.')[1]
                     : code;
-      if (topics.has(topic)) return false;
+      if (topics.has(topic)) continue;
       topics.add(topic);
-      return true;
-    })
-    .slice(0, 5);
+      selected.push(code);
+      if (selected.length === limit) break;
+    }
+    return selected;
+  }
+  const selectedTraits = takeDistinct(traits, 2);
+  return [
+    ...selectedTraits,
+    ...takeDistinct(capabilities, 5 - selectedTraits.length),
+  ];
 }
 
 // Presentation rounding only; the engine's ranking always uses unrounded scores.

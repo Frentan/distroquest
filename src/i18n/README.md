@@ -33,6 +33,7 @@ sitemap. Without an origin, absolute metadata is omitted and the sitemap is empt
 text/number/choice parameters, and a locale. Translations may reorder or repeat
 placeholders, but must retain the call contract. TypeScript checks positional
 argument types; validation checks parameter names, types, choices, and precision.
+Message templates and every choice label must contain nonempty text.
 
 `Intl.NumberFormat` localizes human-readable numbers without changing calculation
 inputs, ranking, or machine-readable ARIA values. `createExplanations()` resolves

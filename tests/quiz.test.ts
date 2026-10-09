@@ -227,6 +227,62 @@ test('container-development explanation covers both Bluefin and Silverblue workf
   }
 });
 
+test('stronger trait explanations survive selection without mutating recommendation output', () => {
+  const result = recommend(personas.declarative);
+  const snapshot = structuredClone(result);
+  const row = result.ranking[0];
+  assert.equal(row.distroId, 'nixos');
+  const reasons = strongestReasons(row);
+  assert.deepEqual(reasons.slice(0, 2), [
+    'workflow.declarative',
+    'release.match',
+  ]);
+  assert.equal(reasons.length, 5);
+  assert.deepEqual(result, snapshot);
+  for (const persona of ['highControl', 'unixAdministrator'] as const) {
+    const specialist = recommend(personas[persona]).ranking[0];
+    assert.ok(strongestReasons(specialist)[0].startsWith('specialist.'));
+  }
+});
+
+test('trait selection fills distinct topic slots and retains engine order for equal contributions', () => {
+  const row = recommend(personas.atomicDeveloper).ranking[0];
+  const capabilities = row.reasons.filter((code) =>
+    code.startsWith('capability.'),
+  );
+  const reasons = strongestReasons({
+    ...row,
+    reasons: [
+      'specialist.container-development',
+      'focus.development',
+      'atomic.match',
+      ...capabilities,
+    ],
+    traitModifiers: [
+      { code: 'focus.development', points: 8 },
+      { code: 'atomic.match', points: 2 },
+    ],
+  });
+  assert.deepEqual(reasons.slice(0, 2), [
+    'specialist.container-development',
+    'atomic.match',
+  ]);
+  assert.ok(
+    !reasons.some((code) => code.startsWith('capability.developerExperience.')),
+  );
+  assert.equal(reasons.length, 5);
+  const tied = strongestReasons({
+    ...row,
+    reasons: ['atomic.match', 'release.match', ...capabilities],
+    specialistModifiers: [],
+    traitModifiers: [
+      { code: 'release.match', points: 2 },
+      { code: 'atomic.match', points: 2 },
+    ],
+  });
+  assert.deepEqual(tied.slice(0, 2), ['atomic.match', 'release.match']);
+});
+
 test('specialist security fit is visible without duplicating the security-focus explanation', () => {
   const kali = recommend(personas.penetrationTester).ranking[0];
   const reasons = strongestReasons(kali);

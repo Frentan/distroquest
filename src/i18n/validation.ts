@@ -19,6 +19,12 @@ export function dictionaryIssues(
       if (
         !expectedUnit ||
         !actualUnit ||
+        !actualUnit.template.trim() ||
+        actualUnit.parameters.some(
+          (parameter) =>
+            parameter.kind === 'choice' &&
+            Object.values(parameter.values).some((label) => !label.trim()),
+        ) ||
         JSON.stringify(parameterContract(expectedUnit)) !==
           JSON.stringify(parameterContract(actualUnit))
       )

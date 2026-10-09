@@ -156,6 +156,40 @@ test('locale number formatting changes presentation only', () => {
   );
 });
 
+test('publication rejects empty choice labels even with matching accepted hashes', () => {
+  const source = { asahiName: en.platform.asahiName };
+  for (const label of ['', ' \n\t']) {
+    const translated = {
+      asahiName: message(
+        'Fedora Asahi Remix {edition}',
+        [
+          {
+            name: 'edition',
+            kind: 'choice',
+            values: { kde: 'KDE', gnome: label },
+          },
+        ],
+        'es',
+      ),
+    };
+    assert.deepEqual(dictionaryIssues(translated, source), ['asahiName']);
+    assert.ok(
+      publicationIssues('es', source, translated, {
+        approved: true,
+        approvedBy: 'test fixture only',
+        units: accept(source, translated),
+      }).includes('es: incomplete or invalid asahiName'),
+    );
+  }
+  assert.deepEqual(
+    dictionaryIssues(
+      { title: message(' \n', [], 'es') },
+      { title: message('Title', []) },
+    ),
+    ['title'],
+  );
+});
+
 test('publication requires complete, reviewed, current copy and separate authorization', () => {
   const source = { title: 'Title' },
     translated = { title: 'Título' };
