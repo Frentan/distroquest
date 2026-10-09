@@ -94,7 +94,7 @@ export const quizCopyEs = {
     'Capacidades de Fedora base sobre 5; Asahi no tiene una valoración independiente.',
   statScore: message('{value}/5', [{ name: 'value', kind: 'number' }], 'es'),
   statValue: message('{value} de 5', [{ name: 'value', kind: 'number' }], 'es'),
-  preparation: 'Prepara el equipo para tus aventuras secundarias',
+  preparation: 'Prepárate para la aventura',
   why: 'Por qué encaja contigo',
   tradeoffs: 'Antes de ponerte en camino',
   edition: 'Otro camino oficial de esta familia',

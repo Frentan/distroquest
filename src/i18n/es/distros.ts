@@ -73,7 +73,7 @@ export const distroContentEs = {
       'Colaboración consolidada con los proyectos originales',
     ],
     cautions: [
-      'Las actualizaciones frecuentes requieren planificación.',
+      'Las actualizaciones a nuevas versiones requieren planificación.',
       'Algunos códecs y controladores propietarios necesitan configuración adicional.',
       'Las extensiones de GNOME pueden complicar los cambios de versión.',
     ],
@@ -89,7 +89,7 @@ export const distroContentEs = {
     archetype: {
       name: 'El Experimentador',
       description:
-        'El Experimentador disfruta de una base moderna con paneles, atajos y formas de trabajar que puede adaptar. Fedora KDE integra esa curiosidad en el uso cotidiano del escritorio sin convertir la personalización en una afición de mantenimiento a tiempo completo.',
+        'El Experimentador disfruta de una base moderna con paneles, atajos y formas de trabajar que puede adaptar. Fedora KDE permite experimentar en el día a día sin convertir la personalización en una tarea permanente de mantenimiento.',
     },
     summary:
       'Un escritorio KDE Plasma actualizado sobre la base versátil de Fedora.',
@@ -100,7 +100,7 @@ export const distroContentEs = {
       'Buen encaje como estación de trabajo de uso general',
     ],
     cautions: [
-      'Las actualizaciones frecuentes requieren planificación.',
+      'Las actualizaciones a nuevas versiones requieren planificación.',
       'Los controladores propietarios y algunos códecs necesitan configuración adicional.',
       'La abundancia de ajustes del escritorio puede abrumar a quienes empiezan.',
     ],
@@ -129,9 +129,9 @@ export const distroContentEs = {
     ],
     cautions: [
       'La gestión de paquetes del sistema anfitrión difiere de la de Fedora convencional; Flatpak y Toolbx requieren otros hábitos.',
-      'Los códecs propietarios y los controladores NVIDIA necesitan configuración adicional y pueden tardar en adaptarse a un kernel nuevo.',
+      'Los códecs propietarios y los controladores NVIDIA necesitan configuración adicional; el soporte de los controladores puede tardar en adaptarse a kernels nuevos.',
       'La personalización de GNOME es menos amplia que la de KDE Plasma.',
-      'Las actualizaciones regulares de Fedora siguen requiriendo planificación.',
+      'Las actualizaciones regulares a nuevas versiones de Fedora siguen requiriendo planificación.',
     ],
     idealFor: [
       'Desarrolladores que usan contenedores',
@@ -148,7 +148,7 @@ export const distroContentEs = {
     archetype: {
       name: 'El Custodio',
       description:
-        'El Custodio da al software maduro una vida larga y útil. Debian encaja con quienes valoran los cambios predecibles, el cuidado de la comunidad y un sistema que puedan mantener estable con el paso del tiempo.',
+        'El Custodio da al software maduro una vida larga y útil. Debian encaja con quienes valoran los cambios predecibles, la gestión comunitaria y un sistema que puedan mantener estable con el paso del tiempo.',
     },
     summary:
       'Una distribución mantenida por la comunidad cuya rama estable favorece la continuidad y un gran archivo de paquetes.',
@@ -244,7 +244,7 @@ export const distroContentEs = {
     ],
     cautions: [
       'Personalización integrada del escritorio limitada.',
-      'Menor selección de aplicaciones con integración estrecha.',
+      'Menos aplicaciones plenamente integradas con el escritorio.',
       'Los videojuegos y las herramientas especializadas requieren más configuración.',
     ],
     idealFor: [
@@ -272,7 +272,7 @@ export const distroContentEs = {
     cautions: [
       'Aeon sigue siendo una versión candidata; comprueba los requisitos de hardware y recuperación antes de depender de él.',
       'No se admite modificar el sistema anfitrión de la forma tradicional; usa Flatpak o Distrobox siempre que sea posible.',
-      'No hay una vía lista para usar con soporte para integrar los controladores propietarios NVIDIA; hay que comprobar la compatibilidad gráfica caso por caso.',
+      'La integración de controladores propietarios NVIDIA no cuenta con una solución lista para usar con soporte oficial. Comprueba la compatibilidad gráfica de tu equipo.',
       'El instalador requiere UEFI, reemplaza el contenido del disco seleccionado y tiene requisitos específicos de cifrado.',
     ],
     idealFor: [
@@ -316,7 +316,7 @@ export const distroContentEs = {
     archetype: {
       name: 'El Explorador',
       description:
-        'El Explorador entra en el mundo de Arch por un camino más iluminado. EndeavourOS ofrece una comunidad acogedora para empezar y una instalación gráfica, pero deja en manos del usuario el camino de hacerse cargo de su sistema.',
+        'El Explorador entra en el mundo de Arch por un camino más iluminado. EndeavourOS te recibe con una comunidad acogedora y una instalación gráfica; aprender a gestionar y mantener el sistema queda en tus manos.',
     },
     summary:
       'Una derivada de Arch orientada a la terminal, con un instalador guiado y una configuración de escritorio relativamente ligera.',
@@ -372,7 +372,7 @@ export const distroContentEs = {
     archetype: {
       name: 'El Andariego',
       description:
-        'El Andariego prefiere un paso ágil y equipo actual. CachyOS pone las herramientas de Arch orientadas al rendimiento al alcance de quienes quieren ajustar su ritmo sin montar todos los componentes de partida.',
+        'El Andariego avanza con paso ágil y equipo moderno. CachyOS acerca las herramientas de Arch orientadas al rendimiento a quienes quieren afinar su sistema sin montarlo todo desde cero.',
     },
     summary:
       'Un escritorio basado en Arch, con paquetes optimizados, opciones de kernel y herramientas orientadas al rendimiento.',
@@ -496,7 +496,7 @@ export const distroContentEs = {
     ],
     cautions: [
       'Lenguaje de configuración y curva de aprendizaje propios.',
-      'Las suposiciones convencionales sobre el sistema de archivos pueden hacer que fallen ciertos flujos de trabajo con software.',
+      'El software que espera una estructura de archivos convencional puede fallar o necesitar ajustes.',
       'La reproducibilidad requiere fijar versiones de forma disciplinada.',
     ],
     idealFor: [
@@ -683,12 +683,12 @@ export const distroContentEs = {
         'El Desafiante llega con nuevas ambiciones al terreno de los escritorios para videojuegos. PikaOS encaja con entusiastas que quieren controladores actuales y herramientas accesibles de ajuste, y que están dispuestos a seguir un proyecto joven mientras evoluciona.',
     },
     summary:
-      'Un escritorio de actualización continua basado en Debian Sid, con compilaciones seleccionadas para el rendimiento y herramientas para videojuegos y gráficos.',
+      'Un escritorio basado en Debian Sid, con actualización continua, compilaciones orientadas al rendimiento y herramientas para videojuegos y gráficos.',
     strengths: [
       'Componentes actuales para videojuegos y gráficos',
       'Herramientas gráficas para controladores y kernels',
       'Paquetes compilados con énfasis en el rendimiento',
-      'Herramientas para creación de contenido y tareas de alto rendimiento',
+      'Herramientas para creación de contenido y tareas de cómputo',
     ],
     cautions: [
       'Un proyecto más joven tiene menos historial de resolución de problemas al que recurrir.',

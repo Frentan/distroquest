@@ -23,8 +23,8 @@ export const platformQuestions: Record<
     helper:
       'Found in many Intel Macs released around 2018–2020. The exact model matters; the year alone is not enough.',
     options: {
-      yes: { label: 'Yes' },
-      no: { label: 'No' },
+      yes: { label: 'Yes.' },
+      no: { label: 'No.' },
       unknown: { label: 'I don’t know.' },
     },
   },

@@ -122,7 +122,7 @@ export const capabilityCopy: Record<
   },
   lowMaintenance: {
     reason: 'Upkeep fits your tinkering budget.',
-    caution: 'Budget more time for routine upkeep than you planned.',
+    caution: 'Routine upkeep may take more time than you planned.',
   },
   stability: {
     reason: 'Software predictability meets your need for steady ground.',

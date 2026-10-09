@@ -104,8 +104,8 @@ export const draftEs = {
       helper:
         'Está presente en muchos Mac con Intel lanzados aproximadamente entre 2018 y 2020. El modelo exacto importa; el año por sí solo no basta.',
       options: {
-        yes: { label: 'Sí' },
-        no: { label: 'No' },
+        yes: { label: 'Sí.' },
+        no: { label: 'No.' },
         unknown: { label: 'No lo sé.' },
       },
     },

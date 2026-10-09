@@ -42,7 +42,7 @@ export const questionContentEs: QuestionDictionary = {
       },
       occasional: {
         label:
-          'No me importa hacer limpieza o resolver problemas de vez en cuando.',
+          'Puedo hacer algo de limpieza o resolver algún problema puntual.',
       },
       sometimes: {
         label: 'No me molesta tener que solucionar problemas de vez en cuando.',
@@ -203,7 +203,7 @@ export const questionContentEs: QuestionDictionary = {
     },
   },
   path: {
-    prompt: 'Elige tu camino.',
+    prompt: 'Elige tu camino',
     helper: 'El camino se divide más adelante. ¿Por dónde sigues?',
     options: {
       comfortable: {

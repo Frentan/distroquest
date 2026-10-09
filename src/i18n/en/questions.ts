@@ -172,7 +172,7 @@ export const questionContentEn: QuestionDictionary = {
     },
   },
   path: {
-    prompt: 'Choose your path.',
+    prompt: 'Choose your path',
     helper: 'The road splits ahead. Which way do you go?',
     options: {
       comfortable: {

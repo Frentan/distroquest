@@ -424,7 +424,7 @@
     },
     "/distros/cachyos/archetype/description": {
       "sourceHash": "9c908b5f339eefa5884f26a688d8c56e972b52a6e5aee358e6eab476d0a04ff8",
-      "translationHash": "a71a490b2e743e69df5da235f1001a707789dd4f90e3b6f717de1d98fba371d8",
+      "translationHash": "867dffec97277d2143d2c522ee0aecbda1a7b629e58eeba37b459ec548cd4639",
       "status": "reviewed",
       "reviewedBy": "Frentan"
     },
@@ -514,7 +514,7 @@
     },
     "/distros/debian/archetype/description": {
       "sourceHash": "43b3f51b4b055457b799f1bf9c092bf446609b56c76a4d7751c7b51a4e69c320",
-      "translationHash": "afbb3b3168daf8b2b51ebadc490fbcd5d4676a21b6ad0c01cd81170eb955a4ba",
+      "translationHash": "2fa96950d8014dc2e2f4d6addd2df307c6db7b785636077c7c350279aeb843c7",
       "status": "reviewed",
       "reviewedBy": "Frentan"
     },
@@ -628,7 +628,7 @@
     },
     "/distros/elementary-os/cautions/1": {
       "sourceHash": "5f8bcdb53f7850298811ad9ae7af0d44434e81a64d1bab13be00b9f2af8a86e8",
-      "translationHash": "0e6a5092b7dc74ad977def7323383fbea4e9aa2b252d8f19edc1f76d49ac5892",
+      "translationHash": "aa9631d9548f6aeae2cd50201219433d827af2c92235e8a60bf59c4ed9c48695",
       "status": "reviewed",
       "reviewedBy": "Frentan"
     },
@@ -693,8 +693,8 @@
       "reviewedBy": "Frentan"
     },
     "/distros/endeavouros/archetype/description": {
-      "sourceHash": "8619882f2c5299c6ec5f9dc90e4fec8876f3f614e4abac7c916991b94383667e",
-      "translationHash": "791143637c62dcdce873db05f1ac386faadaffdd541db71eb274fc174d892263",
+      "sourceHash": "c8ec2d0401c0841c1da943d6279192bf0518fbc93b18d9e39c5fd5b4abd2ada3",
+      "translationHash": "36ee3268d1cd2f71fda49306991ba8cac833a87504efdfb3890832a14fb8c2f2",
       "status": "reviewed",
       "reviewedBy": "Frentan"
     },
@@ -784,7 +784,7 @@
     },
     "/distros/fedora-kde/archetype/description": {
       "sourceHash": "37680ced7aff1aa9371683b15b82e9a19123310fd17cb2b6523cb2367ac8a123",
-      "translationHash": "e55faf665594247681a8e7ea042d8b43f85f7a33c5d00cb1f0c15e8a5ce425e5",
+      "translationHash": "c8e7865133dd9f84b5f0136dfe6ab96a73c86cf826b82a191cb1307c4151ec8c",
       "status": "reviewed",
       "reviewedBy": "Frentan"
     },
@@ -802,7 +802,7 @@
     },
     "/distros/fedora-kde/cautions/0": {
       "sourceHash": "9614e04d02de4d3af48b869efd33fcd01f32f87aad363d0b0a7c8e74fb398f74",
-      "translationHash": "6d4c9addf8b69061e2b4b267975f426a7347fe2a3ee0fc035ff3acc5a6a3ae19",
+      "translationHash": "7e26bea356aca82d36339ff95c18f12475b3af29e51287b6e76d0005d235b995",
       "status": "reviewed",
       "reviewedBy": "Frentan"
     },
@@ -897,8 +897,8 @@
       "reviewedBy": "Frentan"
     },
     "/distros/fedora-silverblue/cautions/1": {
-      "sourceHash": "ddac23dee454692298e072f0c4f5f64fe18387d8bf1c1c72479e880b0427c9c2",
-      "translationHash": "ca25a4ea266dc9385740b2ca705c5afadf25c2da562e3199ac7ea8befc6ee725",
+      "sourceHash": "36f8c6fa82b1fdcea78004a56aa4fc0f450dce9c853554f432f4bbafcc03c45a",
+      "translationHash": "aa026d5905be80fae493be144a0ac6e9b70251d72a799de9f2d94b41e3b320c5",
       "status": "reviewed",
       "reviewedBy": "Frentan"
     },
@@ -910,7 +910,7 @@
     },
     "/distros/fedora-silverblue/cautions/3": {
       "sourceHash": "f70cd72932010ddcf64f3581d472bc29c5381143b9bc90eaf516a5d2a80ebb4b",
-      "translationHash": "3a3b31a385b5a4ca7f83d8d235283c46dd517d3f8b502a9293511401e415fad7",
+      "translationHash": "5c3f533ce0b4c3c2b08dac9ad5627243ed91af6ef4ac99da0a228d32ee1867cc",
       "status": "reviewed",
       "reviewedBy": "Frentan"
     },
@@ -994,7 +994,7 @@
     },
     "/distros/fedora-workstation/cautions/0": {
       "sourceHash": "9614e04d02de4d3af48b869efd33fcd01f32f87aad363d0b0a7c8e74fb398f74",
-      "translationHash": "6d4c9addf8b69061e2b4b267975f426a7347fe2a3ee0fc035ff3acc5a6a3ae19",
+      "translationHash": "7e26bea356aca82d36339ff95c18f12475b3af29e51287b6e76d0005d235b995",
       "status": "reviewed",
       "reviewedBy": "Frentan"
     },
@@ -1539,8 +1539,8 @@
       "reviewedBy": "Frentan"
     },
     "/distros/nixos/cautions/1": {
-      "sourceHash": "7aca9e18256ac65ebae80a1c657ab7ea8e9949c3eacf0f9607b5b65898c86ec9",
-      "translationHash": "362c26ba4826a777f121fba409fd334276715c40e7888e1be8d2650c3712987d",
+      "sourceHash": "f48393ed13217e035545d05b5ebedbcdba93a7c775e191e97f78a1e4ec617634",
+      "translationHash": "046fdac48ef5b4fb0396cd09d9dbbe9f7282827850d1b677c7cce2e86185b339",
       "status": "reviewed",
       "reviewedBy": "Frentan"
     },
@@ -1726,7 +1726,7 @@
     },
     "/distros/opensuse-aeon/cautions/2": {
       "sourceHash": "f37fdceccee58ff426d988f8fc2c63c3d02a3ff752631483cc762491f5975e1d",
-      "translationHash": "855bf00bdf6c9d09305874864390d4c12d5be02eb369ffa0393018cde50265e3",
+      "translationHash": "67a46be3dbe297bd48e071682ea0fe263a31368ae39f5da53e61da2524a26966",
       "status": "reviewed",
       "reviewedBy": "Frentan"
     },
@@ -1959,14 +1959,14 @@
       "reviewedBy": "Frentan"
     },
     "/distros/pikaos/strengths/3": {
-      "sourceHash": "e7d97d05aa2b29822c9506432909ac799cf4f5a23673a6371b5c36cfe58ea96a",
-      "translationHash": "10274c03f0fcc485c8b141f359f14e1fc82434d309e4b6a95531e5627742818d",
+      "sourceHash": "ecc48af6dddbfe634c42c46ec3e05b9d2df1a8785632363118c1f9e9c16afdd2",
+      "translationHash": "295440082a7496a8d505a8b06aea5aa980e4ddcb093ea49ad2740c48a53a2dc7",
       "status": "reviewed",
       "reviewedBy": "Frentan"
     },
     "/distros/pikaos/summary": {
       "sourceHash": "af436f0aa913205dc31b7072453a2291b70a45ecfd53c0f13dc4fa133e8b3b37",
-      "translationHash": "e2e1f1c9824ce7e3681776261ec424f2c1442794be249289a9d3820083329108",
+      "translationHash": "c4e43c8e0b27975c566aaa8cbeccec007ffc572a168e019f250b2ed3dbee6caa",
       "status": "reviewed",
       "reviewedBy": "Frentan"
     },
@@ -2889,8 +2889,8 @@
       "reviewedBy": "Frentan"
     },
     "/platformQuestions/intel-t2/options/no/label": {
-      "sourceHash": "49c31ff310b5b71061931421784e49d285fa88a7fb17f1e5940bf47b266b78d0",
-      "translationHash": "49c31ff310b5b71061931421784e49d285fa88a7fb17f1e5940bf47b266b78d0",
+      "sourceHash": "4c09af2b153be3fa19b5ff398bed1452f1d6433dac7a8843ba361409818cd7a3",
+      "translationHash": "4c09af2b153be3fa19b5ff398bed1452f1d6433dac7a8843ba361409818cd7a3",
       "status": "reviewed",
       "reviewedBy": "Frentan"
     },
@@ -2901,8 +2901,8 @@
       "reviewedBy": "Frentan"
     },
     "/platformQuestions/intel-t2/options/yes/label": {
-      "sourceHash": "307d05627822720e9051eaff939a4c619f7cbafa70c5d515249759970ad13a58",
-      "translationHash": "d4d7bf1edda2d4a993bf65cb95c2641cbc22a8e01b32f9c6716ed0e0d4de40eb",
+      "sourceHash": "c33b2cc036b74a39e1d7123ba9ce1664492bbd53ac70bd93dd4d6ab491e4c2e9",
+      "translationHash": "4e1910d610865b257718010d851c6d1a2298f4444874019d9657d273aed80dec",
       "status": "reviewed",
       "reviewedBy": "Frentan"
     },
@@ -3226,7 +3226,7 @@
     },
     "/questions/maintenance/options/occasional/label": {
       "sourceHash": "d4b4ae3de466773eaee92da4c07061dd99c8b2fefeec6e155614ecc4f9c37ae4",
-      "translationHash": "9033614829e01ca0fd49779e41ece8475077b8a01565b9324b56cc65ef5d20cb",
+      "translationHash": "1fec61f7f6fa73b2ecb6d5851aa67dee5d1e274adbcb70791a0db3c0cff1cfbf",
       "status": "reviewed",
       "reviewedBy": "Frentan"
     },
@@ -3309,8 +3309,8 @@
       "reviewedBy": "Frentan"
     },
     "/questions/path/prompt": {
-      "sourceHash": "bff3ca1e70f9cc19c2f858a38166548a5218188d5e9875cec9229c76f91fc627",
-      "translationHash": "3a5d56dfe36f972edc7994d5069f2cb7ad392f644d6a281ab2d10b2cf6872092",
+      "sourceHash": "ca4082bd11d9f2856cc0f465fa6593e3f95df37f4610970ad2f80c2fd723605c",
+      "translationHash": "f5d0b20da172c442bfd6ab15e6198ee80917ce6836dd7750240f9001033ffa86",
       "status": "reviewed",
       "reviewedBy": "Frentan"
     },
@@ -3670,7 +3670,7 @@
     },
     "/quiz/preparation": {
       "sourceHash": "5da55b1ff19fafce8fa495cdaad751c9debbb97e03cf2e4ba6592c36121edf0e",
-      "translationHash": "dab78f61b722286991d935697ebcb2dde1ac537e7c7c941aa04c98f8fd609418",
+      "translationHash": "fa5d9acaf1713c72e5d5f8ff409e54f20645f5d3fbce2f9471fe6f6622603686",
       "status": "reviewed",
       "reviewedBy": "Frentan"
     },

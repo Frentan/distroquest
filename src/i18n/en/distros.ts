@@ -129,7 +129,7 @@ export const distroContentEn = {
     ],
     cautions: [
       'Host package management differs from conventional Fedora; Flatpak and Toolbx require different habits.',
-      'Proprietary codecs and NVIDIA drivers need additional setup and may lag a new kernel.',
+      'Proprietary codecs and NVIDIA drivers need additional setup; driver support may lag new kernels.',
       'GNOME customization is less extensive than KDE Plasma.',
       'Regular Fedora release upgrades still need planning.',
     ],
@@ -316,7 +316,7 @@ export const distroContentEn = {
     archetype: {
       name: 'The Explorer',
       description:
-        'The Explorer enters the Arch world through a clearer trailhead. EndeavourOS offers a friendly starting community and graphical installation while leaving the journey of system ownership to the user.',
+        'The Explorer enters the Arch world through a clearer trailhead. EndeavourOS offers a welcoming community and graphical installation while leaving system administration and upkeep to the user.',
     },
     summary:
       'A terminal-oriented Arch derivative with a guided installer and a relatively lean desktop setup.',
@@ -496,7 +496,7 @@ export const distroContentEn = {
     ],
     cautions: [
       'Distinct configuration language and learning curve.',
-      'Conventional filesystem assumptions can break software workflows.',
+      'Software that expects a conventional filesystem layout may fail or need extra setup.',
       'Reproducibility requires disciplined version pinning.',
     ],
     idealFor: [
@@ -688,7 +688,7 @@ export const distroContentEn = {
       'Current gaming and graphics stack',
       'Graphical driver and kernel tools',
       'Performance-oriented package builds',
-      'Creator and compute tooling',
+      'Tools for content creation and compute workloads',
     ],
     cautions: [
       'A younger project means less troubleshooting history to draw on.',
