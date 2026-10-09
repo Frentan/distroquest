@@ -15,6 +15,7 @@ import { platformSources } from '../data/platforms.ts';
 import { getPlatformFollowup } from '../platforms/compatibility.ts';
 import {
   startQuiz,
+  hasQuizProgress,
   hasValidAnswer,
   selectAnswer,
   goToQuestion,
@@ -67,6 +68,7 @@ export function mountQuiz(
     messages.explanations,
   );
   let state = startQuiz();
+  let pendingLanguage: HTMLAnchorElement | null = null;
   const submitted = new Set<string>();
   const distros = getDistros(messages.distros);
   const panel = element('div', undefined, 'quiz-panel');
@@ -74,6 +76,15 @@ export function mountQuiz(
   restartDialog.setAttribute('aria-labelledby', 'restart-title');
   restartDialog.append(element('h2', copy.restartPrompt));
   restartDialog.firstElementChild!.id = 'restart-title';
+  const languageTarget = element('p');
+  languageTarget.id = 'restart-language';
+  languageTarget.hidden = true;
+  restartDialog.append(languageTarget);
+  restartDialog.addEventListener('close', () => {
+    pendingLanguage = null;
+    languageTarget.hidden = true;
+    restartDialog.removeAttribute('aria-describedby');
+  });
   const dialogActions = element('div', undefined, 'quiz-actions');
   const cancel = button(copy.cancel, () => restartDialog.close());
   dialogActions.append(
@@ -81,10 +92,13 @@ export function mountQuiz(
     button(
       copy.confirmRestart,
       () => {
+        const destination = pendingLanguage?.href;
         restartDialog.close();
         state = startQuiz();
         submitted.clear();
-        render();
+        // Clear the old page too, so browser Back cannot restore discarded answers.
+        render(!destination);
+        if (destination) window.location.assign(destination);
       },
       true,
     ),
@@ -92,8 +106,48 @@ export function mountQuiz(
   restartDialog.append(dialogActions);
   root.replaceChildren(panel, restartDialog);
   function restart() {
+    pendingLanguage = null;
+    languageTarget.hidden = true;
+    restartDialog.removeAttribute('aria-describedby');
     restartDialog.showModal();
     cancel.focus();
+  }
+  for (const link of document.querySelectorAll<HTMLAnchorElement>(
+    '[data-language-link]',
+  )) {
+    link.addEventListener('click', (event) => {
+      // Opening another tab does not discard this session.
+      if (
+        event.button !== 0 ||
+        event.ctrlKey ||
+        event.metaKey ||
+        event.shiftKey ||
+        event.altKey
+      )
+        return;
+      if (link.dataset.languageLink === locale) {
+        event.preventDefault();
+        return;
+      }
+      if (!hasQuizProgress(state)) return;
+      event.preventDefault();
+      pendingLanguage = link;
+      const nativeName = element(
+        'span',
+        messages.site.languageNames[
+          link.dataset.languageLink as PublishedLocale
+        ],
+      );
+      nativeName.lang = link.lang;
+      languageTarget.replaceChildren(
+        `${messages.site.languageLabel}: `,
+        nativeName,
+      );
+      languageTarget.hidden = false;
+      restartDialog.setAttribute('aria-describedby', languageTarget.id);
+      restartDialog.showModal();
+      cancel.focus();
+    });
   }
   function advance() {
     if (!hasValidAnswer(state)) return;

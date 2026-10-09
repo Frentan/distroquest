@@ -34,7 +34,7 @@ Consult these guides before working on related tasks:
   without an explicit request. Local planning notes may exist in the ignored `docs/`
   folder, but tracked instructions must remain useful without those notes.
 - Keep user-facing text, metadata, and accessible labels in `src/i18n/`.
-  English is published; Spanish, Italian, and Portuguese are planned. French and
+  English and Spanish are published; Italian and Portuguese are planned. French and
   German are deferred indefinitely; preserve their reserved IDs without starting
   translation or publication work.
   Do not expose untranslated routes or a language selector before content is ready.

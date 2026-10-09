@@ -133,7 +133,7 @@ export const questionContentEs: QuestionDictionary = {
       occasional: { label: 'Juego de vez en cuando.' },
       important: { label: 'Son importantes.' },
       main: {
-        label: 'Son uno de los principales motivos por los que estoy aquí.',
+        label: 'Uno de los principales motivos por los que estoy aquí.',
       },
     },
   },
@@ -217,7 +217,7 @@ export const questionContentEs: QuestionDictionary = {
       },
       artisan: {
         label: 'El Camino del Artesano',
-        description: 'Haz que el sistema sea de verdad tuyo.',
+        description: 'Haz que el sistema sea tuyo de verdad.',
       },
       explorer: {
         label: 'El Camino del Explorador',

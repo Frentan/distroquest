@@ -232,7 +232,7 @@ test('publication requires complete, reviewed, current copy and separate authori
       units: { '/title': { ...review.units['/title'], reviewedBy: '' } },
     }).some((i) => i.includes('invalidReview')),
   );
-  assert.deepEqual(validatePublication(), ['en']);
+  assert.deepEqual(validatePublication(), ['en', 'es']);
 });
 
 test('Spanish draft covers the complete dictionary, option IDs, Mac follow-ups and distro fields', () => {
@@ -353,7 +353,7 @@ test('complete Spanish content cannot bypass editorial review or publication app
   assert.ok(issues.includes('es: explicit publication approval missing'));
   for (const path of pending)
     assert.ok(issues.includes(`es: unreviewed ${path}`), path);
-  assert.deepEqual(validatePublication(), ['en']);
+  assert.deepEqual(validatePublication(), ['en', 'es']);
 });
 
 test('Spanish resolves recommendation explanation codes across all review personas', () => {

@@ -397,10 +397,20 @@ nav {
   font-size: 0.875rem;
 }
 .language-control summary {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  border: 1px solid var(--control-line);
+  border-radius: 4px;
+  color: var(--text);
+  background: var(--surface);
   min-width: 44px;
   min-height: 44px;
   padding: 10px 6px;
   cursor: pointer;
+}
+.language-control summary:hover {
+  border-color: var(--accent);
 }
 .language-control ul {
   position: absolute;
@@ -412,11 +422,15 @@ nav {
   padding: 6px;
   background: var(--surface);
   border: 1px solid var(--control-line);
+  border-radius: 4px;
 }
 .language-control a {
-  display: block;
+  display: flex;
+  align-items: center;
+  gap: 6px;
   padding: 10px;
   min-height: 44px;
+  text-decoration: none;
 }
 .footer-github {
   display: inline-flex;

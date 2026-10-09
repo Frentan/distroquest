@@ -50,29 +50,41 @@ test('equivalent paths replace locale prefixes and preserve navigation suffixes'
   }
 });
 
-test('planned locales do not become public links, metadata, or sitemap entries', () => {
-  assert.deepEqual(publishedLocales, ['en']);
+test('only English and Spanish produce public links, metadata and sitemap entries', () => {
+  assert.deepEqual(publishedLocales, ['en', 'es']);
   assert.equal(publishedPagePath('home', 'en'), '/');
   assert.equal(publishedPagePath('quiz', 'en'), '/quiz/');
-  for (const locale of knownLocales.filter((locale) => locale !== 'en')) {
+  for (const locale of knownLocales.filter(
+    (locale) => !(publishedLocales as readonly string[]).includes(locale),
+  )) {
     assert.equal(publishedPagePath('home', locale), undefined);
     assert.equal(publishedPagePath('quiz', locale), undefined);
     assert.equal(pageMetadata('home', locale, site).canonical, undefined);
     assert.deepEqual(pageMetadata('home', locale, site).alternates, []);
   }
-  assert.deepEqual(pageMetadata('home', 'en', site).alternates, []);
-  assert.deepEqual(sitemapUrls(site), ['https://distroquest.example/']);
+  assert.equal(publishedPagePath('home', 'es'), '/es/');
+  assert.equal(publishedPagePath('quiz', 'es'), '/es/quiz/');
+  assert.deepEqual(sitemapUrls(site), [
+    'https://distroquest.example/',
+    'https://distroquest.example/es/',
+  ]);
 });
 
 test('canonical URLs and indexing policy belong to the page identity', () => {
   assert.deepEqual(pageMetadata('home', 'en', site), {
     canonical: 'https://distroquest.example/',
-    alternates: [],
+    alternates: publishedLocales.map((locale) => ({
+      locale,
+      href: new URL(pagePath('home', locale), site).href,
+    })),
     noindex: false,
   });
   assert.deepEqual(pageMetadata('quiz', 'en', site), {
     canonical: 'https://distroquest.example/quiz/',
-    alternates: [],
+    alternates: publishedLocales.map((locale) => ({
+      locale,
+      href: new URL(pagePath('quiz', locale), site).href,
+    })),
     noindex: true,
   });
   assert.deepEqual(sitemapUrls(undefined), []);
@@ -83,7 +95,7 @@ test('canonical URLs and indexing policy belong to the page identity', () => {
   }
 });
 
-test('future publication produces reciprocal page equivalents and self-canonicals', () => {
+test('published pages produce reciprocal equivalents and self-canonicals', () => {
   const ready = ['en', 'es'] as const;
   for (const page of ['home', 'quiz'] as const) {
     const english = pageMetadata(page, 'en', site, ready);

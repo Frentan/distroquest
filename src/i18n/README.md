@@ -9,8 +9,8 @@ remain independent of translated presentation.
 `Messages` covers page copy, questions, distro profiles, capabilities, preparation
 tips, explanations, and platform guidance. `catalog.ts` registers complete runtime
 dictionaries. `getMessages()` requires a published locale and an available dictionary;
-there is no partial merge or English fallback. Draft dictionaries are loaded only
-by Node review tooling.
+there is no partial merge or English fallback. Published English and Spanish dictionaries are registered explicitly. Unpublished
+drafts are loaded only by Node review tooling.
 
 `locales.ts` separates known IDs, actively planned locales, deferred locales, and
 published locales. Reserved IDs keep their paths and native-language name keys;
@@ -26,6 +26,16 @@ With `SITE_URL`, published equivalents receive self-referencing canonical and Op
 Graph URLs and reciprocal `hreflang` links. The sitemap lists published indexable
 pages. The complete quiz remains on one route with `noindex, follow`, outside the
 sitemap. Without an origin, absolute metadata is omitted and the sitemap is empty.
+
+## Language switching
+
+The header offers 🇬🇧 EN and 🇪🇸 ES, retaining native-language names and accessible
+labels. Links use equivalent page identities: home to home, quiz to quiz. On the
+quiz, any selected or retained answer triggers the reviewed restart confirmation
+before same-tab language navigation. The dialog identifies the destination language;
+cancel or Escape preserves progress. Confirming clears the old page's answers as
+well as starting the destination quiz empty. Answers and language choices are not
+persisted or restored across languages. Theme persistence remains independent.
 
 ## Parameterized messages
 

@@ -8,6 +8,7 @@ import {
   defaultLocale,
   getMessages,
   publishedLocales,
+  localeFlags,
   type PublishedLocale,
 } from '../i18n';
 import {
@@ -111,7 +112,10 @@ const { canonical, alternates, noindex } = pageMetadata(
         <div class="header-controls">
           {publishedLocales.length > 1 && (
             <details class="language-control">
-              <summary aria-label={copy.languageLabel}>
+              <summary
+                aria-label={`${copy.languageLabel}: ${copy.languageNames[locale]}`}
+              >
+                <span aria-hidden="true">{localeFlags[locale]}</span>
                 {locale.toUpperCase()}
               </summary>
               <ul>
@@ -120,9 +124,12 @@ const { canonical, alternates, noindex } = pageMetadata(
                     <a
                       href={publishedPagePath(page, language)}
                       lang={language}
+                      hreflang={language}
+                      data-language-link={language}
                       aria-current={language === locale ? 'page' : undefined}
                     >
-                      {copy.languageNames[language]}
+                      <span aria-hidden="true">{localeFlags[language]}</span>
+                      <span>{copy.languageNames[language]}</span>
                     </a>
                   </li>
                 ))}
@@ -157,5 +164,21 @@ const { canonical, alternates, noindex } = pageMetadata(
         </span>
       </p>
     </footer>
+    <script>
+      const language =
+        document.querySelector<HTMLDetailsElement>('.language-control');
+      language?.addEventListener('keydown', (event) => {
+        if (event.key === 'Escape') {
+          language.open = false;
+          language.querySelector('summary')?.focus();
+        }
+      });
+      document.addEventListener('click', (event) => {
+        if (event.target instanceof Element && event.target.closest('dialog'))
+          return;
+        if (event.target instanceof Node && !language?.contains(event.target))
+          language?.removeAttribute('open');
+      });
+    </script>
   </body>
 </html>

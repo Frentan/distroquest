@@ -31,6 +31,15 @@ export const startQuiz = (): QuizState => ({
   platformResult: null,
   error: false,
 });
+/** Include selections not yet submitted, retained answers and Mac follow-ups. */
+export function hasQuizProgress(state: QuizState): boolean {
+  return (
+    state.platformAnswer !== null ||
+    Object.values(state.answers).some(
+      (answers) => answers && answers.length > 0,
+    )
+  );
+}
 export function getQuizProgress(state: QuizState) {
   const branch = !!getPlatformFollowup(state.answers);
   return {

@@ -1,6 +1,6 @@
 {
-  "approved": false,
-  "approvedBy": null,
+  "approved": true,
+  "approvedBy": "Frentan",
   "units": {
     "/capabilityLabels/beginnerFriendly": {
       "sourceHash": "e7ece90c36cc8c6956bf3358e01e82598253fa1e2dd7b8f11107c5a2eaba3c73",
@@ -3652,7 +3652,7 @@
     },
     "/questions/gaming/options/main/label": {
       "sourceHash": "34b1e7d3bf256ab28351b92f3c0f26799aa616629780a5d9da24efb2be12c1c7",
-      "translationHash": "54583ce359bf441319a9b89d37777defbb9b6fbe4f1a2bfcc05978fec335249f",
+      "translationHash": "49280d47edf9ffa9bf1519c82a9ff4b6d046b6af7ac2b9e9042d3c3d7f2eacda",
       "status": "reviewed",
       "reviewedBy": "Frentan"
     },
@@ -3844,7 +3844,7 @@
     },
     "/questions/path/options/artisan/description": {
       "sourceHash": "1206f709e76d0269d876141ab4ecbf44a3d64899c80882ba216d5d5e88b0ba74",
-      "translationHash": "f385d09317718a49f5cea82976262a06fb72ed072da83cd4a9f14311e3a2eaab",
+      "translationHash": "ebf9850e9f90fc294a2e7f790442efda92bdd34fe071b2fcf0309cf102a4af1b",
       "status": "reviewed",
       "reviewedBy": "Frentan"
     },
