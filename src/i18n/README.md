@@ -67,12 +67,21 @@ Run the checks while editing; freshness is not monitored through HMR.
 ```sh
 npm run i18n:check
 npm run i18n:review
+npm run i18n:review -- --locale es
+npm run i18n:review -- --locale it
+npm run i18n:review -- --locale pt
 npm run --silent i18n:review -- --json
 npm run --silent i18n:review -- --markdown
 npm run --silent i18n:review -- --hashes
 ```
 
-`i18n:check` validates published locales. `i18n:review` reports Spanish draft
-coverage and freshness; `--json` includes content units and proposed hashes,
+`i18n:check` validates published locales. `i18n:review` reports draft coverage and
+freshness for `--locale <code>`, defaulting to Spanish (`es`). It loads
+`src/i18n/{locale}/draft.ts` (named export `draftEs`, `draftIt`, `draftPt`, etc.)
+and the corresponding `reviews.json`. A locale without a draft produces an error;
+selecting a locale does not create content or enable publication. Italian and
+Portuguese have no drafts yet.
+
+Combine `--locale` with any one output mode: `--json` includes content units and proposed hashes,
 `--markdown` produces bilingual copy in authored order, and `--hashes` emits a
 proposal snapshot. Generated proposals do not grant editorial or publication approval.

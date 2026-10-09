@@ -1,6 +1,7 @@
-import { readFileSync } from 'node:fs';
+import { existsSync, readFileSync } from 'node:fs';
+import { parseArgs } from 'node:util';
 import { en } from '../src/i18n/en.ts';
-import { draftEs } from '../src/i18n/es/draft.ts';
+import { knownLocales } from '../src/i18n/locales.ts';
 import { dictionaryIssues } from '../src/i18n/validation.ts';
 import {
   contentUnits,
@@ -9,32 +10,61 @@ import {
 } from './lib/translation-review.ts';
 import type { PublicationReview } from './lib/publication.ts';
 
-const args = process.argv.slice(2);
-if (
-  args.some((arg) => !['--json', '--markdown', '--hashes'].includes(arg)) ||
-  args.length > 1
-) {
-  console.error(
-    'Usage: npm run i18n:review -- [--json | --markdown | --hashes]',
+const usage =
+  'Usage: npm run i18n:review -- [--locale <code>] [--json | --markdown | --hashes]';
+try {
+  const { values: options } = parseArgs({
+    options: {
+      locale: { type: 'string', default: 'es' },
+      json: { type: 'boolean' },
+      markdown: { type: 'boolean' },
+      hashes: { type: 'boolean' },
+    },
+    allowPositionals: false,
+  });
+  const locale = options.locale!;
+  if (
+    [options.json, options.markdown, options.hashes].filter(Boolean).length > 1
+  )
+    throw new Error('Choose only one output mode.');
+  if (!knownLocales.some((known) => known === locale))
+    throw new Error(`Unknown locale "${locale}".`);
+  const draftPath = new URL(`../src/i18n/${locale}/draft.ts`, import.meta.url);
+  const reviewPath = new URL(
+    `../src/i18n/${locale}/reviews.json`,
+    import.meta.url,
   );
-  process.exitCode = 1;
-} else {
+  if (!existsSync(draftPath))
+    throw new Error(
+      `No draft dictionary for locale "${locale}". Expected src/i18n/${locale}/draft.ts.`,
+    );
+  const exportName = `draft${locale[0].toUpperCase()}${locale.slice(1)}`;
+  const draft = (await import(draftPath.href))[exportName] as
+    Partial<typeof en> | undefined;
+  if (!draft)
+    throw new Error(`Draft for locale "${locale}" must export ${exportName}.`);
+  if (!existsSync(reviewPath))
+    throw new Error(
+      `No review records for locale "${locale}". Expected src/i18n/${locale}/reviews.json.`,
+    );
   const reviews = JSON.parse(
-    readFileSync(
-      new URL('../src/i18n/es/reviews.json', import.meta.url),
-      'utf8',
-    ),
+    readFileSync(reviewPath, 'utf8'),
   ) as PublicationReview;
+  const language = new Intl.DisplayNames(['en'], { type: 'language' }).of(
+    locale,
+  )!;
   const source = contentUnits(en),
-    translated = contentUnits(draftEs);
+    translated = contentUnits(draft);
   // Validate each supplied section fully; omissions elsewhere remain explicit.
   const batchSource = Object.fromEntries(
-    Object.keys(draftEs).map((key) => [key, en[key as keyof typeof en]]),
+    Object.keys(draft).map((key) => [key, en[key as keyof typeof en]]),
   );
-  const invalid = dictionaryIssues(draftEs, batchSource);
+  const invalid = dictionaryIssues(draft, batchSource);
   if (invalid.length)
-    throw new Error(`Invalid Spanish draft sections:\n${invalid.join('\n')}`);
-  const report = reviewReport(en, draftEs, reviews.units);
+    throw new Error(
+      `Invalid ${language} draft sections:\n${invalid.join('\n')}`,
+    );
+  const report = reviewReport(en, draft, reviews.units);
   const units = Object.keys(translated)
     .sort()
     .map((path) => ({
@@ -54,11 +84,11 @@ if (
       Object.entries(report).map(([key, paths]) => [key, paths.length]),
     ),
   };
-  if (args.includes('--hashes'))
+  if (options.hashes)
     console.log(
       JSON.stringify(
         {
-          locale: 'es',
+          locale,
           status: 'proposed',
           units: Object.fromEntries(
             units.map((unit) => [
@@ -74,21 +104,19 @@ if (
         2,
       ),
     );
-  else if (args.includes('--json'))
-    console.log(
-      JSON.stringify({ locale: 'es', summary, report, units }, null, 2),
-    );
-  else if (args.includes('--markdown')) {
+  else if (options.json)
+    console.log(JSON.stringify({ locale, summary, report, units }, null, 2));
+  else if (options.markdown) {
     const escape = (value: string) =>
       value.replaceAll('|', '\\|').replaceAll('\n', ' ');
     console.log(
-      '# Spanish translation review\n\nGenerated with `npm run --silent i18n:review -- --markdown`.\nDraft for human review; no units are automatically accepted.\nStore editorial Markdown and proposal snapshots under ignored `docs/`. Accepted unit hashes belong in `src/i18n/es/reviews.json`.\n',
+      `# ${language} translation review\n\nGenerated with \`npm run --silent i18n:review -- --locale ${locale} --markdown\`.\nDraft for human review; no units are automatically accepted.\nStore editorial Markdown and proposal snapshots under ignored \`docs/\`. Accepted unit hashes belong in \`src/i18n/${locale}/reviews.json\`.\n`,
     );
     console.log(
       `${summary.translatedUnits} drafted units of ${summary.sourceUnits} total English units.\n`,
     );
     console.log(
-      'Text in braces marks named parameters. Spanish numeric output uses its locale (for example, `87,5%`); names and numeric calculations are preserved.\n',
+      `Text in braces marks named parameters. ${language} numeric output uses its locale (for example, \`${new Intl.NumberFormat(locale, { useGrouping: false }).format(87.5)}%\`); names and numeric calculations are preserved.\n`,
     );
     let section = '';
     // Keep question/answer intensity in the authored domain order for human review.
@@ -98,7 +126,7 @@ if (
       if (group !== section) {
         section = group;
         console.log(
-          `\n## ${section}\n\n| Key | English | Spanish |\n| --- | --- | --- |`,
+          `\n## ${section}\n\n| Key | English | ${language} |\n| --- | --- | --- |`,
         );
       }
       const text = (value: typeof unit.source) =>
@@ -110,10 +138,14 @@ if (
       );
     }
   } else {
-    console.log('Spanish draft review (not publication approval):');
+    console.log(`${language} draft review (not publication approval):`);
     console.log(JSON.stringify(summary, null, 2));
     console.log(
       'Use --markdown for bilingual copy; --json for paths and proposed hashes.',
     );
   }
+} catch (error) {
+  console.error(error instanceof Error ? error.message : String(error));
+  console.error(usage);
+  process.exitCode = 1;
 }
