@@ -197,12 +197,21 @@ test('publication requires complete, reviewed, current copy and separate authori
   assert.deepEqual(validatePublication(), ['en']);
 });
 
-test('first Spanish batch covers supplied sections, all option IDs, and Mac follow-ups', () => {
+test('Spanish draft covers supplied sections, all option IDs, Mac follow-ups and distro fields', () => {
   const source = Object.fromEntries(
     Object.keys(draftEs).map((key) => [key, en[key as keyof typeof en]]),
   );
   assert.deepEqual(dictionaryIssues(draftEs, source), []);
-  assert.ok(dictionaryIssues(draftEs).includes('distros'));
+  assert.deepEqual(
+    Object.keys(draftEs.distros).sort(),
+    Object.keys(en.distros).sort(),
+  );
+  assert.equal(
+    new Set(
+      Object.values(draftEs.distros).map((distro) => distro.archetype.name),
+    ).size,
+    29,
+  );
   assert.ok(dictionaryIssues(draftEs).includes('explanations'));
   assert.ok(draftEs.home.introduction.includes('Algunas preguntas ahora.'));
 });

@@ -2,6 +2,7 @@ import type { Messages } from '../index.ts';
 import { QUESTION_COUNT } from '../../data/questions.ts';
 import { questionContentEs } from './questions.ts';
 import { quizCopyEs, capabilityLabelsEs } from './quiz.ts';
+import { distroContentEs } from './distros.ts';
 
 // Deliberately incomplete; never registered as a runtime/published dictionary.
 export const draftEs = {
@@ -85,6 +86,7 @@ export const draftEs = {
   questions: questionContentEs,
   quiz: quizCopyEs,
   capabilityLabels: capabilityLabelsEs,
+  distros: distroContentEs,
   platformQuestions: {
     'apple-generation': {
       prompt: '¿Qué chip de Apple tiene tu Mac?',
@@ -117,5 +119,6 @@ export const draftEs = {
   | 'questions'
   | 'quiz'
   | 'capabilityLabels'
+  | 'distros'
   | 'platformQuestions'
 >;

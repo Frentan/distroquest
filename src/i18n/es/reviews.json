@@ -16,7 +16,7 @@
     },
     "/capabilityLabels/desktopPolish": {
       "sourceHash": "3db77a976beab65acadd36a081235ab28ec3cece247a182e8e5ac6f628162640",
-      "translationHash": "e4a59d61482b2ac35edadfc619d34053a96c4739c9107ac066dda0caabfe05e0",
+      "translationHash": "d25a8483817e931c5f6e724ec5d4a65c0fa84de1310f8395eecf974345838c22",
       "status": "reviewed",
       "reviewedBy": "Frentan"
     },
@@ -59,6 +59,2646 @@
     "/capabilityLabels/systemControl": {
       "sourceHash": "63e978937e94d4bb08f9fd33a9bf5347ad20d3131b267ca87f8c1e7605c32aed",
       "translationHash": "cb72f2c1246ca282d3b2f3f2592d80ee824b47673bd91c7a526b680752b67d28",
+      "status": "reviewed",
+      "reviewedBy": "Frentan"
+    },
+    "/distros/alpine-linux/archetype/description": {
+      "sourceHash": "35de697614ede45d1afa33ae3e3d33a280653c59a79bcb503e381025de991297",
+      "translationHash": "758bfb0ae3cc4ae00196d155259d47dde4553250525e4ce56a19dfd956ca502d",
+      "status": "reviewed",
+      "reviewedBy": "Frentan"
+    },
+    "/distros/alpine-linux/archetype/name": {
+      "sourceHash": "efb7b124a0b65daf16cbda0cc0aefe06921cfc7181df0b089db221726678c09c",
+      "translationHash": "adb96c65c1ccaffec3540a30d6822f712432959a6c1bba68d517ffc8fd4d4ee5",
+      "status": "reviewed",
+      "reviewedBy": "Frentan"
+    },
+    "/distros/alpine-linux/assessmentBasis": {
+      "sourceHash": "f5294a85cfa9ebefccf20d3fdeeb1b12f631b00baae0175e40549f24243b56bb",
+      "translationHash": "19d6d290240fe8310d8b0629d424a93580e987532c890cc586b137715bf66204",
+      "status": "reviewed",
+      "reviewedBy": "Frentan"
+    },
+    "/distros/alpine-linux/cautions/0": {
+      "sourceHash": "ae376e13fbcd5d155377ef3b83bab10f0a2bdf3df9251508a3a4ce986bf27561",
+      "translationHash": "f59b880735ae821e6a19825c2adafc113c1b81d6ef5f18f2c62d0dd82820583e",
+      "status": "reviewed",
+      "reviewedBy": "Frentan"
+    },
+    "/distros/alpine-linux/cautions/1": {
+      "sourceHash": "3b45094416c2f1d3cc461beb047086465e37facbd589a2aec2c92d3fad9a5c4c",
+      "translationHash": "4f97e175e009af315f4bf3c25a00db9a457d2f670103516a8e71bf7b290a4f1a",
+      "status": "reviewed",
+      "reviewedBy": "Frentan"
+    },
+    "/distros/alpine-linux/cautions/2": {
+      "sourceHash": "a9e93797a9c03c36b791e7641d7280aab4fa715c8501dfb1b9f2cf54d4a8b361",
+      "translationHash": "e092e0f2a0983750655547d0bd8118acb48b4f301e37496fea33225a936ef9ba",
+      "status": "reviewed",
+      "reviewedBy": "Frentan"
+    },
+    "/distros/alpine-linux/idealFor/0": {
+      "sourceHash": "78dc9759bead6965f40e79dcf93e1d2117e197334aa100501dd57f3c191855f8",
+      "translationHash": "beb93184e9639a2cb65cd3ab9ecb1585b1a199bb2c8259cdd367da628131c1c7",
+      "status": "reviewed",
+      "reviewedBy": "Frentan"
+    },
+    "/distros/alpine-linux/idealFor/1": {
+      "sourceHash": "f47bca28adb86df2a1d485995f35ba8818eca5a23752479cbf84abd4ac42af9d",
+      "translationHash": "d7210ebd5a2039a88700f3cd11ff3fa94aee05b945354c82c7c686776b14eac3",
+      "status": "reviewed",
+      "reviewedBy": "Frentan"
+    },
+    "/distros/alpine-linux/idealFor/2": {
+      "sourceHash": "2f5eb3f6485f4acc5ce877c0d1d389d017b3070ee36fa4c48b19d8a8f10e2408",
+      "translationHash": "50ebcf4aefdcd990996f3e1ed2ce0f87c1a9b3ee6d1bd508ef233c9ed66ab1db",
+      "status": "reviewed",
+      "reviewedBy": "Frentan"
+    },
+    "/distros/alpine-linux/name": {
+      "sourceHash": "d981cc8f4244e5ebfbda5dec2d7f1edb3c6506ee76aa250a6c96ab35b363820a",
+      "translationHash": "d981cc8f4244e5ebfbda5dec2d7f1edb3c6506ee76aa250a6c96ab35b363820a",
+      "status": "reviewed",
+      "reviewedBy": "Frentan"
+    },
+    "/distros/alpine-linux/strengths/0": {
+      "sourceHash": "c1b09c7ee0864a9321aa9306fdb23b7dc3378b7e64449aa111a1399afc4e4fa2",
+      "translationHash": "053e51974510322470eb7bf2691f918bf5de50195020930110a939ed95529457",
+      "status": "reviewed",
+      "reviewedBy": "Frentan"
+    },
+    "/distros/alpine-linux/strengths/1": {
+      "sourceHash": "265cfdbda3f33ebbd9b5ac128825f1b689b3d492746e24f15ad97316ceceef04",
+      "translationHash": "7826a87396649934e74c45aac559176c21a2376020740099ae7348dc8ffa2bb2",
+      "status": "reviewed",
+      "reviewedBy": "Frentan"
+    },
+    "/distros/alpine-linux/strengths/2": {
+      "sourceHash": "8b140b99aa27cefef7bfa08e54652fa7be954da203e8ba0550459a24b92960ff",
+      "translationHash": "d402da6c1d971db6653f4ec0ba960f84707700387940b5590e90dc42135c1182",
+      "status": "reviewed",
+      "reviewedBy": "Frentan"
+    },
+    "/distros/alpine-linux/strengths/3": {
+      "sourceHash": "a93378ce045c8f5a9c34dda42bd7d4240730e0e234958ed910ce92c210c7fa83",
+      "translationHash": "ed8316b4ef7a6dcc056adee1eb1a7f9d09df50d46dd890296dc5a59d822a5cbe",
+      "status": "reviewed",
+      "reviewedBy": "Frentan"
+    },
+    "/distros/alpine-linux/summary": {
+      "sourceHash": "f323a2c60296e559a691841d52990ee43e2afdc34c8db8098938304d25a0b088",
+      "translationHash": "3d5efa9d4dcedba352c799b86857317af16a3562621c8e7061bc88196890d222",
+      "status": "reviewed",
+      "reviewedBy": "Frentan"
+    },
+    "/distros/arch-linux/archetype/description": {
+      "sourceHash": "3aa02359f88ebde0f6ff5f1184fce2efb5249821807ee116b8ffdb33ef1db3b8",
+      "translationHash": "30c58538d75bb6dfec15515f32a12d84e9a645279f59078fea0dce50db516669",
+      "status": "reviewed",
+      "reviewedBy": "Frentan"
+    },
+    "/distros/arch-linux/archetype/name": {
+      "sourceHash": "0284b0a2fcaef1a3e975b01902045f6370b1f7d6694be1debecc2f9c78a45840",
+      "translationHash": "ce34c6d3aa2f19db200902f98cb9295959128360f72f9f583546e231ba769d1b",
+      "status": "reviewed",
+      "reviewedBy": "Frentan"
+    },
+    "/distros/arch-linux/assessmentBasis": {
+      "sourceHash": "3307b3efaad9ff828837101aea612afba6485a057f0c569b41d1ef87b989acaf",
+      "translationHash": "a3fa181d023edfad67db4ff7eb9ceffbbf85ba9ffe3848d0250dcc493c9b84a1",
+      "status": "reviewed",
+      "reviewedBy": "Frentan"
+    },
+    "/distros/arch-linux/cautions/0": {
+      "sourceHash": "7925f8b51c032efc0bff018128224e0fd922ffdcc84ac5944ca3d1cbe8c0e470",
+      "translationHash": "717740e81cc12c1c6ea9f250167b00a6baccab3611c134767e092f68988a5b9e",
+      "status": "reviewed",
+      "reviewedBy": "Frentan"
+    },
+    "/distros/arch-linux/cautions/1": {
+      "sourceHash": "b18c56de695065d8f34b5ff059284bd4a649a4d7013e41a35f0a3685eb36e98b",
+      "translationHash": "cb678aff8496b7dee93fcc4b576718c2ea208b36f7893256a403fc5007ad0063",
+      "status": "reviewed",
+      "reviewedBy": "Frentan"
+    },
+    "/distros/arch-linux/cautions/2": {
+      "sourceHash": "8444dabb87ee578a17799e9b8b6c12190ebde40bafd21edfdb6c12b8cbbcbc55",
+      "translationHash": "c841092090202b79ec1ff04dde7b93af0df9dcad7f512ec0949e0be0be37fb23",
+      "status": "reviewed",
+      "reviewedBy": "Frentan"
+    },
+    "/distros/arch-linux/idealFor/0": {
+      "sourceHash": "c7a297e4a33af1fc0079ea96f85c3cc75948522d9e52fc8596231991f327b489",
+      "translationHash": "656bf90f7b8351a70cf8e808e323660a10a53f203ea5719e786878068b04f9fb",
+      "status": "reviewed",
+      "reviewedBy": "Frentan"
+    },
+    "/distros/arch-linux/idealFor/1": {
+      "sourceHash": "446e49e133fb4fa1bb78b40781b7d88db8b605175f18d9afc6256eb3b076c9f4",
+      "translationHash": "43800db867d99e84fceabf658e22a8a7e766cf36b51ce80893dba9f3960085b3",
+      "status": "reviewed",
+      "reviewedBy": "Frentan"
+    },
+    "/distros/arch-linux/idealFor/2": {
+      "sourceHash": "bfeb5f1679c41cb75565c7f52beab8255121e4856b8a0076b4cb1ebc88e7e41b",
+      "translationHash": "32648facae584deb53947c0f737f1c712cb95cd20e63bfb4d19efbc7beadb83d",
+      "status": "reviewed",
+      "reviewedBy": "Frentan"
+    },
+    "/distros/arch-linux/name": {
+      "sourceHash": "c2c2097ed051ee0f93337c199629519f05f069e2c512195e1acef0baf3e45078",
+      "translationHash": "c2c2097ed051ee0f93337c199629519f05f069e2c512195e1acef0baf3e45078",
+      "status": "reviewed",
+      "reviewedBy": "Frentan"
+    },
+    "/distros/arch-linux/strengths/0": {
+      "sourceHash": "bb5bee855ab88920f4b8b2aef6595d32698dfb56297ea2fc68a302b63dfb50eb",
+      "translationHash": "3e47fb80bdbae891f265325b2206020fdc57483e1ecb1c99e5ce49af2e9266c1",
+      "status": "reviewed",
+      "reviewedBy": "Frentan"
+    },
+    "/distros/arch-linux/strengths/1": {
+      "sourceHash": "2d2663657e5168744ab4c69225bfb2d9627bc2da2a9c6e007453a7442d3b6bff",
+      "translationHash": "d69cc10c9b1fb0a60ce73a15bc2ad406bc0c89770e4014dc448d99d74f6f468b",
+      "status": "reviewed",
+      "reviewedBy": "Frentan"
+    },
+    "/distros/arch-linux/strengths/2": {
+      "sourceHash": "fdd9528bbf1e56cdf7b33e19971cc4c0ef35de25b6a190b262140e1c884bf746",
+      "translationHash": "98b6cddc1508b6a1f04e740e20109ac02f1b2553481b3d6ebb5fe02298dc3c73",
+      "status": "reviewed",
+      "reviewedBy": "Frentan"
+    },
+    "/distros/arch-linux/strengths/3": {
+      "sourceHash": "52da46d24dcae5e50059f177b523c9e59d91ada34f0ae7fe44ad057adb8b8954",
+      "translationHash": "5da015e0986a0f0641f0ed2cd304107968b92db43622b6fdbacf3dbec42143a5",
+      "status": "reviewed",
+      "reviewedBy": "Frentan"
+    },
+    "/distros/arch-linux/summary": {
+      "sourceHash": "2954fa729f50efc0e92f1982389a589b6687fa09a21810dddb87c603c80dad4a",
+      "translationHash": "0cca97ba1c9ce7bd4762f433435802b279d7058b580a2d4986f21f9e90eb0b86",
+      "status": "reviewed",
+      "reviewedBy": "Frentan"
+    },
+    "/distros/bazzite/archetype/description": {
+      "sourceHash": "1e45d8bd63ccf5660709654ef46acc38d86403378d944f89bc2511cb288f3de4",
+      "translationHash": "1661f6d4c271903252ea7a57a11cfb04256bc95f980ca8648bc2bc39e744fb78",
+      "status": "reviewed",
+      "reviewedBy": "Frentan"
+    },
+    "/distros/bazzite/archetype/name": {
+      "sourceHash": "65bd49743260b3d06793a0ba32d3b2bca171a93d376be710daa606b5427281b6",
+      "translationHash": "aac7d6bcf550e4f6ab06ecbea8c869433accfced860d56558fdb30fc7c52f314",
+      "status": "reviewed",
+      "reviewedBy": "Frentan"
+    },
+    "/distros/bazzite/assessmentBasis": {
+      "sourceHash": "8175bbddef56a6bb18503659d7dd9cec108aa88026e5553d5c588f8ad0060370",
+      "translationHash": "8307e3dac123a2fb0e28a106bf26bddb257aa6a2e882ca8fff74741c72c1e3e8",
+      "status": "reviewed",
+      "reviewedBy": "Frentan"
+    },
+    "/distros/bazzite/cautions/0": {
+      "sourceHash": "36229ac95ef43608e969be529aa7be9d3c78b0831c469561cf61108df405e990",
+      "translationHash": "6c427417143ce71c966a5dbf5bd86b90d25f798d1e74212cfd06227c7f3188b5",
+      "status": "reviewed",
+      "reviewedBy": "Frentan"
+    },
+    "/distros/bazzite/cautions/1": {
+      "sourceHash": "d74aab2d7873e4fa24986f2d1ba25d98ac7a9aa7bf514b55fc1c5720b2d10380",
+      "translationHash": "2a68ceb5e6a4e327dedd34591b2870ff027afbfdd5bd12b42f26d8987fa0e149",
+      "status": "reviewed",
+      "reviewedBy": "Frentan"
+    },
+    "/distros/bazzite/cautions/2": {
+      "sourceHash": "4c5363dea0200ee74ee75cd30f751b36898a549dc5e36f0b2207480c79621478",
+      "translationHash": "05350136ac0af6ad4853b973660ffd7954991a70bc35c41104807c4b52ab361a",
+      "status": "reviewed",
+      "reviewedBy": "Frentan"
+    },
+    "/distros/bazzite/idealFor/0": {
+      "sourceHash": "1e71b72e1b4b3d0f05770a6239f1ba4cdd98e10872a45937e80c173822e74577",
+      "translationHash": "2509808171b4eb5c6f53658253d169c13c4f6fde587e51de6fbf56d2aa664a3a",
+      "status": "reviewed",
+      "reviewedBy": "Frentan"
+    },
+    "/distros/bazzite/idealFor/1": {
+      "sourceHash": "40e007b0c61b8ce42cb7e39df322a88503fc3bd5e5e70fe5ca3dc4acf430acd6",
+      "translationHash": "a8064d58d532fe3d40c313da671acd007fc753e31169a0db7764ee9726ec4074",
+      "status": "reviewed",
+      "reviewedBy": "Frentan"
+    },
+    "/distros/bazzite/idealFor/2": {
+      "sourceHash": "b956e555de5f53fb76c89543d539d718c9589080e78b9e7073938fa145ebdca5",
+      "translationHash": "b8309dad90aac60df026b16bc4bbe228ad361e30cb3f0dc9ac0e4360fc906f4c",
+      "status": "reviewed",
+      "reviewedBy": "Frentan"
+    },
+    "/distros/bazzite/name": {
+      "sourceHash": "4531a33495658902b1ddbeab5bc7319b18dbe826285fcabb10429cc418f3fb15",
+      "translationHash": "4531a33495658902b1ddbeab5bc7319b18dbe826285fcabb10429cc418f3fb15",
+      "status": "reviewed",
+      "reviewedBy": "Frentan"
+    },
+    "/distros/bazzite/strengths/0": {
+      "sourceHash": "3345cd88f137cffa4c89b6d9dd0c36764e7844585e8b33283eda756ea0aad6b1",
+      "translationHash": "3b4d6f458cfda677a705431bf6affb99a975f8f76c57242d5f8c8896880234d6",
+      "status": "reviewed",
+      "reviewedBy": "Frentan"
+    },
+    "/distros/bazzite/strengths/1": {
+      "sourceHash": "60c35caaf5a985a297de32d08a36d1c3d7ab11bd98654c8f209325d4e8422622",
+      "translationHash": "779c48aea7ee53b7d991a6eb604e17e49be801f0f251a856d73f1d3f117da134",
+      "status": "reviewed",
+      "reviewedBy": "Frentan"
+    },
+    "/distros/bazzite/strengths/2": {
+      "sourceHash": "dd390ca544ef90c305b1f1aae1d93ce44d15c7f914b6cd48c29c31d496f2ff99",
+      "translationHash": "542d212b2b2034b98999920a1c85ccb02200b78595c5e1a8e6542ed6c35b8b0c",
+      "status": "reviewed",
+      "reviewedBy": "Frentan"
+    },
+    "/distros/bazzite/strengths/3": {
+      "sourceHash": "fbd39dd174f2810d9c2c40471baf041f50e5fc2e7409e98a97f78d070410a79b",
+      "translationHash": "431453085619e02b041cd351575a7c868866eabe47e4941189ccacc5a979d63e",
+      "status": "reviewed",
+      "reviewedBy": "Frentan"
+    },
+    "/distros/bazzite/summary": {
+      "sourceHash": "4ba662f78f1fb2d6f94342800ad671ac0b4842bdd4842b6922d15ddf958d65bf",
+      "translationHash": "d74941377c033a7e07b0031ebafd62f70f62ffbb18573b438260adf155a34938",
+      "status": "reviewed",
+      "reviewedBy": "Frentan"
+    },
+    "/distros/bluefin/archetype/description": {
+      "sourceHash": "23fdee0705fcd1b239608b16b440fa3defe9e76198c38f9db3e9aae410abb246",
+      "translationHash": "c167a82fdc14566b6b52a1049ae59f0b08352bb5b56f875100f9c4eb13539f6d",
+      "status": "reviewed",
+      "reviewedBy": "Frentan"
+    },
+    "/distros/bluefin/archetype/name": {
+      "sourceHash": "6bb18bea1850679e9d5354f9ad566a67a4b7b80a9626dcd242ff311ecf3303e8",
+      "translationHash": "8e44c372008077ad3c3b7b7552912b5be902bfdcc8b0e73048f80cd885bc1055",
+      "status": "reviewed",
+      "reviewedBy": "Frentan"
+    },
+    "/distros/bluefin/assessmentBasis": {
+      "sourceHash": "f8dfebd332d3502184cf863d4702a1744d8a9802bd5875ff323c7ae5a197ed8e",
+      "translationHash": "e3d852000e7e7f728b7df38349ab4865c41e6f2117edf67e59423da8e841435f",
+      "status": "reviewed",
+      "reviewedBy": "Frentan"
+    },
+    "/distros/bluefin/cautions/0": {
+      "sourceHash": "fbb23aed1fac36cb57826832bbad457f89d8c34d12c13309ec79eb99511a3968",
+      "translationHash": "2e0354d3118a55d54969866526e1dd52c6968a49be496575d7a2facec9bf30aa",
+      "status": "reviewed",
+      "reviewedBy": "Frentan"
+    },
+    "/distros/bluefin/cautions/1": {
+      "sourceHash": "f99bdb6a9b259e27493c43ffcb431f32da7bbcd1418a2f4abe65cfaff5f2fc50",
+      "translationHash": "d17dc5c1dc08a8eda8bcbecf6ccaa76aadd88d06f41145b5e89b2a3952b6cf36",
+      "status": "reviewed",
+      "reviewedBy": "Frentan"
+    },
+    "/distros/bluefin/cautions/2": {
+      "sourceHash": "0e484f0c9e6ac7e7b779748128c31ee0fa27aa559fa27f24972a497a294f7c63",
+      "translationHash": "cbe732478f54179a0f0df52deb21c914b6d1cfee231c5815d54083854abd1bed",
+      "status": "reviewed",
+      "reviewedBy": "Frentan"
+    },
+    "/distros/bluefin/idealFor/0": {
+      "sourceHash": "d7fca477404a5b29cbb69365e2ef30385b20c6e6d796237641b1ebaf6463780c",
+      "translationHash": "a3e1cb21485479c4c903eb8f173a91e9a9c90995f7164ce8f69ba79eaaf3c2b3",
+      "status": "reviewed",
+      "reviewedBy": "Frentan"
+    },
+    "/distros/bluefin/idealFor/1": {
+      "sourceHash": "83c8d25327660b30d0794eab1b861449c24d22837a07b453be1848070c1c18dd",
+      "translationHash": "1d1215ed2bef20b90097de0dc5bcbb52f9f7141193445ba85379330a5d19e7f3",
+      "status": "reviewed",
+      "reviewedBy": "Frentan"
+    },
+    "/distros/bluefin/idealFor/2": {
+      "sourceHash": "9af41cc000c314fdf3edc720a5115c95337bdfd0c4e11b07bbd2e87b9b53b406",
+      "translationHash": "902ad2270111575e58bc22a10a6af712fc096b66252114426fed86d98e6247da",
+      "status": "reviewed",
+      "reviewedBy": "Frentan"
+    },
+    "/distros/bluefin/name": {
+      "sourceHash": "1846db2d56e5b9a085c019e2c7981648df791d7acb1ac06a2462a1d21e7a2b2a",
+      "translationHash": "1846db2d56e5b9a085c019e2c7981648df791d7acb1ac06a2462a1d21e7a2b2a",
+      "status": "reviewed",
+      "reviewedBy": "Frentan"
+    },
+    "/distros/bluefin/strengths/0": {
+      "sourceHash": "a169c7ce3541cd600dde1a63d2aee595ae4ee5f1124aad6edbb9f67015618da5",
+      "translationHash": "19307cecd5c9e26f2a3fd10e82bbc9e324498d9c4e22043d0bf66dd6e0d51b95",
+      "status": "reviewed",
+      "reviewedBy": "Frentan"
+    },
+    "/distros/bluefin/strengths/1": {
+      "sourceHash": "28e1753a5eba91d746848fa2a7dffd4efdd7a0fcb574094d4059b118ef21e1a1",
+      "translationHash": "2e039d186c31f952dce8c1f518760d87b57e74464528be277e21ae0e2e919289",
+      "status": "reviewed",
+      "reviewedBy": "Frentan"
+    },
+    "/distros/bluefin/strengths/2": {
+      "sourceHash": "5cf5e95dfee64bebf57ed7859984007ba5d255a88a9405cb7ed8aaded05f6841",
+      "translationHash": "f418a37c346b42987dd298c4429223829b19bc8861c8331670a85691732d6e48",
+      "status": "reviewed",
+      "reviewedBy": "Frentan"
+    },
+    "/distros/bluefin/strengths/3": {
+      "sourceHash": "e04962aee93517bb5f7d19510bb3e2de48e08563c530760b6130986907a81400",
+      "translationHash": "cae6ed57a7b3c79a041fbc91309f88e70a27c83a6adb0b7697911a46fdbfb0da",
+      "status": "reviewed",
+      "reviewedBy": "Frentan"
+    },
+    "/distros/bluefin/summary": {
+      "sourceHash": "bc282b5a6f6b90c38600c037617f4b795808b22768171ebc38ed73e647e20ccd",
+      "translationHash": "39d9b89bae6dc69abfcf30e43c5adb1eef6cab66644c129b3473eb4486a25deb",
+      "status": "reviewed",
+      "reviewedBy": "Frentan"
+    },
+    "/distros/cachyos/archetype/description": {
+      "sourceHash": "9c908b5f339eefa5884f26a688d8c56e972b52a6e5aee358e6eab476d0a04ff8",
+      "translationHash": "a71a490b2e743e69df5da235f1001a707789dd4f90e3b6f717de1d98fba371d8",
+      "status": "reviewed",
+      "reviewedBy": "Frentan"
+    },
+    "/distros/cachyos/archetype/name": {
+      "sourceHash": "efe790fe097f7d381a5972d6895638fc68f3f5be8b38039df24f66203529cb0f",
+      "translationHash": "de0070143f387d9630c33044c83c7194cf5d1e7305bed9907181daf976352cac",
+      "status": "reviewed",
+      "reviewedBy": "Frentan"
+    },
+    "/distros/cachyos/assessmentBasis": {
+      "sourceHash": "351f13744260537552fe7c94fb94b2d0699a4c14b1baa4b32bb06ae3bf4f2f8e",
+      "translationHash": "1dcd33948f855afa9409ee8ebcf764a0e21f7746e050813589ebc1a7b87ccfb0",
+      "status": "reviewed",
+      "reviewedBy": "Frentan"
+    },
+    "/distros/cachyos/cautions/0": {
+      "sourceHash": "f97b4db6fee01c4a25bdc88afe11f845a60fc366df404a2e831205a842a0e12f",
+      "translationHash": "a629a7b0cd3b74dfb6dc6c5f7ef332977ccaf5274f1ba0de4df8358f04df0c65",
+      "status": "reviewed",
+      "reviewedBy": "Frentan"
+    },
+    "/distros/cachyos/cautions/1": {
+      "sourceHash": "1f92a8a5bb61539f29a54df28f61fa88b300e1ef041909d0cff2dd5859e4b718",
+      "translationHash": "cbd686a52d460ee3cb5f5a53ae3845bb9169b042ae0270ba64e2bd7437dddd74",
+      "status": "reviewed",
+      "reviewedBy": "Frentan"
+    },
+    "/distros/cachyos/cautions/2": {
+      "sourceHash": "dbf97b33b0159adecf6814c77d50702ca2c3b102f0f9010e6f9b4930123e1425",
+      "translationHash": "b432eff76a212896fb67584416887223d50375f94bdab0e791e8495456a404b4",
+      "status": "reviewed",
+      "reviewedBy": "Frentan"
+    },
+    "/distros/cachyos/idealFor/0": {
+      "sourceHash": "afa659907fc8b64e91f4fd596ca3bdc6432e19fbe10d80543d11a6484050d686",
+      "translationHash": "eb25aad06b83ecd4b886730d31216b8497b01eb7e5f9f6591c0802f11f085501",
+      "status": "reviewed",
+      "reviewedBy": "Frentan"
+    },
+    "/distros/cachyos/idealFor/1": {
+      "sourceHash": "b84627c4572fe161cea49a5278cb98b112599c5847aa6a70258f43b4c146c658",
+      "translationHash": "9c0cf1400d5cd72233f2bb8b70db066e7ebc01c02b723b34a4bb4360196fc2a1",
+      "status": "reviewed",
+      "reviewedBy": "Frentan"
+    },
+    "/distros/cachyos/idealFor/2": {
+      "sourceHash": "5de0458c129d030454d7b62a1da68a96030de068a26bd8d60537dbe31cc6b2c0",
+      "translationHash": "202fb6d4054aa120430eae252d46c8077420bf7dfe1545d8c4707feb95d7b1fb",
+      "status": "reviewed",
+      "reviewedBy": "Frentan"
+    },
+    "/distros/cachyos/name": {
+      "sourceHash": "34d4c3d5bd3952586a0b821c40d851f32f758361c88b52feb73ee1d08050ae84",
+      "translationHash": "34d4c3d5bd3952586a0b821c40d851f32f758361c88b52feb73ee1d08050ae84",
+      "status": "reviewed",
+      "reviewedBy": "Frentan"
+    },
+    "/distros/cachyos/strengths/0": {
+      "sourceHash": "ee25f748aa9984b7fc0eac975fd4f80ed94f03a14c77c32f7e6dc0951d8dbe90",
+      "translationHash": "dac51d5e6aaa88313aa45620731dd60496b8003750fb3b1eb1426f80bde4e801",
+      "status": "reviewed",
+      "reviewedBy": "Frentan"
+    },
+    "/distros/cachyos/strengths/1": {
+      "sourceHash": "663aa0c8b1457bf9997e2c41d41c87342042f2cf5c203e638d21ba075c5719d3",
+      "translationHash": "d800cebfd27112676fc6a8d7d026311760321f4658e4971bd6d3bff232cfb982",
+      "status": "reviewed",
+      "reviewedBy": "Frentan"
+    },
+    "/distros/cachyos/strengths/2": {
+      "sourceHash": "3378853347648a393a2f750aceb8281f26f505f1347c66d93c44c58092389bd6",
+      "translationHash": "48178bdb8fe9fc3d92b4e658c6de1ba878bc9903e404c3e9b1f4777ebc7ae1f8",
+      "status": "reviewed",
+      "reviewedBy": "Frentan"
+    },
+    "/distros/cachyos/strengths/3": {
+      "sourceHash": "55b439520f63c1a2ca2ac5947d119f0e2b895ae52c5b218856d363372ec50e6e",
+      "translationHash": "52f87dd3e453e16c76d0d58a2978d6ff95f2a025db13cab3d933ff0a26936986",
+      "status": "reviewed",
+      "reviewedBy": "Frentan"
+    },
+    "/distros/cachyos/summary": {
+      "sourceHash": "f9ceeb667952218498b08b645d589587862adfabd5cbb288f29abbbb5dd9ed4f",
+      "translationHash": "0e9031f1c679a38772c8970b8cdf8ad29b015d029e409739b6e5f8f17ce967be",
+      "status": "reviewed",
+      "reviewedBy": "Frentan"
+    },
+    "/distros/debian/archetype/description": {
+      "sourceHash": "43b3f51b4b055457b799f1bf9c092bf446609b56c76a4d7751c7b51a4e69c320",
+      "translationHash": "afbb3b3168daf8b2b51ebadc490fbcd5d4676a21b6ad0c01cd81170eb955a4ba",
+      "status": "reviewed",
+      "reviewedBy": "Frentan"
+    },
+    "/distros/debian/archetype/name": {
+      "sourceHash": "eb7c332012c2a150cb54e8231537feae0f92935bd897a5457995049f889798e8",
+      "translationHash": "e328fc72d3f9fb978e617e652eaade861944c6385692284ee677528e6f6f7840",
+      "status": "reviewed",
+      "reviewedBy": "Frentan"
+    },
+    "/distros/debian/assessmentBasis": {
+      "sourceHash": "821b931530d9ac1241b2a310bcc9c192ca5db11487d0df6828883176c63695c1",
+      "translationHash": "32844e20d7dd82c8f7cba06c41b2259a3476eeff5c9c4091fb5d006f9a43f0c6",
+      "status": "reviewed",
+      "reviewedBy": "Frentan"
+    },
+    "/distros/debian/cautions/0": {
+      "sourceHash": "e2b3b332e8c9489111ccd1d15c90186e6a980d1f7bcbf7e16cd27aebcf183514",
+      "translationHash": "62adce9e948936e5f67a6f991152336888f758619e51cf81b8714e16ddc23ef3",
+      "status": "reviewed",
+      "reviewedBy": "Frentan"
+    },
+    "/distros/debian/cautions/1": {
+      "sourceHash": "731c04cb18a141a798c04b1ff609d28a5a5bc5ec4d5a8492566f5f9415f0d6fc",
+      "translationHash": "a6d5980865a5482f3122c5c8c0cbfb5d4c95d8c7ba182cccc59a332702e65ece",
+      "status": "reviewed",
+      "reviewedBy": "Frentan"
+    },
+    "/distros/debian/cautions/2": {
+      "sourceHash": "610c0cb78b92beadd6c38eb763e35a81437a2ec35c10204d871f978a04a98725",
+      "translationHash": "5e5fdd9669cc03c10343e6fe8fff4b5cc2ea22c5724ddb44481493ad5538b1ea",
+      "status": "reviewed",
+      "reviewedBy": "Frentan"
+    },
+    "/distros/debian/idealFor/0": {
+      "sourceHash": "776ffc6ea6f3b18c87523c8a2077910557371a00060e2745983d0a835da86d88",
+      "translationHash": "58d2db153e2ce1846ce57915065330ecd3243ba19d240a6c16f81f4352ac64ff",
+      "status": "reviewed",
+      "reviewedBy": "Frentan"
+    },
+    "/distros/debian/idealFor/1": {
+      "sourceHash": "88361d8ecae9379f04b7da06813c330e12c1e415274c4e5dcd602caf80060856",
+      "translationHash": "33a812cd3bc70cec36c6bfeec4e782eeaf0fbfba481f23450989fe0b9e462f64",
+      "status": "reviewed",
+      "reviewedBy": "Frentan"
+    },
+    "/distros/debian/idealFor/2": {
+      "sourceHash": "ebf0a5a5d229488bc21411098669d9f8360c4a9ab1f551ceb7c83f0e37e7d485",
+      "translationHash": "ccf86942b9ccf721eecced181707a44a4d0aebf3aaf3e54aca8f88b8f7bad2e0",
+      "status": "reviewed",
+      "reviewedBy": "Frentan"
+    },
+    "/distros/debian/name": {
+      "sourceHash": "2f04f84c149da7e717311905c0ac2c1a7e37822916a3a8ecdd079fee27cf0788",
+      "translationHash": "2f04f84c149da7e717311905c0ac2c1a7e37822916a3a8ecdd079fee27cf0788",
+      "status": "reviewed",
+      "reviewedBy": "Frentan"
+    },
+    "/distros/debian/strengths/0": {
+      "sourceHash": "a46f07b2ecba0c3f07281df68998c5faabc729687fc245186c4b24c8ca1bc36a",
+      "translationHash": "ba7f0fa19b15ff2e563a1d5ad0b495ec03ce28e9066a564d01e13553715191cb",
+      "status": "reviewed",
+      "reviewedBy": "Frentan"
+    },
+    "/distros/debian/strengths/1": {
+      "sourceHash": "0428d2022434d808bfc6510952e0d8a42f045bbb783c99264ead532e5d19f7d2",
+      "translationHash": "5d4052d00f425de182cf0300b8ddd76b2559c1536fb83cbad143bbeb36525c4f",
+      "status": "reviewed",
+      "reviewedBy": "Frentan"
+    },
+    "/distros/debian/strengths/2": {
+      "sourceHash": "b5b4654c2946c61951f8a78602fbb04b2ff5c904a83b052a312413d4edb1e4d0",
+      "translationHash": "c51fed37ec279ccaf8857f571b9addfabfaf2a2b8c3371bc39dd46e2a4101b17",
+      "status": "reviewed",
+      "reviewedBy": "Frentan"
+    },
+    "/distros/debian/strengths/3": {
+      "sourceHash": "20ced63a7d5ff12c8ff0ef55855462026226f110af090542141d00c2a9d9286e",
+      "translationHash": "4511270c6a514b8d464ed03c621c4e9908e7d218a086fef966bd0326f11377d7",
+      "status": "reviewed",
+      "reviewedBy": "Frentan"
+    },
+    "/distros/debian/summary": {
+      "sourceHash": "7669b71cb24d2e6bc6f3430b040db3360b4c1c061ae88ead224a5a92af48c0f1",
+      "translationHash": "a3e2790629e3d85ce3b0cc09eed0109efd3708d6a204d69e9f42cb2383e780c3",
+      "status": "reviewed",
+      "reviewedBy": "Frentan"
+    },
+    "/distros/elementary-os/archetype/description": {
+      "sourceHash": "5d0043a5e89ece97cc2d0f5a885c499138d43753b6552a1b59a19576a99384c6",
+      "translationHash": "8b0ae9c3f1a34661a9dc4518ba479fa7f5670da1a6d8cdec92ff37d8c056b977",
+      "status": "reviewed",
+      "reviewedBy": "Frentan"
+    },
+    "/distros/elementary-os/archetype/name": {
+      "sourceHash": "c3ce95bc521728ac6a676f6e805a5870742c500493914a8fb0ff6eb91ca00fd4",
+      "translationHash": "05c41ec80c002047dc1405c5b55ac4bb953fbe6dbd4e9453c8d80c0748b67e6a",
+      "status": "reviewed",
+      "reviewedBy": "Frentan"
+    },
+    "/distros/elementary-os/assessmentBasis": {
+      "sourceHash": "4d35f3490679065a8458b4227cffb7beb3c372e031a1d7bedb9f00169b2c1f0a",
+      "translationHash": "bf8c56cffafdbfc5caf5d48dfbd52d59a8fc4562f18c14d897f825c796c0595c",
+      "status": "reviewed",
+      "reviewedBy": "Frentan"
+    },
+    "/distros/elementary-os/cautions/0": {
+      "sourceHash": "dea74eecba92c6d201f3608698c8e19adb5eb082607801a44a835431ce615a7f",
+      "translationHash": "d14a75edd15c09bca03dadd1fe9a2cbd47488a002810a2474fefb6f40bd78422",
+      "status": "reviewed",
+      "reviewedBy": "Frentan"
+    },
+    "/distros/elementary-os/cautions/1": {
+      "sourceHash": "5f8bcdb53f7850298811ad9ae7af0d44434e81a64d1bab13be00b9f2af8a86e8",
+      "translationHash": "0e6a5092b7dc74ad977def7323383fbea4e9aa2b252d8f19edc1f76d49ac5892",
+      "status": "reviewed",
+      "reviewedBy": "Frentan"
+    },
+    "/distros/elementary-os/cautions/2": {
+      "sourceHash": "aa9ec822d7f2521d52355d0d4506a296e2ce3c2250c71b5ca8dadbec0b04a879",
+      "translationHash": "ee802fb78eca0216e600b61b0b6ee9ce49d2923406b2f5a512c8084c268dd19a",
+      "status": "reviewed",
+      "reviewedBy": "Frentan"
+    },
+    "/distros/elementary-os/idealFor/0": {
+      "sourceHash": "ae99b4d750fd29689d17723a4afa6e46ef8b3a952dfc8c99fc9dbd42d5221825",
+      "translationHash": "02ec97b339f323160e56cfece20ee6e1126e8cd13fabbf2751c257b563b223b1",
+      "status": "reviewed",
+      "reviewedBy": "Frentan"
+    },
+    "/distros/elementary-os/idealFor/1": {
+      "sourceHash": "bf902296e40d5384024b353280330804bb604ea03d3516db6368b164ec0235a3",
+      "translationHash": "b0ab789c9cfcd647e0f91ec38b554fb8edc27b1481afa5834c9d2e471a4a9ec1",
+      "status": "reviewed",
+      "reviewedBy": "Frentan"
+    },
+    "/distros/elementary-os/idealFor/2": {
+      "sourceHash": "6d685f5e3a778e80f8b0a3e797c95b2da6befdf48e38cb0d34b38daa5558a71f",
+      "translationHash": "1d9ffdb8864a3c518efd6e56db73707a529a50c2adcfe15190a0fa628dc37555",
+      "status": "reviewed",
+      "reviewedBy": "Frentan"
+    },
+    "/distros/elementary-os/name": {
+      "sourceHash": "d5c91764a91ae83ed6a5809ca0239023b6012dd23037f958c4b08c64a66950d5",
+      "translationHash": "d5c91764a91ae83ed6a5809ca0239023b6012dd23037f958c4b08c64a66950d5",
+      "status": "reviewed",
+      "reviewedBy": "Frentan"
+    },
+    "/distros/elementary-os/strengths/0": {
+      "sourceHash": "03adf6c0a5ea183493b8a79bd1d05aab52c751180347a6f6a167f151bc23b3b3",
+      "translationHash": "1f6adbdb55f8fde8a20248dcd1f6b7181682b2421b30c3b5dd588ace53a13d5d",
+      "status": "reviewed",
+      "reviewedBy": "Frentan"
+    },
+    "/distros/elementary-os/strengths/1": {
+      "sourceHash": "2688b082e51017ad3625d59ec3aa8a45fe90f69bc289b26f7e38b847c3f1b2a8",
+      "translationHash": "2c97f6c582fb84526144db299c9c8a29f4251faa6ee83c7ef2626d01ba0f39c8",
+      "status": "reviewed",
+      "reviewedBy": "Frentan"
+    },
+    "/distros/elementary-os/strengths/2": {
+      "sourceHash": "6ceb944e7f5baca038c48ab778ddc522cb49ab0ff90df59c673175b91ad0b2c8",
+      "translationHash": "b7e85cc4f498293b30cc0bad4420d933b0e21b1ad329e665c9a5e83a217b9e0e",
+      "status": "reviewed",
+      "reviewedBy": "Frentan"
+    },
+    "/distros/elementary-os/strengths/3": {
+      "sourceHash": "278e18cbe6c0f98fbe093acdef3b844452489ecb8ee8a51ef3e7d1bcb32187de",
+      "translationHash": "3750a24c493ef193a31fd4ba1c446b0bcd13c2425b3b04094fbc304fd07d15c7",
+      "status": "reviewed",
+      "reviewedBy": "Frentan"
+    },
+    "/distros/elementary-os/summary": {
+      "sourceHash": "31b3596948967b7b94cd537cffd7d441041a3ca3a0cf2cba900fc72f18fcbded",
+      "translationHash": "761a209c2c7806591dc4ed14ca6dbd7a3a074c8085b7edaf5798c61637698a8a",
+      "status": "reviewed",
+      "reviewedBy": "Frentan"
+    },
+    "/distros/endeavouros/archetype/description": {
+      "sourceHash": "8619882f2c5299c6ec5f9dc90e4fec8876f3f614e4abac7c916991b94383667e",
+      "translationHash": "791143637c62dcdce873db05f1ac386faadaffdd541db71eb274fc174d892263",
+      "status": "reviewed",
+      "reviewedBy": "Frentan"
+    },
+    "/distros/endeavouros/archetype/name": {
+      "sourceHash": "5407751f2b15b6df6e2773c00fdd037d372b814ec8f900214716e8eda8633642",
+      "translationHash": "b88e50a5d82c2701621f5a3c8eda1484276623d32f8a0dff0379b5728529f0f3",
+      "status": "reviewed",
+      "reviewedBy": "Frentan"
+    },
+    "/distros/endeavouros/assessmentBasis": {
+      "sourceHash": "bf95ae5e767747341653488253ae099605bcc650abe5a67d88234ed1f711967a",
+      "translationHash": "5bfaea6ef959667f00b559eee1087737966e61633a5de9e4ce9aff1ae8f38ca7",
+      "status": "reviewed",
+      "reviewedBy": "Frentan"
+    },
+    "/distros/endeavouros/cautions/0": {
+      "sourceHash": "df00d599081e6acee9fa169c6385fc48b64e1b1d8db08e435f5bec7cb44d071f",
+      "translationHash": "3a41eb386cb7c9fcebed5dc6d43d607b9c886169681e4018a59b0422db7b033e",
+      "status": "reviewed",
+      "reviewedBy": "Frentan"
+    },
+    "/distros/endeavouros/cautions/1": {
+      "sourceHash": "7d4ad1ae40333c176e4c6e3c8bf45f4a384753e5f495419868ed0245ddd74021",
+      "translationHash": "218c7543113a889282e37f45539cb148d7239dbc1fc0b4250147750f6bd6dca1",
+      "status": "reviewed",
+      "reviewedBy": "Frentan"
+    },
+    "/distros/endeavouros/cautions/2": {
+      "sourceHash": "9f0d156754924723b377e94d30a751a9323a37fb9f796569096d37a10c92e1ff",
+      "translationHash": "2b1764392efa064be71013cc8f14aeb46e53ade68171136c59bbf98cbf724822",
+      "status": "reviewed",
+      "reviewedBy": "Frentan"
+    },
+    "/distros/endeavouros/idealFor/0": {
+      "sourceHash": "e21eac3b938f35c7c9e5917939e774fe85d2372ada89ee88c527d11d6e15bb2c",
+      "translationHash": "9e37ab8d39fc47c5c5dd34b17f0c72f37a56b87636e04980bac9abcfa84fd85d",
+      "status": "reviewed",
+      "reviewedBy": "Frentan"
+    },
+    "/distros/endeavouros/idealFor/1": {
+      "sourceHash": "9ec2597ccc46d8d27a1e13544f9a0a67e345484ebfaa647cfbb4934861852c2f",
+      "translationHash": "e3c279f28289b9c113c0e87c6d2499e49644e23d32f3c6fad8cc977e90b98cfd",
+      "status": "reviewed",
+      "reviewedBy": "Frentan"
+    },
+    "/distros/endeavouros/idealFor/2": {
+      "sourceHash": "6899cfbca2ddfd79fd04251e0b75647e472351faeabfca065398b572f165282b",
+      "translationHash": "a394af31c17aa6d45b06d246e0b6beccdc2a131b1e473380634e9de568a143ba",
+      "status": "reviewed",
+      "reviewedBy": "Frentan"
+    },
+    "/distros/endeavouros/name": {
+      "sourceHash": "dff3a6f58a1afd53a37fbe9906fa594974d4a0f0a71a713431e07290e393a38a",
+      "translationHash": "dff3a6f58a1afd53a37fbe9906fa594974d4a0f0a71a713431e07290e393a38a",
+      "status": "reviewed",
+      "reviewedBy": "Frentan"
+    },
+    "/distros/endeavouros/strengths/0": {
+      "sourceHash": "fa1bf95fc2bf42b0554c71fa81a104bbadea4d9eb2d0a01e76874c8eed47117e",
+      "translationHash": "62f00d1485b79a45ee65821aa47ec07aefa58b76123ee7ab5d1fc3d175e6563e",
+      "status": "reviewed",
+      "reviewedBy": "Frentan"
+    },
+    "/distros/endeavouros/strengths/1": {
+      "sourceHash": "48c982392e6b53da5d40392ee6c350ea1afbcb3a0f7454d526738baa3ab4a915",
+      "translationHash": "c8b8551460e503cbf7f9867011a3490af036629228fa1cb030e3cf8d88e3fb08",
+      "status": "reviewed",
+      "reviewedBy": "Frentan"
+    },
+    "/distros/endeavouros/strengths/2": {
+      "sourceHash": "271c05aac55843604b491bf372b701665935fa3ec05bfd2634fd98cfce5698b2",
+      "translationHash": "d360e80ef1a4bdd9db028a6620abf349ca6d10736c189f3d4787b91f811e600b",
+      "status": "reviewed",
+      "reviewedBy": "Frentan"
+    },
+    "/distros/endeavouros/strengths/3": {
+      "sourceHash": "0036c9c17a97725ac09a7f87c2039d11753d7aded7a80a99e83bd5d794b1a30d",
+      "translationHash": "4d09c3e6391f55dd27446685ae5708de709171a3ab8b7b8cea606c4139563497",
+      "status": "reviewed",
+      "reviewedBy": "Frentan"
+    },
+    "/distros/endeavouros/summary": {
+      "sourceHash": "0c7eb8ce5ecbb6699894a56ea69dac76b7285b1b513fe690c3b476fac3e7e1e4",
+      "translationHash": "a9d11b32b01d658c6fa152f7eea3baccef321ba74f627d79e1885349309776d4",
+      "status": "reviewed",
+      "reviewedBy": "Frentan"
+    },
+    "/distros/fedora-kde/archetype/description": {
+      "sourceHash": "37680ced7aff1aa9371683b15b82e9a19123310fd17cb2b6523cb2367ac8a123",
+      "translationHash": "e55faf665594247681a8e7ea042d8b43f85f7a33c5d00cb1f0c15e8a5ce425e5",
+      "status": "reviewed",
+      "reviewedBy": "Frentan"
+    },
+    "/distros/fedora-kde/archetype/name": {
+      "sourceHash": "5c4401c323ec5dc3d8323d4e197f43f9d27d1dc87c067186b5a9cc460f281093",
+      "translationHash": "cb3ad8344a23477febd443cd59fa2ecebdda7698be9dd8cffedfc0dcfe963d04",
+      "status": "reviewed",
+      "reviewedBy": "Frentan"
+    },
+    "/distros/fedora-kde/assessmentBasis": {
+      "sourceHash": "51efd98161271babc01f882a4775ed3e457b1746aea6c8316abcc850b166efaa",
+      "translationHash": "9877c9eda426d49496a125f43c10a08633e46ca6d21609709dbe62b19cb2dd80",
+      "status": "reviewed",
+      "reviewedBy": "Frentan"
+    },
+    "/distros/fedora-kde/cautions/0": {
+      "sourceHash": "9614e04d02de4d3af48b869efd33fcd01f32f87aad363d0b0a7c8e74fb398f74",
+      "translationHash": "6d4c9addf8b69061e2b4b267975f426a7347fe2a3ee0fc035ff3acc5a6a3ae19",
+      "status": "reviewed",
+      "reviewedBy": "Frentan"
+    },
+    "/distros/fedora-kde/cautions/1": {
+      "sourceHash": "299a5dcb9d74c04528b57c525d06d26972d68a2dd4b73ac7af3d0e6dad36b470",
+      "translationHash": "2be34d2c530ad3dea2440fdc62e87825c17a7949c086765bc63e36d5e366d0c8",
+      "status": "reviewed",
+      "reviewedBy": "Frentan"
+    },
+    "/distros/fedora-kde/cautions/2": {
+      "sourceHash": "0c10143b650bb677ca2edeab0a007517ba7fd0b9a0acb5432a949a7a6822aeeb",
+      "translationHash": "144f5976e4ca799e045f08d22074b4bbc15f0ae2c15dd40a5817591e44f380af",
+      "status": "reviewed",
+      "reviewedBy": "Frentan"
+    },
+    "/distros/fedora-kde/idealFor/0": {
+      "sourceHash": "839a27ac5fe9f41ba2a565c1c9285148dd109b42ef573b1ed641304697c69d20",
+      "translationHash": "c363754ee9a49a4583eb228e6e5b0891883aceaec37a5975af35069326d75060",
+      "status": "reviewed",
+      "reviewedBy": "Frentan"
+    },
+    "/distros/fedora-kde/idealFor/1": {
+      "sourceHash": "97e6932cdd3525743c17ea4de91984fcb3d9c112deb687333a0a2c22581a6c8d",
+      "translationHash": "3d118a3971a553efc9a8226c6b8e9de4474cb455c738c8c0b57cf90ba4c3aecd",
+      "status": "reviewed",
+      "reviewedBy": "Frentan"
+    },
+    "/distros/fedora-kde/idealFor/2": {
+      "sourceHash": "7f27711b006cdf82ead5d88687cb9da13178922d9da4583bfb9fff5ac8f48a72",
+      "translationHash": "a9e8ff3f04059dd6438c4108585988e7dc3e579d9513f6743d30dcd189c81b00",
+      "status": "reviewed",
+      "reviewedBy": "Frentan"
+    },
+    "/distros/fedora-kde/name": {
+      "sourceHash": "73190314748fa7f4d6e92af0ae12c88a1d0a919b2abdd900766b651f12821278",
+      "translationHash": "73190314748fa7f4d6e92af0ae12c88a1d0a919b2abdd900766b651f12821278",
+      "status": "reviewed",
+      "reviewedBy": "Frentan"
+    },
+    "/distros/fedora-kde/strengths/0": {
+      "sourceHash": "c08679bf18abee2dfb5673224e2aefcb93096e1db411c4e1c8255d026ed016c5",
+      "translationHash": "845e721c846a949717d6c66c36b1e2bb332580eb5098fb06f89eadb0aa91099f",
+      "status": "reviewed",
+      "reviewedBy": "Frentan"
+    },
+    "/distros/fedora-kde/strengths/1": {
+      "sourceHash": "bf511992f307f88ba47241ae78fd24166b4d6aea31e707f60836e622e5bbe5a2",
+      "translationHash": "6636990160d5ba00b825b06cf8a15cb7fc3099048aae8af3dcf6f97527fd051c",
+      "status": "reviewed",
+      "reviewedBy": "Frentan"
+    },
+    "/distros/fedora-kde/strengths/2": {
+      "sourceHash": "331b07a430248204e4f53d13bbea2484c099bbb2bdf3d349c8d617848f9e485e",
+      "translationHash": "339650d11eba52eb29c54e27f4475bc066b70fd03fc6c7038b1b7e52cb5bd786",
+      "status": "reviewed",
+      "reviewedBy": "Frentan"
+    },
+    "/distros/fedora-kde/strengths/3": {
+      "sourceHash": "30d760c2590fdc5477391f410e1701cfcc0a6b698d742f4c397d394035217aae",
+      "translationHash": "62abb3b7aa64e49ffeb2e80dd717c3d7ed6dda0bbb69e3f5b29123d0993f5feb",
+      "status": "reviewed",
+      "reviewedBy": "Frentan"
+    },
+    "/distros/fedora-kde/summary": {
+      "sourceHash": "5a8a4037d217461d2e30a974ce2ed60c6d23994a9ce069a0925c42fd5dd3ff74",
+      "translationHash": "feec99054d3a4d4edcfe2845c8e98c25a40185650bd8fcfa97be57ade79bcac1",
+      "status": "reviewed",
+      "reviewedBy": "Frentan"
+    },
+    "/distros/fedora-silverblue/archetype/description": {
+      "sourceHash": "da2a4dd010c9cffe747855b4080c2d1d1618feccd33cb30f9576dcbe541887b4",
+      "translationHash": "492481f74296f64b782789f078810e808cd9c993cb19c0274f57f61c7a95147d",
+      "status": "reviewed",
+      "reviewedBy": "Frentan"
+    },
+    "/distros/fedora-silverblue/archetype/name": {
+      "sourceHash": "b9278b8fa6e010e917650960958292e6fc19ef040384bf95527a621938af635e",
+      "translationHash": "95ee530a6ee5fffd2426ebfe75fc5a77016255446e005f97f3bfd13ac94e167a",
+      "status": "reviewed",
+      "reviewedBy": "Frentan"
+    },
+    "/distros/fedora-silverblue/assessmentBasis": {
+      "sourceHash": "a5f7a9824ae83e1f3df251d884c43ea1ced6a88402511e40afc89efcb9ff8a45",
+      "translationHash": "2c6814894a716a052c0558ace4022196a0e4e45936e063925ea9211a51f149c0",
+      "status": "reviewed",
+      "reviewedBy": "Frentan"
+    },
+    "/distros/fedora-silverblue/cautions/0": {
+      "sourceHash": "a476291956a9ad03582ee693839103ddfa3f0e3d9143076d42953b8489825432",
+      "translationHash": "6636452ed76dd75ce8bcd463559dedfd72b5676c035c3d06ce381ef5d6ec2a58",
+      "status": "reviewed",
+      "reviewedBy": "Frentan"
+    },
+    "/distros/fedora-silverblue/cautions/1": {
+      "sourceHash": "ddac23dee454692298e072f0c4f5f64fe18387d8bf1c1c72479e880b0427c9c2",
+      "translationHash": "ca25a4ea266dc9385740b2ca705c5afadf25c2da562e3199ac7ea8befc6ee725",
+      "status": "reviewed",
+      "reviewedBy": "Frentan"
+    },
+    "/distros/fedora-silverblue/cautions/2": {
+      "sourceHash": "5162bf6247af73c6f4bc52137aa3819fee29b99a345877af9dfd3abbb962ab9c",
+      "translationHash": "39a76845ebea2a8cc207758e47166baaca53799f1f6c394e155792f5394c74f2",
+      "status": "reviewed",
+      "reviewedBy": "Frentan"
+    },
+    "/distros/fedora-silverblue/cautions/3": {
+      "sourceHash": "f70cd72932010ddcf64f3581d472bc29c5381143b9bc90eaf516a5d2a80ebb4b",
+      "translationHash": "3a3b31a385b5a4ca7f83d8d235283c46dd517d3f8b502a9293511401e415fad7",
+      "status": "reviewed",
+      "reviewedBy": "Frentan"
+    },
+    "/distros/fedora-silverblue/editionNote": {
+      "sourceHash": "2d7222dff5167a77618759344fd09d327daee85f782e8376753eec5c8c4e53a9",
+      "translationHash": "3b7f382f1bbcefa617e51ad49f581f4f3f1347f6cb4ccce1c59b1d22f1b1a735",
+      "status": "reviewed",
+      "reviewedBy": "Frentan"
+    },
+    "/distros/fedora-silverblue/idealFor/0": {
+      "sourceHash": "ee787c07bf41004fb92f5c1708e4ec9469c75874d1325ee9d7aa64f98adde58e",
+      "translationHash": "b3689cea022053d8f4654dc664f34f220dcc815d86bb6596e09e3b73e8ffd601",
+      "status": "reviewed",
+      "reviewedBy": "Frentan"
+    },
+    "/distros/fedora-silverblue/idealFor/1": {
+      "sourceHash": "4334d1b828482bccbdc9a15de44968eeca59dbed5fba3ca68af1c36fa586f13a",
+      "translationHash": "b876607e35628ae541fd718a90024d7b0ee832df3ab574cbb4569745090c835d",
+      "status": "reviewed",
+      "reviewedBy": "Frentan"
+    },
+    "/distros/fedora-silverblue/idealFor/2": {
+      "sourceHash": "78289f15151136df44bd512475fd614c6d28920432fe406b8397257619780f3e",
+      "translationHash": "aa01300aab3e0a9828c76125c416f76c85d267c21cbb19453438e5dcb3b60714",
+      "status": "reviewed",
+      "reviewedBy": "Frentan"
+    },
+    "/distros/fedora-silverblue/name": {
+      "sourceHash": "1c6b4c1189917a69ccfc222704f52e05fb8fd688f941f2e87a8bccce5069e4bd",
+      "translationHash": "1c6b4c1189917a69ccfc222704f52e05fb8fd688f941f2e87a8bccce5069e4bd",
+      "status": "reviewed",
+      "reviewedBy": "Frentan"
+    },
+    "/distros/fedora-silverblue/strengths/0": {
+      "sourceHash": "c68ff063ccec44e930445095c3a802cab4b7fffd76855e4ae25e182d0f90a6fa",
+      "translationHash": "7d6a8138ba8051b1336ff7d05b3b2115e17ec985acb0306dcdacf54796edcad7",
+      "status": "reviewed",
+      "reviewedBy": "Frentan"
+    },
+    "/distros/fedora-silverblue/strengths/1": {
+      "sourceHash": "ea6c9210e6539a3966f820a5dbddc6b0aebbcf3ca646a01ff72d1f47381e1a71",
+      "translationHash": "aa73f2de021d5d83381a90a253034be757ebe4e8d77fbe709a309df759c26a41",
+      "status": "reviewed",
+      "reviewedBy": "Frentan"
+    },
+    "/distros/fedora-silverblue/strengths/2": {
+      "sourceHash": "39a7e09d8fb0c74629ede25e2d816f1ef3441724ccf1c861c49544a4569653b3",
+      "translationHash": "1758b4e22efa915f33b88a60767d2cce1b740a79f3a48724a3ad29db31dafca6",
+      "status": "reviewed",
+      "reviewedBy": "Frentan"
+    },
+    "/distros/fedora-silverblue/strengths/3": {
+      "sourceHash": "8b41a92262d116b330b7d91ddebfd1596d78e2a884cf4ad34739571b49d03fed",
+      "translationHash": "127180212e9b0b0d8ff01b7bac28cb19afe6c0dbff5a7cb109687b513cdf5a9f",
+      "status": "reviewed",
+      "reviewedBy": "Frentan"
+    },
+    "/distros/fedora-silverblue/summary": {
+      "sourceHash": "744ca4b8e7c44434869ab096a5e08b7ff69a1fc78110d2116028d8f886216264",
+      "translationHash": "76459ab922a5594e1e3d82f5b200fef571bd1f070fd0a73d7c3bc946a6746e6e",
+      "status": "reviewed",
+      "reviewedBy": "Frentan"
+    },
+    "/distros/fedora-workstation/archetype/description": {
+      "sourceHash": "2de9b0bacdd2b0d313c1b47fceea7f5d9ada54bc730892de5c6aa569fb8fed90",
+      "translationHash": "04f4de10541156f67b24dcfcd2344561770cd49535d48a4615edbb7685042994",
+      "status": "reviewed",
+      "reviewedBy": "Frentan"
+    },
+    "/distros/fedora-workstation/archetype/name": {
+      "sourceHash": "b1258ad36e38059934a21a259bbaa2d6a53bb281a55d153bd246f56c87dadf99",
+      "translationHash": "06c71eb25fe9b7adcd6ceec6e67b697d8e5a294700bc2649ddc65ce191363e44",
+      "status": "reviewed",
+      "reviewedBy": "Frentan"
+    },
+    "/distros/fedora-workstation/assessmentBasis": {
+      "sourceHash": "ade184bbdddd0884c07a803a24c349a921fdffb33eaf56e163e45acc744f88c5",
+      "translationHash": "d72810ae436674dd53240cbe43658cd6b5240ee7f962702e94eefb7e999d62fd",
+      "status": "reviewed",
+      "reviewedBy": "Frentan"
+    },
+    "/distros/fedora-workstation/cautions/0": {
+      "sourceHash": "9614e04d02de4d3af48b869efd33fcd01f32f87aad363d0b0a7c8e74fb398f74",
+      "translationHash": "6d4c9addf8b69061e2b4b267975f426a7347fe2a3ee0fc035ff3acc5a6a3ae19",
+      "status": "reviewed",
+      "reviewedBy": "Frentan"
+    },
+    "/distros/fedora-workstation/cautions/1": {
+      "sourceHash": "e7fd49ce8a92493713dbc02e38b8dce76f2e6a2485f460d4a128f50936e06496",
+      "translationHash": "7d0c573ffaf3271b878963770ac9172b8bb7993b64e1bacc7a96e3f6d3319841",
+      "status": "reviewed",
+      "reviewedBy": "Frentan"
+    },
+    "/distros/fedora-workstation/cautions/2": {
+      "sourceHash": "8d31dfa12ef05f2db340f0686f26f91ded4b103f04dbbf05aaac4db169955059",
+      "translationHash": "9b1e98e9769d4fbf4f58d397bf914372bbb619e80d39d809729abc121b2e39db",
+      "status": "reviewed",
+      "reviewedBy": "Frentan"
+    },
+    "/distros/fedora-workstation/idealFor/0": {
+      "sourceHash": "97e6932cdd3525743c17ea4de91984fcb3d9c112deb687333a0a2c22581a6c8d",
+      "translationHash": "3d118a3971a553efc9a8226c6b8e9de4474cb455c738c8c0b57cf90ba4c3aecd",
+      "status": "reviewed",
+      "reviewedBy": "Frentan"
+    },
+    "/distros/fedora-workstation/idealFor/1": {
+      "sourceHash": "f47e8434c1b659c2611fd06546da8dda6d08b829e35115f6b0f46a9e977b1961",
+      "translationHash": "9ed036915d359b0278b512ee72e256776d183c6d2b6321628edb85af9d544841",
+      "status": "reviewed",
+      "reviewedBy": "Frentan"
+    },
+    "/distros/fedora-workstation/idealFor/2": {
+      "sourceHash": "fc56268f3ab81f8dd01c3c97cce6e0000dc9edc01c58317e20bba6f155ba9256",
+      "translationHash": "8f5ca81ea8e4378102cdc59dff5ed64ed57ba9580b30f90f411fe81e74876418",
+      "status": "reviewed",
+      "reviewedBy": "Frentan"
+    },
+    "/distros/fedora-workstation/name": {
+      "sourceHash": "3b8eab426f2a541a327a9f02e727b7db00e36aa580c9233d195429c8273822fb",
+      "translationHash": "3b8eab426f2a541a327a9f02e727b7db00e36aa580c9233d195429c8273822fb",
+      "status": "reviewed",
+      "reviewedBy": "Frentan"
+    },
+    "/distros/fedora-workstation/strengths/0": {
+      "sourceHash": "7266e14f2edb1388e129de003085ff48405cbe0066538e68e13adac86dc857ec",
+      "translationHash": "223412816f76f761d92c79121db7d8dc16629bef789c5a3441fadc4181dfd68a",
+      "status": "reviewed",
+      "reviewedBy": "Frentan"
+    },
+    "/distros/fedora-workstation/strengths/1": {
+      "sourceHash": "de43bd05a178f031a7c2cfe4772be7b17a01dbe1d24e5d1762c8b26a959f1ee9",
+      "translationHash": "3c935d01e8a757bfcc1f0deb5f9efb391505aa031d50d7458dde9b6f110e3e37",
+      "status": "reviewed",
+      "reviewedBy": "Frentan"
+    },
+    "/distros/fedora-workstation/strengths/2": {
+      "sourceHash": "a84cb9fc4231298de6fcc6bf8ab9c6e456fe316ac6196957a11f70b8b08648c3",
+      "translationHash": "435fead32d86649af64690b076a7a7d207167d716398d2ab345b2cb5ccf97e3c",
+      "status": "reviewed",
+      "reviewedBy": "Frentan"
+    },
+    "/distros/fedora-workstation/strengths/3": {
+      "sourceHash": "f34eb5282b46e1bf909610599a2c75fc61611d059dee922b01f29d8040fe1ea3",
+      "translationHash": "b9b5e8ffb7f27236c4c7fc1c408da00e7f5cabca1ec666b410a5a3e9f7cdc7c5",
+      "status": "reviewed",
+      "reviewedBy": "Frentan"
+    },
+    "/distros/fedora-workstation/summary": {
+      "sourceHash": "33640ff838a2163e95eb9ef022cb9c5a02f86b621a44ffe8d6a694ec5a735b54",
+      "translationHash": "a9a2a32e1304de4cb55bff8fcea97ea51f84a76b57f1489ebd0342fe5c5dea08",
+      "status": "reviewed",
+      "reviewedBy": "Frentan"
+    },
+    "/distros/garuda-linux/archetype/description": {
+      "sourceHash": "fc762ef497b77fb2f601e392f7c5a39d430c137d1efebf0bff59a0f59ca66c71",
+      "translationHash": "1b57b558e42b97ca6ae3d605518f0a196777c8522a4295b4096327a8be0e6cb1",
+      "status": "reviewed",
+      "reviewedBy": "Frentan"
+    },
+    "/distros/garuda-linux/archetype/name": {
+      "sourceHash": "f0809d6d01b299cdc8d8d6cca64b94ca87f05356bf0c54531ce3de4146e7d879",
+      "translationHash": "3f5ee65f0a4b7e455814d5784b662e6c6f51a883db9ea2aa1508109a802a9e29",
+      "status": "reviewed",
+      "reviewedBy": "Frentan"
+    },
+    "/distros/garuda-linux/assessmentBasis": {
+      "sourceHash": "ccf8e54ccfe156e970c0c6bc4f2af0d6a6ee2f0a7037cecdc5d56f1fa504aa01",
+      "translationHash": "ba2faaf0b399ec81a2a6adc825515bb1c3a4a072b83755f13ebbc82a4e82007b",
+      "status": "reviewed",
+      "reviewedBy": "Frentan"
+    },
+    "/distros/garuda-linux/cautions/0": {
+      "sourceHash": "43b8d0b78774191bf526e360b0d0ac005aa8b15680f60f3e9d86a82f1300df25",
+      "translationHash": "d087818d01f990c2ff78e6eff5ca771885280a181259e4b9932ba7224324c1de",
+      "status": "reviewed",
+      "reviewedBy": "Frentan"
+    },
+    "/distros/garuda-linux/cautions/1": {
+      "sourceHash": "574d00b800de475e1869fdcd3925ae33237e5728a6be2cc4202a6b880d8a0dbb",
+      "translationHash": "0a1f0af8d6078f27b86351170ec3271470f6a768d1ecf0398ae2881c8b486892",
+      "status": "reviewed",
+      "reviewedBy": "Frentan"
+    },
+    "/distros/garuda-linux/cautions/2": {
+      "sourceHash": "76b82f020433d6a4f51ed961d69a73861c13a277a8292c351697cfa02352be83",
+      "translationHash": "2064e2708ddefcd066b3b7b162f844cf030ca8971058ceedc1e562aba1529ed0",
+      "status": "reviewed",
+      "reviewedBy": "Frentan"
+    },
+    "/distros/garuda-linux/idealFor/0": {
+      "sourceHash": "4ba5409850e40fe9b96ec2ab1ca6ce6c1950a498bc824c3a75cc00461ecc8f7b",
+      "translationHash": "dae4bf6bc802808926b7acc29371c69d0aad00a9350efeeda7a97b4ee2bfd06e",
+      "status": "reviewed",
+      "reviewedBy": "Frentan"
+    },
+    "/distros/garuda-linux/idealFor/1": {
+      "sourceHash": "4f351618d34719f24c1627a4235d1d4f3565cd28f878648809fa9b1a9f942abf",
+      "translationHash": "a8a838e2e03e43443100271f471129e72c44a7c9e472466fcafa199e3bb8ffa8",
+      "status": "reviewed",
+      "reviewedBy": "Frentan"
+    },
+    "/distros/garuda-linux/idealFor/2": {
+      "sourceHash": "cd291bac96bda28fb412bed351eb4c9829c7d0afa09894630e402d9c3197b4ad",
+      "translationHash": "79b82df956103eb74e27fafeb9b8247656ba0628cdd79d118bffe1118b991b0f",
+      "status": "reviewed",
+      "reviewedBy": "Frentan"
+    },
+    "/distros/garuda-linux/name": {
+      "sourceHash": "4abfac48b6c29037dbf78e5d283d4ed77b381d8e2c9b0cd0a15fbc5d3ae9793f",
+      "translationHash": "4abfac48b6c29037dbf78e5d283d4ed77b381d8e2c9b0cd0a15fbc5d3ae9793f",
+      "status": "reviewed",
+      "reviewedBy": "Frentan"
+    },
+    "/distros/garuda-linux/strengths/0": {
+      "sourceHash": "158d127fd3c39d7888f2c06768220974001e5c6cbbf6b691e48ba2dcdcfa7087",
+      "translationHash": "5a6ea6f3daf39e271f2aa043a084100aefbab65ebae310aec472a4a1a077110d",
+      "status": "reviewed",
+      "reviewedBy": "Frentan"
+    },
+    "/distros/garuda-linux/strengths/1": {
+      "sourceHash": "e0ae1a1d272e6bf433321b9e556a61c96df137bdfc457593452add851da38c4c",
+      "translationHash": "8c99abc63bbd32f0579179b9cd09b150f14daac4500749d55cf875b67d5f04c2",
+      "status": "reviewed",
+      "reviewedBy": "Frentan"
+    },
+    "/distros/garuda-linux/strengths/2": {
+      "sourceHash": "a5b53d896719698b43a19284480344de6623341bea2b7522e3e48baf45d3e582",
+      "translationHash": "fb2f3b68ceefcbab742817e4ae4577004a5d1270048b52ecebe35405fbf52f2a",
+      "status": "reviewed",
+      "reviewedBy": "Frentan"
+    },
+    "/distros/garuda-linux/strengths/3": {
+      "sourceHash": "2b02e23e75823f1c787596d7a14541097a0fd48bdd19c3bb8dff61f74f600f6c",
+      "translationHash": "d218a0519591c5355458700a2e66e0651a0951c2f087435c9c1985fef43d6b03",
+      "status": "reviewed",
+      "reviewedBy": "Frentan"
+    },
+    "/distros/garuda-linux/summary": {
+      "sourceHash": "625138bc922780bb0a47c376047807b912fb3bc2449679612abcad8b3ee84518",
+      "translationHash": "266881dd8d05772310e85210251722b2856e6bebaa5f8783cb494a26f2ecb208",
+      "status": "reviewed",
+      "reviewedBy": "Frentan"
+    },
+    "/distros/gentoo/archetype/description": {
+      "sourceHash": "b455fd21ec9fe78eeed55f44bb778aa5f6f1bfe1598c6f297d42e21127540637",
+      "translationHash": "0d799389c1fd2169ce97e4e118b4c3f0bba3ea25838485cc7047dff381a86b29",
+      "status": "reviewed",
+      "reviewedBy": "Frentan"
+    },
+    "/distros/gentoo/archetype/name": {
+      "sourceHash": "22f8fc896c535b1676923c0952a98cd31a9168670f0cd6fd4b5c2c10a26073ec",
+      "translationHash": "187ccc40301827deb0b2f6d7545730ff92e434727c2c29d9ce05bb31b5625390",
+      "status": "reviewed",
+      "reviewedBy": "Frentan"
+    },
+    "/distros/gentoo/assessmentBasis": {
+      "sourceHash": "343e372682ce4e693f1c0e4f11a3d208ba2270362f0b11a58f4c5c10224a1c45",
+      "translationHash": "d1698260158705a8b23b94896749547d2f20e13088c578afe319c50108a40b6e",
+      "status": "reviewed",
+      "reviewedBy": "Frentan"
+    },
+    "/distros/gentoo/cautions/0": {
+      "sourceHash": "3722b5daa3563a77a6a82ec7ac6ffeafa6f0bab4ef91264a0e50e1242830ad24",
+      "translationHash": "c6d1f758a68a438bd5320618e6940fdb1139e1bcae8ea7dbc07f2158ebd1d3b1",
+      "status": "reviewed",
+      "reviewedBy": "Frentan"
+    },
+    "/distros/gentoo/cautions/1": {
+      "sourceHash": "6d711099c60d4ad5335cf92c48dc6f4d3052fd75e5c68191b76aa0d670609b4f",
+      "translationHash": "b8e22b216dc26e1cb6ad75c9e7bfaecbfbb7128dc2996a7d7728f9e2b2a33dfa",
+      "status": "reviewed",
+      "reviewedBy": "Frentan"
+    },
+    "/distros/gentoo/cautions/2": {
+      "sourceHash": "a33e4289339cc3d474ce07c984436b17c21549ffe2728210dc4ba890b17735be",
+      "translationHash": "9c62d0ae23edf09ec7c8794ee35ec944c0b48936c7b31ea615cf4bcfbae0d5cc",
+      "status": "reviewed",
+      "reviewedBy": "Frentan"
+    },
+    "/distros/gentoo/idealFor/0": {
+      "sourceHash": "e832cd61623bfa57214de722ba4ffa12bb656a072b088ba21a9920b24548e735",
+      "translationHash": "e2ea448ba92eeda4346999476c057b39320b17159ffd8ab85b9d2ad7fc083781",
+      "status": "reviewed",
+      "reviewedBy": "Frentan"
+    },
+    "/distros/gentoo/idealFor/1": {
+      "sourceHash": "da57ff83e697fa94ea48121a2135b2fd19ac37b556480f5124ab60d4e624d9fc",
+      "translationHash": "bef1045a0ec669d33ceddd3e1536ddc3b787dda3929cc60dfaabaf9e71f3e027",
+      "status": "reviewed",
+      "reviewedBy": "Frentan"
+    },
+    "/distros/gentoo/idealFor/2": {
+      "sourceHash": "75e669fc1cf5161a20c23f72e5c971c664bd0d058ffab87b61747a60abfd5f15",
+      "translationHash": "f95d50b55b36a9e2b9d1f2c33dc6cae9202e93848d3d59b812ec19afda031b5d",
+      "status": "reviewed",
+      "reviewedBy": "Frentan"
+    },
+    "/distros/gentoo/name": {
+      "sourceHash": "ee2b214090afdfed1c442557078bd7b764b09131e6d3fcc8fc3cd477faa836b3",
+      "translationHash": "ee2b214090afdfed1c442557078bd7b764b09131e6d3fcc8fc3cd477faa836b3",
+      "status": "reviewed",
+      "reviewedBy": "Frentan"
+    },
+    "/distros/gentoo/strengths/0": {
+      "sourceHash": "e2580429a06f329c742fd1b2e1ce9a84dfd4f8e6104b4ec0b826ebd19bcb4ef8",
+      "translationHash": "4212eb47e48e2733fc31bcba0705cf777b1194914e86dd586aed122690a8341b",
+      "status": "reviewed",
+      "reviewedBy": "Frentan"
+    },
+    "/distros/gentoo/strengths/1": {
+      "sourceHash": "e14db1c5cd04cc83605902d1f62214e699619d7a1068853d7f6fe738fe87c861",
+      "translationHash": "01e59382eff33fba6da5d128a9b284093c2acc611c7692a2e5cda4ce35545163",
+      "status": "reviewed",
+      "reviewedBy": "Frentan"
+    },
+    "/distros/gentoo/strengths/2": {
+      "sourceHash": "066b7200d241eaaf5640b2a34f0228d4b247200b64f96a3792a23eb00715f648",
+      "translationHash": "481519dcc323bf2584eb621393be8bfeef4c942f12d4e92776af9bf090fba38e",
+      "status": "reviewed",
+      "reviewedBy": "Frentan"
+    },
+    "/distros/gentoo/strengths/3": {
+      "sourceHash": "980f99c2a5eb5d1ae396e831e92f86afa391e7d6cb7543799906a2506e92bd33",
+      "translationHash": "904b8103cd50af527d3f03dfd45a0a615a69fb666650379327e7b56f0bb20750",
+      "status": "reviewed",
+      "reviewedBy": "Frentan"
+    },
+    "/distros/gentoo/summary": {
+      "sourceHash": "39cf51ed42ae1b379635ed6ed3e55df67b4d5825dfcbd572d036dc42003d7889",
+      "translationHash": "59d788886ac8ccb3bc995accf22f7a8f7cea52cd6dbe3f4ff46e6d9b2bea5d61",
+      "status": "reviewed",
+      "reviewedBy": "Frentan"
+    },
+    "/distros/kali-linux/archetype/description": {
+      "sourceHash": "3c13a224ff95b6739a862f71aaaac49880b86768bb25f78731352dd481f2c77e",
+      "translationHash": "92f53e324a118ba1ad9943a99b41c940efefe2a4296305b3c17d7a077d131942",
+      "status": "reviewed",
+      "reviewedBy": "Frentan"
+    },
+    "/distros/kali-linux/archetype/name": {
+      "sourceHash": "8726dc02c7c5968aaaee64b7fe454ee8017a651a22d9d5b543fc2188a8c95a31",
+      "translationHash": "ec1ff273ef5214a8304a61c7f572ba6987662538b4c8e043cc6097481c570607",
+      "status": "reviewed",
+      "reviewedBy": "Frentan"
+    },
+    "/distros/kali-linux/assessmentBasis": {
+      "sourceHash": "9ae77a1509c6e7a5eb4c828b9a4c41b975e1c5fe5d6b72920259737d95851107",
+      "translationHash": "da4ffbe94f330e2ce0d4b92c9112cc5611ff16ca8999a316dd20c4cf214bff0f",
+      "status": "reviewed",
+      "reviewedBy": "Frentan"
+    },
+    "/distros/kali-linux/cautions/0": {
+      "sourceHash": "0b7ff067e7abbf570d0342346f6e6cb137f2800213d0d1ca0e9457e2a79580c9",
+      "translationHash": "9055a205957bc06ddbca791c09498cadce4c5cee8b50652a4d07d2d5b6e5b884",
+      "status": "reviewed",
+      "reviewedBy": "Frentan"
+    },
+    "/distros/kali-linux/cautions/1": {
+      "sourceHash": "1e97b6957fe4465de1cbb88b8fb1ccbc5f95a2036ef83ed0ad267528b078fdfe",
+      "translationHash": "61675e9e61d308b846f8cd2050f2ff13d7bb53623dbf46fae7094796e6941952",
+      "status": "reviewed",
+      "reviewedBy": "Frentan"
+    },
+    "/distros/kali-linux/cautions/2": {
+      "sourceHash": "07b02354f3db0f6b18b27f0971e45a06b3ed31338b81674fe8746926e2a6ac1d",
+      "translationHash": "33cb50e4419c0fca1421544159912ac9256076be3ceffc147ebf41127a90c506",
+      "status": "reviewed",
+      "reviewedBy": "Frentan"
+    },
+    "/distros/kali-linux/idealFor/0": {
+      "sourceHash": "2c098550511b8e620d253469623aa9db827dd4def663096445ee5da412bd3dd6",
+      "translationHash": "64ca5f253b97666c06e8f19b4339b073716ba2eb910373c4826d04fb0c729d51",
+      "status": "reviewed",
+      "reviewedBy": "Frentan"
+    },
+    "/distros/kali-linux/idealFor/1": {
+      "sourceHash": "cdb4bd14a0d2f7cf09597b413a9e048926027726f178d8b7d9991642ab4a11f5",
+      "translationHash": "01065a1a76cf161c380e8f1e26f8537cf19f125bee9d6c5dac839d938b1de4e9",
+      "status": "reviewed",
+      "reviewedBy": "Frentan"
+    },
+    "/distros/kali-linux/idealFor/2": {
+      "sourceHash": "a484f5b8b76167263da6df6c05cc326873185f4b1ea9a9ff9637cfc3af40e1f7",
+      "translationHash": "8281ad6431976b64e3ae880f041b86084abd5c95173b35914d70fa1c49de5779",
+      "status": "reviewed",
+      "reviewedBy": "Frentan"
+    },
+    "/distros/kali-linux/name": {
+      "sourceHash": "3ee7af22d109f54319e9c55705f8ff68f79c7b667e4b1bb3f581fa2a7f7724f6",
+      "translationHash": "3ee7af22d109f54319e9c55705f8ff68f79c7b667e4b1bb3f581fa2a7f7724f6",
+      "status": "reviewed",
+      "reviewedBy": "Frentan"
+    },
+    "/distros/kali-linux/strengths/0": {
+      "sourceHash": "79d96b94e619f47569c7dbb710ea6bb343c320325c1bd9455245820e1fca4688",
+      "translationHash": "2c26a33fff82a0d9e690445ee2ae8c6261c00cda399a21c99312d6fb53518d0e",
+      "status": "reviewed",
+      "reviewedBy": "Frentan"
+    },
+    "/distros/kali-linux/strengths/1": {
+      "sourceHash": "178f3f19131149f20f730a8e6513eb00356fc6d0055202070fb5e4d5a824fe74",
+      "translationHash": "e417a3779394391d85875f3d3460ca9779f0d714f881defdc81510701372fcfa",
+      "status": "reviewed",
+      "reviewedBy": "Frentan"
+    },
+    "/distros/kali-linux/strengths/2": {
+      "sourceHash": "730f815cad4545c3ad1ef71f8ae924b8bcb72dce78cc57e336290fc741684255",
+      "translationHash": "70bcda84c0723530e8b8306a5b87995714b040dcc01778ca9c32e84faaa63de2",
+      "status": "reviewed",
+      "reviewedBy": "Frentan"
+    },
+    "/distros/kali-linux/strengths/3": {
+      "sourceHash": "62c1fc82921a15593cee8d9bc489e8dd1ba6c1e77a422acd7499c87ceebad020",
+      "translationHash": "66da8acd7fd2988730318277438a051aa2ed492d2bb5a810a0fb8285b6e723da",
+      "status": "reviewed",
+      "reviewedBy": "Frentan"
+    },
+    "/distros/kali-linux/summary": {
+      "sourceHash": "9efb20b121a375d3493dd229b0568911a67e09a8ecd7c0a94c98e0c08b499570",
+      "translationHash": "007849efbcf340022a857f526099143cd625880e28172265902b7a669a506b03",
+      "status": "reviewed",
+      "reviewedBy": "Frentan"
+    },
+    "/distros/linux-mint/archetype/description": {
+      "sourceHash": "ba1be9c52d9518c8c852f22202f161224481b0589810e0fc579a0f357d108e59",
+      "translationHash": "6c6d80adf6b4b47f8dd583b24a464f59ee41d148957d3aed60f4fb6135b95d7c",
+      "status": "reviewed",
+      "reviewedBy": "Frentan"
+    },
+    "/distros/linux-mint/archetype/name": {
+      "sourceHash": "e0c8bce8f9f6db30ca0c041fdf36a178ad27cc6f8a156d59b98bf47937344b59",
+      "translationHash": "8fac86a46f28931f22af49da148da64521b6324997f7435cfb19f1406edc0382",
+      "status": "reviewed",
+      "reviewedBy": "Frentan"
+    },
+    "/distros/linux-mint/assessmentBasis": {
+      "sourceHash": "eb47bd2c4153b7d553cbe8c6963b60993cba5e7e24a79a0a2cb3db00896a1edf",
+      "translationHash": "06ed176303e2bb7eaf7f875f5eea7a2db0f5d18109b1ad797fe2bf96b57dccc0",
+      "status": "reviewed",
+      "reviewedBy": "Frentan"
+    },
+    "/distros/linux-mint/cautions/0": {
+      "sourceHash": "e3250fd5de852ad2122d17043f7982ecf19950ccf03a1fecef0be04e75168072",
+      "translationHash": "f1ee2a27f10519ac6ec77597a2aea60ef8f919c0e51a7b3bad35c7d8d532194f",
+      "status": "reviewed",
+      "reviewedBy": "Frentan"
+    },
+    "/distros/linux-mint/cautions/1": {
+      "sourceHash": "36cf303f2af3b45bacd39b02b8b19131f0256842664b9d5b96b37c8bbef0eb38",
+      "translationHash": "112138c096ec12ca654beb37c7a1e8eb069773111bb2136460ac3462b39029e7",
+      "status": "reviewed",
+      "reviewedBy": "Frentan"
+    },
+    "/distros/linux-mint/cautions/2": {
+      "sourceHash": "52507a3e963c9add95d2f30ba4e49baae921b01b4714223e6e964bca2d2c90d2",
+      "translationHash": "05e46c4a640282a8b5c7a6bfff8d28d67c38209df3c7e075e6153075140ffc3c",
+      "status": "reviewed",
+      "reviewedBy": "Frentan"
+    },
+    "/distros/linux-mint/idealFor/0": {
+      "sourceHash": "447e9371338de5847899a4dcfbe8c47d9a7b75de52e369eba8015b5cb22bef2c",
+      "translationHash": "c99335cd351645efc6d4853b7ba5f75b70a8d7437554f87533c043af99d610c2",
+      "status": "reviewed",
+      "reviewedBy": "Frentan"
+    },
+    "/distros/linux-mint/idealFor/1": {
+      "sourceHash": "3d75a546ef6e3aec314551164c66f8f7822588703bbaca0923f8329257c7b82b",
+      "translationHash": "7c5c99397eec339229195946614e1d0d980b56d1ef5934c30646a6c1258be925",
+      "status": "reviewed",
+      "reviewedBy": "Frentan"
+    },
+    "/distros/linux-mint/idealFor/2": {
+      "sourceHash": "7b26925711e8b54637d33201abb62b167848e4cbc055d3b8ebc0a1a26be59a3c",
+      "translationHash": "d94c2d9a3e38e097bafcea1dddbffd2c03b0b395ec35af548287c89f03544cdb",
+      "status": "reviewed",
+      "reviewedBy": "Frentan"
+    },
+    "/distros/linux-mint/name": {
+      "sourceHash": "2af34875883005d01bad8ebe9db1ee4bc359358e8601163c94a83a12946b74d4",
+      "translationHash": "2af34875883005d01bad8ebe9db1ee4bc359358e8601163c94a83a12946b74d4",
+      "status": "reviewed",
+      "reviewedBy": "Frentan"
+    },
+    "/distros/linux-mint/strengths/0": {
+      "sourceHash": "a0744416e68254c53d92a565b3ceb4407f97bf3961eb77bbf49097111cde418d",
+      "translationHash": "2a373231cca07bf6f7dc7065a78d9fd845825cdea0887387ab1db90d2e8b5a3c",
+      "status": "reviewed",
+      "reviewedBy": "Frentan"
+    },
+    "/distros/linux-mint/strengths/1": {
+      "sourceHash": "d42b2b504e013154ecb6f1568479a26d48a2acb87715fbc7c3ac8d09a33f1e46",
+      "translationHash": "98d779140e2cd59a475dabe97112630448b7ac7793528642f91f4e8e1155f597",
+      "status": "reviewed",
+      "reviewedBy": "Frentan"
+    },
+    "/distros/linux-mint/strengths/2": {
+      "sourceHash": "0ced3982ec00de0f7e26f88206576d4ef0faa5f31fffb4864a1fc2a55ebc0922",
+      "translationHash": "ec66d6ea71080e54846560248d4ae2cf243905f2e4282195204ae5a4c531d900",
+      "status": "reviewed",
+      "reviewedBy": "Frentan"
+    },
+    "/distros/linux-mint/strengths/3": {
+      "sourceHash": "e5bd3993b1a6234f9ed9950e3e5422e4ce5ff2b32b1a703dded3c57f27a8073f",
+      "translationHash": "f6bce1f41fdbd0a960a123d74469f72110ea200ff5888d76ed7392a5d0ea3e5b",
+      "status": "reviewed",
+      "reviewedBy": "Frentan"
+    },
+    "/distros/linux-mint/summary": {
+      "sourceHash": "dfc835cfa44004239b14b5d357b32a0dbbe7920126f9763ee1ea8493bf394c1e",
+      "translationHash": "fe13297ae2e7f7a6ba50424a6ab2d8a18e9788bf2bc23a81bff74aad15c13c0e",
+      "status": "reviewed",
+      "reviewedBy": "Frentan"
+    },
+    "/distros/mx-linux/archetype/description": {
+      "sourceHash": "25c42bf4a1682c74275d44084638e7fe90a6636914b1dc3c9d62e8d65ae7192d",
+      "translationHash": "379bf18ecf338229772d3e43bdf13197c80409f9cbe3079854edb257b9934709",
+      "status": "reviewed",
+      "reviewedBy": "Frentan"
+    },
+    "/distros/mx-linux/archetype/name": {
+      "sourceHash": "147af85c08a3477a48a0233f53f4b2f99088cf9f6eea5ec6005080ffb93cba1e",
+      "translationHash": "610235928cab636a92baa9e28c2b6bd9190c6d2d00b701c9ef2d683fd224af7a",
+      "status": "reviewed",
+      "reviewedBy": "Frentan"
+    },
+    "/distros/mx-linux/assessmentBasis": {
+      "sourceHash": "132b0e732c44c783b62d34effa1779067e7ec1f5c4a76d023dc5797a5665aa00",
+      "translationHash": "369d3650ebff86bc584f833c6021bd697f811b1d092068783962d7fd7f42fd95",
+      "status": "reviewed",
+      "reviewedBy": "Frentan"
+    },
+    "/distros/mx-linux/cautions/0": {
+      "sourceHash": "02571bfffaecb640096bbbde28b0cc937a4c49fbdcb19d928ad953f59affaf49",
+      "translationHash": "b8e0a66d26c781ec4dc968acdc98f6a0a6627a900d636965ef53fb0e2b1ad39f",
+      "status": "reviewed",
+      "reviewedBy": "Frentan"
+    },
+    "/distros/mx-linux/cautions/1": {
+      "sourceHash": "5cdb6979e146b744217e887e08eb8d566a1a4cf1a560819e2ed1d4510e38b4b2",
+      "translationHash": "590e2fae5c9d42a68de42280f026580fca2139eda0d3cafde51c6996cf688e49",
+      "status": "reviewed",
+      "reviewedBy": "Frentan"
+    },
+    "/distros/mx-linux/cautions/2": {
+      "sourceHash": "ba31c85a7481b4139a1a0e45e1cfc38d9d3e989c8f4fddef1c8db8a0527bb26b",
+      "translationHash": "311636cd8e32184aed954296dd8062fef3925944cb51c4ef565c6131c32051b2",
+      "status": "reviewed",
+      "reviewedBy": "Frentan"
+    },
+    "/distros/mx-linux/idealFor/0": {
+      "sourceHash": "8e3b4b7c7b2844bdc0cd2ff0e394d8b97f18df83834d0bd15eca241acd068402",
+      "translationHash": "6c3055a6c20b5839680e089666ad3a6c37778e17da6341dcbf969d6baa052ef5",
+      "status": "reviewed",
+      "reviewedBy": "Frentan"
+    },
+    "/distros/mx-linux/idealFor/1": {
+      "sourceHash": "57fab05972ccbf939e840bc539bb567fdfaa3a58dd8098e808c8e155442ecc6a",
+      "translationHash": "357c1b17b969039b101173615f59e79f12dc173eebbddb3d04881002b8808494",
+      "status": "reviewed",
+      "reviewedBy": "Frentan"
+    },
+    "/distros/mx-linux/idealFor/2": {
+      "sourceHash": "373010b63fdfb0a615995dc33a9f6cf8f9b606f12304552c387e3734456240f1",
+      "translationHash": "69a1070f0ed706a333f6aaea3db5be0e32e8be6e3b78b03d6c9138834453c086",
+      "status": "reviewed",
+      "reviewedBy": "Frentan"
+    },
+    "/distros/mx-linux/name": {
+      "sourceHash": "1f3270f3371213632f802cb2e27fc35352f8fde0a3c0d86d24395ea92af727b2",
+      "translationHash": "1f3270f3371213632f802cb2e27fc35352f8fde0a3c0d86d24395ea92af727b2",
+      "status": "reviewed",
+      "reviewedBy": "Frentan"
+    },
+    "/distros/mx-linux/strengths/0": {
+      "sourceHash": "1be026410df16f7a5e99de39525e2c62724de004a0859939ce0186e0f4a11824",
+      "translationHash": "2d786ab9bba5531ed6cd894ac430c42ee22b22237af61f7a35b0fdefda9fe3c5",
+      "status": "reviewed",
+      "reviewedBy": "Frentan"
+    },
+    "/distros/mx-linux/strengths/1": {
+      "sourceHash": "5edf399cca6d5129a4186fa77d8dcd3e50b2c02f806158f81f5e4f2d23803c95",
+      "translationHash": "38f8b3fbd40a5e186e958712c02c5f8ac2af9aaf95aa399afe04329d3b5b6402",
+      "status": "reviewed",
+      "reviewedBy": "Frentan"
+    },
+    "/distros/mx-linux/strengths/2": {
+      "sourceHash": "333b084197c2621e8e5abe043ff8d988b93b0a7d3f3ed94ca42538120c09c416",
+      "translationHash": "f7fad09ce389480084123877ffb22279b1b540563b4dfa04a70237fe3ca2960a",
+      "status": "reviewed",
+      "reviewedBy": "Frentan"
+    },
+    "/distros/mx-linux/strengths/3": {
+      "sourceHash": "2aa9380d7a801fd804aeb03daef3df26e9023cff80453a6955d20ce7383bccf1",
+      "translationHash": "eef422847af7ad1528b42c7c769905cd3978459cb900c18281dcfa5cdd8c81e1",
+      "status": "reviewed",
+      "reviewedBy": "Frentan"
+    },
+    "/distros/mx-linux/summary": {
+      "sourceHash": "96559925f48265397b7ab5995759371ecaf517f249f00d2ae087222b59c04303",
+      "translationHash": "5b01e7b8560eeca34bd39bea6eb6cdc56cf3816b19674267bb5f2adb5745c551",
+      "status": "reviewed",
+      "reviewedBy": "Frentan"
+    },
+    "/distros/nixos/archetype/description": {
+      "sourceHash": "6401ecdf96c5e4a3150e046c43585e88a0e52282b44814362345aae5e735a33e",
+      "translationHash": "395d9035d3b93fc7896302b5596989f0ea3bb74476ec4b01ef2940f296f14bb4",
+      "status": "reviewed",
+      "reviewedBy": "Frentan"
+    },
+    "/distros/nixos/archetype/name": {
+      "sourceHash": "cf649bc4c42988e21d23597652cc83f2dfaf457186fe83a4144bfef9c3c82376",
+      "translationHash": "1a2c464178b0687eb26dd9d2aa4f6a92018500fe7515e56a352c9e3da64d2c01",
+      "status": "reviewed",
+      "reviewedBy": "Frentan"
+    },
+    "/distros/nixos/assessmentBasis": {
+      "sourceHash": "bd3cf840726debfd38d0abef7090820987116c7eca75acbc72bc954af482ba03",
+      "translationHash": "08f356c4c6822cb6f28ee39aa65f14434c71daeb6addee2fb943991a9be4c66f",
+      "status": "reviewed",
+      "reviewedBy": "Frentan"
+    },
+    "/distros/nixos/cautions/0": {
+      "sourceHash": "6d794bb87d14e8d9209770a75194e4388288c08d8959f1e64a451e352eef37d9",
+      "translationHash": "8b4c7239e86becc3677b9ca48f421b2cc5c2a74c4c59c7b19a830509b7a35c8d",
+      "status": "reviewed",
+      "reviewedBy": "Frentan"
+    },
+    "/distros/nixos/cautions/1": {
+      "sourceHash": "7aca9e18256ac65ebae80a1c657ab7ea8e9949c3eacf0f9607b5b65898c86ec9",
+      "translationHash": "362c26ba4826a777f121fba409fd334276715c40e7888e1be8d2650c3712987d",
+      "status": "reviewed",
+      "reviewedBy": "Frentan"
+    },
+    "/distros/nixos/cautions/2": {
+      "sourceHash": "22cb891415becfa2de4aae5afb4875e1b8b80c55842e96ab62b3cbfa1ea211df",
+      "translationHash": "d4e4b42a283e20122ca8238242d66dd8c5ed34718a27f45508a4f74652175e72",
+      "status": "reviewed",
+      "reviewedBy": "Frentan"
+    },
+    "/distros/nixos/idealFor/0": {
+      "sourceHash": "e0f955cff101429eb799053b060c6c2d0822de9f060c71eed08380eef295a977",
+      "translationHash": "46d43c2fc81921097d5529a9bf85abbb4b92532b81749744ce9ccdb5d2fca72b",
+      "status": "reviewed",
+      "reviewedBy": "Frentan"
+    },
+    "/distros/nixos/idealFor/1": {
+      "sourceHash": "66b8bb617d3a1fd8ead9ab3523b1c002506015c8b83ccb1a9067a2c0e44dabc7",
+      "translationHash": "8f3d614aa4b8042aee31e29350dbdb797cad2ca5106edead29dadf83cb5737b6",
+      "status": "reviewed",
+      "reviewedBy": "Frentan"
+    },
+    "/distros/nixos/idealFor/2": {
+      "sourceHash": "717f5299c8fca34d34d54e6581077ae541d36aecc1405cc1cfab4e9f5b16d758",
+      "translationHash": "4e4156b94a5abd6d807932dea693227716d7a894c9aef1e49ebc331feca0b65c",
+      "status": "reviewed",
+      "reviewedBy": "Frentan"
+    },
+    "/distros/nixos/name": {
+      "sourceHash": "2568633b5db04c028c293be7e411091f41d3bef0289fee28729b6b50322d46c9",
+      "translationHash": "2568633b5db04c028c293be7e411091f41d3bef0289fee28729b6b50322d46c9",
+      "status": "reviewed",
+      "reviewedBy": "Frentan"
+    },
+    "/distros/nixos/strengths/0": {
+      "sourceHash": "d0705a15c4f8bb147f1eb5b3cdf010ec26586cc1e53a416b70df7f942660c816",
+      "translationHash": "806973b9c5756bed27fc6f5159ee5432c37b745012d3e1fcb007825a05ec5817",
+      "status": "reviewed",
+      "reviewedBy": "Frentan"
+    },
+    "/distros/nixos/strengths/1": {
+      "sourceHash": "b17e1800ee2b84a1961632a719f31bf18bc7acc4b468d28af5be454a91788044",
+      "translationHash": "944cd92256a8ea509e2d5188537bb6b831aa1616dcc5c570013ad2e2b8ef5482",
+      "status": "reviewed",
+      "reviewedBy": "Frentan"
+    },
+    "/distros/nixos/strengths/2": {
+      "sourceHash": "7baea52dee8bca70df3e8d6691fa41a7a2b554ba9479490008d1e1f050de0094",
+      "translationHash": "59a4d027318fc64a6233fd2683b6d1940ef7848726008bb492f47ddd7ebc70e1",
+      "status": "reviewed",
+      "reviewedBy": "Frentan"
+    },
+    "/distros/nixos/strengths/3": {
+      "sourceHash": "b07faeed35935e20beb337e17967bf55a153487b16b5566c58b722666420fe4d",
+      "translationHash": "1324d8954719aa88c2cbc1ecb0e42c02c8b1d1d55fc6218f5c58a9859731f5f1",
+      "status": "reviewed",
+      "reviewedBy": "Frentan"
+    },
+    "/distros/nixos/summary": {
+      "sourceHash": "6dfad8259c7e3d29a1d5b3b4f4525ab01f657ecac69c37150d84236f1c9ab80d",
+      "translationHash": "7ec1d5ef4238596c63c0da8fb30b11ab97ec60abcb2dfd15150c26578ece5165",
+      "status": "reviewed",
+      "reviewedBy": "Frentan"
+    },
+    "/distros/nobara/archetype/description": {
+      "sourceHash": "0c09981a01fb997e9355111e651d42c971a23aa307a4a2c8bc1fa188006e7302",
+      "translationHash": "a9b251439cf7bcc9b4c038a62633a10de323822796f46bade86e343b6dabeef7",
+      "status": "reviewed",
+      "reviewedBy": "Frentan"
+    },
+    "/distros/nobara/archetype/name": {
+      "sourceHash": "77a685f7d007ceb51a3129f4bdf3c4df4a26e38cc0d7a90c683f9841605cfeb7",
+      "translationHash": "dd40d55905252934e01e1dc9a9b790802bace24027343b3a25b415d8250832c0",
+      "status": "reviewed",
+      "reviewedBy": "Frentan"
+    },
+    "/distros/nobara/assessmentBasis": {
+      "sourceHash": "b2b02e4806fa779f6df294fed2218f30ac0d9e22405a14d52b6e4d583775575c",
+      "translationHash": "ec50991987766b25fad27b4a1850c323416da1388f9d7ee084a084821f090e21",
+      "status": "reviewed",
+      "reviewedBy": "Frentan"
+    },
+    "/distros/nobara/cautions/0": {
+      "sourceHash": "1d577e0774abb97c83b00994e2bbc0526184b9b2213d0d8b1a08ca039b0d6033",
+      "translationHash": "fcae3ec43b31829a3fce7c8f3c82e8b4459f73ce56c0a90629009016209c3a13",
+      "status": "reviewed",
+      "reviewedBy": "Frentan"
+    },
+    "/distros/nobara/cautions/1": {
+      "sourceHash": "9cac62e14e803a8d812739eac80a970a1b3d13fdb740fdf5a99287768903122f",
+      "translationHash": "f9bd01af5e48c0111687f3007f4e724dadac63f8dc2f976c4c4aef4c5e5652c1",
+      "status": "reviewed",
+      "reviewedBy": "Frentan"
+    },
+    "/distros/nobara/cautions/2": {
+      "sourceHash": "035348dbf04fe89d3131a1f261fd05c3b5ee434cc915a21c5947cc88d48ed3ca",
+      "translationHash": "db40496ba7dbcf2998589655c454750232bbb2e69ee8399881cf3498006246fe",
+      "status": "reviewed",
+      "reviewedBy": "Frentan"
+    },
+    "/distros/nobara/idealFor/0": {
+      "sourceHash": "1e71b72e1b4b3d0f05770a6239f1ba4cdd98e10872a45937e80c173822e74577",
+      "translationHash": "2509808171b4eb5c6f53658253d169c13c4f6fde587e51de6fbf56d2aa664a3a",
+      "status": "reviewed",
+      "reviewedBy": "Frentan"
+    },
+    "/distros/nobara/idealFor/1": {
+      "sourceHash": "172c99cc2dc58e89fbdfd4c451a9f71aa71cc3c207899fe4dd42ff6b38770574",
+      "translationHash": "f064df9d611c84356847e4b1f947eceb17541b9708cd601c890eac009936fde8",
+      "status": "reviewed",
+      "reviewedBy": "Frentan"
+    },
+    "/distros/nobara/idealFor/2": {
+      "sourceHash": "0725649b0857dad67bf23ac58ba0b0e55124286c2a627f36839a646ba23b65e9",
+      "translationHash": "ca423797cab903525f76f8c0aad88657505e10d043fb6a1530c5460b69b683c4",
+      "status": "reviewed",
+      "reviewedBy": "Frentan"
+    },
+    "/distros/nobara/name": {
+      "sourceHash": "a6ccc385a6fdd589cb5794f3c1ad546e02ccd5dd025f1fd0ba79d01fa6a1a680",
+      "translationHash": "a6ccc385a6fdd589cb5794f3c1ad546e02ccd5dd025f1fd0ba79d01fa6a1a680",
+      "status": "reviewed",
+      "reviewedBy": "Frentan"
+    },
+    "/distros/nobara/strengths/0": {
+      "sourceHash": "e5f31567011873d9d174e204162ef02d44f1d91a5e0fbb025250120fec66fb50",
+      "translationHash": "b5c5a6a56abb6ace4710b8001032ebe0dadeea70f7fae49888a59c9372434354",
+      "status": "reviewed",
+      "reviewedBy": "Frentan"
+    },
+    "/distros/nobara/strengths/1": {
+      "sourceHash": "83018c67f82375176391117abbf3dbfa0eb54baab245b6be9b74d61e32835b3c",
+      "translationHash": "80f4ae957cdc56b60d460ab3e87a67ddab47011ce93190b4e6141c9fdadddb8f",
+      "status": "reviewed",
+      "reviewedBy": "Frentan"
+    },
+    "/distros/nobara/strengths/2": {
+      "sourceHash": "636a2b43c6066d4409892ab870ae531780dc5824f748795cce824d2f80eab5dd",
+      "translationHash": "5d2a010ed57337a3b1430313f7782d0b697dc1d5233f368a9891dfc9b1705157",
+      "status": "reviewed",
+      "reviewedBy": "Frentan"
+    },
+    "/distros/nobara/strengths/3": {
+      "sourceHash": "a6a4461ffb15d8c4ac100ed4472b4ccd7cd0cb46e6a925c79f9534e990459a9c",
+      "translationHash": "e090ae1a38226ad0cbef047ec1d6cae0330637d2e32c37b5d95fedaf53f4f239",
+      "status": "reviewed",
+      "reviewedBy": "Frentan"
+    },
+    "/distros/nobara/summary": {
+      "sourceHash": "8efa9d6a2a65d90521586f2942c719b0378edb25436224a03cc2529fc2671e58",
+      "translationHash": "5f78d7783313d430b246cdda61f6f849d68236679b99dc1b874de4d09d884213",
+      "status": "reviewed",
+      "reviewedBy": "Frentan"
+    },
+    "/distros/opensuse-aeon/archetype/description": {
+      "sourceHash": "f33bf4ed4a68d6f6d8c4b8e3bd6cb80de9fd8c931158034a79e1fc9094c46496",
+      "translationHash": "0fd548238920ba4edfc605fb20c911b08f6dbddf00b7766e6b346f9678a9b61b",
+      "status": "reviewed",
+      "reviewedBy": "Frentan"
+    },
+    "/distros/opensuse-aeon/archetype/name": {
+      "sourceHash": "dfe7399a64ae9438d01e239e404229e41e5701743428b3c8e49c90b4f77d0b06",
+      "translationHash": "7a5b58d026308dd75f407ea2f127342740ed72bdbe5fba424bc4ff9c2f3dde34",
+      "status": "reviewed",
+      "reviewedBy": "Frentan"
+    },
+    "/distros/opensuse-aeon/assessmentBasis": {
+      "sourceHash": "c61c6f487742db0dd9f137bc0acbefc2423082ff7290d6d56f6f53b1f674d71a",
+      "translationHash": "bca752a1e63cef903a39195fd507d105a61b39db6c2df0191b1aa6c0bee307f7",
+      "status": "reviewed",
+      "reviewedBy": "Frentan"
+    },
+    "/distros/opensuse-aeon/cautions/0": {
+      "sourceHash": "06b78a17e84225d4a0d15a8f81f56516042d440a21682da54d0c0315bbf31faa",
+      "translationHash": "894ca11903343f4d0c48882d26fda56a184452738e17c9c583e00f88920594fe",
+      "status": "reviewed",
+      "reviewedBy": "Frentan"
+    },
+    "/distros/opensuse-aeon/cautions/1": {
+      "sourceHash": "79d3baeb57e8522972c93539ce2e3c2f88bca22c4c9708a2298a6d45f3d51290",
+      "translationHash": "ae63794297f0b5b8214c66d435f00a1f1ba91859ab759ca77135bc8def74f240",
+      "status": "reviewed",
+      "reviewedBy": "Frentan"
+    },
+    "/distros/opensuse-aeon/cautions/2": {
+      "sourceHash": "f37fdceccee58ff426d988f8fc2c63c3d02a3ff752631483cc762491f5975e1d",
+      "translationHash": "855bf00bdf6c9d09305874864390d4c12d5be02eb369ffa0393018cde50265e3",
+      "status": "reviewed",
+      "reviewedBy": "Frentan"
+    },
+    "/distros/opensuse-aeon/cautions/3": {
+      "sourceHash": "c1ffcc7ce4bfbc626f7d93199a1660dc7851282084339eaffb410a2c4dff5a5d",
+      "translationHash": "6c269503fe33027bda2e531d80d688257468c8a80f83ccaf2ea44187f4bb651f",
+      "status": "reviewed",
+      "reviewedBy": "Frentan"
+    },
+    "/distros/opensuse-aeon/idealFor/0": {
+      "sourceHash": "dc120de3dcbe806be595f9165e92b8fe819f0c5d45e4d584293a2aac448aecfe",
+      "translationHash": "89f6cb002df091e9a4378aab51e6c045c6239d77109a6ac9dbe334a88adfc363",
+      "status": "reviewed",
+      "reviewedBy": "Frentan"
+    },
+    "/distros/opensuse-aeon/idealFor/1": {
+      "sourceHash": "b0518896e8babbc52e2dee69eacaf72daacb04d3a0d691fe8fb26475a03839d6",
+      "translationHash": "254d02542f592d068ee0701e336b2ff05d067de7a571edd43d5518a661a4dce2",
+      "status": "reviewed",
+      "reviewedBy": "Frentan"
+    },
+    "/distros/opensuse-aeon/idealFor/2": {
+      "sourceHash": "236ff8f936ede253fbeb38476c8d8055f5dfc15f69ae8b697f6a91ebd03ec768",
+      "translationHash": "494be2cfc1881c65c103e3864d3137bcf4a681c60c4965ef9bcdb12d4dd47976",
+      "status": "reviewed",
+      "reviewedBy": "Frentan"
+    },
+    "/distros/opensuse-aeon/name": {
+      "sourceHash": "ce3c4a182e61f839d9e6ea78cef314f9d462f15710dd99ae6f4e79e173b032ce",
+      "translationHash": "ce3c4a182e61f839d9e6ea78cef314f9d462f15710dd99ae6f4e79e173b032ce",
+      "status": "reviewed",
+      "reviewedBy": "Frentan"
+    },
+    "/distros/opensuse-aeon/strengths/0": {
+      "sourceHash": "03941940aea9451be69adafc3d33a7d5a577e2ac1a1781cbf006bc9e2577e749",
+      "translationHash": "5492dc32f9c8b8900bdf6216e2b74e4826026c0d1bdf75b9bf1b45377438050d",
+      "status": "reviewed",
+      "reviewedBy": "Frentan"
+    },
+    "/distros/opensuse-aeon/strengths/1": {
+      "sourceHash": "688ee094d6d037e27ff33f21d92b869942c67b67460e1d3af973b7ad60fb230b",
+      "translationHash": "67e327a561b8f1ddcf1d57e1f0fb1030a10e6d1ff3e182db37e63f6c25d3b52c",
+      "status": "reviewed",
+      "reviewedBy": "Frentan"
+    },
+    "/distros/opensuse-aeon/strengths/2": {
+      "sourceHash": "1cc511fd16dca7df6c784c493782dab4347912dcf6189c9c66a81c5bf123664d",
+      "translationHash": "c9d44baad770f9bebb9fe079c34a54899e0ca402cd2a71d1ebbd820c78218f81",
+      "status": "reviewed",
+      "reviewedBy": "Frentan"
+    },
+    "/distros/opensuse-aeon/strengths/3": {
+      "sourceHash": "fe77a1e30e42d74a087b66d413b158db3ca81778cab91e595d6224af4c0f900d",
+      "translationHash": "3641e3a7b468674a2003b557e1c596aeb15b995a4a19c5ebcb3dad4303e2ba88",
+      "status": "reviewed",
+      "reviewedBy": "Frentan"
+    },
+    "/distros/opensuse-aeon/summary": {
+      "sourceHash": "2c3d0b800fd6b4c2ecca9c407b74725d925e4fcfca50b9ffb60e12d0c392fc18",
+      "translationHash": "345c30f47f5225f90914c3e67f83fd2415176ff7b704bf15220eb9b97d6ef81f",
+      "status": "reviewed",
+      "reviewedBy": "Frentan"
+    },
+    "/distros/opensuse-tumbleweed/archetype/description": {
+      "sourceHash": "c2de45a046385cff86e56f548ba73a6fce90f64f16e94ecec2810cb3ed7d3071",
+      "translationHash": "5d2e21beb779df319e16eebad6f449b00273656671b40315988737e35261f8e8",
+      "status": "reviewed",
+      "reviewedBy": "Frentan"
+    },
+    "/distros/opensuse-tumbleweed/archetype/name": {
+      "sourceHash": "98f473a7635c393e0d71c676d9cfbfb44ac4d7195c7ee6fccce59fbd6e5fb479",
+      "translationHash": "5dd078973a07babab826b665fabed07544b3a62b8e1212b908e4112e3db617ab",
+      "status": "reviewed",
+      "reviewedBy": "Frentan"
+    },
+    "/distros/opensuse-tumbleweed/assessmentBasis": {
+      "sourceHash": "63e2a880380056839b9cba15eca45c4bd9dfd0aae6f693808981344e6be0ff2c",
+      "translationHash": "640b05831643b678356a3cdcec7cd780f77de6e755a0c19f147526f2b367f517",
+      "status": "reviewed",
+      "reviewedBy": "Frentan"
+    },
+    "/distros/opensuse-tumbleweed/cautions/0": {
+      "sourceHash": "0711ae281ef9675005fabc37b44f6f2df48c861384fb2a8149d084867b321d41",
+      "translationHash": "91eb42221e8b85d9e635be33d22ed025899ccf476853622747e3e775c9d7e783",
+      "status": "reviewed",
+      "reviewedBy": "Frentan"
+    },
+    "/distros/opensuse-tumbleweed/cautions/1": {
+      "sourceHash": "99e3490d1cd41a5c22d9646693b9374e89370a10f90a78b7ab662458d683332a",
+      "translationHash": "8ae8fd31acf91f016d5191ef8b0225dd9e1c7ca1c5fbf8eb03fada148cbd20e7",
+      "status": "reviewed",
+      "reviewedBy": "Frentan"
+    },
+    "/distros/opensuse-tumbleweed/cautions/2": {
+      "sourceHash": "c3291b88c3c700f6fd12922efb7e1f24040032754327f7788c818383e1e88b63",
+      "translationHash": "eb0f3c90e67b14603fd30f2842dbad99902a6c21066529e7db8d13fc82e0be7d",
+      "status": "reviewed",
+      "reviewedBy": "Frentan"
+    },
+    "/distros/opensuse-tumbleweed/idealFor/0": {
+      "sourceHash": "70a5e2b3543562c5a1cad6b1a25fa3ca7e3ef220bed3eb28c0a4c220f6e5ecca",
+      "translationHash": "f184fb2ddb371ed6930e7d0fa92403c75f386585fd9d19a8e8305cd1304026ff",
+      "status": "reviewed",
+      "reviewedBy": "Frentan"
+    },
+    "/distros/opensuse-tumbleweed/idealFor/1": {
+      "sourceHash": "fd8ff5c31ed344477cf8772087ff9c12e0f854d19e8af4e45b23a7c45dd16895",
+      "translationHash": "dc4a587d7055dd4574b32adb01efc6b79533f822a874e4e395173a06329a456c",
+      "status": "reviewed",
+      "reviewedBy": "Frentan"
+    },
+    "/distros/opensuse-tumbleweed/idealFor/2": {
+      "sourceHash": "d34b6cb7b2868531798a16c4b161e0e5e87a360241f5d146de92afb1b62a3fde",
+      "translationHash": "ca9120a9fb804c4b8487f7396ee81f4ba274c2110f9d699421d0f4da6e0dba0b",
+      "status": "reviewed",
+      "reviewedBy": "Frentan"
+    },
+    "/distros/opensuse-tumbleweed/name": {
+      "sourceHash": "e4f430c63ca81e081d409a2284ae8838c8ee8f4d5b56926ffcffdbb313fea594",
+      "translationHash": "e4f430c63ca81e081d409a2284ae8838c8ee8f4d5b56926ffcffdbb313fea594",
+      "status": "reviewed",
+      "reviewedBy": "Frentan"
+    },
+    "/distros/opensuse-tumbleweed/strengths/0": {
+      "sourceHash": "ed2c33eb37631074ea90674594c23cd192fc65349650ad6e4b3a67fd8079b271",
+      "translationHash": "cef15780c1b5726e65001954664d5d8cc31754e9018cbaf1297d96dd833b0767",
+      "status": "reviewed",
+      "reviewedBy": "Frentan"
+    },
+    "/distros/opensuse-tumbleweed/strengths/1": {
+      "sourceHash": "781916fbfbff221490893416793b6be923a271a087e1efc38f1692b8b9e426fb",
+      "translationHash": "0a6312e8fae7e6617be0dd53b0b07f02c96ddb0f6cfbc738efe280c567b61ab6",
+      "status": "reviewed",
+      "reviewedBy": "Frentan"
+    },
+    "/distros/opensuse-tumbleweed/strengths/2": {
+      "sourceHash": "70192aecf59c94e68c71fa2b9943ba3b2af5396ea33c35218b1cd62833f5ba41",
+      "translationHash": "9dff6a6da03de410c5bcde7fc4aacd0df4e6b4dec8fefd26055e58971b51ce74",
+      "status": "reviewed",
+      "reviewedBy": "Frentan"
+    },
+    "/distros/opensuse-tumbleweed/strengths/3": {
+      "sourceHash": "caad22a0df6e435cde936fcd239f70b7faf7ec65dce709d141144316e553cac2",
+      "translationHash": "56efbea9e6bae67b40d065b30aef6dba6c6deb2460093eba16a13c9c2ab89e84",
+      "status": "reviewed",
+      "reviewedBy": "Frentan"
+    },
+    "/distros/opensuse-tumbleweed/summary": {
+      "sourceHash": "6f5e0d8bb268890de62e81d4c80ef53bf6bd7dcb5c981d8f270d19a74d1f61d8",
+      "translationHash": "4f89467eea7d09d96713a87a8ad07fef1d8c3b149361b353222e5c5a0650ea5c",
+      "status": "reviewed",
+      "reviewedBy": "Frentan"
+    },
+    "/distros/pikaos/archetype/description": {
+      "sourceHash": "dd631e190e252261a208e94916186eddd14c9fbc37ad9024d2137238869e9a53",
+      "translationHash": "a33c6faa4cff8fcdf8f6edc7d4f8a1347e0d83b20c1e893914ba1b09cc234a40",
+      "status": "reviewed",
+      "reviewedBy": "Frentan"
+    },
+    "/distros/pikaos/archetype/name": {
+      "sourceHash": "382d0547ad609a4e9689d83cc7cf35bb0d44608e544ee92ae6d175524fb28c07",
+      "translationHash": "f1fdfd44c5ce9d9463f98a7bea25b1c2ce529aea489139a8f9d86c6dca5ac34c",
+      "status": "reviewed",
+      "reviewedBy": "Frentan"
+    },
+    "/distros/pikaos/assessmentBasis": {
+      "sourceHash": "1a8adc6161bb669dec6672665394bebd62c84393e195b72e43c8edde9c06ca7a",
+      "translationHash": "7223bba3435fecdbda56bdeae08fa7c99d92aa2c4198d15c6a4403296def62e1",
+      "status": "reviewed",
+      "reviewedBy": "Frentan"
+    },
+    "/distros/pikaos/cautions/0": {
+      "sourceHash": "d238c963a086e9e2b7af0566874bb321467e9b6fab28303adf359e73f9725cda",
+      "translationHash": "5246acdf49562e2ed9e944182cb8ca5d5fa2eb076716fa9e8cddf52dc966efae",
+      "status": "reviewed",
+      "reviewedBy": "Frentan"
+    },
+    "/distros/pikaos/cautions/1": {
+      "sourceHash": "f33ae908ea5af621824763d01f9b23680a1c265a9742075963687c2e859cdf10",
+      "translationHash": "1fbc452605405eac1dac54b67717cafd23308f9652048140cdd45257ab099545",
+      "status": "reviewed",
+      "reviewedBy": "Frentan"
+    },
+    "/distros/pikaos/cautions/2": {
+      "sourceHash": "0ea68c278e41dae06f7ccc6cd5232543638f36ac297719f470f7e3638c6bc4f4",
+      "translationHash": "6d99011bad0cfa283833a158d562b85d3babf9095d5f7cc9ffb1e38143d73941",
+      "status": "reviewed",
+      "reviewedBy": "Frentan"
+    },
+    "/distros/pikaos/idealFor/0": {
+      "sourceHash": "af8e22ed9c81472233288ec421e4d1d570bd0daaff57f1bc2fbf5df6aa3b677f",
+      "translationHash": "a38ce362d444890123846c0e90c03f7f165b11681e6c20f95b2e2d3c1dc9d0cf",
+      "status": "reviewed",
+      "reviewedBy": "Frentan"
+    },
+    "/distros/pikaos/idealFor/1": {
+      "sourceHash": "9b0ae59831bcc199d99e0e070afd58fbe52164229dd3d3616e22bf1492d02cf5",
+      "translationHash": "3e7cfe55b00c33878f7cd9ebf99a9bc3cdf0822de4e53868922d3dd07ef95716",
+      "status": "reviewed",
+      "reviewedBy": "Frentan"
+    },
+    "/distros/pikaos/idealFor/2": {
+      "sourceHash": "e7b92634b06991649e0c1b69095ff5e63c126d21e3a56db17a2cf3c98daa78f2",
+      "translationHash": "9de290c7abd7b8da59d5fa0ff4a2c5f8ad1d2301aed933521147f4e32b6abb42",
+      "status": "reviewed",
+      "reviewedBy": "Frentan"
+    },
+    "/distros/pikaos/name": {
+      "sourceHash": "6498950b486cc96c9a59c6b3eda09cc6f6e8b5c778105c3fc9dd82d5424f6232",
+      "translationHash": "6498950b486cc96c9a59c6b3eda09cc6f6e8b5c778105c3fc9dd82d5424f6232",
+      "status": "reviewed",
+      "reviewedBy": "Frentan"
+    },
+    "/distros/pikaos/strengths/0": {
+      "sourceHash": "48bc2aee88cad6d5666e6731aa16dbfd1a08b064ae2c68d05a5d8102af20ba30",
+      "translationHash": "8a7fc59338e2e74898f0d976ed0f4bab480514a5bcc2b44c6bf611147429285d",
+      "status": "reviewed",
+      "reviewedBy": "Frentan"
+    },
+    "/distros/pikaos/strengths/1": {
+      "sourceHash": "cd937310453a7f8d2fa31f68bda30f5463310d521e809091f9b788fcfa4041a7",
+      "translationHash": "52b8fdadc08359fc4e3af29d7947bfd1b64174ebe7714c4e063daf684cbd8d5a",
+      "status": "reviewed",
+      "reviewedBy": "Frentan"
+    },
+    "/distros/pikaos/strengths/2": {
+      "sourceHash": "663aa0c8b1457bf9997e2c41d41c87342042f2cf5c203e638d21ba075c5719d3",
+      "translationHash": "d800cebfd27112676fc6a8d7d026311760321f4658e4971bd6d3bff232cfb982",
+      "status": "reviewed",
+      "reviewedBy": "Frentan"
+    },
+    "/distros/pikaos/strengths/3": {
+      "sourceHash": "e7d97d05aa2b29822c9506432909ac799cf4f5a23673a6371b5c36cfe58ea96a",
+      "translationHash": "10274c03f0fcc485c8b141f359f14e1fc82434d309e4b6a95531e5627742818d",
+      "status": "reviewed",
+      "reviewedBy": "Frentan"
+    },
+    "/distros/pikaos/summary": {
+      "sourceHash": "af436f0aa913205dc31b7072453a2291b70a45ecfd53c0f13dc4fa133e8b3b37",
+      "translationHash": "e2e1f1c9824ce7e3681776261ec424f2c1442794be249289a9d3820083329108",
+      "status": "reviewed",
+      "reviewedBy": "Frentan"
+    },
+    "/distros/pop-os/archetype/description": {
+      "sourceHash": "068acf6d593bbfd05a138ea0f65f7a02439171b2a82a5ff7088fb903d1ea6f6c",
+      "translationHash": "48843e49f715ccef90e8d21cad1f519e57c83ed8112abbaa35041009babb2d08",
+      "status": "reviewed",
+      "reviewedBy": "Frentan"
+    },
+    "/distros/pop-os/archetype/name": {
+      "sourceHash": "999f3ae74b698e9a304ac39f12641f048b655471282a855b6bdfb7d083e3b005",
+      "translationHash": "bd65daa4042a295ccae66fbb5c403c69e9af0e484d4c6e6ef0cc93a60a9af9a7",
+      "status": "reviewed",
+      "reviewedBy": "Frentan"
+    },
+    "/distros/pop-os/assessmentBasis": {
+      "sourceHash": "4441a416c0a40e746ee42dd3032ef59c4a64b3e4a3e6f827b7805e3f635dc5f4",
+      "translationHash": "7dc2ad720d107bf4583f7f3419432e89eef338be7fbc17cafc692f6a473d83e7",
+      "status": "reviewed",
+      "reviewedBy": "Frentan"
+    },
+    "/distros/pop-os/cautions/0": {
+      "sourceHash": "7f7e0c8d9b3810c3f4f424762dee688ae85e0217bde3e5fecd3b3c99c17d8214",
+      "translationHash": "bd3ee5156556f12cd3d76fd897b01f9e61651504ad36c5aae48b392d6dcd5a38",
+      "status": "reviewed",
+      "reviewedBy": "Frentan"
+    },
+    "/distros/pop-os/cautions/1": {
+      "sourceHash": "8c34a193d5bde993d305f21caf5562710ae7957d46327ed375b9821d554a3153",
+      "translationHash": "5ab7810f1441435ab56731358003cf9ff5028b1c015570d4f39edd0da532fd2a",
+      "status": "reviewed",
+      "reviewedBy": "Frentan"
+    },
+    "/distros/pop-os/cautions/2": {
+      "sourceHash": "e1f9089c4ecb9a05c7db42dc5ea6975f171f4fcd32089c6217d4f3a2fb99d2fe",
+      "translationHash": "4e67091a033dff41fd136e602fc9af66fe8ffbcaf3875558d21e6eac2968a438",
+      "status": "reviewed",
+      "reviewedBy": "Frentan"
+    },
+    "/distros/pop-os/idealFor/0": {
+      "sourceHash": "7789551cae32dba9f759e5f4893acf41aeda67886c9c5f05d13d1af7acd49d81",
+      "translationHash": "3b3ca26eb817daa7aedadd7c4b93f02054e212edfc3043b4a9d600664929f347",
+      "status": "reviewed",
+      "reviewedBy": "Frentan"
+    },
+    "/distros/pop-os/idealFor/1": {
+      "sourceHash": "d975349661d4a16cc4347853ae3e07a329d2b275ab799fcaff6a25b9b0b0d6ac",
+      "translationHash": "e1d1b96c5e1788bf3f3be9b02b4a19bf10d7b5424c7bcf78551366ceb56164ed",
+      "status": "reviewed",
+      "reviewedBy": "Frentan"
+    },
+    "/distros/pop-os/idealFor/2": {
+      "sourceHash": "2c53941bb875d5269d59b1f146b032bde13daea49595f3e11c1d27be354bed1e",
+      "translationHash": "f164cd391d06ec9568584810bdc71bae4357ebd633dd6a0546a3f3b82f5e61b0",
+      "status": "reviewed",
+      "reviewedBy": "Frentan"
+    },
+    "/distros/pop-os/name": {
+      "sourceHash": "86e893be8842d92ff1edc34165d3e4510cfc8767bd6aa3fe58c6ca876180c17c",
+      "translationHash": "86e893be8842d92ff1edc34165d3e4510cfc8767bd6aa3fe58c6ca876180c17c",
+      "status": "reviewed",
+      "reviewedBy": "Frentan"
+    },
+    "/distros/pop-os/strengths/0": {
+      "sourceHash": "40f16590ed591892a33688bed73df7249151fb3eaff10596750dd3608eb016f9",
+      "translationHash": "c00536898dacbef6f56df3442a201e2bed8e314e008da4843820b6411c964a9e",
+      "status": "reviewed",
+      "reviewedBy": "Frentan"
+    },
+    "/distros/pop-os/strengths/1": {
+      "sourceHash": "4206927a6aec8aa9e8882456faf2b34c912d2a37759f0b0482b75c7f18cb2d00",
+      "translationHash": "0a1a24ce78d4583b3bd2cad5dd54a22f937c631af27927272f08d883b8e85b22",
+      "status": "reviewed",
+      "reviewedBy": "Frentan"
+    },
+    "/distros/pop-os/strengths/2": {
+      "sourceHash": "acb46a08023ef9df564d22957c2d9673be20414244fc39b797752936baed22b9",
+      "translationHash": "1445329df9282cc30f53fb1f002266574ccab8519e9d67d0b44dca49df5a1ded",
+      "status": "reviewed",
+      "reviewedBy": "Frentan"
+    },
+    "/distros/pop-os/strengths/3": {
+      "sourceHash": "4c04c6d045f83471394b8ded870bb183ef5c5ffba2ced1b9d70606e288833fe3",
+      "translationHash": "6013d438c195f09814043a445a48890fb0ab2c6b564c3e12ff1e843cc9814b01",
+      "status": "reviewed",
+      "reviewedBy": "Frentan"
+    },
+    "/distros/pop-os/summary": {
+      "sourceHash": "cab217fcaa788da401a526f5c762906344dbcd8e440adc4988a5d2bb6e4de770",
+      "translationHash": "d05fbdb461fdbb4e0e2df3ccc4b3b15da710099ab2bad9dbbcc733560c847e42",
+      "status": "reviewed",
+      "reviewedBy": "Frentan"
+    },
+    "/distros/rhino-linux/archetype/description": {
+      "sourceHash": "b0009c16149b24d515aa77b8d4623dcd45def697640db36fc17f527345f6da89",
+      "translationHash": "54980e9c56657bff80f3910b18b5615352163d8588e0ea209466f6df758ac4bf",
+      "status": "reviewed",
+      "reviewedBy": "Frentan"
+    },
+    "/distros/rhino-linux/archetype/name": {
+      "sourceHash": "c090ea428c8ac0b77c63b63335aa828717c51cf54cb9c5060c0a3dd4c8e61dd3",
+      "translationHash": "702dc44a10dea14831727e52fedb9403bbfc32768d88496e74aae5931219c2ee",
+      "status": "reviewed",
+      "reviewedBy": "Frentan"
+    },
+    "/distros/rhino-linux/assessmentBasis": {
+      "sourceHash": "57732ea4f7b21787646b291e7fead63651192a2dd7b54e761e10eb93ff3b8aa1",
+      "translationHash": "9510dbbd1caef1afe3bf01254dd8bd6525965bf29e4626379f7cdd6d751f1683",
+      "status": "reviewed",
+      "reviewedBy": "Frentan"
+    },
+    "/distros/rhino-linux/cautions/0": {
+      "sourceHash": "26973b6fc4bfd0ce16cd0ba0a5e405921d981906e7f7b0843a15359c44c869a7",
+      "translationHash": "998f4aa00e280fcecf3332337602b2f85a19c812ca24a65cb3eaa26ba78902f4",
+      "status": "reviewed",
+      "reviewedBy": "Frentan"
+    },
+    "/distros/rhino-linux/cautions/1": {
+      "sourceHash": "40ecbcde08792d40537b7aba808a39242450d81ab2f9afcd3f53be19c1d280ec",
+      "translationHash": "7e5fa20db6207c05c8b53f305ecf32b0dd8aab3c47f96e19321147c3ab847353",
+      "status": "reviewed",
+      "reviewedBy": "Frentan"
+    },
+    "/distros/rhino-linux/cautions/2": {
+      "sourceHash": "1f4046d27ad81ccb839ecf469c9a7a3406709b0084c2a31e4b42057860d40a9f",
+      "translationHash": "3ccafe413abd57ee9fea155adeeb60378414ee7aed9133cb246f312a65130ed3",
+      "status": "reviewed",
+      "reviewedBy": "Frentan"
+    },
+    "/distros/rhino-linux/cautions/3": {
+      "sourceHash": "9d98649ff26e7c5286d3eb0b92a8ee47f7cbe19eb91c701c9fb15743f64c9a4c",
+      "translationHash": "314c9447e550642ef17f4780463f5662d95811263da748b76bbaa508fb68459e",
+      "status": "reviewed",
+      "reviewedBy": "Frentan"
+    },
+    "/distros/rhino-linux/idealFor/0": {
+      "sourceHash": "9c0a58d03a35b47dbd3f783e9729def09a5ab96d69b91f5e8d4f2f413b24c2a8",
+      "translationHash": "64ed815dfc615ab1c17d4b3a44cfdb708d76b2e21eca440cf916f4e6564a2f51",
+      "status": "reviewed",
+      "reviewedBy": "Frentan"
+    },
+    "/distros/rhino-linux/idealFor/1": {
+      "sourceHash": "e537e16841dcf3f7daeace6a8d5c65d12010bffdb15aaca45f552028bc4ba0e2",
+      "translationHash": "131e6a006fb109b324223d4b402dc6e1042ce2ad36934a3bbf0da6e958f048d6",
+      "status": "reviewed",
+      "reviewedBy": "Frentan"
+    },
+    "/distros/rhino-linux/idealFor/2": {
+      "sourceHash": "4b28df6224c57fc1449ae3098d0a7e388e68c2d151ab9c58d7faf3ff6de75854",
+      "translationHash": "fdf6130f19ee7cb6a3ef85bdaf90945d634f8ad1245e9b0719ea63d9d3adeddd",
+      "status": "reviewed",
+      "reviewedBy": "Frentan"
+    },
+    "/distros/rhino-linux/name": {
+      "sourceHash": "711566afae4d08e4ddefcb6ce56699e190e71df0cbd492a61a5c0b751294e338",
+      "translationHash": "711566afae4d08e4ddefcb6ce56699e190e71df0cbd492a61a5c0b751294e338",
+      "status": "reviewed",
+      "reviewedBy": "Frentan"
+    },
+    "/distros/rhino-linux/strengths/0": {
+      "sourceHash": "17c5c3d71e0fbbd7e9a0d000e95083b2ce2720772b10402b509b38befbc699b3",
+      "translationHash": "afc1a74e23f910e56929d0689c81c42287bd37bc2476c333b5fcc49b801959bf",
+      "status": "reviewed",
+      "reviewedBy": "Frentan"
+    },
+    "/distros/rhino-linux/strengths/1": {
+      "sourceHash": "caae4a497f28a4d0e12c9f4be966dbd03ed52222f53cf5c1c76f0496f1af9f08",
+      "translationHash": "6acc29997aaaae38548d487548478e5610275d7f4acbc1476ac7a0a7b911fe09",
+      "status": "reviewed",
+      "reviewedBy": "Frentan"
+    },
+    "/distros/rhino-linux/strengths/2": {
+      "sourceHash": "84ccad30b8ec3bdb7f9563a4811f71b9c7c3debdf895402e41ccdc14b11a918f",
+      "translationHash": "caa923e4701796d3ca0cd57a0056e959c845c9776c3e5bb5806c2f7ae734e63c",
+      "status": "reviewed",
+      "reviewedBy": "Frentan"
+    },
+    "/distros/rhino-linux/strengths/3": {
+      "sourceHash": "e7dcc8bc1a92535a2225bff52f531e2a4060b92bb194bc85eaf1a2fcf736b9cf",
+      "translationHash": "ae71fdf7ec740685e738e3c2b374467073cdc7624cf09a6c5d44fb4671878784",
+      "status": "reviewed",
+      "reviewedBy": "Frentan"
+    },
+    "/distros/rhino-linux/summary": {
+      "sourceHash": "412bbd0d65f505be50536f4cef604f483192817089ad44d3bc17d93b80b1fdd2",
+      "translationHash": "00ef0e3c9b144ff6a3eae2d17a40001a8c947834075185a6892b5624d067943e",
+      "status": "reviewed",
+      "reviewedBy": "Frentan"
+    },
+    "/distros/slackware/archetype/description": {
+      "sourceHash": "7cda6a44945990c1e5773f499e6b0bbfe49a5c57f41336232029421bc9b43c9d",
+      "translationHash": "9529f43e961bed6956e14f2debcaf6bdb480f20ba9a49cd81c34acd47253fba5",
+      "status": "reviewed",
+      "reviewedBy": "Frentan"
+    },
+    "/distros/slackware/archetype/name": {
+      "sourceHash": "3e2cc26a430a7ee1e9b7f8dc4147b1f1c5d2f47a17d7a94db0d6d92787f31219",
+      "translationHash": "810584f7ce448e3e603f90c01755663968ab5fced6f82d3a3c4d732f6ee5df2e",
+      "status": "reviewed",
+      "reviewedBy": "Frentan"
+    },
+    "/distros/slackware/assessmentBasis": {
+      "sourceHash": "45a4303469ca302ef6bb21688e0f1792614977cba91ee2ef473ed1e0b3f851ae",
+      "translationHash": "a741053bffd74043c001629fd5d26a1be766f633f98b520bc985a8de4c732f93",
+      "status": "reviewed",
+      "reviewedBy": "Frentan"
+    },
+    "/distros/slackware/cautions/0": {
+      "sourceHash": "4f01e6f71db1f645d46714d281bd084d2c680d12f9b397c636c10617e5e93af9",
+      "translationHash": "1397f90fa9ddc162d52ee8738638ddb59906afeacb9e8aacaadd443052dbbcf2",
+      "status": "reviewed",
+      "reviewedBy": "Frentan"
+    },
+    "/distros/slackware/cautions/1": {
+      "sourceHash": "f501c12771c611fc0069d700cc9004b5758062af70fc57f4d37dae49ebc46788",
+      "translationHash": "f9ca25c77124c78b4fc5eeb781b3c95e3b5c630efd3a7e2680908a1276029f15",
+      "status": "reviewed",
+      "reviewedBy": "Frentan"
+    },
+    "/distros/slackware/cautions/2": {
+      "sourceHash": "2a706c33947178983c79417a60626b7ed9ef428e9f74eaa6f65e86ea897dd00a",
+      "translationHash": "59004d78fd7eb95f377611265d25b8914d44366b0ab59d82c4afbcd0a13216a7",
+      "status": "reviewed",
+      "reviewedBy": "Frentan"
+    },
+    "/distros/slackware/idealFor/0": {
+      "sourceHash": "afc83897f93582b8da8ab08b3fee70d048a17fac88e39bad46a05c28c86e67ab",
+      "translationHash": "e9c5e423c63850a15e21369a589732b505f07cc774077feb618db5aacc593e9b",
+      "status": "reviewed",
+      "reviewedBy": "Frentan"
+    },
+    "/distros/slackware/idealFor/1": {
+      "sourceHash": "2299b2bd1fabed00ce9f9730798f42412184a84b91911ce978c981cec4c7604e",
+      "translationHash": "b4438d6b905ef90e96ee8fc1c8f42e351a3509bd6863fe8a1bf9e7401b7e05af",
+      "status": "reviewed",
+      "reviewedBy": "Frentan"
+    },
+    "/distros/slackware/idealFor/2": {
+      "sourceHash": "daa41cb1ece4c66304448252f47628b2d754ffeb3cadc815669b8746a67748f1",
+      "translationHash": "56dc2f965d411b6e21e425fccefea102245f87d1b481659921a471d0e6ce3e78",
+      "status": "reviewed",
+      "reviewedBy": "Frentan"
+    },
+    "/distros/slackware/name": {
+      "sourceHash": "99a67cdb81a6c4642cd175867c9fafb0d1c7f275a57a570c4f11b8c1111066d5",
+      "translationHash": "99a67cdb81a6c4642cd175867c9fafb0d1c7f275a57a570c4f11b8c1111066d5",
+      "status": "reviewed",
+      "reviewedBy": "Frentan"
+    },
+    "/distros/slackware/strengths/0": {
+      "sourceHash": "728e71734c423c46f6a772e09c80d8cb2bab5c7ec99483da1e94c0380ee9bea3",
+      "translationHash": "4b7e44111cf646c55157bfa940bd0a393ba2957f194a635a12edc93e1a08883e",
+      "status": "reviewed",
+      "reviewedBy": "Frentan"
+    },
+    "/distros/slackware/strengths/1": {
+      "sourceHash": "250bc06e9ac51dcd7e54aebbc5ddd2e40c2c1a617276a701c2b76bf46868c9fe",
+      "translationHash": "f5a9c5e871a9974e6f87a069f41d7caaf6df2c559c4fef825be7cab7beb3d73a",
+      "status": "reviewed",
+      "reviewedBy": "Frentan"
+    },
+    "/distros/slackware/strengths/2": {
+      "sourceHash": "ca813f086f39e7ce1e7a699ad5b4ec2114c15050b62fe8d31fea87298f74b6ec",
+      "translationHash": "73c322b310e4cfdfc47c86e436aed9e0638f2d6f0bd10217f71ad7d1e150afc1",
+      "status": "reviewed",
+      "reviewedBy": "Frentan"
+    },
+    "/distros/slackware/strengths/3": {
+      "sourceHash": "c043ef2f8433b4050bb98db9b9408edf47002fc881d81b1f0c4aa0676b92b653",
+      "translationHash": "0368b3a260e831008b2051f294bfcaf27bcd6ac2befd7d9fb4fc9c08687efc3d",
+      "status": "reviewed",
+      "reviewedBy": "Frentan"
+    },
+    "/distros/slackware/summary": {
+      "sourceHash": "8f54c832a03f1f838f3c2bdfe76c1a83dc16a25e2c8863b9e6be4876d3775e08",
+      "translationHash": "5771bdc06f21f886c6fbc64642ca6509136d018b2ded452dc97d2b0f19c37d70",
+      "status": "reviewed",
+      "reviewedBy": "Frentan"
+    },
+    "/distros/solus/archetype/description": {
+      "sourceHash": "b95a63a68babf2115a0e6bb7e0f30aa4ca46ca3f481fefdd12e7072422a44a48",
+      "translationHash": "c88bf1cbc5a867d801d79533896b3abcc2a8068e1a9d5f6f944cf1996d98718e",
+      "status": "reviewed",
+      "reviewedBy": "Frentan"
+    },
+    "/distros/solus/archetype/name": {
+      "sourceHash": "bb2bed383f17074aed0c2262e152fe991fb2f1fd2946fd1d13d5198bcba53b18",
+      "translationHash": "97e58dd12c08005f05a54cb0fdb881e2fd7840a008888897904434bb3170c0f3",
+      "status": "reviewed",
+      "reviewedBy": "Frentan"
+    },
+    "/distros/solus/assessmentBasis": {
+      "sourceHash": "7ae6e2176a966ce1dacfc55ea79572db47c4db27b735699a1ea2e3c6b071fb95",
+      "translationHash": "d5e95573067c9493bd068476f3cb53b9a79e3036ef5b20019a9d095baa50f12f",
+      "status": "reviewed",
+      "reviewedBy": "Frentan"
+    },
+    "/distros/solus/cautions/0": {
+      "sourceHash": "901fdd3683fdf0d298cd1604644c68390afbcebad8facc5a1046dd912d358507",
+      "translationHash": "b868556ce8792619e22902fb386d159a42a20ee3d94f11616ecc01fa07b9c2f7",
+      "status": "reviewed",
+      "reviewedBy": "Frentan"
+    },
+    "/distros/solus/cautions/1": {
+      "sourceHash": "98222624393a9ffdde6dbd5946f3b8811a2ac06b3a3e7c9d4b443ea70a4324c9",
+      "translationHash": "aaafcf4676e1dc00dd66eefdc9ddb82c4afc8cb2a4e2d24014b130b9e1ce0dcb",
+      "status": "reviewed",
+      "reviewedBy": "Frentan"
+    },
+    "/distros/solus/cautions/2": {
+      "sourceHash": "c9cd98e6202cab8d3a8d03577f2412b8314f48871e0060dad786e07b4af8af60",
+      "translationHash": "69c7a8449cc20441daac2e8f99c0834b45fc21b91107686407dc16feca2f68a4",
+      "status": "reviewed",
+      "reviewedBy": "Frentan"
+    },
+    "/distros/solus/idealFor/0": {
+      "sourceHash": "b6e2774e4bc72ee0584655a60bfd82063a1feb275710327545975498a150d43e",
+      "translationHash": "4fb9d590ef19c9b90ec2b62cd66a539a85bd02a2797a9fe0671e82ecba2bf920",
+      "status": "reviewed",
+      "reviewedBy": "Frentan"
+    },
+    "/distros/solus/idealFor/1": {
+      "sourceHash": "e04b62c2d213d8e1c54ece598e836191a0e37f5437e4c43c241f53a150e859aa",
+      "translationHash": "f0eec6010b2853827df7fc7e17620266ccb3b9f70f6dc3cbcb185644f5f4aa70",
+      "status": "reviewed",
+      "reviewedBy": "Frentan"
+    },
+    "/distros/solus/idealFor/2": {
+      "sourceHash": "95eddb5fe76eb3ac5e42325f765cbdd8f32bd0ecde40e24aabc1455183768dd7",
+      "translationHash": "f3d99465851d5d65d75622079fe8e0b3f0bf3fab8d2e5882cfa62c978e9d126f",
+      "status": "reviewed",
+      "reviewedBy": "Frentan"
+    },
+    "/distros/solus/name": {
+      "sourceHash": "f95135c70df2adedcaf56078b676236168104ed5b19a6eb39e16557efbb31c92",
+      "translationHash": "f95135c70df2adedcaf56078b676236168104ed5b19a6eb39e16557efbb31c92",
+      "status": "reviewed",
+      "reviewedBy": "Frentan"
+    },
+    "/distros/solus/strengths/0": {
+      "sourceHash": "7ac6c65c15d5b93ab539033c21d401a45fb1fabbba8960de9cb71a0543217d73",
+      "translationHash": "a4796b0b68ce6f7ebe0f251bedcb2730afaa425c696bd9aae4757eb640811c93",
+      "status": "reviewed",
+      "reviewedBy": "Frentan"
+    },
+    "/distros/solus/strengths/1": {
+      "sourceHash": "932c89a3153010ec242582007d655dbd0d22021957d72a621e31f81bd7cf3f64",
+      "translationHash": "0e6d6afc1c52e782fc8dda3a1f01a3e11e4982ebcd001561e2624f141ad8c7a1",
+      "status": "reviewed",
+      "reviewedBy": "Frentan"
+    },
+    "/distros/solus/strengths/2": {
+      "sourceHash": "646789373a09bb1daee1d4e804fabc047398336d5bfa6b9fcfe132e0eb19635f",
+      "translationHash": "785270468075888d2f19de808c6abfc3f93f7a91d0dc9785c8aaa63c0e5d2a7c",
+      "status": "reviewed",
+      "reviewedBy": "Frentan"
+    },
+    "/distros/solus/strengths/3": {
+      "sourceHash": "f62df1036296f8b701222444d4910733c703e39bfd1a3bd0486e06af6286d26d",
+      "translationHash": "cade4e07058f88ccb313d8250897311632ad10d6eff088eb9e216f86df0a7f3a",
+      "status": "reviewed",
+      "reviewedBy": "Frentan"
+    },
+    "/distros/solus/summary": {
+      "sourceHash": "d7e4a677a730f453f4e4226827ff1241c9e8d0d86a5cb898cdfb9a9076fcbc93",
+      "translationHash": "7d6cecbb86abe8e00640f2e75e80ee1f379cf4ac947e89b194775bbab2101b3f",
+      "status": "reviewed",
+      "reviewedBy": "Frentan"
+    },
+    "/distros/ubuntu/archetype/description": {
+      "sourceHash": "9b6dfd50edc010d09b64a5f57acc236cde7443d430f62c060502dcb0938cd350",
+      "translationHash": "ca104abfca79c9ce5c5f0d8259e8124d50d3581c766bd1bf548cce76e082665c",
+      "status": "reviewed",
+      "reviewedBy": "Frentan"
+    },
+    "/distros/ubuntu/archetype/name": {
+      "sourceHash": "e53df665934f3aa006ae0218bd1d0bcb80d4154a6023003687cd45510369082b",
+      "translationHash": "9a4f3569ab7cebb8e11c1fb3cd5edb73f14f9e12e642bc48c73ba13aaaa5a000",
+      "status": "reviewed",
+      "reviewedBy": "Frentan"
+    },
+    "/distros/ubuntu/assessmentBasis": {
+      "sourceHash": "ba1a382fd9f48271f1dad4341d1f8e9f4b8d680a07dd1c95c80ca27033eacbfc",
+      "translationHash": "e7301abf7d3eaa66f37cd20d406685db9e09c371d6d946f088c6de0ee4c5ca76",
+      "status": "reviewed",
+      "reviewedBy": "Frentan"
+    },
+    "/distros/ubuntu/cautions/0": {
+      "sourceHash": "eb74516dd2d6ce509fc77411b24728202bd01d0307cc34c1bd8909ab1a249d1c",
+      "translationHash": "50df1fe1a679af189b5318117e9c70e652cae406ff4c6a665ee5bd1ee3e24ef8",
+      "status": "reviewed",
+      "reviewedBy": "Frentan"
+    },
+    "/distros/ubuntu/cautions/1": {
+      "sourceHash": "40f605001aa5e9aa5de3137f73b3d1c4a3f6d2ec69955c815bd914a95d67e825",
+      "translationHash": "8f2ea70d98f99d1afd2a059ed0d5a2adf07109e371e01f2d4fa8860a90c06c61",
+      "status": "reviewed",
+      "reviewedBy": "Frentan"
+    },
+    "/distros/ubuntu/cautions/2": {
+      "sourceHash": "5dff10dc0a80c5204e9847faf831b04e1d2aaac9967e47c958041a9542afa3c5",
+      "translationHash": "b92982b17420a9acc4979c3ea130741c688ed1b55cb205339ed24f805164e0be",
+      "status": "reviewed",
+      "reviewedBy": "Frentan"
+    },
+    "/distros/ubuntu/idealFor/0": {
+      "sourceHash": "e4b35571ac631cda6292a5ed199622971933ffa2659d178f544264348eec1169",
+      "translationHash": "5f1ae2377f5910226bbeefc4c797198d4844679ea193c3d3e9d407ea5b9e6e0b",
+      "status": "reviewed",
+      "reviewedBy": "Frentan"
+    },
+    "/distros/ubuntu/idealFor/1": {
+      "sourceHash": "9759fbbb9179f46dab853a1674f33f1780a49553f6610da3d05843e777ddd116",
+      "translationHash": "664b60556f472d0559d64ec94784e2d500de9f228077d7b043e8ed439c9f9e5b",
+      "status": "reviewed",
+      "reviewedBy": "Frentan"
+    },
+    "/distros/ubuntu/idealFor/2": {
+      "sourceHash": "5e4dfb9d9e3f678b21d5f79f2b45271ed9cf9e76ae4246aa16972f1c7c07ea06",
+      "translationHash": "16a8b17455004dcf8987579a5ffe845f2506ce405c9f770a503e0fb626411956",
+      "status": "reviewed",
+      "reviewedBy": "Frentan"
+    },
+    "/distros/ubuntu/name": {
+      "sourceHash": "60cab8bee859cfc7e906a997116255cbf3e3643c626640336d10dab3642f72d7",
+      "translationHash": "60cab8bee859cfc7e906a997116255cbf3e3643c626640336d10dab3642f72d7",
+      "status": "reviewed",
+      "reviewedBy": "Frentan"
+    },
+    "/distros/ubuntu/strengths/0": {
+      "sourceHash": "5b6f7ebe72e89f70384489454790f9c77f36c9e4a476a5f3c9facaf10be9783e",
+      "translationHash": "11a8449aed619f42b9bc27475d3a07f1eaed63f609103f0c479633e861ec12bb",
+      "status": "reviewed",
+      "reviewedBy": "Frentan"
+    },
+    "/distros/ubuntu/strengths/1": {
+      "sourceHash": "8a366ccfad5d77490831fe48df85a6623b865861d4521b188b520e28f8cfb9df",
+      "translationHash": "3b305711527051eb5154e6bf95ff3ec939da06f1416ad95de49b755828732f81",
+      "status": "reviewed",
+      "reviewedBy": "Frentan"
+    },
+    "/distros/ubuntu/strengths/2": {
+      "sourceHash": "54d1a460437e9cc0952b8fd672b5b815334b7d33928286335bd063553899fa45",
+      "translationHash": "40990658d1777ed80d4cfd207af34f0cd729cfc01d9ac9921c31e47d38e74cc3",
+      "status": "reviewed",
+      "reviewedBy": "Frentan"
+    },
+    "/distros/ubuntu/strengths/3": {
+      "sourceHash": "04f243c2d9b2be270718396cef1ba4dc4c995b96f0900be11c4cfa04d64a3ffa",
+      "translationHash": "513f5d14009b5842f9a3d0976cc95fadd62536632e3573c3043728b28a9bd09c",
+      "status": "reviewed",
+      "reviewedBy": "Frentan"
+    },
+    "/distros/ubuntu/summary": {
+      "sourceHash": "59c024b728bd2ed6e4b534fef94956ccbfb30149ea88dd3fc0ca1af62305d778",
+      "translationHash": "965b2a5aca34b761b396fba164cfa757dc2b6766513956d3f038e8c9d2cc2880",
+      "status": "reviewed",
+      "reviewedBy": "Frentan"
+    },
+    "/distros/vanilla-os/archetype/description": {
+      "sourceHash": "5c481de130132e8bcdc1874fc5e00d60a82399755c28654eec14299051e24443",
+      "translationHash": "9fd907d681c23ba273b6ef70835ab8df9377e6a97e345d7322f748e8225583ad",
+      "status": "reviewed",
+      "reviewedBy": "Frentan"
+    },
+    "/distros/vanilla-os/archetype/name": {
+      "sourceHash": "ff9a68128f00657e07a9be01dc8665266e1f0458471afafa3b49e59b210c196c",
+      "translationHash": "e19207d8d69476e1bec1aff038fea9f16a0be634dc3ab1525aad559d9a193352",
+      "status": "reviewed",
+      "reviewedBy": "Frentan"
+    },
+    "/distros/vanilla-os/assessmentBasis": {
+      "sourceHash": "533c0d7650a91e83fac35ec9e4d2a254f7cdd34a3056da7a805188e99b4cb986",
+      "translationHash": "24b943968a900d1337d7ec8a47d56114239fb238405b41a59f717adba667adaa",
+      "status": "reviewed",
+      "reviewedBy": "Frentan"
+    },
+    "/distros/vanilla-os/cautions/0": {
+      "sourceHash": "68c06f2563df091b729bc64ae3a8a97dd818eca4c38e70b969e55037864087f7",
+      "translationHash": "991c22c7af550b9565cea165affd31136f75b1337e9efc7a5835d9a1cf4ff4d0",
+      "status": "reviewed",
+      "reviewedBy": "Frentan"
+    },
+    "/distros/vanilla-os/cautions/1": {
+      "sourceHash": "d79064a920b3fe321460178e7d5ac86ad0e49da61a8f4635ba401adc3d9ed13b",
+      "translationHash": "a7d36cbcf8f98dc9a7ce56d5de3ade46fcb95bb11ba8002f8d5fba6913f9425a",
+      "status": "reviewed",
+      "reviewedBy": "Frentan"
+    },
+    "/distros/vanilla-os/cautions/2": {
+      "sourceHash": "a666f02b56f5add50b6b1b5493731700c44ce6bab3f08247b1f4499312dd35c2",
+      "translationHash": "85e9de61bba43c1cbfef90859bf85b73b9d391ab0fdcba31c1134eb6a22b971c",
+      "status": "reviewed",
+      "reviewedBy": "Frentan"
+    },
+    "/distros/vanilla-os/cautions/3": {
+      "sourceHash": "b09fa59cfe3fbb648dcd445f5d9848c70853037879cd5c2c5d9a39df1811abea",
+      "translationHash": "6a15e7c04827265cd18f469e2771f9a44dc424f3e8ff7078ec5d8b67cbc59e91",
+      "status": "reviewed",
+      "reviewedBy": "Frentan"
+    },
+    "/distros/vanilla-os/idealFor/0": {
+      "sourceHash": "ad1edbafa0f7ffec5ecf8cb3a28ab2ca805464c0dd4e1b4d0c281fe3814b02d0",
+      "translationHash": "fef73e906c6e7fae29a584ffa396d2bec1b614a225247fd7af65dc13d8de0cc8",
+      "status": "reviewed",
+      "reviewedBy": "Frentan"
+    },
+    "/distros/vanilla-os/idealFor/1": {
+      "sourceHash": "d2c5d0c02cc2b170031c390962a371f38ac52f033670e08599d86d97164f5689",
+      "translationHash": "4e5f0c11ee89420f5fd48fd73fe46b01428c27ae4cd03dd7c7465f52a6783994",
+      "status": "reviewed",
+      "reviewedBy": "Frentan"
+    },
+    "/distros/vanilla-os/idealFor/2": {
+      "sourceHash": "7c9d8a5da86833a966d6b1e293644f4b39b0fb0fa3b6d00a7a257b2412b9d839",
+      "translationHash": "060fc06ad0100a867b22173d71445196d9665acfab75f5dc6d9b000698931911",
+      "status": "reviewed",
+      "reviewedBy": "Frentan"
+    },
+    "/distros/vanilla-os/name": {
+      "sourceHash": "ee7cbd511599178f7ef419d650c5042fd3f972c1f5a6c8c1bf4045f92d467c1c",
+      "translationHash": "ee7cbd511599178f7ef419d650c5042fd3f972c1f5a6c8c1bf4045f92d467c1c",
+      "status": "reviewed",
+      "reviewedBy": "Frentan"
+    },
+    "/distros/vanilla-os/strengths/0": {
+      "sourceHash": "fc537b26d1dfbaab3125a1a21f749dcd89f7f0a310bd5e64ca902a594fbb3afc",
+      "translationHash": "a87859637e38c272e173abbc6616adbe4c3bc74e2333f0f45f07db634325e9f0",
+      "status": "reviewed",
+      "reviewedBy": "Frentan"
+    },
+    "/distros/vanilla-os/strengths/1": {
+      "sourceHash": "091274501b069aaf4b0381a5c35e22d2fa774eb4387928c68d2de729041a11d5",
+      "translationHash": "6da04cde87edb2bcf5b81b3a3193d5e6a6e7f29ae906071d8fc4f4d88dee71d1",
+      "status": "reviewed",
+      "reviewedBy": "Frentan"
+    },
+    "/distros/vanilla-os/strengths/2": {
+      "sourceHash": "75c8f4ee088da02c6e943075ee7b424a918b48c148b503097a623b298ddd6150",
+      "translationHash": "2c12f78bc48b8a2bf13b5ecff46bbdafccd8b61cf68f20d2f522d6668895e637",
+      "status": "reviewed",
+      "reviewedBy": "Frentan"
+    },
+    "/distros/vanilla-os/strengths/3": {
+      "sourceHash": "9cb9edcb46211c32e615e5f4f3a826754d5747ff6f267092e23a54f12d14b9d3",
+      "translationHash": "391614165f63ecda7acf0b5de80e4e81fdb38f8956057a56534546336d8b6e62",
+      "status": "reviewed",
+      "reviewedBy": "Frentan"
+    },
+    "/distros/vanilla-os/summary": {
+      "sourceHash": "a7cea523d643bc8dbf7561f9ffa921f5b82e460cfebc4d198c4c83e49c2b4326",
+      "translationHash": "628425fb4ab048d9c6f2ab240b437253042f9c19375f6fdb6d0f91d4e12348d5",
+      "status": "reviewed",
+      "reviewedBy": "Frentan"
+    },
+    "/distros/void-linux/archetype/description": {
+      "sourceHash": "741bacbb1e8c2debadc541de7aff684aa89dc48a9eeaaee55b044c55035c072e",
+      "translationHash": "0e599127b0b277a4ad38e08675b615783c371096c805e508f31c8d0984f61982",
+      "status": "reviewed",
+      "reviewedBy": "Frentan"
+    },
+    "/distros/void-linux/archetype/name": {
+      "sourceHash": "c59e228ac0d2ad52a555708f705f82000dfcc2b2649094f1a84a784b8c0c7709",
+      "translationHash": "6c80c5fb84f4caa89f0aa6935420dc968467d39d12da9adb88249126a21b194d",
+      "status": "reviewed",
+      "reviewedBy": "Frentan"
+    },
+    "/distros/void-linux/assessmentBasis": {
+      "sourceHash": "1c3964d0ecebaf9c63bbee1d2e36a7e96f5f70b4d20f042ab3dd1cecab1ecd51",
+      "translationHash": "8e7cc6910ff745075dc174cf71834f71ffa516b8e2162cc6785b573537846c05",
+      "status": "reviewed",
+      "reviewedBy": "Frentan"
+    },
+    "/distros/void-linux/cautions/0": {
+      "sourceHash": "8b269bdda0681791f3d89f031f2d12130edecf6c0c614890d98667382f32bfd6",
+      "translationHash": "61ea14d433a7f1db5b7e2b29dcaf73893d871e764dc255c36a12a01af9b782c2",
+      "status": "reviewed",
+      "reviewedBy": "Frentan"
+    },
+    "/distros/void-linux/cautions/1": {
+      "sourceHash": "2b38bb11f995a4715659908d5139c49816be83f14c54d76b27a5178459875023",
+      "translationHash": "1b6ebeebc8fb05309c53dd35956cdbd4595558b6f079815401bd601003c74619",
+      "status": "reviewed",
+      "reviewedBy": "Frentan"
+    },
+    "/distros/void-linux/cautions/2": {
+      "sourceHash": "e322e9878b813bf6b78d474ae27d8461b9d4f5272f8f4950eef75158581a30fd",
+      "translationHash": "bf8587ab5d33b95a18a961afcaf153f142e24059bd4df9f2a04bb1e15fd5d112",
+      "status": "reviewed",
+      "reviewedBy": "Frentan"
+    },
+    "/distros/void-linux/idealFor/0": {
+      "sourceHash": "de6e5f3e494e186d6baf4f068bfd973b7226ecd17d53b49988c290e5d122d6da",
+      "translationHash": "66c6987b3f17703969841c6824df704f5a629ce11cde07c05b19cbba337760bf",
+      "status": "reviewed",
+      "reviewedBy": "Frentan"
+    },
+    "/distros/void-linux/idealFor/1": {
+      "sourceHash": "12298dc19f3257cfecc5033fc743956219992730ebde0bafd38a604bca0d28c9",
+      "translationHash": "7ef4bf4b369fcad9e839395b0bce1f4c377a88a42c2a593c37a380b5867b1e84",
+      "status": "reviewed",
+      "reviewedBy": "Frentan"
+    },
+    "/distros/void-linux/idealFor/2": {
+      "sourceHash": "25f748486963f2f4b421bca5251d1965a9a63f507e49a2f0cbbe8c1b2ce175e9",
+      "translationHash": "76fe3928b4f9d4b49e38f514f2e1e6a2ee7675b1140e6bf0c9424ad9a9f0aaf8",
+      "status": "reviewed",
+      "reviewedBy": "Frentan"
+    },
+    "/distros/void-linux/name": {
+      "sourceHash": "a5873a104f618a796ec66b59e4bb4c1fc121991bb661ff71da849ad8ad411fb6",
+      "translationHash": "a5873a104f618a796ec66b59e4bb4c1fc121991bb661ff71da849ad8ad411fb6",
+      "status": "reviewed",
+      "reviewedBy": "Frentan"
+    },
+    "/distros/void-linux/strengths/0": {
+      "sourceHash": "7525a8e06af06af30a1889d6fdd2050f984667e2c0ed54382884ed0b0a2d331f",
+      "translationHash": "0faf8afb51de17c553a9d3a68586fb1f256eed90717f223c299a142af060c0d0",
+      "status": "reviewed",
+      "reviewedBy": "Frentan"
+    },
+    "/distros/void-linux/strengths/1": {
+      "sourceHash": "3b666316ea3ab946d972a015379d3a66c4b71c3e59f895aa4046a30b9b60db24",
+      "translationHash": "0c65808d36eafeb1e6327c90de0a79c068abc17d0405def494e548e419ef468d",
+      "status": "reviewed",
+      "reviewedBy": "Frentan"
+    },
+    "/distros/void-linux/strengths/2": {
+      "sourceHash": "d2083101cc050bc2533d1695ee49236006879af485ac9f930552e73aa4255341",
+      "translationHash": "4a38d7009243be665af7d0d904b5d7855febfcf1e8b53a4d7c769dbcb39e2ee3",
+      "status": "reviewed",
+      "reviewedBy": "Frentan"
+    },
+    "/distros/void-linux/strengths/3": {
+      "sourceHash": "80abac2cb568eabd6f9e8fa7d33fe29d993f3fa95d877dc52d03d1e3b7c0fc14",
+      "translationHash": "1f79698dd6d2fab3bf29acfbf735036aa582a65c65509cd151d72e2b701191ad",
+      "status": "reviewed",
+      "reviewedBy": "Frentan"
+    },
+    "/distros/void-linux/summary": {
+      "sourceHash": "3008684f9003cc90a1c4f6011c40d587e6937a3258b0817d15b69157eeb282d7",
+      "translationHash": "564a5b8f5c995a9dbc18005d8afcabd6e878f50bdfafea71f34704bb5a486c1d",
+      "status": "reviewed",
+      "reviewedBy": "Frentan"
+    },
+    "/distros/zorin-os/archetype/description": {
+      "sourceHash": "1a9799216d79722d21ce02e0014bf827f792df685c6a9ebe36c58592a057b98d",
+      "translationHash": "d995733c41104c16109a3990987252e2031202890461b05245c3e70bc3f2ccdc",
+      "status": "reviewed",
+      "reviewedBy": "Frentan"
+    },
+    "/distros/zorin-os/archetype/name": {
+      "sourceHash": "da1c5fcd4aa9587a6dc8ec634f7d790427191dc32a581a199087702e28c963e7",
+      "translationHash": "b719635bea24e4787b5f943218a812c213ff4076d279e0d10456d5b52b582fa3",
+      "status": "reviewed",
+      "reviewedBy": "Frentan"
+    },
+    "/distros/zorin-os/assessmentBasis": {
+      "sourceHash": "1bda11cdc5d8635471ea498e2c41cadbd64ae7a706a8d36b6ca5026fd0a00439",
+      "translationHash": "9ed4e866b363fc765e4a46c4db567dd9f6c399e89a83fdf4c8a6def33fbddd04",
+      "status": "reviewed",
+      "reviewedBy": "Frentan"
+    },
+    "/distros/zorin-os/cautions/0": {
+      "sourceHash": "2604d2a346db92d19ade82cad1b292fedb404caeb81a17e93d55cf84173622f9",
+      "translationHash": "b9c61d84ed2e29f274b7d3a8b63a958dc8c942d4413b69ebd84527d4719355ef",
+      "status": "reviewed",
+      "reviewedBy": "Frentan"
+    },
+    "/distros/zorin-os/cautions/1": {
+      "sourceHash": "b7255e961535caa3a0a8142ac0f91ba5f81132087bcdb7d797faa490b33263b8",
+      "translationHash": "fba17407dec5b95cbd5b078afc91075951233f1aad729dffe4e9767e3e187212",
+      "status": "reviewed",
+      "reviewedBy": "Frentan"
+    },
+    "/distros/zorin-os/cautions/2": {
+      "sourceHash": "264e73cdc09e9e8077c5555990c91b52b2dc1f10a37378a29ba96be93413df0a",
+      "translationHash": "38732ff71bfdbfcb00b33b87d667ddc999c342465b919723ea635c697e42b564",
+      "status": "reviewed",
+      "reviewedBy": "Frentan"
+    },
+    "/distros/zorin-os/idealFor/0": {
+      "sourceHash": "77ede1084b190c288b28828a0653384facd55c447996db3bc726613a85fe14aa",
+      "translationHash": "42ed51514000ce17c088c508ff501d3480da3d181b4f79c152890c30c2e682d1",
+      "status": "reviewed",
+      "reviewedBy": "Frentan"
+    },
+    "/distros/zorin-os/idealFor/1": {
+      "sourceHash": "6cbf7afecc1e7fa2a8165af5bdb429cbfe13e10ef96e83d4986bf8ff3f17894c",
+      "translationHash": "513e5ff4d272a0be0965cc6b288af2133b7f66792474b08668c0a6c9aa91937a",
+      "status": "reviewed",
+      "reviewedBy": "Frentan"
+    },
+    "/distros/zorin-os/idealFor/2": {
+      "sourceHash": "c60655da12f80e94397603ba455c472b645eedeac8903c712842c62a88af0a6e",
+      "translationHash": "32408de55cfbd41acfdbf6836f8649b2f80b04da2196988ed42ffb20587dce57",
+      "status": "reviewed",
+      "reviewedBy": "Frentan"
+    },
+    "/distros/zorin-os/name": {
+      "sourceHash": "f7217e2b9790372f19aa79a536470cc0c34d9fb0139aa9ab1d51c79d09a94056",
+      "translationHash": "f7217e2b9790372f19aa79a536470cc0c34d9fb0139aa9ab1d51c79d09a94056",
+      "status": "reviewed",
+      "reviewedBy": "Frentan"
+    },
+    "/distros/zorin-os/strengths/0": {
+      "sourceHash": "ad203aaaf98b037f74156ff916019cad441ef7fa2b26d7cda2f4690fc14eee4d",
+      "translationHash": "1066d29d7a09f484e3871f49e57c4b38e928924172691d17ae59de61c84b312a",
+      "status": "reviewed",
+      "reviewedBy": "Frentan"
+    },
+    "/distros/zorin-os/strengths/1": {
+      "sourceHash": "504e7120c2f78883d3fb056ec0cfc2e650eadf162228c6e4e706656162238d4d",
+      "translationHash": "8d71d2385508890fcfd2c83a75d55b08a593c6bd6e59f5ecdb08a69737bfc185",
+      "status": "reviewed",
+      "reviewedBy": "Frentan"
+    },
+    "/distros/zorin-os/strengths/2": {
+      "sourceHash": "0ff2b0a3efc8314fb29c6c7bdbd36a282fa0f99365c809388cd9f23d5346c740",
+      "translationHash": "4dbbd644036952964b81b5c8cf4451c3174d259c5fb9bf7f3ffdc8cff488470f",
+      "status": "reviewed",
+      "reviewedBy": "Frentan"
+    },
+    "/distros/zorin-os/strengths/3": {
+      "sourceHash": "875c29ccb513378493e3d3aa644e04bdadb570a20073684cac73ab4b8c987d6f",
+      "translationHash": "900ee110cb31cfbe10e06db213497fbab2bef8fd4d7a91a8664dc3e2f58b95de",
+      "status": "reviewed",
+      "reviewedBy": "Frentan"
+    },
+    "/distros/zorin-os/summary": {
+      "sourceHash": "856b5042ed5d1cd43dda3a95bcc47dd05cf43fbf2cc2778c856f3d41a8ddb2e3",
+      "translationHash": "e41776b9ee8ecfdcfe945765ac364588823848599fb78709739dacee157c5ada",
       "status": "reviewed",
       "reviewedBy": "Frentan"
     },
@@ -376,7 +3016,7 @@
     },
     "/questions/experience/prompt": {
       "sourceHash": "60593b33d5281656732f9c43fed11808dfb0b63b7d2a730c270c0283b516a91b",
-      "translationHash": "599af4629d3c9c00cbbd46d88178ec46cc5df1baf92bf65693544b783f90b5fa",
+      "translationHash": "f95fb84f6ada1a4a619e2d548a0009174ce193a83c6c828af04f4d62823f108e",
       "status": "reviewed",
       "reviewedBy": "Frentan"
     },
@@ -406,7 +3046,7 @@
     },
     "/questions/freshness/prompt": {
       "sourceHash": "2188ecb7256ec32643089b0472d57615f0c12f9137a319d29d3996baf80e33b6",
-      "translationHash": "aa52dfa1f29418601b0f3e0c81d4a5fa74103d77614651e0dd878382bc2cc134",
+      "translationHash": "20c4775d9334f3bec860bda3f18ab91e901863190e658dfaaf3b33e56a9521f2",
       "status": "reviewed",
       "reviewedBy": "Frentan"
     },
@@ -496,7 +3136,7 @@
     },
     "/questions/hardware/options/handheld/label": {
       "sourceHash": "3195c8eea080250fc84ad456b1f4f5bbc956ab54cf1739de2904af6c2325d0b6",
-      "translationHash": "59bba02a6a9ff88507d048b26ef7d2eb8cb7baafbaaa9393d3d3b82a7b801c3d",
+      "translationHash": "381c9700b8df4e176ca594b694366d7929de32505f4362984b8053825aa0ed13",
       "status": "reviewed",
       "reviewedBy": "Frentan"
     },
@@ -514,7 +3154,7 @@
     },
     "/questions/hardware/options/recent/label": {
       "sourceHash": "0bd0d014f90c44e55462c80f460440fc83f14231e47ad2124bfc94a28d55eb62",
-      "translationHash": "a9024f428b6063307639ef1b8a22fbaf5e8f1b1cca241d15f9d4bbcab4b31642",
+      "translationHash": "4a7bc3266ead09fc806b3bd6904c704cf9fe871f63ecbe2d9907ae18b0fc38f7",
       "status": "reviewed",
       "reviewedBy": "Frentan"
     },
@@ -592,7 +3232,7 @@
     },
     "/questions/maintenance/options/sometimes/label": {
       "sourceHash": "e4cd7b9f3c57d136fac2a4bda5316bc13df44c91a6ab5646d01e946601d5a20e",
-      "translationHash": "024336d7ccf341ba1c27059d838f792290417d2917ce5348644cbcfe1b045411",
+      "translationHash": "3ece2ae07bbabed02d0e6aaa2b1b47a94d7067ce7e0a4fa2f0e81186e395ea4b",
       "status": "reviewed",
       "reviewedBy": "Frentan"
     },

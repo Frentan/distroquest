@@ -116,5 +116,5 @@ export const capabilityLabelsEs: Messages['capabilityLabels'] = {
   gaming: 'Preparación para videojuegos',
   developerExperience: 'Herramientas de desarrollo',
   oldHardware: 'Hardware antiguo',
-  desktopPolish: 'Acabado del escritorio',
+  desktopPolish: 'Pulido del escritorio',
 };

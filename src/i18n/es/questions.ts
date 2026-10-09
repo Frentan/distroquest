@@ -3,7 +3,7 @@ import type { QuestionDictionary } from '../../domain/preferences.ts';
 // Draft for human review. IDs and answer order mirror the domain schema.
 export const questionContentEs: QuestionDictionary = {
   experience: {
-    prompt: '¿Cuánto conoces ya Linux?',
+    prompt: '¿Qué tanta experiencia tienes con Linux?',
     options: {
       new: { label: 'Nunca lo he usado. Con calma, por favor.' },
       tried: { label: 'He probado Linux algunas veces.' },
@@ -24,7 +24,7 @@ export const questionContentEs: QuestionDictionary = {
     },
   },
   freshness: {
-    prompt: '¿Cómo de reciente quieres que sea tu software?',
+    prompt: '¿Qué tan actualizado quieres tener tu software?',
     options: {
       proven: { label: 'Probado y aburrido, por favor.' },
       balanced: { label: 'Lo bastante reciente, pero fiable.' },
@@ -44,7 +44,9 @@ export const questionContentEs: QuestionDictionary = {
         label:
           'No me importa hacer limpieza o resolver problemas de vez en cuando.',
       },
-      sometimes: { label: 'No me importa arreglar cosas a veces.' },
+      sometimes: {
+        label: 'No me molesta tener que solucionar problemas de vez en cuando.',
+      },
       hobby: { label: 'Romper y reparar cosas es parte de la afición.' },
     },
   },
@@ -141,11 +143,11 @@ export const questionContentEs: QuestionDictionary = {
     options: {
       powerful: { label: 'Moderno y potente.' },
       recent: {
-        label: 'Un portátil o equipo de escritorio reciente y normal.',
+        label: 'Un portátil o PC de escritorio relativamente reciente.',
       },
       aging: { label: 'Ya tiene sus años, pero aún se defiende.' },
       limited: { label: 'Este equipo recuerda las conexiones por módem.' },
-      handheld: { label: 'Un PC portátil de mano para videojuegos.' },
+      handheld: { label: 'Una consola portátil tipo PC.' },
     },
   },
   gpu: {
