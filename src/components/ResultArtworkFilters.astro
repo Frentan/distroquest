@@ -1,0 +1,47 @@
+---
+const sizes = [
+  { name: 'desktop', radius: 5, smoothing: 2.5 },
+  { name: 'mobile', radius: 3, smoothing: 1.8 },
+  { name: 'compact', radius: 2, smoothing: 1.4 },
+];
+---
+
+<svg
+  class="result-artwork-filters"
+  xmlns="http://www.w3.org/2000/svg"
+  width="0"
+  height="0"
+  aria-hidden="true"
+  focusable="false"
+>
+  <defs>
+    {sizes.map(({ name, radius, smoothing }) => (
+      <filter
+        id={`result-artwork-${name}`}
+        x="-15%"
+        y="-15%"
+        width="130%"
+        height="130%"
+        color-interpolation-filters="sRGB"
+      >
+        {/* Round the expanded alpha only; merge the crisp sprite last. */}
+        <feMorphology in="SourceAlpha" operator="dilate" radius={radius} />
+        <feGaussianBlur stdDeviation={smoothing} />
+        <feComponentTransfer result="body">
+          <feFuncA type="linear" slope="8" intercept="-3.5" />
+        </feComponentTransfer>
+        <feMorphology in="body" operator="dilate" radius="1" result="outer" />
+        <feComposite in="outer" in2="body" operator="out" result="ring" />
+        <feFlood class="result-artwork-edge" />
+        <feComposite in2="ring" operator="in" result="edge" />
+        <feFlood class="result-artwork-fill" />
+        <feComposite in2="body" operator="in" result="fill" />
+        <feMerge>
+          <feMergeNode in="fill" />
+          <feMergeNode in="edge" />
+          <feMergeNode in="SourceGraphic" />
+        </feMerge>
+      </filter>
+    ))}
+  </defs>
+</svg>

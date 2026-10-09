@@ -413,6 +413,34 @@ progress::-moz-progress-bar {
 .result-summary {
   max-width: 58ch;
 }
+.result-artwork-filters {
+  position: absolute;
+  pointer-events: none;
+}
+.result-artwork-fill,
+.result-artwork-edge {
+  flood-color: var(--accent);
+}
+.result-artwork-fill {
+  flood-opacity: 0.075;
+}
+.result-artwork-edge {
+  flood-opacity: 0.17;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme='light']) .result-artwork-fill {
+    flood-opacity: 0.065;
+  }
+  :root:not([data-theme='light']) .result-artwork-edge {
+    flood-opacity: 0.15;
+  }
+}
+:root[data-theme='dark'] .result-artwork-fill {
+  flood-opacity: 0.065;
+}
+:root[data-theme='dark'] .result-artwork-edge {
+  flood-opacity: 0.15;
+}
 .result-artwork {
   width: 256px;
   aspect-ratio: 1;
@@ -431,6 +459,7 @@ progress::-moz-progress-bar {
   height: 100%;
   object-fit: contain;
   image-rendering: pixelated;
+  filter: url('#result-artwork-desktop');
 }
 .alternative-result .result-intro {
   grid-template-columns: 1fr;
@@ -494,6 +523,9 @@ progress::-moz-progress-bar {
     grid-row: 1 / span 3;
     width: 144px;
   }
+  .result-artwork img {
+    filter: url('#result-artwork-mobile');
+  }
   .result-intro:not(:has(.result-artwork:not(:empty))) {
     display: block;
   }
@@ -532,6 +564,9 @@ progress::-moz-progress-bar {
   }
   .result-artwork {
     width: 112px;
+  }
+  .result-artwork img {
+    filter: url('#result-artwork-compact');
   }
   .primary-result h1 {
     font-size: 1.5rem;

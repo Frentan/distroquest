@@ -1,9 +1,11 @@
 ---
 import { quizCopy } from '../i18n/en/quiz';
+import ResultArtworkFilters from './ResultArtworkFilters.astro';
 import '../styles/quiz.css';
 ---
 
 <section class="quiz-shell container" aria-label={quizCopy.eyebrow}>
+  <ResultArtworkFilters />
   <div id="quiz-root">
     <p>{quizCopy.loading}</p>
   </div>
