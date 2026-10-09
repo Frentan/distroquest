@@ -54,11 +54,12 @@ English edits mark affected reviews `staleSource`; translated edits mark
 invalid, and orphaned units. Accept hashes from the exact content reviewed;
 changed content requires another review.
 
-A published locale requires complete content, matching parameter contracts,
-correct message formatting locales, current reviewed hashes for every unit, and
-explicit publication approval. Deferred locales must be reactivated before they
-can be published. `dictionaryIssues()` checks structural coverage, including
-option IDs, nonempty strings, and array lengths.
+Every published locale requires complete content, matching parameter contracts,
+and correct message formatting locales. A translated locale also requires current
+reviewed hashes for every unit and explicit publication approval; English is the
+editorial source and does not require translation reviews. Deferred locales must
+be reactivated before they can be published. `dictionaryIssues()` checks structural
+coverage, including option IDs, nonempty strings, and array lengths.
 
 The Astro integration validates published content at configuration startup and on
 builds, including direct `astro build` commands. Output checks require both home

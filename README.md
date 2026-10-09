@@ -56,7 +56,7 @@ layer orders practical installation paths while preserving the engine's scores:
 Technical references:
 
 - [Distro assessments and sources](src/data/README.md)
-- [Platform support](src/data/SUPPORT-REVIEW.md)
+- [Support lifecycle and continuity](src/data/SUPPORT-REVIEW.md)
 - [Preference model](src/preferences/README.md)
 - [Scoring engine](src/recommendations/README.md) and [example rankings](src/recommendations/EXAMPLES.md)
 - [Routing, translations, and publication checks](src/i18n/README.md)

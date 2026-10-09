@@ -1,7 +1,7 @@
 # Support continuity review
 
-Reviewed 2026-10-09 against engine model 13 (`8d5319d`), following the first five
-quiz-balancing passes. This dated record preserves policy/workflow evidence and
+Reviewed 2026-10-09 against engine model 13 (`8d5319d`). This dated record
+preserves policy/workflow evidence and
 design intent for the assessed editions. It does not implement support scoring or
 predict project survival. Upstream statements document mechanisms, not independently
 verified success rates, response times or future funding.

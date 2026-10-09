@@ -2,7 +2,7 @@
 
 Reviewed 2026-10-04 from the clean current checkout. These are source-informed
 editorial assessments, not reliability measurements or hardware certification.
-Only the four requested candidates were considered. The roster is now 29;
+Only the four candidates below were considered. The roster is now 29;
 Kinoite and Leap remain unranked. The existing 20 personas are unchanged.
 The recommendation revision is model v9: the expanded assessments, transactional
 container matching, and official-family/workflow presentation changed, while the
@@ -10,12 +10,12 @@ capability-distance formula and published scores for existing profiles were pres
 
 ## Inclusion decisions
 
-| Candidate         | Decision                                  | Recommendation case and limits                                                                                                                                                                                                                                                                                         |
-| :---------------- | :---------------------------------------- | :--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| Fedora Silverblue | Include                                   | Established official Fedora Atomic GNOME path, distinct from Universal Blue derivatives and conventional Fedora.                                                                                                                                                                                                       |
-| openSUSE Aeon     | Include with caution (requested addition) | A distinct automated transactional rolling GNOME path. Its current homepage still declares release-candidate status; routine automation is not proof of production maturity.                                                                                                                                           |
-| Vanilla OS        | Include with caution                      | Active: Reunion 3.0 shipped on 2026-08-24. Apx stacks and the separate VSO environment add a specific multi-userspace niche on a Debian-derived OCI host. Recent rewrites, migration caveats and a small support ecosystem justify conservative breadth and a soft learning preference.                                |
-| Rhino Linux       | Include with caution                      | Active: 2026.1 images and maintained Pacstall/RPK tooling. Mutable Ubuntu devel plus Pacstall offers a distinct rolling Debian-family path. It is defensible for experienced users accepting upkeep, rather than a general Ubuntu upgrade. The February 2026 emergency Pacstall fix illustrates practical update risk. |
+| Candidate         | Decision             | Recommendation case and limits                                                                                                                                                                                                                                                                                         |
+| :---------------- | :------------------- | :--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Fedora Silverblue | Include              | Established official Fedora Atomic GNOME path, distinct from Universal Blue derivatives and conventional Fedora.                                                                                                                                                                                                       |
+| openSUSE Aeon     | Include with caution | A distinct automated transactional rolling GNOME path. Its current homepage still declares release-candidate status; routine automation is not proof of production maturity.                                                                                                                                           |
+| Vanilla OS        | Include with caution | Active: Reunion 3.0 shipped on 2026-08-24. Apx stacks and the separate VSO environment add a specific multi-userspace niche on a Debian-derived OCI host. Recent rewrites, migration caveats and a small support ecosystem justify conservative breadth and a soft learning preference.                                |
+| Rhino Linux       | Include with caution | Active: 2026.1 images and maintained Pacstall/RPK tooling. Mutable Ubuntu devel plus Pacstall offers a distinct rolling Debian-family path. It is defensible for experienced users accepting upkeep, rather than a general Ubuntu upgrade. The February 2026 emergency Pacstall fix illustrates practical update risk. |
 
 Vanilla's inclusion rests on its released architecture and multi-environment
 workflow, not its marketing promises. It is not an abandoned Orchid-only project.
@@ -78,7 +78,7 @@ policy with guided NVIDIA setup; Aeon uses free-software-first with manual asses
 Vanilla and Rhino are pragmatic, with integrated/guided NVIDIA respectively.
 All four use the dock/overview layout category for their assessed defaults.
 
-The requested light creative follow-up on 2026-10-04 reviewed Vanilla's
+A light creative follow-up on 2026-10-04 reviewed Vanilla's
 [Reunion release/default-app and subsystem overview](https://github.com/Vanilla-OS/website/blob/v2/articles/2026-08-24-vanilla-os-3-reunion.md)
 and Rhino's [setup wizard](https://github.com/rhino-linux/rhino-setup) and
 [Rhino PKG](https://wiki.rhinolinux.org/user/rpk) documentation. These establish
@@ -182,42 +182,3 @@ Physical-GPU validation additionally requires the relevant GPU running that cand
 to check driver loading, graphics acceleration, displays, suspend/resume and selected
 games or creative workloads. A VM with virtual graphics cannot establish those claims.
 These are separate test sessions, not quick application checks.
-
-## Implementation validation and changed files
-
-- `npm run check`: 0 errors, warnings or hints.
-- `npm test`: 102 passed, 0 failed.
-- `npm run format:check`, `npm run build`, `npm run data:review` and
-  `git diff --check`: passed.
-- Regenerated and formatted all 20 existing recommendation example tables.
-- Real static-build Chromium runs: all 20 personas, 63 rendered cards, all 29
-  profiles represented; exact flavor-text correspondence, adjacent placement,
-  italic rendering and Kinoite guidance verified. No runtime exceptions.
-- Mobile inspection at 390px and desktop inspection at 1280px: readable 16px
-  flavor text, no card overflow; final screenshots inspected in dark/light themes.
-- Tests also verify official/derivative grouping, transactional invariants,
-  cautious soft preferences and unchanged Asahi/T2 support boundaries.
-
-Changed files, grouped by purpose:
-
-- Profiles and schema: `src/data/distros.ts`, `src/data/validate.ts`,
-  `src/domain/distro.ts`, `src/domain/recommendations.ts`.
-- English content and reveal: `src/i18n/en/distros.ts`, `src/i18n/en/quiz.ts`,
-  `src/i18n/en/questions.ts` (five final-path titles only), `src/quiz/client.ts`,
-  `src/styles/quiz.css`.
-- General model integration and regenerated rankings:
-  `src/recommendations/engine.ts`, `scripts/review-recommendations.ts`,
-  `src/recommendations/EXAMPLES.md`.
-- Regression coverage: `tests/distro-data.test.ts`, `tests/recommendations.test.ts`,
-  `tests/platforms.test.ts`, `tests/quiz.test.ts`.
-- Documentation and roster references: `AGENTS.md`, `README.md`,
-  `src/data/README.md`, `src/data/ATOMIC-REVIEW.md`,
-  `src/recommendations/README.md`, `src/data/platforms.ts` (comment only).
-
-The ignored `docs/DEVELOPMENT.md` and `docs/V1-PLAN.md` were refreshed to this
-baseline and explicitly formatted; they remain outside Git. Only the five final
-answer titles were capitalized; question structure, descriptions, scoring and
-registered personas are unchanged. No unrelated design work,
-commit, push or publication was performed. Only the temporary test server and
-isolated browser created for these checks were closed; no user dev server was
-managed.

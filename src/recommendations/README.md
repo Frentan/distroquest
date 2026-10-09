@@ -197,6 +197,14 @@ Sort by eligibility, descending unrounded raw score, then ascending distro ID fo
 exact ties. The UI rounds fit to one decimal place; displayed ties can be close
 scores or exact ties. Capability bars show assessed strengths out of 5, not fit.
 
+Result explanations prioritize specialist matches, then stronger trait
+contributions with stable ties. Distinct topics are selected before limiting trait
+reasons; capability reasons fill the remaining slots. A generic capability caution
+is omitted only when its equivalent near-match reason is actually shown on the same
+card, after filtering and truncation. Concrete distro and platform warnings and
+gaming's additional support check remain. This selection changes presentation,
+not scores or eligibility.
+
 `family` describes ancestry; `presentationGroup` derives official sibling paths
 from shared non-independent family and upstream lineage, retaining distinct
 derivatives. Fedora groups Workstation/KDE/Silverblue; openSUSE groups
@@ -207,8 +215,8 @@ optional sibling edition, and distinct alternatives.
 
 The platform overlay keeps follow-up answers outside the engine contract and orders
 installation paths separately. Fedora Asahi variants inherit base Fedora fit and
-capabilities. See [the root README](../../README.md#how-matching-works) for support
-sources and limits. Preparation tips follow selected purposes; gaming advice requires
+capabilities. See [the root README](../../README.md#matching-and-development) for platform
+limits. Preparation tips follow selected purposes; gaming advice requires
 positive intensity. Tips add no scores or eligibility evidence.
 
 ## Review and tuning limits
