@@ -122,7 +122,7 @@ export const questionContentEs: QuestionDictionary = {
       creative: { label: 'Trabajo creativo y multimedia.' },
       learning: { label: 'Aprender Linux.' },
       security: { label: 'Ciberseguridad y pruebas de penetración.' },
-      homelab: { label: 'Servidores, contenedores y laboratorio doméstico.' },
+      homelab: { label: 'Servidores, contenedores y laboratorio en casa.' },
       'old-hardware': { label: 'Mantener con vida el hardware antiguo.' },
     },
   },
