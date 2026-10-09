@@ -166,15 +166,19 @@ function traitModifiers(
   const gaming = profile.capabilities.gaming;
   if (traits.focus.gaming) {
     // The direct gaming answer owns this target (none 0, occasional 2).
-    // Penalize purpose mismatch, never surplus gaming capability.
-    if (!user.useCases.includes('gaming') && gaming.target <= 2)
+    // A purpose checkbox cannot override zero intensity or reward casual use.
+    // Penalize focus mismatch, never surplus gaming capability.
+    if (
+      gaming.target === 0 ||
+      (gaming.target <= 2 && !user.useCases.includes('gaming'))
+    )
       add(
         'focus.gaming-mismatch',
         -(gaming.target === 0
           ? scoringRules.gamingFocusNoInterestPenalty
           : scoringRules.gamingFocusOccasionalPenalty),
       );
-    else if (gaming.target > 0) add('focus.gaming', 3 * gaming.weight);
+    else if (gaming.target > 2) add('focus.gaming', 3 * gaming.weight);
   }
   if (user.useCases.includes('development') && traits.focus.development)
     add('focus.development', 2);
@@ -449,5 +453,5 @@ export function rankDistros(
 // Public boundary: accepts untrusted answers; existing validation rejects omissions.
 export function recommend(input: unknown): RecommendationResult {
   const profile = normalizePreferenceProfile(buildPreferenceProfile(input));
-  return { modelVersion: 9, profile, ranking: rankDistros(profile) };
+  return { modelVersion: 10, profile, ranking: rankDistros(profile) };
 }

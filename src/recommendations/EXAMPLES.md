@@ -1,4 +1,4 @@
-# Example rankings, model v9
+# Example rankings, model v10
 
 All 20 complete answer fixtures from
 [`scripts/recommendation-personas.ts`](../../scripts/recommendation-personas.ts).

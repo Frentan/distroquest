@@ -136,7 +136,7 @@ test('genuine penetration tester: Kali is eligible and ranks highly', () => {
 
 test('qualified security intent has separate credit even when general traits are capped', () => {
   const result = recommend(personas.penetrationTester);
-  assert.equal(result.modelVersion, 9);
+  assert.equal(result.modelVersion, 10);
   const kali = result.ranking[0];
   assert.equal(kali.distroId, 'kali-linux');
   assert.equal(kali.traitAdjustment, 12);
@@ -858,13 +858,14 @@ test('returned diagnostics do not expose mutable references into distro constrai
 test('ties use stable distro IDs and normalization preserves eligible ordering', () => {
   const ranking = recommend({
     ...personas.rollingEnthusiast,
-    'use-cases': ['gaming'],
-    gaming: ['none'],
+    release: ['either'],
   }).ranking;
-  const cachy = ranking.findIndex((row) => row.distroId === 'cachyos');
-  const endeavour = ranking.findIndex((row) => row.distroId === 'endeavouros');
-  assert.equal(ranking[cachy].rawScore, ranking[endeavour].rawScore);
-  assert.ok(cachy < endeavour);
+  const silverblue = ranking.findIndex(
+    (row) => row.distroId === 'fedora-silverblue',
+  );
+  const vanilla = ranking.findIndex((row) => row.distroId === 'vanilla-os');
+  assert.equal(ranking[silverblue].rawScore, ranking[vanilla].rawScore);
+  assert.ok(silverblue < vanilla);
   for (let index = 1; index < ranking.length; index++) {
     if (ranking[index].eligible)
       assert.ok(
@@ -920,8 +921,7 @@ test('gaming shortfalls count twice and similarity stays bounded', () => {
         )!;
         const mismatch =
           distro.traits.focus.gaming &&
-          !selected &&
-          (gaming === 'none' || gaming === 'occasional');
+          (gaming === 'none' || (gaming === 'occasional' && !selected));
         assert.deepEqual(
           row.traitModifiers.filter(
             (modifier) => modifier.code === 'focus.gaming-mismatch',
@@ -941,7 +941,8 @@ test('gaming shortfalls count twice and similarity stays bounded', () => {
         );
         assert.equal(
           reward?.points ?? 0,
-          distro.traits.focus.gaming && !mismatch && gaming !== 'none'
+          distro.traits.focus.gaming &&
+            (gaming === 'important' || gaming === 'main')
             ? 3 * result.profile.capabilities.gaming.weight
             : 0,
         );

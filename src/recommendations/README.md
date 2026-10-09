@@ -1,16 +1,17 @@
-# Recommendation engine, model v9
+# Recommendation engine, model v10
 
 The pure engine converts complete quiz answers into a deterministic ranking of
 all 29 distro profiles, with eligibility, score components, and explanation codes.
-Model v9 records the four-profile atomic/rolling extension, transactional container
-matching, and generalized official-family/workflow presentation. The capability
-distance formula and previously published profile scores are unchanged.
+Model v10 makes gaming-focus refinement consistent with the direct intensity
+answer: no gaming always incurs the mismatch penalty, and occasional gaming with
+an explicit gaming purpose receives neither a penalty nor a focus reward.
+Important/main gaming rewards, capability fit, assessments, and eligibility are unchanged.
 
 ## API and boundaries
 
 ```ts
 import { recommend } from './engine.ts';
-const result = recommend(answers); // { modelVersion: 9, profile, ranking }
+const result = recommend(answers); // { modelVersion: 10, profile, ranking }
 ```
 
 `recommend(unknown)` validates through the preference builder and throws
@@ -62,8 +63,10 @@ Adjustments use capability-score points and assessed traits, without distro-ID b
 | Explicit rolling/fixed choice                                 | ±2 × strength (1 or 2)                           |
 | Explicit atomic/traditional choice                            | ±2 × strength (1 or 2)                           |
 | Container-first interest                                      | +3 image-based/transactional; −2 other models    |
-| Gaming focus, no gaming use case, intensity none / occasional | −6 / −3 (replaces the positive focus reward)     |
-| Positive gaming intensity and gaming focus, without mismatch  | +3 × normalized gaming importance                |
+| Gaming focus, intensity none (with or without gaming purpose) | −6                                               |
+| Gaming focus, occasional intensity, no gaming purpose         | −3                                               |
+| Gaming focus, occasional intensity, explicit gaming purpose   | 0                                                |
+| Gaming focus, important/main intensity                        | +3 × normalized gaming importance                |
 | Development intent and development focus                      | +2                                               |
 | Creative intent and documented creative integration           | +2                                               |
 | Security-testing intent and security focus                    | +8; eligibility still applies                    |
@@ -84,12 +87,12 @@ codec, plugin, or peripheral compatibility. Handheld results always advise check
 the specific device.
 
 Neutral release/atomic choices add nothing. Only NVIDIA evidence activates driver
-modifiers. Gaming focus is distinct from gaming capability: without a gaming use case,
-none (target 0) incurs −6 and occasional (target 2) incurs −3, replacing the
-positive focus reward. Important/main intensity keeps its existing reward. An
-explicit gaming use case suppresses mismatch, but cannot override zero intensity
-to earn a reward. The modifier uses `focus.gaming-mismatch` in diagnostics and
-cautions, inside the existing trait cap. Surplus gaming capability remains free. FOSS policy does not
+modifiers. Gaming focus is distinct from gaming capability: none (target 0)
+incurs −6 regardless of purpose selection. Occasional gaming (target 2) incurs
+−3 without an explicit gaming purpose and receives no modifier with it.
+Important/main intensity keeps its existing reward. The modifier uses
+`focus.gaming-mismatch` in diagnostics and cautions, inside the existing trait cap.
+Surplus gaming capability remains free. FOSS policy does not
 guarantee free firmware. Transactional hosts use `containers.transactional` for their match explanation;
 image-based hosts retain `containers.image-based`.
 Atomic updates alone do not imply container-first interest;

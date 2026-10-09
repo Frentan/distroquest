@@ -59,7 +59,7 @@ export type Recommendation = Readonly<{
   cautions: readonly string[];
 }>;
 export type RecommendationResult = Readonly<{
-  modelVersion: 9;
+  modelVersion: 10;
   profile: RecommendationProfile;
   ranking: readonly Recommendation[];
 }>;
