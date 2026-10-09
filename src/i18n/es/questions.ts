@@ -45,7 +45,8 @@ export const questionContentEs: QuestionDictionary = {
           'Puedo hacer algo de limpieza o resolver algún problema puntual.',
       },
       sometimes: {
-        label: 'No me molesta tener que solucionar problemas de vez en cuando.',
+        label:
+          'Estoy dispuesto a investigar y solucionar problemas cuando surjan.',
       },
       hobby: { label: 'Romper y reparar cosas es parte de la afición.' },
     },

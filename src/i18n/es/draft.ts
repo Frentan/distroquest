@@ -1,10 +1,12 @@
 import type { Messages } from '../index.ts';
 import { QUESTION_COUNT } from '../../data/questions.ts';
 import { questionContentEs } from './questions.ts';
-import { quizCopyEs, capabilityLabelsEs } from './quiz.ts';
+import { quizCopyEs, capabilityLabelsEs, preparationCopyEs } from './quiz.ts';
+import { explanationsEs } from './explanations.ts';
+import { platformCopyEs } from './platforms.ts';
 import { distroContentEs } from './distros.ts';
 
-// Deliberately incomplete; never registered as a runtime/published dictionary.
+// Content-complete, reviewed draft; not a runtime/published dictionary.
 export const draftEs = {
   site: {
     name: 'DistroQuest',
@@ -86,6 +88,9 @@ export const draftEs = {
   questions: questionContentEs,
   quiz: quizCopyEs,
   capabilityLabels: capabilityLabelsEs,
+  preparationCopy: preparationCopyEs,
+  explanations: explanationsEs,
+  platform: platformCopyEs,
   distros: distroContentEs,
   platformQuestions: {
     'apple-generation': {
@@ -110,15 +115,4 @@ export const draftEs = {
       },
     },
   },
-} satisfies Pick<
-  Messages,
-  | 'site'
-  | 'theme'
-  | 'home'
-  | 'scene'
-  | 'questions'
-  | 'quiz'
-  | 'capabilityLabels'
-  | 'distros'
-  | 'platformQuestions'
->;
+} satisfies Messages;

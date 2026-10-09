@@ -2702,6 +2702,354 @@
       "status": "reviewed",
       "reviewedBy": "Frentan"
     },
+    "/explanations/capability/beginnerFriendly/caution": {
+      "sourceHash": "a14cc3e5af7f9ccbb3bebe9f19608af540abaaa753edf74d2979963fc95e7a7d",
+      "translationHash": "9b8e3eaa761f94ce247226aaeff38c2f15f127e1e9613d4f5c9a5c411c5de114",
+      "status": "reviewed",
+      "reviewedBy": "Frentan"
+    },
+    "/explanations/capability/beginnerFriendly/reason": {
+      "sourceHash": "55a666005f63f27e6ce1205c45bc002dc4731cdf33fb1398b967b951f824e30a",
+      "translationHash": "7255e935091833e4306580a7736badc26682303ad8ee06bf0ad6f8919c5a3a87",
+      "status": "reviewed",
+      "reviewedBy": "Frentan"
+    },
+    "/explanations/capability/customization/caution": {
+      "sourceHash": "9f65a29575cdf4e1abb24b1f6af58b2542091a0dbe24d84cee20cc91f6f13f27",
+      "translationHash": "dcc4173cac6b0444de49e162f61a697a21df0c7c647c41d47410c46f7179d4c3",
+      "status": "reviewed",
+      "reviewedBy": "Frentan"
+    },
+    "/explanations/capability/customization/reason": {
+      "sourceHash": "82ef1975038cf1c932c73a24d06cda9945b97975c7797770639f6bcd419dd4cf",
+      "translationHash": "835e55b2ccf91164d13e4d38f506f2ec8b7d48ffa20e8585e52a98eb46b14c25",
+      "status": "reviewed",
+      "reviewedBy": "Frentan"
+    },
+    "/explanations/capability/desktopPolish/caution": {
+      "sourceHash": "648e12e982a8b4de2e2abb630b46bb15c55f59f820914a1cb5b398d4866dd6a1",
+      "translationHash": "982a52c67caea662ad7c59369a1f030616c29b779c52449e071fbc674879d2b8",
+      "status": "reviewed",
+      "reviewedBy": "Frentan"
+    },
+    "/explanations/capability/desktopPolish/reason": {
+      "sourceHash": "76e453d2dfdc5f7cfe73cecec4134314d4b04010a84443abf1dddb63ac16928b",
+      "translationHash": "209fd40983e98e29c47107738e194bca211a5e3c8fc97fb3c57ee5119a3c9b33",
+      "status": "reviewed",
+      "reviewedBy": "Frentan"
+    },
+    "/explanations/capability/developerExperience/caution": {
+      "sourceHash": "0f187f0aaecbfccef3b6e99f7768cf1c44e33dc0da85ef5b216001b567fd9e53",
+      "translationHash": "40dca923a7e73461841bbb400e0bdf54b8bc7eb3ecef4c4f357a9b9c6fad2cab",
+      "status": "reviewed",
+      "reviewedBy": "Frentan"
+    },
+    "/explanations/capability/developerExperience/reason": {
+      "sourceHash": "921386bfbf53221dd570697ded2fc72707450cfedf5d992ba92a08833eb40886",
+      "translationHash": "524a531c31ab21638830ea64a23eac4763dd08d7a3a39e3255fec373eaa30433",
+      "status": "reviewed",
+      "reviewedBy": "Frentan"
+    },
+    "/explanations/capability/freshness/caution": {
+      "sourceHash": "76980730c1ff20be7a902abb17bf93781961cda15633a44b17c6b0829093aa78",
+      "translationHash": "2989cc5ee1763258debd7c6e3e0fbdd4b056dd716f81308d16d1a51540836571",
+      "status": "reviewed",
+      "reviewedBy": "Frentan"
+    },
+    "/explanations/capability/freshness/reason": {
+      "sourceHash": "b3112bc407c3ebe567c9dfd4a1217cdf864c83edb9f6064be3b250d1b7d62cf7",
+      "translationHash": "065fe96af2705f4d9b830afbd3edf96517604add4aea6215a0a518a04de48351",
+      "status": "reviewed",
+      "reviewedBy": "Frentan"
+    },
+    "/explanations/capability/gaming/caution": {
+      "sourceHash": "9e4ce117a17e499a73114ce489e4f01c2764d54e532b25387cc84bd69c601ac3",
+      "translationHash": "b7b36e19a65ad3b9518ec037c47304b1ea49f8e716b5ef40b813547f2cd5680f",
+      "status": "reviewed",
+      "reviewedBy": "Frentan"
+    },
+    "/explanations/capability/gaming/reason": {
+      "sourceHash": "b277e24948012ac4a1af20efc1cf7b1f9c7e3c58ec08e476dd1cfa950f26fd99",
+      "translationHash": "54334953704789e21a3753bd890e1a17e8dbb194dbb7b27b27d89523a3a62e8a",
+      "status": "reviewed",
+      "reviewedBy": "Frentan"
+    },
+    "/explanations/capability/lowMaintenance/caution": {
+      "sourceHash": "20b75113276de1365ab21b1747549acde588b838711e38d68d7d406bbd878015",
+      "translationHash": "90d2a9ab3ae06d0012e6ba204cd17c55facac9b65e38de82f80809e50718fff3",
+      "status": "reviewed",
+      "reviewedBy": "Frentan"
+    },
+    "/explanations/capability/lowMaintenance/reason": {
+      "sourceHash": "ae44e2421ecd6410803b050f8a61e02eeecc74906bb6708016057526359d6020",
+      "translationHash": "649da62f994bf421afb564700e2bde158e286e0be6182a7c25dac9aef8691ea6",
+      "status": "reviewed",
+      "reviewedBy": "Frentan"
+    },
+    "/explanations/capability/oldHardware/caution": {
+      "sourceHash": "094b88d8e5be5b893644c339bcfa93e037ed662bbd4612fa005a7dced54d1807",
+      "translationHash": "63d7fced9399dbfd3c1e4b5402b9e746bd8971e2b34c75fe619d16b776bde819",
+      "status": "reviewed",
+      "reviewedBy": "Frentan"
+    },
+    "/explanations/capability/oldHardware/reason": {
+      "sourceHash": "5305517e85a76ce5bcf2a72c6e1d0524e0e625d431fdf78e9f68683fa187c671",
+      "translationHash": "5f82a131e0335d8a0a5a9cfac19de62317c9a5718c2d3663c559620f619eaf40",
+      "status": "reviewed",
+      "reviewedBy": "Frentan"
+    },
+    "/explanations/capability/stability/caution": {
+      "sourceHash": "c2c296689cd8e331b23f49e016da6b2325c11d7623b69960ba85a43f15951bd9",
+      "translationHash": "0716ec131fe6b2c2f12538a2fa6e339522474cd006389e7429b0a279e88455b3",
+      "status": "reviewed",
+      "reviewedBy": "Frentan"
+    },
+    "/explanations/capability/stability/reason": {
+      "sourceHash": "e5ead274e3e92fca34bf42fca9e588ff3a1d6443a35090e03a50b80de93ff277",
+      "translationHash": "c1bda1e4aba4511d7c4ad44b0db1d37e62be9a22b71914364af9ba84cae71f66",
+      "status": "reviewed",
+      "reviewedBy": "Frentan"
+    },
+    "/explanations/capability/systemControl/caution": {
+      "sourceHash": "75a5abed6ee4774447d1158f4e955ea1f773b940db240eac803941377f4d2c24",
+      "translationHash": "5cf7c000ea823140a2bc113d6fb4f26b28e909a239cf0afbb02be84f1eef28da",
+      "status": "reviewed",
+      "reviewedBy": "Frentan"
+    },
+    "/explanations/capability/systemControl/reason": {
+      "sourceHash": "0ce7c0928403300410a4b826588509cf80d8f7a79084a907b9209d711d547b2c",
+      "translationHash": "6bd65c8ddcae0ef45c80728685006c57889c53f17b25f6016ea539a446de508c",
+      "status": "reviewed",
+      "reviewedBy": "Frentan"
+    },
+    "/explanations/cautions/atomic.conflict": {
+      "sourceHash": "9d6581d28b9b7cce7a464d5a4e21a2b1dc5654295905df7d7084c47dcde36996",
+      "translationHash": "f87168e11eac45368fa49772cd5886a90b8f76b746c6480d1e70bf5bb4ee04df",
+      "status": "reviewed",
+      "reviewedBy": "Frentan"
+    },
+    "/explanations/cautions/constraint": {
+      "sourceHash": "7bff1886d404cbc36b26113185f0152e186fd1bbdfb360d2e06422d989aeabe2",
+      "translationHash": "f80c671254235094730f70728f44f18baa3e4e3a67da4d4dfb71a1747148498a",
+      "status": "reviewed",
+      "reviewedBy": "Frentan"
+    },
+    "/explanations/cautions/containers.other-model": {
+      "sourceHash": "50a8d30b7d63c0b2d85c905f7904be1775518c6eb55a28bc0ebcd73aabe2ba7b",
+      "translationHash": "be605d79f77cf523284b4cfeae2c68a70cd9276440319f9da797e05c82b8fab9",
+      "status": "reviewed",
+      "reviewedBy": "Frentan"
+    },
+    "/explanations/cautions/focus.gaming-mismatch": {
+      "sourceHash": "29cea978f0fbc6f184cd69fe2d454ef523ea5d5a45fcfcd9e0a1040e9bcfa14c",
+      "translationHash": "30e88a6facfe75d8bc32b6560a233daa11bf1f340da1e2e32f3034bc5c6a9d53",
+      "status": "reviewed",
+      "reviewedBy": "Frentan"
+    },
+    "/explanations/cautions/handheld.check-device-compatibility": {
+      "sourceHash": "75809c8658eea79221449f752ac79de302e08960f88a73d9126c0a62625f3214",
+      "translationHash": "5e35100b1b914dbb5bc5561001d2042fff0a094e91ec9de22452afbf9ed1e194",
+      "status": "reviewed",
+      "reviewedBy": "Frentan"
+    },
+    "/explanations/cautions/handheld.support-unassessed": {
+      "sourceHash": "267f5499d281f896ba368389fdb8f10b64138651dd0030155b15f759bc7d90a4",
+      "translationHash": "08e64d831d65cdfc4d459021678cb6e2b39106b9c210ba01fce95d9c1ddc2d2b",
+      "status": "reviewed",
+      "reviewedBy": "Frentan"
+    },
+    "/explanations/cautions/nvidia.manual": {
+      "sourceHash": "8cc2c4f509792452360f19043fc85e084478d1ed005ed577a7cc320592e56e99",
+      "translationHash": "c7757f32252afc0d356ab9e6755d9744b4e4e6591df5fa471ca77d0e5a4b7368",
+      "status": "reviewed",
+      "reviewedBy": "Frentan"
+    },
+    "/explanations/cautions/release.conflict": {
+      "sourceHash": "caf11a94f5b02e6cf48c2f6837d1ce8984f0347f5b5a0627b72edd0178c26ec4",
+      "translationHash": "49c6377496edcada949d2967067e86a716fa432c324dfdb0232862386b03039b",
+      "status": "reviewed",
+      "reviewedBy": "Frentan"
+    },
+    "/explanations/cautions/software-policy.pragmatic": {
+      "sourceHash": "de093d66eb42834bba99166ee4b1da02cc8158ac5f52c83edbac97988879746c",
+      "translationHash": "662a3ad424625391b6862b0b04b706fae56865050721b3d9678b05efcf1a1310",
+      "status": "reviewed",
+      "reviewedBy": "Frentan"
+    },
+    "/explanations/near/beginnerFriendly": {
+      "sourceHash": "7e65fbb1f36d51197a5bbd94ab3602a8ebc528077b5fab1ee0c3fd6ab13e5790",
+      "translationHash": "3c583168acb0c420ae60a8df2b1d8be5990070e67d7d9d1ccd03e2d81550f4a8",
+      "status": "reviewed",
+      "reviewedBy": "Frentan"
+    },
+    "/explanations/near/customization": {
+      "sourceHash": "d690e5acceb750c0d01ab32a3b54ea90004a6cc639aea0c2b1b9e89de6516e2b",
+      "translationHash": "662fd205d9e6253dac3acfd7ec195987f4e636c2bfc53c514d2c243d4a92d500",
+      "status": "reviewed",
+      "reviewedBy": "Frentan"
+    },
+    "/explanations/near/desktopPolish": {
+      "sourceHash": "4f149481839a898d7fc140d52b25658825689dedfbc646e03e1ac1b2e0a4c6fd",
+      "translationHash": "8568264fa548d8783ba4d1fc21a05a0e3610665fe93b641c4d98a0b51844be6d",
+      "status": "reviewed",
+      "reviewedBy": "Frentan"
+    },
+    "/explanations/near/developerExperience": {
+      "sourceHash": "37e1ac938f3fb8c7e291e7b398c5de3569dd0b4d1b2ddfc91e43209bd60757ea",
+      "translationHash": "e2111a198796e20b5686ac1dea95a99303236b50e48b20d7f7239eabbc07231a",
+      "status": "reviewed",
+      "reviewedBy": "Frentan"
+    },
+    "/explanations/near/freshness": {
+      "sourceHash": "5826233f5b4d9ae63a5854b700ff55729c647f0f408d49c640215299967a773b",
+      "translationHash": "08ae01da15c65efee38efe72930a4ba515d92c2a612c26bdf58e512264688def",
+      "status": "reviewed",
+      "reviewedBy": "Frentan"
+    },
+    "/explanations/near/gaming": {
+      "sourceHash": "8537fc9e9c6bf365bbed5bebea4c03190992663f7c442b14286829eca8fd4a8d",
+      "translationHash": "528d2f859d5c9a25eef4fcd2fb7614bb2b841472465580bc4dac4ee3b5367024",
+      "status": "reviewed",
+      "reviewedBy": "Frentan"
+    },
+    "/explanations/near/lowMaintenance": {
+      "sourceHash": "f2e02e3955679f4a3116dd30032022e097b1e2ab52283e1bff951b05cba20f2f",
+      "translationHash": "c9fa1492ce3523fb2a0a31eee112c1d899933b5704d4f36e580431980e3db5dd",
+      "status": "reviewed",
+      "reviewedBy": "Frentan"
+    },
+    "/explanations/near/oldHardware": {
+      "sourceHash": "1cb3bd25a6e2feee57275e70f5a2ccae00cea1b46a0c5daed4761074e0b6c4c6",
+      "translationHash": "59f805c16d1335c827e519d53dae19e9ca30ab80bd6a268aed638535ee8e6965",
+      "status": "reviewed",
+      "reviewedBy": "Frentan"
+    },
+    "/explanations/near/stability": {
+      "sourceHash": "313382f2b628c6be0f10e8268facfddb0cbe90444c93ae1c98564e25c978f20c",
+      "translationHash": "24f7c4357687d6201dc1a751c58a7b3062f4409bac6c4c506c304f0792a08dbf",
+      "status": "reviewed",
+      "reviewedBy": "Frentan"
+    },
+    "/explanations/near/systemControl": {
+      "sourceHash": "e6fd7d77d450d3dc5727e56a84247eddd9019fe492d60f170ba2c929d62a561e",
+      "translationHash": "fff90f306ceb5eef9ec7bbb71ee81de6b1a63d3a870be3e7e6a0266294e9bf22",
+      "status": "reviewed",
+      "reviewedBy": "Frentan"
+    },
+    "/explanations/reasons/atomic.match": {
+      "sourceHash": "b418469ea82ecefeb6e40a1aab204f4869143b3f26b0c6c6b2b4566f39be8c19",
+      "translationHash": "d4000b1fcc2c43fd71c63c3840c63b7b523f28a70c75e853d5c9781b0352ee10",
+      "status": "reviewed",
+      "reviewedBy": "Frentan"
+    },
+    "/explanations/reasons/containers.image-based": {
+      "sourceHash": "e8fc7cf2b27ff376182524c9a7467222c384a4bb7691097088fba02a87772ff9",
+      "translationHash": "c74aa921035a852a6d4d53e08a13ba5e117f8d0bf733622387efe4c85011aa4d",
+      "status": "reviewed",
+      "reviewedBy": "Frentan"
+    },
+    "/explanations/reasons/containers.transactional": {
+      "sourceHash": "536f849112586471016ad447d717a8f4e6bee7c53b53c71637b7eb6729c42f48",
+      "translationHash": "b16a2aa691f8f4af8794b0b65f5c67c5aaf131a4356989611784465639c0ef6d",
+      "status": "reviewed",
+      "reviewedBy": "Frentan"
+    },
+    "/explanations/reasons/creative.documented-integration": {
+      "sourceHash": "55b35464af0b55e01ae741e5c00ac8b094d5539be201fab6c87c74f2cd6ebb0e",
+      "translationHash": "9001c9c3e2223669582731694b041fae67f127eefe416d42d453d1942064fc0e",
+      "status": "reviewed",
+      "reviewedBy": "Frentan"
+    },
+    "/explanations/reasons/desktop-layout.match": {
+      "sourceHash": "0b59e882d2d7430982bbda1568ec3b39fc51992cb575d8f581886e2147cf4fd0",
+      "translationHash": "0c627f88d9d28949de9604287ee993cf97224b809aada77684607a6cbe2bd598",
+      "status": "reviewed",
+      "reviewedBy": "Frentan"
+    },
+    "/explanations/reasons/focus.development": {
+      "sourceHash": "1e15f47590ea09c0d733d817366e0534a7f8245f16d7e630ef62b35bd5877412",
+      "translationHash": "afce10abc8ecab182e3c1c0267add65e7aeb45359e44f9f0e6b8425ab37b4c6a",
+      "status": "reviewed",
+      "reviewedBy": "Frentan"
+    },
+    "/explanations/reasons/focus.gaming": {
+      "sourceHash": "32e1df77f838d393acd12f82742d3f0d2da5a5b27ccd2cd80a67cb5e8d145f39",
+      "translationHash": "63f73a1258133e10dc95f02716ed2a34a8b0248e9b99c876a0dd3d56ecaabcfd",
+      "status": "reviewed",
+      "reviewedBy": "Frentan"
+    },
+    "/explanations/reasons/focus.minimalism": {
+      "sourceHash": "f77fbcbd4212deba9514ab144f7d58219a8973a48894c6399f79ee8dd5750658",
+      "translationHash": "372132b694bcae91f39290e141f06be77a1f8cfe947be655e14b91d9ef587d61",
+      "status": "reviewed",
+      "reviewedBy": "Frentan"
+    },
+    "/explanations/reasons/focus.security": {
+      "sourceHash": "94fb37314b97333c9d9acd34f7c4564d25f44710fbefb0f7fcea2bfc19661b23",
+      "translationHash": "b8acbbd3e974f9e5dc263b83976d0930441c070a6ecda0074adede08daca7b07",
+      "status": "reviewed",
+      "reviewedBy": "Frentan"
+    },
+    "/explanations/reasons/handheld.documented-support": {
+      "sourceHash": "000eca746a1528295a1db881b59eb7141d72051aea94738bf3389636be029885",
+      "translationHash": "a3db787a4445f67c13b4ab869738d998b9041b0b58aedd92b59c02002e7a7eac",
+      "status": "reviewed",
+      "reviewedBy": "Frentan"
+    },
+    "/explanations/reasons/nvidia.integrated": {
+      "sourceHash": "53004784834e547631c456f7fcf219ce1dfc663a1c8ccb73721f6647fab5f2f3",
+      "translationHash": "40270fa65c76d39f8a91084629ab8e5d3b7cea14887a69a1502d4d5f75fc2762",
+      "status": "reviewed",
+      "reviewedBy": "Frentan"
+    },
+    "/explanations/reasons/release.match": {
+      "sourceHash": "17bb9572dd7984ce1ef8ed522430265560312356ae7833b2e1bb8977214ff10b",
+      "translationHash": "44aac9ea9b78f66c4ed6a19a9e2181d4006d345787d694aa719344f83d27f765",
+      "status": "reviewed",
+      "reviewedBy": "Frentan"
+    },
+    "/explanations/reasons/software-policy.free-software-first": {
+      "sourceHash": "8512b8c71705ab5fe467b036220f88da96cb8897793de8895d25cf0c77b450a3",
+      "translationHash": "8ddb0701a8ffe16c77ab2cefed46a5bd92ec57ed57f4fe3db84085a5aaf22ca1",
+      "status": "reviewed",
+      "reviewedBy": "Frentan"
+    },
+    "/explanations/reasons/specialist.container-development": {
+      "sourceHash": "dc9abd50ce5d86a2b90aa37775f399823865fc3a546dad9bd3ab46a305d912a5",
+      "translationHash": "adf6d060c473a8c47babd7e3604ac2ab27d08cfbaa585e193052114163f3f2bb",
+      "status": "reviewed",
+      "reviewedBy": "Frentan"
+    },
+    "/explanations/reasons/specialist.handheld-gaming": {
+      "sourceHash": "c0195aa90b61fbdd53b262de58833049b69554c0ddc1c421079a7610ce493698",
+      "translationHash": "053c40b35aeeb37ab504c3aa5787847f093d8c3ae8a8b138f43b067f6b03476a",
+      "status": "reviewed",
+      "reviewedBy": "Frentan"
+    },
+    "/explanations/reasons/specialist.minimalist-self-build": {
+      "sourceHash": "df234e32b154914637eeacca4a7091fd50da99402a9804b5f99d429495004a6f",
+      "translationHash": "17e696cb920f48e8d9ba69f51f61ceab203d2962d8457fe33570e7c278e2995d",
+      "status": "reviewed",
+      "reviewedBy": "Frentan"
+    },
+    "/explanations/reasons/specialist.security-testing": {
+      "sourceHash": "63264331c0eaaa8f1b7b830eadff9302031f31950ddff4e9a465f77175a71a7a",
+      "translationHash": "fb6edd73d16ee99b97eec0ea4ed3f280543eec12687015fa79a7d57bcb9f1a58",
+      "status": "reviewed",
+      "reviewedBy": "Frentan"
+    },
+    "/explanations/reasons/specialist.traditional-unix": {
+      "sourceHash": "9725a19b408690ab63981acb20805fba26fdc2b943b65165b8afa3ba4ac9cb48",
+      "translationHash": "d25bed4eb48c2a5549c3e4daa94b2d176a4074b235090de6d0f160207476d730",
+      "status": "reviewed",
+      "reviewedBy": "Frentan"
+    },
+    "/explanations/reasons/workflow.declarative": {
+      "sourceHash": "b6ab7da56b5672e33e3a6dd818e5b92eaf354fea52d2586bf585f580de5474dd",
+      "translationHash": "9c29f27d104f869881199b52f7dad1135894204c07c109a26227856401ad4855",
+      "status": "reviewed",
+      "reviewedBy": "Frentan"
+    },
     "/home/begin": {
       "sourceHash": "acdff0760e2046f7e8ce555c86f7432ebd00aba9f0f8b1ce666f8ccd63e5d0c1",
       "translationHash": "6b31bf209ebbac8a4416af1d066cbb0e951eb8ea9754657fd9483b0c1c86b387",
@@ -2846,6 +3194,204 @@
       "status": "reviewed",
       "reviewedBy": "Frentan"
     },
+    "/platform/alternatives": {
+      "sourceHash": "fb5390213b52f5772940255f08dc2d04a88d589565416e405274188c87d0387a",
+      "translationHash": "cf43fe851b0859c69f88232b41c059d5ad0c55ea94ca4523e747b72a4b342ebc",
+      "status": "reviewed",
+      "reviewedBy": "Frentan"
+    },
+    "/platform/asahiInstall": {
+      "sourceHash": "7b16a1a8733b8d6a983bcd66a8fea68fbcc7110ea4e388ab248577e95599bbd0",
+      "translationHash": "995c0ab016ea7b3bc68571a7ba21b1a01a0b295830d1bfc1da8510d0e7f62ad0",
+      "status": "reviewed",
+      "reviewedBy": "Frentan"
+    },
+    "/platform/asahiIntro": {
+      "sourceHash": "72e4676749d24504abadddd840373e003bc4f138011b287b757f270136dc17df",
+      "translationHash": "79c28d0bdc970bc7ec39e35536d5d2d5372f0dd342bbd1b9534782d1557de191",
+      "status": "reviewed",
+      "reviewedBy": "Frentan"
+    },
+    "/platform/asahiName": {
+      "sourceHash": "47acd882b298c07885f9570702484dd12d2970cd0da80d54a3a2102975a89afa",
+      "translationHash": "38b0274a851620aef7b495326ba8b4715f71498525ee6395013f538760448858",
+      "status": "reviewed",
+      "reviewedBy": "Frentan"
+    },
+    "/platform/asahiSummary": {
+      "sourceHash": "1a82296ba0b70b77c017aeb0928612ec3f62be9ac55f67945e3656ae2f5a50df",
+      "translationHash": "02eb92c3010467eebb0334c839a632d2e6b842e039ab60f92e2f67cddb765bad",
+      "status": "reviewed",
+      "reviewedBy": "Frentan"
+    },
+    "/platform/baseMatch": {
+      "sourceHash": "07437d0fcb5e5e8b31309589980f272220c889673d70f2bdd95eee2b69ef4d83",
+      "translationHash": "8a1e0b727d78d9098aba8993cd51ce9e5089261354b747b7fe51437197d99525",
+      "status": "reviewed",
+      "reviewedBy": "Frentan"
+    },
+    "/platform/edition": {
+      "sourceHash": "3886c31479dfbbb4a7c2ca291fcbd263a5e9f018c0333b0aaa88a172197e20e6",
+      "translationHash": "fa9228d277abb8e235bd60b222de5da6c8bb4fb70c991fe95768d329cee74118",
+      "status": "reviewed",
+      "reviewedBy": "Frentan"
+    },
+    "/platform/effort/guided": {
+      "sourceHash": "f69b38c4d1b13fabf0f288e99534c22451288cfc01a4e17fce5c77f3d8cbb162",
+      "translationHash": "d082f0a1afca5f5fed71782150a059d280a4b36e80df769c87e925800a40d678",
+      "status": "reviewed",
+      "reviewedBy": "Frentan"
+    },
+    "/platform/effort/manual": {
+      "sourceHash": "e2473d1c12273bbbb48277fbb544fdf9fb3ed842f22b0fedc60b58d7ee9b40bf",
+      "translationHash": "294c264245c71e6228165860ad1346b1b87dedf3e4e54cf089872315988ea4e1",
+      "status": "reviewed",
+      "reviewedBy": "Frentan"
+    },
+    "/platform/effort/standard": {
+      "sourceHash": "7748c5d147209c71317b446fc9aa5edc2abec6273e6231304c08d2892b405813",
+      "translationHash": "f8697b8a999e8724bfb950f26ae8e341f805a8723d7bd67b6845f1810e0892db",
+      "status": "reviewed",
+      "reviewedBy": "Frentan"
+    },
+    "/platform/effort/unverified": {
+      "sourceHash": "1fcaf0e7c84300ea45dcae90ab76a4bd70be4ed1dd0c105cf4127f01710bc0d3",
+      "translationHash": "1edbc0dcaa87d1741b6e5b929f4fa02e821fe73e65caea4ac738adcd1e1b129a",
+      "status": "reviewed",
+      "reviewedBy": "Frentan"
+    },
+    "/platform/identifyChip": {
+      "sourceHash": "e981b8733bcee571f6ac9cfffcb26dbd4eb480ec574abca6b46889faa6ad61b1",
+      "translationHash": "466d1d21cab3dd62e43db7b24dfa94b258ef74614391566f86f0a44eababccaf",
+      "status": "reviewed",
+      "reviewedBy": "Frentan"
+    },
+    "/platform/identifyT2": {
+      "sourceHash": "a5da48b6dfca1b6947aceaf0e9fe4d540643d8e03267046938479b31c703c125",
+      "translationHash": "2f121372ec9bd30bfe7cbb20a9a528ca71bb4eb74f83665dd218e597646ceb24",
+      "status": "reviewed",
+      "reviewedBy": "Frentan"
+    },
+    "/platform/install": {
+      "sourceHash": "6da78cecc26ead4858d45b57fc8f5a64493af96979eca56fd1fa604b1579af18",
+      "translationHash": "2b57accc2d07d3f3dcd22a7054331a380a45296c4d581f8d28549df90aebd888",
+      "status": "reviewed",
+      "reviewedBy": "Frentan"
+    },
+    "/platform/notes/apple-silicon-m1-m2": {
+      "sourceHash": "8323bd9b96afc006a2a709a6b5f7ad432f19460473548e5a7b533903cc0743df",
+      "translationHash": "858ab481403c7e4507888ce89d1b8a1222bfa93e7775937073be618f202e6ca7",
+      "status": "reviewed",
+      "reviewedBy": "Frentan"
+    },
+    "/platform/notes/apple-silicon-m3": {
+      "sourceHash": "ee57c17dabc21d373431a485b6197f986dd22736637dab95508b462b307eb9b5",
+      "translationHash": "f864db1fa261a2374a8ea79a16f44c3a019b92454ec32bbd8637271dd39e4bd8",
+      "status": "reviewed",
+      "reviewedBy": "Frentan"
+    },
+    "/platform/notes/apple-silicon-m4-plus": {
+      "sourceHash": "26d594be0c24c8b35405f4793a491810384b9a29f0d6dd6af5eab08ddb8a2005",
+      "translationHash": "ec48633974b5d0c3edb6aa34069e1c9611bb74e2e6f8abf891d28cf2973f3983",
+      "status": "reviewed",
+      "reviewedBy": "Frentan"
+    },
+    "/platform/notes/apple-silicon-unknown": {
+      "sourceHash": "df691eb7999f76be4b3053bf19c3dbcd9ac91630d4bfddd01a8d0f31941ea579",
+      "translationHash": "09cff744cfe44905dfef91a6e12a096ad226a15ac44f1bd3db915fb7de72a142",
+      "status": "reviewed",
+      "reviewedBy": "Frentan"
+    },
+    "/platform/notes/intel-mac": {
+      "sourceHash": "a25b213ab23d4d8d5a11ecd17a53a83c73c82a507be9a9756d219886a380e310",
+      "translationHash": "bd9a78617847355c2960463929023a3a9fb56b753e419ba89bf42db1c97d1b65",
+      "status": "reviewed",
+      "reviewedBy": "Frentan"
+    },
+    "/platform/notes/intel-mac-t2": {
+      "sourceHash": "181f4d1152516faad3ae9d04389911076a71a7a77f11220928b60530bfbb3407",
+      "translationHash": "ec9b849f765af0b3dbd480c166c9f75993ff52eb4bd32d59abbd45cf7c24783c",
+      "status": "reviewed",
+      "reviewedBy": "Frentan"
+    },
+    "/platform/notes/intel-mac-unknown-t2": {
+      "sourceHash": "4c335feb3ed20c1e9385cc943f4ba282d0ef50a54231f670475086ffb675d2f0",
+      "translationHash": "fd5451b5f52cfbc617a56dd76a10f2b8b6f8df14fddedf08b3aa40c6f88c36b4",
+      "status": "reviewed",
+      "reviewedBy": "Frentan"
+    },
+    "/platform/notes/unknown": {
+      "sourceHash": "87b1c134fe67172ad35a34698da6c2af34ea584f50857ead80d20977bebdc57a",
+      "translationHash": "8c777057072854bfcda476597c56cf4a4751ee0ff53720e83d9c19fe73b4af26",
+      "status": "reviewed",
+      "reviewedBy": "Frentan"
+    },
+    "/platform/notes/x86-standard": {
+      "sourceHash": "3227755a7874d08aed6ba1dd4c4ccde6558c2c71e8f52f7b4a45504dfe7c4139",
+      "translationHash": "f8964be01703d904f9727fde15a8af932920cfa9edf9174462944d649181a137",
+      "status": "reviewed",
+      "reviewedBy": "Frentan"
+    },
+    "/platform/originalFit": {
+      "sourceHash": "12e560e4477c2586bef68d983489af554ef40f452fc9280d2762dbb870af0744",
+      "translationHash": "f26d054b3421ef733b5faf0681e25f93ce3c17b5537995d99187cc8e8dbea5be",
+      "status": "reviewed",
+      "reviewedBy": "Frentan"
+    },
+    "/platform/originalWinner": {
+      "sourceHash": "f66730c77ba6577027db7fb0bb685e570edf6863332dd93b330a95949677c374",
+      "translationHash": "7a98ce144d42b83c252c86154ea477efe35c1d7ce23b9df5e019d79f7b2c475a",
+      "status": "reviewed",
+      "reviewedBy": "Frentan"
+    },
+    "/platform/preferenceAlternatives": {
+      "sourceHash": "b18fb67bf20e64f9a73d540646f6a5e389955d1b159cbaa0f94c15c503bd2ba3",
+      "translationHash": "be3e874d72e3208b31143a661d31b2af751ada8b0a1f8a572352dcdd886bc98f",
+      "status": "reviewed",
+      "reviewedBy": "Frentan"
+    },
+    "/platform/preferenceOnly": {
+      "sourceHash": "b6671350784f79d927d04435b968d11fa71511d21510bce085175fcec4b92473",
+      "translationHash": "0a68605aa059f9c3a918a7f2a64c3341e0c830985bbee75ef9d8a7697edafc1d",
+      "status": "reviewed",
+      "reviewedBy": "Frentan"
+    },
+    "/platform/preferencePath": {
+      "sourceHash": "3066e2df8d6dec9797fbfa6c75c37e571b9a5783f8772f15904ce72a513f5177",
+      "translationHash": "63dbc1040de6ee70162bc4389c6e4673eea76689a9cad787b04f06001a741607",
+      "status": "reviewed",
+      "reviewedBy": "Frentan"
+    },
+    "/platform/preferenceTop": {
+      "sourceHash": "6f71342cfcaa01db2e4ac4737a1ab9750e6cc3865e53a121e69e3ae510650e8c",
+      "translationHash": "fecf68acdb3bcf6c7cc0c55bb7f4e0e3d1ee6ccd3833b895acbe77f1b88f0408",
+      "status": "reviewed",
+      "reviewedBy": "Frentan"
+    },
+    "/platform/sameFit": {
+      "sourceHash": "9c0de2986d9168bb6f21fe1d8d1feea7c748ff2cb8a7921189d0b4027118c5c9",
+      "translationHash": "545d2ddd7128edf64021af361bbba49638394fe9081b738917f83118da95c469",
+      "status": "reviewed",
+      "reviewedBy": "Frentan"
+    },
+    "/platform/standardInstallation": {
+      "sourceHash": "27d0d462a5e0ff3084c5406da8dfe822aa7ead40b1e4e03002769a723eb079cb",
+      "translationHash": "e56d61fb2776686d9fe05aad87012d0e00550b44d445b0562c39cdf50fbb2edd",
+      "status": "reviewed",
+      "reviewedBy": "Frentan"
+    },
+    "/platform/supportGuide": {
+      "sourceHash": "71772a25a05a16be2e0d56f521b8e0cd609c53471d0ca457434baea92bbd3c22",
+      "translationHash": "7e17072ecbb0565dda9efb2edb653f95aaffc564148f56017283fe496448f5b1",
+      "status": "reviewed",
+      "reviewedBy": "Frentan"
+    },
+    "/platform/title": {
+      "sourceHash": "fcf91ad64d441dd9bd579eeae4e6559e37b2b2f741bbbf20e0cf8cdb7918761e",
+      "translationHash": "4c3c721a1b5824574be74f513a3c4423ece94a0b9f618fe290eb9e7480be8f86",
+      "status": "reviewed",
+      "reviewedBy": "Frentan"
+    },
     "/platformQuestions/apple-generation/helper": {
       "sourceHash": "41f052bc8793d7539140b52314929f4c95c4232125ac86aaa9d0448a533794a5",
       "translationHash": "fa7cad8a96fdced0cc5cdfc51cf93836bdd52a5994f51ed67db89339fa35c48a",
@@ -2909,6 +3455,54 @@
     "/platformQuestions/intel-t2/prompt": {
       "sourceHash": "d04182f2ff240315ef3f61118dac2ac86d6e1ea400830817832103cb20f37ce1",
       "translationHash": "b67baa0f1797bdb0f1b0a033b339126a317264e892bf0911e858cb0350048f9d",
+      "status": "reviewed",
+      "reviewedBy": "Frentan"
+    },
+    "/preparationCopy/creative": {
+      "sourceHash": "55d7a4cc7cbbbef2e8c36173f91351cedfa0886fc4351e4045f4f28a1cbb16ac",
+      "translationHash": "07f865fb3bd54b80b7d54e77055ba2e0c03f310a11d9ca49d991bb0e9cd38146",
+      "status": "reviewed",
+      "reviewedBy": "Frentan"
+    },
+    "/preparationCopy/development": {
+      "sourceHash": "6b250decd5330bae4d16992e2bfa1a3b151e00a46b1e7894e6c7e39158283f8b",
+      "translationHash": "14ea53a2261a6d07a57cb21060cffdc175187a3c5fa4d517d1a82dcd06840d9d",
+      "status": "reviewed",
+      "reviewedBy": "Frentan"
+    },
+    "/preparationCopy/gaming": {
+      "sourceHash": "b88cb22341db91484c407ab4065d468d5b89146017493f335e05f58ab63eccb9",
+      "translationHash": "6ee19aa28e0965156462aabacc44cb392a2d7fb91ad829ae8cf6e15d75696f05",
+      "status": "reviewed",
+      "reviewedBy": "Frentan"
+    },
+    "/preparationCopy/general-desktop": {
+      "sourceHash": "3b0b3803f22e1b6a3f5118080316affc35270ce5e980bdc1643464d5bd644015",
+      "translationHash": "291222f67b7c2ff098641c267ffae0c93f7453b844aaf29c40e75f27ae3c9b2f",
+      "status": "reviewed",
+      "reviewedBy": "Frentan"
+    },
+    "/preparationCopy/homelab": {
+      "sourceHash": "5978731c509664a0cf3de39484ef52008185e3fc9d560ed81b9f8b47355266cc",
+      "translationHash": "3c9aa58a2ed4bc10e6eec3d0499c83119dff7ce422a8a9bc067f7fbf1e3c1608",
+      "status": "reviewed",
+      "reviewedBy": "Frentan"
+    },
+    "/preparationCopy/old-hardware": {
+      "sourceHash": "ce5dd8a1b9a3285847bfd49cb8802ee4bc96bb3c759cd0fb7397d1d4d4b8c010",
+      "translationHash": "f43d7febf2374891c00064c228a8f83d776dd2cb5893783b17817af683f148fd",
+      "status": "reviewed",
+      "reviewedBy": "Frentan"
+    },
+    "/preparationCopy/security-testing": {
+      "sourceHash": "72ea93148ee652b2bdd3e8f29ded145d35046503b8fab4391e8e6b2885cbab59",
+      "translationHash": "6fa7db53879a437e251c5b4c6a656c37605e1a51e0a9af07d7c1ab05230d0e3f",
+      "status": "reviewed",
+      "reviewedBy": "Frentan"
+    },
+    "/preparationCopy/technical-learning": {
+      "sourceHash": "b45a7f9d14422bd719c5d747d172efa4521abfcf999f3cff9872bccfffae211e",
+      "translationHash": "13d020d786e7292549a6fff1aaba7438b3ef5eda93bbd302cf469b47240b4b74",
       "status": "reviewed",
       "reviewedBy": "Frentan"
     },
@@ -3232,7 +3826,7 @@
     },
     "/questions/maintenance/options/sometimes/label": {
       "sourceHash": "e4cd7b9f3c57d136fac2a4bda5316bc13df44c91a6ab5646d01e946601d5a20e",
-      "translationHash": "3ece2ae07bbabed02d0e6aaa2b1b47a94d7067ce7e0a4fa2f0e81186e395ea4b",
+      "translationHash": "bf9b5ac918560c06124b85c85091342cc56a68405c8d4247bfda639ccaaab6a6",
       "status": "reviewed",
       "reviewedBy": "Frentan"
     },

@@ -1,3 +1,4 @@
+import { readFileSync } from 'node:fs';
 import assert from 'node:assert/strict';
 import { test } from 'node:test';
 import { message, messageUnit } from '../src/i18n/message.ts';
@@ -16,6 +17,9 @@ import { en } from '../src/i18n/en.ts';
 import { draftEs } from '../src/i18n/es/draft.ts';
 import { quizCopyEs } from '../src/i18n/es/quiz.ts';
 import { validatePublication } from '../scripts/check-i18n.ts';
+import { createExplanations } from '../src/i18n/explanations.ts';
+import { recommend } from '../src/recommendations/engine.ts';
+import { recommendationPersonas } from '../scripts/recommendation-personas.ts';
 
 function accept(source: unknown, translation: unknown): ReviewRecords {
   const s = contentUnits(source),
@@ -231,11 +235,8 @@ test('publication requires complete, reviewed, current copy and separate authori
   assert.deepEqual(validatePublication(), ['en']);
 });
 
-test('Spanish draft covers supplied sections, all option IDs, Mac follow-ups and distro fields', () => {
-  const source = Object.fromEntries(
-    Object.keys(draftEs).map((key) => [key, en[key as keyof typeof en]]),
-  );
-  assert.deepEqual(dictionaryIssues(draftEs, source), []);
+test('Spanish draft covers the complete dictionary, option IDs, Mac follow-ups and distro fields', () => {
+  assert.deepEqual(dictionaryIssues(draftEs), []);
   assert.deepEqual(
     Object.keys(draftEs.distros).sort(),
     Object.keys(en.distros).sort(),
@@ -246,7 +247,10 @@ test('Spanish draft covers supplied sections, all option IDs, Mac follow-ups and
     ).size,
     29,
   );
-  assert.ok(dictionaryIssues(draftEs).includes('explanations'));
+  assert.deepEqual(
+    Object.keys(contentUnits(draftEs)).sort(),
+    Object.keys(contentUnits(en)).sort(),
+  );
   assert.ok(draftEs.home.introduction.includes('Algunas preguntas ahora.'));
 });
 
@@ -307,4 +311,71 @@ test('reserved deferred locales cannot bypass the active publication plan', () =
         { approved: true, approvedBy: 'fixture only', units: {} },
       ).some((issue) => issue.includes('not actively planned')),
     );
+});
+
+test('complete Spanish content cannot bypass editorial review or publication approval', () => {
+  const review = JSON.parse(
+    readFileSync(
+      new URL('../src/i18n/es/reviews.json', import.meta.url),
+      'utf8',
+    ),
+  );
+  const current = reviewReport(en, draftEs, review.units);
+  assert.deepEqual(current.staleSource, []);
+  assert.deepEqual(current.changedTranslation, []);
+  assert.deepEqual(current.invalidReview, []);
+  const pending = Object.keys(
+    contentUnits({
+      explanations: draftEs.explanations,
+      platform: draftEs.platform,
+      preparationCopy: draftEs.preparationCopy,
+    }),
+  ).sort();
+  // Keep this gate regression valid after the real editorial batch is accepted.
+  const awaitingReview = {
+    ...review,
+    approved: false,
+    approvedBy: null,
+    units: Object.fromEntries(
+      Object.entries(review.units).filter(([path]) => !pending.includes(path)),
+    ),
+  };
+  assert.deepEqual(reviewReport(en, draftEs, awaitingReview.units), {
+    missing: [],
+    unreviewed: pending,
+    staleSource: [],
+    changedTranslation: [],
+    invalidReview: [],
+    orphaned: [],
+    extra: [],
+  });
+  const issues = publicationIssues('es', en, draftEs, awaitingReview);
+  assert.ok(issues.includes('es: explicit publication approval missing'));
+  for (const path of pending)
+    assert.ok(issues.includes(`es: unreviewed ${path}`), path);
+  assert.deepEqual(validatePublication(), ['en']);
+});
+
+test('Spanish resolves recommendation explanation codes across all review personas', () => {
+  const spanish = createExplanations(draftEs.explanations);
+  const english = createExplanations(en.explanations);
+  for (const answers of Object.values(recommendationPersonas)) {
+    for (const row of recommend(answers).ranking) {
+      for (const code of row.reasons) {
+        const expected = english.explainReason(code);
+        const actual = spanish.explainReason(code);
+        if (expected) {
+          assert.ok(actual, `${row.distroId}: ${code}`);
+          assert.notEqual(actual, expected, code);
+        } else assert.equal(actual, undefined, code);
+      }
+      for (const code of row.cautions) {
+        const expected = english.explainCaution(code);
+        if (!expected) continue;
+        const actual = spanish.explainCaution(code);
+        assert.ok(actual, `${row.distroId}: ${code}`);
+        assert.notEqual(actual, expected, code);
+      }
+    }
+  }
 });

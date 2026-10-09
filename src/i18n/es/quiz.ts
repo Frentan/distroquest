@@ -1,3 +1,4 @@
+import type { UseCase } from '../../domain/preferences.ts';
 import { message } from '../message.ts';
 import type { Messages } from '../index.ts';
 
@@ -117,4 +118,23 @@ export const capabilityLabelsEs: Messages['capabilityLabels'] = {
   developerExperience: 'Herramientas de desarrollo',
   oldHardware: 'Hardware antiguo',
   desktopPolish: 'Pulido del escritorio',
+};
+
+export const preparationCopyEs: Record<UseCase, string> = {
+  'general-desktop':
+    'Equipo para el día a día: prueba tu navegador, archivos de usuario, llamadas e impresora sin instalar el sistema.',
+  creative:
+    'Equipo creativo: comprueba tus aplicaciones imprescindibles, extensiones, formatos multimedia y periféricos antes de trasladar tus proyectos.',
+  gaming:
+    'Equipo de juegos: comprueba la compatibilidad de tus videojuegos, los requisitos de los sistemas antitrampas y los mandos antes de instalar.',
+  development:
+    'Equipo de desarrollo: prepara los entornos de ejecución de tus lenguajes, el editor y las dependencias de tus proyectos.',
+  homelab:
+    'Equipo para tu laboratorio en casa: haz una prueba de tus contenedores, servicios y proceso de copias de seguridad.',
+  'technical-learning':
+    'Equipo para aprender: prepara un USB con un sistema que puedas usar sin instalar o una máquina virtual para tus experimentos.',
+  'security-testing':
+    'Equipo de seguridad: usa tus herramientas en un laboratorio de prácticas aislado y autorizado.',
+  'old-hardware':
+    'Equipo de rescate: prueba el escritorio sin instalarlo en tu equipo antiguo antes de su próxima aventura.',
 };
