@@ -26,6 +26,7 @@ import {
   percentMatch,
   preparationTopics,
   strongestReasons,
+  cautionsForVisibleReasons,
 } from './presentation.ts';
 import { platformShortlist } from './platform-presentation.ts';
 import { questionJourney, arrivalJourney } from './journey.ts';
@@ -281,12 +282,14 @@ export function mountQuiz(
     );
     const reasons = strongestReasons(row)
       .filter((code) => primary || !primaryReasons.has(reasonTopic(code)))
-      .map(explainReason)
-      .filter((text): text is string => !!text);
+      .map((code) => ({ code, text: explainReason(code) }))
+      .filter(
+        (reason): reason is { code: string; text: string } => !!reason.text,
+      )
+      .slice(0, primary ? 4 : 2);
     if (reasons.length) {
       const list = element('ul', undefined, 'result-reasons');
-      for (const reason of reasons.slice(0, primary ? 4 : 2))
-        list.append(element('li', reason));
+      for (const reason of reasons) list.append(element('li', reason.text));
       card.append(list);
     } else if (primary) card.append(element('p', copy.resultFallback));
     if (!primary && main) {
@@ -344,7 +347,10 @@ export function mountQuiz(
     }
     const warnings = [
       ...new Set([
-        ...row.cautions
+        ...cautionsForVisibleReasons(
+          row.cautions,
+          reasons.map((reason) => reason.code),
+        )
           .map(explainCaution)
           .filter((text): text is string => !!text),
         ...distro.cautions.slice(0, primary ? 2 : 1),

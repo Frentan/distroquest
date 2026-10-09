@@ -68,6 +68,24 @@ export function strongestReasons(row: Recommendation): string[] {
   ];
 }
 
+/** Pass only reasons actually rendered on this card, after filtering/truncation. */
+export function cautionsForVisibleReasons(
+  cautions: readonly string[],
+  visibleReasons: readonly string[],
+): string[] {
+  const nearCapabilities = new Set(
+    visibleReasons.flatMap((code) => {
+      const match = /^capability\.([^.]+)\.near$/.exec(code);
+      return match ? [match[1]] : [];
+    }),
+  );
+  return cautions.filter((code) => {
+    const match = /^capability\.([^.]+)\.(shortfall|distance)$/.exec(code);
+    // Gaming's caution also asks for game/hardware support checks; retain it.
+    return !match || match[1] === 'gaming' || !nearCapabilities.has(match[1]);
+  });
+}
+
 // Presentation rounding only; the engine's ranking always uses unrounded scores.
 export function percentMatch(row: Recommendation): number {
   return Math.round(row.normalizedScore * 10) / 10;

@@ -13,6 +13,7 @@ import {
   percentMatch,
   preparationTopics,
   strongestReasons,
+  cautionsForVisibleReasons,
 } from '../src/quiz/presentation.ts';
 import { platformShortlist } from '../src/quiz/platform-presentation.ts';
 import { applyPlatform } from '../src/platforms/compatibility.ts';
@@ -370,6 +371,68 @@ test('near-fit explanations preserve the remaining tradeoff', () => {
   assert.match(reason, /comes close/);
   assert.notEqual(reason, explainReason('capability.stability.met'));
   assert.ok(explainCaution('capability.stability.shortfall'));
+});
+
+test('visible near-match reasons replace only their equivalent generic cautions', () => {
+  const row = recommend(personas.minimalOldLaptop).ranking[0];
+  const snapshot = structuredClone(row);
+  const visible = strongestReasons(row).slice(0, 4);
+  assert.ok(visible.includes('capability.oldHardware.near'));
+  assert.ok(visible.includes('capability.systemControl.near'));
+  assert.deepEqual(
+    cautionsForVisibleReasons(row.cautions, visible),
+    row.cautions.filter(
+      (code) =>
+        code !== 'capability.oldHardware.shortfall' &&
+        code !== 'capability.systemControl.shortfall',
+    ),
+  );
+  assert.deepEqual(row, snapshot);
+});
+
+test('truncated, filtered or absent near-match reasons retain their cautions', () => {
+  const reasons = [
+    'release.match',
+    'atomic.match',
+    'capability.stability.met',
+    'capability.oldHardware.near',
+    'capability.lowMaintenance.near',
+  ];
+  const cautions = [
+    'capability.oldHardware.shortfall',
+    'capability.lowMaintenance.shortfall',
+  ];
+  assert.deepEqual(cautionsForVisibleReasons(cautions, reasons.slice(0, 4)), [
+    'capability.lowMaintenance.shortfall',
+  ]);
+  const alternative = reasons
+    .filter((code) => code !== 'capability.oldHardware.near')
+    .slice(0, 2);
+  assert.deepEqual(cautionsForVisibleReasons(cautions, alternative), cautions);
+  assert.deepEqual(cautionsForVisibleReasons(cautions, []), cautions);
+  assert.deepEqual(
+    cautionsForVisibleReasons(cautions, ['capability.oldHardware.met']),
+    cautions,
+  );
+});
+
+test('near-match filtering preserves game/hardware checks and other warning categories', () => {
+  const cautions = [
+    'capability.freshness.distance',
+    'capability.gaming.shortfall',
+    'nvidia.manual',
+    'handheld.check-device-compatibility',
+    'handheld.support-unassessed',
+    'constraint.0.0.unmet',
+    'software-policy.pragmatic',
+  ];
+  assert.deepEqual(
+    cautionsForVisibleReasons(cautions, [
+      'capability.freshness.near',
+      'capability.gaming.near',
+    ]),
+    cautions.slice(1),
+  );
 });
 
 test('one-decimal fit separates rounding collisions while retaining real engine ties', () => {

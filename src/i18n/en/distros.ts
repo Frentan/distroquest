@@ -101,7 +101,7 @@ export const distroContentEn = {
     ],
     cautions: [
       'Frequent release upgrades need planning.',
-      'Proprietary drivers and some codecs need extra setup.',
+      'Some codecs and proprietary drivers need extra setup.',
       'Abundant desktop settings can overwhelm newcomers.',
     ],
     idealFor: [

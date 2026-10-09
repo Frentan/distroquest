@@ -129,8 +129,8 @@ export const capabilityCopy: Record<
     caution: 'Expect less software predictability than you asked for.',
   },
   freshness: {
-    reason: 'Software freshness matches your preferred pace.',
-    caution: 'Its software update pace differs from your preferred balance.',
+    reason: 'Software freshness matches your preference.',
+    caution: 'Its software freshness differs from your preference.',
   },
   customization: {
     reason: 'Customization leaves room for your planned desktop changes.',
@@ -167,7 +167,7 @@ export const capabilityNearCopy: Record<Capability, string> = {
   lowMaintenance:
     'Its routine upkeep is just outside your chosen tinkering budget.',
   stability: 'Its software predictability comes close to what you asked for.',
-  freshness: 'Its software freshness is near your preferred pace.',
+  freshness: 'Its software freshness is close to what you prefer.',
   customization:
     'Its customization options cover almost all the room you wanted.',
   systemControl:
@@ -180,8 +180,9 @@ export const capabilityNearCopy: Record<Capability, string> = {
   desktopPolish: 'Its desktop polish covers almost all your wishlist.',
 };
 export const reasonCopy: Record<string, string> = {
-  'release.match': 'The release model matches your chosen update style.',
-  'atomic.match': 'System updates match your preferred approach.',
+  'release.match':
+    'Its fixed or rolling release model matches your preference.',
+  'atomic.match': 'Its base-system update model matches your preference.',
   'containers.transactional':
     'A protected transactional host suits your interest in containers.',
   'containers.image-based':
@@ -220,9 +221,9 @@ export const cautionCopy: Record<string, string> = {
   'focus.gaming-mismatch':
     'Its gaming focus is a weaker fit for your limited gaming plans.',
   'release.conflict':
-    'Its release model differs from the update style you chose.',
+    'Its fixed or rolling release model differs from your preference.',
   'atomic.conflict':
-    'Its update model differs from your preferred system approach.',
+    'Its base-system update model differs from your preference.',
   'containers.other-model':
     'Its workflow is less centered on image-based, container-first tools.',
   'nvidia.manual': 'NVIDIA drivers may require manual setup.',

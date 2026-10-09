@@ -807,8 +807,8 @@
       "reviewedBy": "Frentan"
     },
     "/distros/fedora-kde/cautions/1": {
-      "sourceHash": "299a5dcb9d74c04528b57c525d06d26972d68a2dd4b73ac7af3d0e6dad36b470",
-      "translationHash": "2be34d2c530ad3dea2440fdc62e87825c17a7949c086765bc63e36d5e366d0c8",
+      "sourceHash": "e7fd49ce8a92493713dbc02e38b8dce76f2e6a2485f460d4a128f50936e06496",
+      "translationHash": "7d0c573ffaf3271b878963770ac9172b8bb7993b64e1bacc7a96e3f6d3319841",
       "status": "reviewed",
       "reviewedBy": "Frentan"
     },

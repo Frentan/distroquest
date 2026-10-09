@@ -101,7 +101,7 @@ export const distroContentEs = {
     ],
     cautions: [
       'Las actualizaciones a nuevas versiones requieren planificación.',
-      'Los controladores propietarios y algunos códecs necesitan configuración adicional.',
+      'Algunos códecs y controladores propietarios necesitan configuración adicional.',
       'La abundancia de ajustes del escritorio puede abrumar a quienes empiezan.',
     ],
     idealFor: [
