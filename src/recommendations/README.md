@@ -1,17 +1,17 @@
-# Recommendation engine, model v10
+# Recommendation engine, model v11
 
 The pure engine converts complete quiz answers into a deterministic ranking of
 all 29 distro profiles, with eligibility, score components, and explanation codes.
-Model v10 makes gaming-focus refinement consistent with the direct intensity
-answer: no gaming always incurs the mismatch penalty, and occasional gaming with
-an explicit gaming purpose receives neither a penalty nor a focus reward.
-Important/main gaming rewards, capability fit, assessments, and eligibility are unchanged.
+Model v11 grades one soft upkeep shortfall: explicit moderate maintenance tolerance
+incurs −4 when high tolerance is preferred, rather than the usual −8. Hard
+requirements, all other soft penalties, capability fit, assessments, and the model
+v10 gaming-consistency rule are unchanged.
 
 ## API and boundaries
 
 ```ts
 import { recommend } from './engine.ts';
-const result = recommend(answers); // { modelVersion: 10, profile, ranking }
+const result = recommend(answers); // { modelVersion: 11, profile, ranking }
 ```
 
 `recommend(unknown)` validates through the preference builder and throws
@@ -133,8 +133,11 @@ identity/finale answers cannot promote experience.
 
 - Failed `require`: ineligible, −100 points, normalized score zero; listed after
   every eligible record. Kali requires security intent and intermediate experience.
-- `strongly-prefer`: −8 per unmet condition, capped at −24 per constraint; +2 if
-  fully satisfied. These adjustments sit outside the trait cap.
+- `strongly-prefer`: −8 per unmet condition, except −4 for explicit moderate
+  maintenance tolerance falling short of a high-maintenance preference. The total
+  penalty is capped at −24 per constraint; +2 if fully satisfied. These adjustments
+  sit outside the trait cap. The partial-fit rule does not apply to hard requirements,
+  low maintenance tolerance, or experience, learning, control, and interest shortfalls.
 - Arch, Gentoo, Slackware, Void, and Alpine require intermediate experience,
   moderate upkeep tolerance, and moderate system-control interest.
 - NixOS requires intermediate experience and moderate learning tolerance, without
@@ -144,7 +147,7 @@ These are recommendation floors for the assessed desktops, not upstream installa
 restrictions. Existing stronger conditions remain soft: advanced expertise, high
 upkeep/control, and specific interests can improve fit without becoming hard gates.
 See [the dataset notes](../data/README.md#breadth-and-constraints) for source evidence.
-Matched hard requirements add no points; eligible scores stay unchanged.
+Matched hard requirements add no points.
 
 `constraints` exposes condition values, match flags, and adjustments.
 `constraint.i.j.unmet` identifies missing evidence; `constraint.i.met` explains

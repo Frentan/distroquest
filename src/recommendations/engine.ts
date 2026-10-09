@@ -30,6 +30,7 @@ export const scoringRules = Object.freeze({
   breadthMaximum: 2,
   normalizationMaximum: 116,
   unmetSoftCondition: 8,
+  moderateMaintenanceShortfall: 4,
   softConstraintLimit: 24,
   satisfiedSoftConstraint: 2,
   excludedAdjustment: -100,
@@ -311,7 +312,20 @@ export function scoreDistro(
         : unmet
           ? -Math.min(
               scoringRules.softConstraintLimit,
-              unmet * scoringRules.unmetSoftCondition,
+              conditions.reduce((sum, { condition, matched }) => {
+                if (matched) return sum;
+                // Explicit moderate upkeep is a partial fit for a high soft preference.
+                const partialMaintenance =
+                  condition.kind === 'maintenance-tolerance' &&
+                  condition.minimum === 'high' &&
+                  profile.eligibility.maintenanceTolerance === 'moderate';
+                return (
+                  sum +
+                  (partialMaintenance
+                    ? scoringRules.moderateMaintenanceShortfall
+                    : scoringRules.unmetSoftCondition)
+                );
+              }, 0),
             )
           : scoringRules.satisfiedSoftConstraint;
     return {
@@ -453,5 +467,5 @@ export function rankDistros(
 // Public boundary: accepts untrusted answers; existing validation rejects omissions.
 export function recommend(input: unknown): RecommendationResult {
   const profile = normalizePreferenceProfile(buildPreferenceProfile(input));
-  return { modelVersion: 10, profile, ranking: rankDistros(profile) };
+  return { modelVersion: 11, profile, ranking: rankDistros(profile) };
 }

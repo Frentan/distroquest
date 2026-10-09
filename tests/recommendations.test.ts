@@ -136,7 +136,7 @@ test('genuine penetration tester: Kali is eligible and ranks highly', () => {
 
 test('qualified security intent has separate credit even when general traits are capped', () => {
   const result = recommend(personas.penetrationTester);
-  assert.equal(result.modelVersion, 10);
+  assert.equal(result.modelVersion, 11);
   const kali = result.ranking[0];
   assert.equal(kali.distroId, 'kali-linux');
   assert.equal(kali.traitAdjustment, 12);
@@ -624,6 +624,118 @@ test('all stored constraints are conjunctive; each missing condition is independ
       }
     }
   }
+});
+
+test('only moderate upkeep receives partial credit for a high soft maintenance preference', () => {
+  const distro = distroProfiles.find((distro) => distro.id === 'gentoo')!;
+  const softIndex = distro.recommendation.constraints.findIndex(
+    (constraint) => constraint.effect === 'strongly-prefer',
+  );
+  const satisfied = distro.recommendation.constraints[softIndex].allOf.reduce(
+    satisfy,
+    recommend(personas.highControl).profile,
+  );
+  for (const [tolerance, penalty, eligible] of [
+    ['low', -8, false],
+    ['moderate', -4, true],
+    ['high', 2, true],
+  ] as const) {
+    const row = scoreDistro(
+      {
+        ...satisfied,
+        eligibility: {
+          ...satisfied.eligibility,
+          maintenanceTolerance: tolerance,
+        },
+      },
+      distro,
+    );
+    assert.equal(row.constraints[softIndex].adjustment, penalty);
+    assert.equal(row.eligible, eligible);
+    assert.equal(row.normalizedScore === 0, !eligible);
+    assert.equal(
+      row.cautions.includes(`constraint.${softIndex}.1.unmet`),
+      tolerance !== 'high',
+    );
+  }
+  // Other ordered thresholds keep the full cost for a moderate shortfall.
+  for (const condition of [
+    { kind: 'learning-tolerance', minimum: 'high' },
+    { kind: 'system-control', minimum: 'high' },
+    { kind: 'experience', minimum: 'advanced' },
+    { kind: 'maintenance-tolerance', minimum: 'moderate' },
+  ] as const) {
+    const profile: RecommendationProfile = {
+      ...satisfied,
+      eligibility: {
+        experience: 'intermediate',
+        maintenanceTolerance: 'low',
+        learningTolerance: 'moderate',
+        systemControl: 'moderate',
+      },
+    };
+    const row = scoreDistro(profile, {
+      ...distro,
+      recommendation: {
+        ...distro.recommendation,
+        constraints: [{ effect: 'strongly-prefer', allOf: [condition] }],
+      },
+    });
+    assert.equal(row.constraints[0].adjustment, -8);
+  }
+});
+
+test('graded upkeep combines with other soft shortfalls before the existing cap', () => {
+  const distro = distroProfiles.find((distro) => distro.id === 'gentoo')!;
+  const base = recommend(personas.highControl).profile;
+  const profile: RecommendationProfile = {
+    ...base,
+    eligibility: {
+      experience: 'intermediate',
+      maintenanceTolerance: 'moderate',
+      learningTolerance: 'moderate',
+      systemControl: 'moderate',
+    },
+  };
+  const conditions: RecommendationCondition[] = [
+    { kind: 'maintenance-tolerance', minimum: 'high' },
+    { kind: 'experience', minimum: 'advanced' },
+    { kind: 'system-control', minimum: 'high' },
+    { kind: 'learning-tolerance', minimum: 'high' },
+  ];
+  for (const [count, penalty] of [
+    [1, -4],
+    [2, -12],
+    [3, -20],
+    [4, -24],
+  ]) {
+    const row = scoreDistro(profile, {
+      ...distro,
+      recommendation: {
+        ...distro.recommendation,
+        constraints: [
+          { effect: 'strongly-prefer', allOf: conditions.slice(0, count) },
+        ],
+      },
+    });
+    assert.equal(row.constraints[0].adjustment, penalty);
+    assert.equal(row.eligibilityAdjustment, penalty);
+    assert.equal(row.constraints[0].matched, false);
+    assert.equal(
+      row.constraints[0].conditions.filter((c) => !c.matched).length,
+      count,
+    );
+  }
+  const hard = scoreDistro(profile, {
+    ...distro,
+    recommendation: {
+      ...distro.recommendation,
+      constraints: [{ effect: 'require', allOf: [conditions[0]] }],
+    },
+  });
+  assert.equal(hard.eligible, false);
+  assert.equal(hard.eligibilityAdjustment, -100);
+  assert.equal(hard.normalizedScore, 0);
 });
 
 test('Kali requires both genuine security intent and experience, including at the intermediate boundary', () => {
