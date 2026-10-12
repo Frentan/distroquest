@@ -8,7 +8,6 @@ import {
   defaultLocale,
   getMessages,
   publishedLocales,
-  localeFlags,
   type PublishedLocale,
 } from '../i18n';
 import {
@@ -115,7 +114,6 @@ const { canonical, alternates, noindex } = pageMetadata(
               <summary
                 aria-label={`${copy.languageLabel}: ${copy.languageNames[locale]}`}
               >
-                <span aria-hidden="true">{localeFlags[locale]}</span>
                 {locale.toUpperCase()}
               </summary>
               <ul>
@@ -128,7 +126,6 @@ const { canonical, alternates, noindex } = pageMetadata(
                       data-language-link={language}
                       aria-current={language === locale ? 'page' : undefined}
                     >
-                      <span aria-hidden="true">{localeFlags[language]}</span>
                       <span>{copy.languageNames[language]}</span>
                     </a>
                   </li>

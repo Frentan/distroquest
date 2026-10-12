@@ -29,7 +29,7 @@ sitemap. Without an origin, absolute metadata is omitted and the sitemap is empt
 
 ## Language switching
 
-The header offers 🇬🇧 EN and 🇪🇸 ES, retaining native-language names and accessible
+The header offers EN and ES, retaining native-language names and accessible
 labels. Links use equivalent page identities: home to home, quiz to quiz. On the
 quiz, any selected or retained answer triggers the reviewed restart confirmation
 before same-tab language navigation. The dialog identifies the destination language;

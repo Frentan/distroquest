@@ -8,9 +8,3 @@ export type Locale = (typeof knownLocales)[number];
 // Publish only when reviewed content AND both static page routes are ready.
 export const publishedLocales = ['en', 'es'] as const;
 export type PublishedLocale = (typeof publishedLocales)[number];
-
-// Approved visual shorthand; native names and accessible labels remain explicit.
-export const localeFlags: Record<PublishedLocale, string> = {
-  en: '🇬🇧',
-  es: '🇪🇸',
-};

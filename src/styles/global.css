@@ -399,7 +399,7 @@ nav {
 .language-control summary {
   display: flex;
   align-items: center;
-  gap: 6px;
+  justify-content: center;
   border: 1px solid var(--control-line);
   border-radius: 4px;
   color: var(--text);
@@ -416,7 +416,7 @@ nav {
   position: absolute;
   z-index: 3;
   right: 0;
-  min-width: 150px;
+  width: max-content;
   list-style: none;
   margin: 4px 0 0;
   padding: 6px;
