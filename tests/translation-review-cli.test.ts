@@ -39,7 +39,7 @@ test('review CLI defaults to Spanish and preserves every explicit-locale output 
 });
 
 test('review CLI clearly rejects missing drafts and malformed arguments', () => {
-  for (const locale of ['it', 'pt']) {
+  for (const locale of ['it']) {
     const result = run(['--locale', locale]);
     assert.equal(result.status, 1);
     assert.equal(result.stdout, '');
@@ -60,6 +60,22 @@ test('review CLI clearly rejects missing drafts and malformed arguments', () => 
     assert.equal(result.stdout, '');
     assert.match(result.stderr, /Usage: npm run i18n:review/);
   }
+});
+
+test('review CLI loads the unpublished Portuguese batch and preserves review boundaries', () => {
+  const result = run(['--locale', 'pt', '--json']);
+  assert.equal(result.status, 0, result.stderr);
+  const report = JSON.parse(result.stdout);
+  assert.equal(report.locale, 'pt');
+  assert.equal(report.summary.translatedUnits, 226);
+  assert.equal(report.summary.unreviewed, 0);
+  assert.equal(report.summary.staleSource, 0);
+  assert.equal(report.summary.changedTranslation, 0);
+  const markdown = run(['--locale', 'pt', '--markdown']);
+  assert.equal(markdown.status, 0, markdown.stderr);
+  assert.match(markdown.stdout, /^# Portuguese translation review/);
+  assert.match(markdown.stdout, /87,5%/);
+  assert.match(markdown.stdout, /\| Key \| English \| Portuguese \|/);
 });
 
 test('review CLI loads a requested draft and its records without Spanish-specific output', () => {

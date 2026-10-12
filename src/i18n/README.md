@@ -46,14 +46,19 @@ argument types; validation checks parameter names, types, choices, and precision
 Message templates and every choice label must contain nonempty text.
 
 `Intl.NumberFormat` localizes human-readable numbers without changing calculation
-inputs, ranking, or machine-readable ARIA values. `createExplanations()` resolves
+inputs, ranking, or machine-readable ARIA values. `formattingLocale()` resolves
+Portuguese message/route identity `pt` to Brazilian formatting conventions `pt-BR`;
+other locale IDs retain their existing formatting. Message units retain `pt`, so
+the publication gate still checks dictionary/message identity. This mapping does
+not publish Portuguese or change visible language names or HTML language metadata.
+`createExplanations()` resolves
 domain codes against the selected dictionary's explanation records.
 
 ## Freshness and publication
 
 Node tooling hashes individual strings and explicit message units with SHA-256.
 Message units include their template, ordered parameter definitions, choice labels,
-and formatting locale. Canonical JSON sorts object keys; string whitespace and
+and locale identity (which selects the formatting conventions above). Canonical JSON sorts object keys; string whitespace and
 array order remain significant. JSON Pointer paths identify units unambiguously.
 Hashing runs in development/build tooling, not in the browser.
 
@@ -91,8 +96,8 @@ npm run --silent i18n:review -- --hashes
 freshness for `--locale <code>`, defaulting to Spanish (`es`). It loads
 `src/i18n/{locale}/draft.ts` (named export `draftEs`, `draftIt`, `draftPt`, etc.)
 and the corresponding `reviews.json`. A locale without a draft produces an error;
-selecting a locale does not create content or enable publication. Italian and
-Portuguese have no drafts yet.
+selecting a locale does not create content or enable publication. Portuguese has an
+unpublished partial draft; Italian has no draft yet.
 
 Combine `--locale` with any one output mode: `--json` includes content units and proposed hashes,
 `--markdown` produces bilingual copy in authored order, and `--hashes` emits a

@@ -1,4 +1,4 @@
-import type { Locale } from './locales.ts';
+import { formattingLocale, type Locale } from './locales.ts';
 
 export type Parameter =
   | { name: string; kind: 'text' }
@@ -36,7 +36,7 @@ export function message<const P extends readonly Parameter[]>(
     throw new Error(`Invalid message parameters: ${template}`);
   const formatters = parameters.map((parameter) =>
     parameter.kind === 'number'
-      ? new Intl.NumberFormat(locale, {
+      ? new Intl.NumberFormat(formattingLocale(locale), {
           useGrouping: false,
           minimumFractionDigits: parameter.digits ?? 0,
           maximumFractionDigits: parameter.digits ?? 20,

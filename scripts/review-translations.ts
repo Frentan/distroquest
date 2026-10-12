@@ -1,7 +1,11 @@
 import { existsSync, readFileSync } from 'node:fs';
 import { parseArgs } from 'node:util';
 import { en } from '../src/i18n/en.ts';
-import { knownLocales } from '../src/i18n/locales.ts';
+import {
+  formattingLocale,
+  knownLocales,
+  type Locale,
+} from '../src/i18n/locales.ts';
 import { dictionaryIssues } from '../src/i18n/validation.ts';
 import {
   contentUnits,
@@ -116,7 +120,7 @@ try {
       `${summary.translatedUnits} drafted units of ${summary.sourceUnits} total English units.\n`,
     );
     console.log(
-      `Text in braces marks named parameters. ${language} numeric output uses its locale (for example, \`${new Intl.NumberFormat(locale, { useGrouping: false }).format(87.5)}%\`); names and numeric calculations are preserved.\n`,
+      `Text in braces marks named parameters. ${language} numeric output uses its locale (for example, \`${new Intl.NumberFormat(formattingLocale(locale as Locale), { useGrouping: false }).format(87.5)}%\`); names and numeric calculations are preserved.\n`,
     );
     let section = '';
     // Keep question/answer intensity in the authored domain order for human review.
