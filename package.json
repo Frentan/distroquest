@@ -20,6 +20,8 @@
     "format": "prettier --write .",
     "format:check": "prettier --check .",
     "build": "astro build",
+    "build:deploy": "node --experimental-strip-types scripts/check-deployment.ts --build",
+    "deploy:check": "node --experimental-strip-types scripts/check-deployment.ts",
     "preview": "astro preview",
     "astro": "astro",
     "recommendations:review": "node --experimental-strip-types scripts/review-recommendations.ts"

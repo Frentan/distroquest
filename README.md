@@ -32,9 +32,19 @@ npm run format:check
 npm run build
 ```
 
-The Cloudflare adapter writes the static site to `dist/client/` and generates
-Wrangler's deployment configuration. Set `SITE_URL` to the public HTTPS origin
-at build time for canonical URLs and the sitemap.
+Local builds can omit `SITE_URL`. Cloudflare builds write the site to
+`dist/client/` and generate Wrangler's deployment configuration.
+
+For Cloudflare Workers Builds, use:
+
+| Setting        | Value                                         |
+| -------------- | --------------------------------------------- |
+| Build command  | `npm run build:deploy`                        |
+| Deploy command | `npm run deploy:check && npx wrangler deploy` |
+| Build variable | `SITE_URL=https://distroquest.com`            |
+
+Deployment commands require a public HTTPS `SITE_URL` and reject missing or
+inconsistent generated SEO metadata before upload.
 
 ## Matching and development
 
