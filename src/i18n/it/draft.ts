@@ -2,8 +2,11 @@ import type { Messages } from '../catalog.ts';
 import { QUESTION_COUNT } from '../../data/questions.ts';
 import { questionContentIt } from './questions.ts';
 import { distroContentIt } from './distros.ts';
+import { quizCopyIt, capabilityLabelsIt, preparationCopyIt } from './quiz.ts';
+import { explanationsIt } from './explanations.ts';
+import { platformCopyIt } from './platforms.ts';
 
-// Partial proposal for human review only; never registered at runtime.
+// Complete reviewed draft; publication remains separate from runtime registration.
 export const draftIt = {
   distros: distroContentIt,
   site: {
@@ -109,4 +112,9 @@ export const draftIt = {
       },
     },
   },
-} satisfies Partial<Messages>;
+  quiz: quizCopyIt,
+  capabilityLabels: capabilityLabelsIt,
+  preparationCopy: preparationCopyIt,
+  explanations: explanationsIt,
+  platform: platformCopyIt,
+} satisfies Messages;

@@ -98,7 +98,7 @@ freshness for `--locale <code>`, defaulting to Spanish (`es`). It loads
 and the corresponding `reviews.json`. A locale without a draft produces an error;
 selecting a locale does not create content or enable publication. Spanish and
 Portuguese review entry points re-export their complete runtime dictionaries.
-Italian's partial draft is available only to review tooling, with unit review and
+Italian's unpublished draft is available only to review tooling, with unit review and
 publication approval recorded separately in `it/reviews.json`.
 
 Combine `--locale` with any one output mode: `--json` includes content units and proposed hashes,
