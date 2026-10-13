@@ -15,6 +15,9 @@ import { reviewReport } from '../scripts/lib/translation-review.ts';
 import { distroIds } from '../src/domain/distro.ts';
 import { distroProfiles, getDistros } from '../src/data/index.ts';
 import { validateDataset } from '../src/data/validate.ts';
+import { createExplanations } from '../src/i18n/explanations.ts';
+import { recommendationPersonas } from '../scripts/recommendation-personas.ts';
+import { recommend } from '../src/recommendations/engine.ts';
 
 const reviews = JSON.parse(
   readFileSync(new URL('../src/i18n/pt/reviews.json', import.meta.url), 'utf8'),
@@ -33,16 +36,11 @@ test('Portuguese draft covers complete authored sections but cannot be published
   assert.equal(reviews.approved, false);
   assert.equal(reviews.approvedBy, null);
   const issues = publicationIssues('pt', en, draftPt, reviews);
-  assert.ok(issues.includes('pt: explicit publication approval missing'));
-  assert.ok(issues.some((issue) => issue.includes('explanations')));
-  assert.ok(!issues.some((issue) => issue.includes('unreviewed')));
-  assert.ok(
-    !issues.some((issue) => issue.includes('incorrect message locale')),
-  );
+  assert.deepEqual(issues, ['pt: explicit publication approval missing']);
   const report = reviewReport(en, draftPt, reviews.units);
-  assert.equal(Object.keys(reviews.units).length, 666);
+  assert.equal(Object.keys(reviews.units).length, 765);
   assert.equal(report.unreviewed.length, 0);
-  assert.equal(report.missing.length, 99);
+  assert.equal(report.missing.length, 0);
   for (const reason of [
     'staleSource',
     'changedTranslation',
@@ -70,6 +68,39 @@ test('Portuguese dossiers cover the exact roster without changing technical prof
   assert.equal(
     new Set(localized.map((distro) => distro.archetype.name)).size,
     distroIds.length,
+  );
+});
+
+test('complete Portuguese draft resolves recommendation explanations across review personas', () => {
+  assert.deepEqual(dictionaryIssues(draftPt), []);
+  const portuguese = createExplanations(draftPt.explanations);
+  const english = createExplanations(en.explanations);
+  for (const answers of Object.values(recommendationPersonas)) {
+    for (const row of recommend(answers).ranking) {
+      for (const code of row.reasons) {
+        const expected = english.explainReason(code);
+        const actual = portuguese.explainReason(code);
+        if (expected) {
+          assert.ok(actual, `${row.distroId}: ${code}`);
+          assert.notEqual(actual, expected, code);
+        } else assert.equal(actual, undefined, code);
+      }
+      for (const code of row.cautions) {
+        const expected = english.explainCaution(code);
+        const actual = portuguese.explainCaution(code);
+        if (expected) {
+          assert.ok(actual, `${row.distroId}: ${code}`);
+          assert.notEqual(actual, expected, code);
+        } else assert.equal(actual, undefined, code);
+      }
+    }
+  }
+  assert.equal(draftPt.platform.asahiName('kde'), 'Fedora Asahi Remix KDE');
+  assert.equal(draftPt.platform.asahiName('gnome'), 'Fedora Asahi Remix GNOME');
+  const literalName = 'Test $& {name}';
+  assert.equal(
+    draftPt.platform.baseMatch(literalName),
+    `A afinidade é baseada em ${literalName}. O suporte ao hardware e os aplicativos disponíveis podem ser diferentes neste Mac.`,
   );
 });
 

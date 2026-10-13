@@ -2,10 +2,12 @@ import type { Messages } from '../catalog.ts';
 import { QUESTION_COUNT } from '../../data/questions.ts';
 import { formattingLocale } from '../locales.ts';
 import { questionContentPt } from './questions.ts';
-import { quizCopyPt, capabilityLabelsPt } from './quiz.ts';
+import { quizCopyPt, capabilityLabelsPt, preparationCopyPt } from './quiz.ts';
 import { distroContentPt } from './distros.ts';
+import { explanationsPt } from './explanations.ts';
+import { platformCopyPt } from './platforms.ts';
 
-// Review tooling only. Missing sections are intentional; no English fallback.
+// Complete review draft only. Runtime registration and publication stay gated.
 export const draftPt = {
   site: {
     name: 'DistroQuest',
@@ -109,4 +111,7 @@ export const draftPt = {
   quiz: quizCopyPt,
   capabilityLabels: capabilityLabelsPt,
   distros: distroContentPt,
-} satisfies Partial<Messages>;
+  preparationCopy: preparationCopyPt,
+  explanations: explanationsPt,
+  platform: platformCopyPt,
+} satisfies Messages;

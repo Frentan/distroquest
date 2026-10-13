@@ -119,3 +119,23 @@ export const capabilityLabelsPt = {
   oldHardware: 'Hardware antigo',
   desktopPolish: 'Acabamento do ambiente de trabalho',
 } satisfies Messages['capabilityLabels'];
+
+// Unpublished batch 3 draft; the security-testing sample is already reviewed.
+export const preparationCopyPt = {
+  'general-desktop':
+    'Kit para o dia a dia: teste seu navegador, documentos de escritório, chamadas e impressora em uma sessão sem instalar o sistema.',
+  creative:
+    'Kit criativo: verifique seus aplicativos essenciais, plugins, formatos de mídia e periféricos antes de transferir seus projetos.',
+  gaming:
+    'Kit de jogos: verifique o suporte aos seus jogos, os requisitos dos sistemas antitrapaça e os controles antes de instalar.',
+  development:
+    'Kit de desenvolvimento: prepare as ferramentas das suas linguagens de programação, o editor e as dependências dos seus projetos.',
+  homelab:
+    'Kit para seu laboratório em casa: faça um teste dos contêineres, serviços e do processo de backup.',
+  'technical-learning':
+    'Kit para aprender: prepare um pendrive com um sistema que possa usar sem instalar ou uma máquina virtual para seus experimentos.',
+  'security-testing':
+    'Kit de segurança: use um laboratório de prática isolado e autorizado para suas ferramentas.',
+  'old-hardware':
+    'Kit de resgate: teste o ambiente em modo live sem instalação no computador antigo antes da próxima aventura.',
+} satisfies Messages['preparationCopy'];
