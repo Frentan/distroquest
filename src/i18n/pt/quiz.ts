@@ -1,7 +1,6 @@
 import { message } from '../message.ts';
 import type { Messages } from '../catalog.ts';
 
-// Unpublished batch 1 draft for human review.
 export const quizCopyPt = {
   title: 'Encontre seu caminho | DistroQuest',
   description:
