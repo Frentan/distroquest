@@ -1,4 +1,5 @@
 // @ts-check
+import cloudflare from '@astrojs/cloudflare';
 import { defineConfig } from 'astro/config';
 import i18nPublicationGate from './scripts/i18n-integration.ts';
 
@@ -8,4 +9,5 @@ export default defineConfig({
   output: 'static',
   integrations: [i18nPublicationGate()],
   trailingSlash: 'always',
+  adapter: cloudflare(),
 });

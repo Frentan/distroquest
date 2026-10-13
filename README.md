@@ -32,8 +32,9 @@ npm run format:check
 npm run build
 ```
 
-The static build writes to `dist/`; no server adapter is needed. Set `SITE_URL`
-to the public HTTPS origin at build time for canonical URLs and the sitemap.
+The Cloudflare adapter writes the static site to `dist/client/` and generates
+Wrangler's deployment configuration. Set `SITE_URL` to the public HTTPS origin
+at build time for canonical URLs and the sitemap.
 
 ## Matching and development
 

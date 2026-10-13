@@ -25,6 +25,7 @@
     "recommendations:review": "node --experimental-strip-types scripts/review-recommendations.ts"
   },
   "dependencies": {
+    "@astrojs/cloudflare": "14.3.4",
     "astro": "^7.3.5"
   },
   "allowScripts": {
@@ -35,6 +36,7 @@
     "@types/node": "^26.6.3",
     "prettier": "^3.9.9",
     "prettier-plugin-astro": "^1.1.0",
-    "typescript": "^6.0.3"
+    "typescript": "^6.0.3",
+    "wrangler": "4.150.0"
   }
 }

@@ -31,3 +31,6 @@ pnpm-debug.log*
 /.agents/
 /.codex/
 /.aws/
+
+# generated Cloudflare deployment state
+.wrangler/
