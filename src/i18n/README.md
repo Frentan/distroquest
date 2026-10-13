@@ -96,8 +96,10 @@ npm run --silent i18n:review -- --hashes
 freshness for `--locale <code>`, defaulting to Spanish (`es`). It loads
 `src/i18n/{locale}/draft.ts` (named export `draftEs`, `draftIt`, `draftPt`, etc.)
 and the corresponding `reviews.json`. A locale without a draft produces an error;
-selecting a locale does not create content or enable publication. Portuguese's
-review entry point re-exports its complete runtime dictionary; Italian has no draft yet.
+selecting a locale does not create content or enable publication. Spanish and
+Portuguese review entry points re-export their complete runtime dictionaries.
+Italian's partial draft is available only to review tooling, with unit review and
+publication approval recorded separately in `it/reviews.json`.
 
 Combine `--locale` with any one output mode: `--json` includes content units and proposed hashes,
 `--markdown` produces bilingual copy in authored order, and `--hashes` emits a

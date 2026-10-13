@@ -39,7 +39,7 @@ test('review CLI defaults to Spanish and preserves every explicit-locale output 
 });
 
 test('review CLI clearly rejects missing drafts and malformed arguments', () => {
-  for (const locale of ['it']) {
+  for (const locale of ['fr', 'de']) {
     const result = run(['--locale', locale]);
     assert.equal(result.status, 1);
     assert.equal(result.stdout, '');
@@ -88,7 +88,7 @@ test('review CLI loads a requested draft and its records without Spanish-specifi
     writeFileSync(join(fixture, 'package.json'), '{"type":"module"}');
     // Test-only data in a disposable checkout; no Italian translation is authored.
     const localeDir = join(fixture, 'src/i18n/it');
-    mkdirSync(localeDir);
+    mkdirSync(localeDir, { recursive: true });
     writeFileSync(
       join(localeDir, 'draft.ts'),
       "import { en } from '../en.ts'; export const draftIt = { capabilityLabels: en.capabilityLabels };",
