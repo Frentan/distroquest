@@ -23,20 +23,29 @@ const reviews = JSON.parse(
   readFileSync(new URL('../src/i18n/pt/reviews.json', import.meta.url), 'utf8'),
 ) as PublicationReview;
 
-test('Portuguese draft covers complete authored sections but cannot be published', () => {
+test('Portuguese runtime composition matches reviewed content and cannot bypass publication approval', () => {
   const source = Object.fromEntries(
     Object.keys(draftPt).map((key) => [key, en[key as keyof typeof en]]),
   );
   assert.deepEqual(dictionaryIssues(draftPt, source), []);
-  assert.equal(dictionaries.pt, undefined);
+  assert.equal(dictionaries.pt, draftPt);
+  assert.equal(getMessages('pt'), draftPt);
+  assert.equal(reviews.approved, true);
+  assert.equal(reviews.approvedBy, 'Frentan');
+  const issues = publicationIssues('pt', en, draftPt, reviews);
+  assert.deepEqual(issues, []);
+  assert.deepEqual(
+    publicationIssues('pt', en, draftPt, {
+      ...reviews,
+      approved: false,
+      approvedBy: null,
+    }),
+    ['pt: explicit publication approval missing'],
+  );
   assert.throws(
-    () => getMessages('pt' as PublishedLocale),
+    () => getMessages('it' as PublishedLocale),
     /No complete published dictionary/,
   );
-  assert.equal(reviews.approved, false);
-  assert.equal(reviews.approvedBy, null);
-  const issues = publicationIssues('pt', en, draftPt, reviews);
-  assert.deepEqual(issues, ['pt: explicit publication approval missing']);
   const report = reviewReport(en, draftPt, reviews.units);
   assert.equal(Object.keys(reviews.units).length, 765);
   assert.equal(report.unreviewed.length, 0);

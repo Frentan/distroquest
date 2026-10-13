@@ -50,8 +50,8 @@ test('equivalent paths replace locale prefixes and preserve navigation suffixes'
   }
 });
 
-test('only English and Spanish produce public links, metadata and sitemap entries', () => {
-  assert.deepEqual(publishedLocales, ['en', 'es']);
+test('only English, Spanish and Portuguese produce public links, metadata and sitemap entries', () => {
+  assert.deepEqual(publishedLocales, ['en', 'es', 'pt']);
   assert.equal(publishedPagePath('home', 'en'), '/');
   assert.equal(publishedPagePath('quiz', 'en'), '/quiz/');
   for (const locale of knownLocales.filter(
@@ -64,9 +64,12 @@ test('only English and Spanish produce public links, metadata and sitemap entrie
   }
   assert.equal(publishedPagePath('home', 'es'), '/es/');
   assert.equal(publishedPagePath('quiz', 'es'), '/es/quiz/');
+  assert.equal(publishedPagePath('home', 'pt'), '/pt/');
+  assert.equal(publishedPagePath('quiz', 'pt'), '/pt/quiz/');
   assert.deepEqual(sitemapUrls(site), [
     'https://distroquest.example/',
     'https://distroquest.example/es/',
+    'https://distroquest.example/pt/',
   ]);
 });
 
@@ -96,7 +99,7 @@ test('canonical URLs and indexing policy belong to the page identity', () => {
 });
 
 test('published pages produce reciprocal equivalents and self-canonicals', () => {
-  const ready = ['en', 'es'] as const;
+  const ready = publishedLocales;
   for (const page of ['home', 'quiz'] as const) {
     const english = pageMetadata(page, 'en', site, ready);
     const spanish = pageMetadata(page, 'es', site, ready);
@@ -110,14 +113,22 @@ test('published pages produce reciprocal equivalents and self-canonicals', () =>
         locale: 'es',
         href: `https://distroquest.example/es/${page === 'home' ? '' : 'quiz/'}`,
       },
+      {
+        locale: 'pt',
+        href: `https://distroquest.example/pt/${page === 'home' ? '' : 'quiz/'}`,
+      },
     ]);
     assert.equal(spanish.canonical, spanish.alternates[1].href);
     assert.equal(publishedPagePath(page, 'es', ready), pagePath(page, 'es'));
     assert.deepEqual(pageMetadata(page, 'es', undefined, ready).alternates, []);
+    const portuguese = pageMetadata(page, 'pt', site, ready);
+    assert.deepEqual(portuguese.alternates, english.alternates);
+    assert.equal(portuguese.canonical, portuguese.alternates[2].href);
   }
   assert.deepEqual(sitemapUrls(site, ready), [
     'https://distroquest.example/',
     'https://distroquest.example/es/',
+    'https://distroquest.example/pt/',
   ]);
 });
 

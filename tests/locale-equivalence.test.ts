@@ -66,14 +66,17 @@ test('identical localized answer IDs produce identical complete scores and platf
   }
   for (const [answers, mac] of cases) {
     const en = complete('en', answers, mac);
-    const es = complete('es', answers, mac);
-    assert.deepEqual(es.answers, en.answers);
-    assert.deepEqual(es.result, en.result);
-    assert.deepEqual(es.platformResult, en.platformResult);
-    assert.deepEqual(
-      platformShortlist(es.platformResult!),
-      platformShortlist(en.platformResult!),
-    );
+    for (const locale of publishedLocales.filter((locale) => locale !== 'en')) {
+      const translated = complete(locale, answers, mac);
+      assert.deepEqual(translated.answers, en.answers, locale);
+      assert.deepEqual(translated.result, en.result, locale);
+      assert.deepEqual(translated.platformResult, en.platformResult, locale);
+      assert.deepEqual(
+        platformShortlist(translated.platformResult!),
+        platformShortlist(en.platformResult!),
+        locale,
+      );
+    }
   }
 });
 

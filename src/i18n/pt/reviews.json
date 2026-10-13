@@ -1,6 +1,6 @@
 {
-  "approved": false,
-  "approvedBy": null,
+  "approved": true,
+  "approvedBy": "Frentan",
   "units": {
     "/site/name": {
       "sourceHash": "92bb302c055ee6555622475fcd0167d7aa71c58c31539b322333f18e6e88c542",

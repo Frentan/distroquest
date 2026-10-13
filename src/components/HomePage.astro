@@ -1,7 +1,12 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
 import QuestScene from './QuestScene.astro';
-import { defaultLocale, getMessages, type PublishedLocale } from '../i18n';
+import {
+  defaultLocale,
+  formattingLocale,
+  getMessages,
+  type PublishedLocale,
+} from '../i18n';
 import { publishedPagePath } from '../routing';
 interface Props {
   locale?: PublishedLocale;
@@ -82,7 +87,7 @@ const copy = getMessages(locale);
         {copy.home.steps.map((step, index) => (
           <li>
             <span class="step-number" aria-hidden="true">
-              {new Intl.NumberFormat(locale, {
+              {new Intl.NumberFormat(formattingLocale(locale), {
                 minimumIntegerDigits: 2,
                 useGrouping: false,
               }).format(index + 1)}

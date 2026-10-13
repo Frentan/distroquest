@@ -56,7 +56,7 @@ test('completeness catches missing options, explanations, platform copy and call
 });
 
 test('unpublished dictionaries never silently resolve to English', () => {
-  assert.deepEqual(publishedLocales, ['en', 'es']);
+  assert.deepEqual(publishedLocales, ['en', 'es', 'pt']);
   assert.throws(
     () => getMessages('it' as PublishedLocale),
     /No complete published dictionary/,
