@@ -67,7 +67,7 @@ test('review CLI loads the unpublished Portuguese batch and preserves review bou
   assert.equal(result.status, 0, result.stderr);
   const report = JSON.parse(result.stdout);
   assert.equal(report.locale, 'pt');
-  assert.equal(report.summary.translatedUnits, 226);
+  assert.equal(report.summary.translatedUnits, 666);
   assert.equal(report.summary.unreviewed, 0);
   assert.equal(report.summary.staleSource, 0);
   assert.equal(report.summary.changedTranslation, 0);

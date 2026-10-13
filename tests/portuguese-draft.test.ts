@@ -12,12 +12,15 @@ import {
   type PublicationReview,
 } from '../scripts/lib/publication.ts';
 import { reviewReport } from '../scripts/lib/translation-review.ts';
+import { distroIds } from '../src/domain/distro.ts';
+import { distroProfiles, getDistros } from '../src/data/index.ts';
+import { validateDataset } from '../src/data/validate.ts';
 
 const reviews = JSON.parse(
   readFileSync(new URL('../src/i18n/pt/reviews.json', import.meta.url), 'utf8'),
 ) as PublicationReview;
 
-test('Portuguese batch covers complete authored sections but cannot be published', () => {
+test('Portuguese draft covers complete authored sections but cannot be published', () => {
   const source = Object.fromEntries(
     Object.keys(draftPt).map((key) => [key, en[key as keyof typeof en]]),
   );
@@ -31,15 +34,15 @@ test('Portuguese batch covers complete authored sections but cannot be published
   assert.equal(reviews.approvedBy, null);
   const issues = publicationIssues('pt', en, draftPt, reviews);
   assert.ok(issues.includes('pt: explicit publication approval missing'));
-  assert.ok(issues.some((issue) => issue.includes('distros')));
+  assert.ok(issues.some((issue) => issue.includes('explanations')));
   assert.ok(!issues.some((issue) => issue.includes('unreviewed')));
   assert.ok(
     !issues.some((issue) => issue.includes('incorrect message locale')),
   );
   const report = reviewReport(en, draftPt, reviews.units);
-  assert.equal(Object.keys(reviews.units).length, 226);
+  assert.equal(Object.keys(reviews.units).length, 666);
   assert.equal(report.unreviewed.length, 0);
-  assert.equal(report.missing.length, 539);
+  assert.equal(report.missing.length, 99);
   for (const reason of [
     'staleSource',
     'changedTranslation',
@@ -48,6 +51,26 @@ test('Portuguese batch covers complete authored sections but cannot be published
     'extra',
   ] as const)
     assert.deepEqual(report[reason], [], reason);
+});
+
+test('Portuguese dossiers cover the exact roster without changing technical profiles', () => {
+  assert.deepEqual(Object.keys(draftPt.distros).sort(), [...distroIds].sort());
+  assert.deepEqual(validateDataset(distroProfiles, draftPt.distros), []);
+  const localized = getDistros(draftPt.distros);
+  for (const profile of distroProfiles) {
+    const composed = localized.find((distro) => distro.id === profile.id)!;
+    for (const [key, value] of Object.entries(profile))
+      assert.deepEqual(
+        Reflect.get(composed, key),
+        value,
+        `${profile.id}/${key}`,
+      );
+    assert.equal(composed.name, en.distros[profile.id].name);
+  }
+  assert.equal(
+    new Set(localized.map((distro) => distro.archetype.name)).size,
+    distroIds.length,
+  );
 });
 
 test('Portuguese uses Brazilian number conventions with pt message identity and unchanged inputs', () => {

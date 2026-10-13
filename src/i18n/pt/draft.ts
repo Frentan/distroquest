@@ -3,6 +3,7 @@ import { QUESTION_COUNT } from '../../data/questions.ts';
 import { formattingLocale } from '../locales.ts';
 import { questionContentPt } from './questions.ts';
 import { quizCopyPt, capabilityLabelsPt } from './quiz.ts';
+import { distroContentPt } from './distros.ts';
 
 // Review tooling only. Missing sections are intentional; no English fallback.
 export const draftPt = {
@@ -107,4 +108,5 @@ export const draftPt = {
   },
   quiz: quizCopyPt,
   capabilityLabels: capabilityLabelsPt,
+  distros: distroContentPt,
 } satisfies Partial<Messages>;
