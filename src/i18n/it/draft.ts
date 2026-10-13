@@ -1,9 +1,11 @@
 import type { Messages } from '../catalog.ts';
 import { QUESTION_COUNT } from '../../data/questions.ts';
 import { questionContentIt } from './questions.ts';
+import { distroContentIt } from './distros.ts';
 
 // Partial proposal for human review only; never registered at runtime.
 export const draftIt = {
+  distros: distroContentIt,
   site: {
     name: 'DistroQuest',
     wordmark: ['Distro', 'Quest'],
