@@ -46,13 +46,11 @@ argument types; validation checks parameter names, types, choices, and precision
 Message templates and every choice label must contain nonempty text.
 
 `Intl.NumberFormat` localizes human-readable numbers without changing calculation
-inputs, ranking, or machine-readable ARIA values. `formattingLocale()` resolves
-Portuguese message/route identity `pt` to Brazilian formatting conventions `pt-BR`;
-other locale IDs retain their existing formatting. Message units retain `pt`, so
-the publication gate still checks dictionary/message identity. This mapping does
-not publish Portuguese or change visible language names or HTML language metadata.
-`createExplanations()` resolves
-domain codes against the selected dictionary's explanation records.
+inputs, ranking, or machine-readable ARIA values. `formattingLocale()` maps `pt`
+to Brazilian number formatting (`pt-BR`); dictionary, message, route, and HTML
+language identity remain `pt`. Other locale IDs use their own formatting.
+`createExplanations()` resolves domain codes against the selected dictionary's
+explanation records.
 
 ## Freshness and publication
 
@@ -63,7 +61,7 @@ array order remain significant. JSON Pointer paths identify units unambiguously.
 Hashing runs in development/build tooling, not in the browser.
 
 `{locale}/reviews.json` stores accepted English and translation hashes per unit,
-review status, and reviewer identity. Publication approval is recorded separately.
+review status, and reviewer identity.
 English edits mark affected reviews `staleSource`; translated edits mark
 `changedTranslation`. The report also identifies missing, extra, unreviewed,
 invalid, and orphaned units. Accept hashes from the exact content reviewed;
@@ -71,7 +69,7 @@ changed content requires another review.
 
 Every published locale requires complete content, matching parameter contracts,
 and correct message formatting locales. A translated locale also requires current
-reviewed hashes for every unit and explicit publication approval; English is the
+reviewed hashes for every unit and separate explicit publication approval; English is the
 editorial source and does not require translation reviews. Deferred locales must
 be reactivated before they can be published. `dictionaryIssues()` checks structural
 coverage, including option IDs, nonempty strings, and array lengths.
@@ -83,22 +81,17 @@ Run the checks while editing; freshness is not monitored through HMR.
 
 ```sh
 npm run i18n:check
-npm run i18n:review
-npm run i18n:review -- --locale es
 npm run i18n:review -- --locale it
-npm run i18n:review -- --locale pt
-npm run --silent i18n:review -- --json
-npm run --silent i18n:review -- --markdown
-npm run --silent i18n:review -- --hashes
+npm run --silent i18n:review -- --locale it --markdown
 ```
 
 `i18n:check` validates published locales. `i18n:review` reports draft coverage and
-freshness for `--locale <code>`, defaulting to Spanish (`es`). It loads
+freshness for `--locale <code>` (`es`, `pt`, or `it`), defaulting to `es`. It loads
 `src/i18n/{locale}/draft.ts` (named export `draftEs`, `draftIt`, `draftPt`, etc.)
 and the corresponding `reviews.json`. A locale without a draft produces an error;
 selecting a locale does not create content or enable publication. Spanish,
 Portuguese, and Italian review entry points re-export their complete runtime
-dictionaries. Unit reviews and publication approval remain separate records.
+dictionaries.
 
 Combine `--locale` with any one output mode: `--json` includes content units and proposed hashes,
 `--markdown` produces bilingual copy in authored order, and `--hashes` emits a

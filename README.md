@@ -39,8 +39,7 @@ directory `dist`; no server adapter is needed.
 The quiz turns explicit answers into capability preferences, traits, and eligibility
 evidence. A pure engine ranks all 29 profiles and explains matches and tradeoffs.
 Gaming intensity comes from its dedicated question; broad purposes never infer
-expertise or bypass eligibility. [The engine reference](src/recommendations/README.md)
-documents the small trait/specialist refinements and minimum requirements.
+expertise or bypass eligibility.
 
 Displayed fit is an uncalibrated preference score, not a compatibility guarantee.
 The ten capability bars show assessed distro strengths out of 5. A separate platform

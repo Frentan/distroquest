@@ -104,10 +104,9 @@ and surplus beginner support or polish is not a mismatch.
 ## Explicit evidence and mixed answers
 
 - Setup supplies `traits.selfBuild` only for “Half the fun is building the system”;
-  all other setup answers leave it false. It preserves an explicit answer separately
-  from blended targets. The engine uses it with experience/control evidence for
-  supplied-polish importance, and with qualified minimalism for specialist credit.
-  It changes neither targets nor eligibility.
+  all other setup answers leave it false. This evidence is separate from targets
+  and eligibility; the engine uses it for [polish importance](../recommendations/README.md#capability-fit)
+  and [specialist credit](../recommendations/README.md#specialist-intent).
 - Experience comes only from question 1: regular use is intermediate; terminal
   confidence and init-system familiarity are advanced self-reports. Aspirations
   and troubleshooting never promote experience. Upkeep tolerance comes from
@@ -122,8 +121,8 @@ and surplus beginner support or polish is not a mismatch.
   does not infer GPU, gaming intensity, use cases, atomic preference, or eligibility, and is
   not a RAM/CPU compatibility gate.
 - The direct freshness question sets `freshnessIntent`; identity/finale answers may
-  blend numeric targets without changing it. The engine permits limited extra
-  freshness for the balanced choice.
+  blend numeric targets without changing it. The engine's [freshness distance](../recommendations/README.md#capability-fit)
+  uses this explicit intent.
 - Familiar panels/menus records `desktopLayoutPreference: panel-menu`; other
   customization choices leave layout unspecified. Flexibility, layout, and system
   control remain separate signals.
@@ -132,8 +131,8 @@ and surplus beginner support or polish is not a mismatch.
   rolling, and container-first interests are separate; NixOS is not image-based.
 - Free-software preference is 0, 2, 4, or 5, without guaranteeing entirely free
   firmware, applications, or drivers. GPU `unknown` stays unknown; `other` retains
-  unusual-hardware uncertainty. `open-driver` combines AMD/Intel. NVIDIA evidence
-  refines setup rather than vetoing eligibility.
+  unusual-hardware uncertainty. `open-driver` combines AMD/Intel. GPU evidence
+  supplies the engine's [driver-setup refinement](../recommendations/README.md#trait-refinements).
 - Identity names technical learning, declarative configuration, minimalism, or
   traditional Unix interests. The learning use case can add technical learning
   alongside an identity interest. The final road contributes only low-weight
@@ -141,8 +140,8 @@ and surplus beginner support or polish is not a mismatch.
 
 Mixed answers blend rather than discard evidence: newcomers can want deep control,
 experienced users can want low upkeep, and current software can accompany fixed
-releases. `useCases`, `interests`, and explicit `eligibility` supply evidence for
-the engine's constraints; broad intent cannot bypass their minimum requirements.
+releases. `useCases`, `interests`, and explicit `eligibility` supply the engine's
+[constraint evidence](../recommendations/README.md#eligibility).
 Security intent comes from `useCases` membership (`security-testing`), without a
 separate boolean that can disagree with it.
 

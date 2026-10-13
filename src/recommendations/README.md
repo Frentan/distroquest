@@ -129,22 +129,21 @@ Two additional credits use existing constraints as the specialist contract:
   The current recipient is Slackware.
 
 Both require a hard requirement and a nonempty soft-preference group. Partial
-soft fit receives no new credit; its penalty is unchanged. These credits reinforce
-a qualified workflow using existing evidence, without distro IDs or a new capability. Void's Xfce baseline need not be manually assembled.
-Minimalism and Unix identity are mutually exclusive in the current quiz, so both
-credits cannot activate in the same valid completion. No experience is inferred.
+soft fit receives no credit; its penalty is unchanged. Void's Xfce baseline need
+not be manually assembled. Minimalism and Unix identity are mutually exclusive
+in the current quiz, so both credits cannot activate in the same valid completion.
 
 `specialistModifiers` explains each match and sums to `specialistAdjustment`,
 outside the ±12 trait cap. Existing general trait credits remain inside that cap.
-Rules use assessed traits, without distro-ID bonuses or a new capability axis;
-eligibility is evaluated first and is never bypassed.
+All specialist rules use explicit evidence and assessed traits, without distro-ID
+bonuses or a new capability axis. Eligibility is evaluated first and never bypassed.
 
 Bazzite's [documented handheld path](https://docs.bazzite.gg/Handheld_and_HTPC_edition/Handheld_Wiki/)
 requires a device check. Bluefin's [Developer Mode](https://docs.projectbluefin.io/bluefin-dx/)
 supplies the container-oriented tooling; the standard desktop assessment does not
-imply that it is enabled. Those sources were checked on 2026-10-03. Silverblue also satisfies the existing
-image-based/development-focus predicate through its official Toolbx workflow,
-reviewed on 2026-10-04; it adds no new specialist rule.
+imply that it is enabled. Those sources were checked on 2026-10-03. Silverblue's
+official Toolbx workflow satisfies the same image-based/development-focus rule,
+reviewed on 2026-10-04.
 
 ## Eligibility
 

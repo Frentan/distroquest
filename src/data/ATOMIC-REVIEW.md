@@ -1,12 +1,15 @@
-# Atomic and rolling coverage review
+# Atomic and rolling coverage review, 2026-10-04 (model v9)
 
-Reviewed 2026-10-04 from the clean current checkout. These are source-informed
-editorial assessments, not reliability measurements or hardware certification.
-Only the four candidates below were considered. The roster is now 29;
-Kinoite and Leap remain unranked. The existing 20 personas are unchanged.
-The recommendation revision is model v9: the expanded assessments, transactional
-container matching, and official-family/workflow presentation changed, while the
-capability-distance formula and published scores for existing profiles were preserved.
+This dated record covers the four-profile expansion to 29 profiles under model v9.
+It preserves source-informed editorial assessments and simulations from 2026-10-04,
+not reliability measurements or hardware certification. For current rules and
+rankings, see the [engine reference](../recommendations/README.md) and
+[examples](../recommendations/EXAMPLES.md).
+
+Kinoite and Leap remained unranked, and the existing 20 personas were unchanged.
+The expansion introduced transactional container matching and official-family/workflow
+presentation while preserving the capability-distance formula and published scores
+for existing profiles.
 
 ## Inclusion decisions
 
@@ -22,7 +25,7 @@ workflow, not its marketing promises. It is not an abandoned Orchid-only project
 Rhino's inclusion rests on current releases and published maintenance tools, not
 an assumption that Ubuntu development repositories have Ubuntu LTS reliability.
 
-## Current architecture and audience
+## Architecture and audience at review time
 
 | Dimension         | Silverblue                                                                                                | Aeon                                                                                                                                                                                          | Vanilla OS                                                                                              | Rhino Linux                                                                                                                                                        |
 | :---------------- | :-------------------------------------------------------------------------------------------------------- | :-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | :------------------------------------------------------------------------------------------------------ | :----------------------------------------------------------------------------------------------------------------------------------------------------------------- |
@@ -98,7 +101,7 @@ Official upstream paths in non-independent families share a presentation group,
 derived from `family` and `lineage`. Fedora Workstation/KDE/Silverblue share
 `fedora-desktop`; Aeon/Tumbleweed share `suse-desktop`. Bluefin, Bazzite, Nobara
 and Rhino keep distinct derivative identities. This changes presentation only.
-The public sibling label now says “Another official path in this family,” and
+The public sibling label changed to “Another official path in this family,” and
 explains that the desktop or system workflow may differ. It selects the highest
 ranked eligible sibling without changing scores. Leap is absent from the existing
 roster and remains unranked; no third openSUSE profile was added.
@@ -116,7 +119,7 @@ it to surface Kinoite directly in the result card; no Kinoite score or platform
 support inference is added. Fedora Asahi and T2 compatibility still require their
 existing explicitly assessed conventional profiles.
 
-## Representative simulations
+## Model v9 simulations
 
 These are temporary answer variations, not new registered personas. The quiz has
 no family-preference question: Fedora/openSUSE checks use fixed/free-software or
@@ -171,14 +174,12 @@ an ecosystem scoring bonus.
   [NVIDIA guide](https://wiki.rhinolinux.org/user/nvidia),
   [installer/Secure Boot](https://wiki.rhinolinux.org/user/install/live).
 
-No actual OS installation or physical GPU test was performed. Project claims are
-qualified in the content, scores and workflow cautions rather than treated as
-measured dependability.
-No standardized OS-installation or physical-GPU test baseline was found in the
-project's existing assessment or verification documentation for the other profiles.
-An installation smoke test would require booting a candidate in a VM or on a spare
-drive, then checking installation, updates, applications/containers and recovery.
-Physical-GPU validation additionally requires the relevant GPU running that candidate
-to check driver loading, graphics acceleration, displays, suspend/resume and selected
-games or creative workloads. A VM with virtual graphics cannot establish those claims.
-These are separate test sessions, not quick application checks.
+No OS installation or physical-GPU testing was performed, and no standardized
+baseline for either was found in the other profiles' verification documentation.
+Project claims remain qualified assessments, not measured dependability.
+
+Installation testing requires a VM or spare drive and checks of installation,
+updates, applications/containers and recovery. GPU validation requires the actual
+hardware to check drivers, acceleration, displays, suspend/resume and selected
+workloads; virtual graphics cannot establish those claims. Both require separate
+test sessions beyond application checks.

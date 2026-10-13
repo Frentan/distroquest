@@ -29,7 +29,7 @@ Both modes validate first and exit unsuccessfully if any record is invalid. Revi
 - `src/i18n/en/distros.ts`: display names, archetypes, summaries, strengths,
   cautions, ideal users, and assessment baselines. Exposed as `en.distros`.
 - `getDistros(dictionary)`: compose profiles with a supplied published dictionary.
-  IDs and slugs do not encode a locale. English routing remains unprefixed.
+  IDs and slugs do not encode a locale.
 - `src/data/validate.ts`: runtime structural validation, including exact fields
   and frozen-roster completeness. TypeScript checks authored data independently.
 
@@ -125,10 +125,10 @@ plausible integrations. Six profiles qualify:
 | Bluefin | [OpenTabletDriver install/uninstall helper](https://docs.projectbluefin.io/administration/#application-installation-commands)                                                                                             |
 | Solus   | [Maintained ROCm integration for GPU-accelerated Blender](https://getsol.us/#for-content-creators)                                                                                                                        |
 
-The other 19 profiles in that original 25-profile pass stay `unassessed`, without penalty.
-The four additions reviewed on 2026-10-04 also remain `unassessed`; no creative
-integration was established for their assessed defaults. This is a bounded source pass,
-not proof that they lack creative integrations. Zorin Pro's [creative bundle](https://help.zorin.com/docs/apps-games/alternatives-to-windows-apps/)
+The remaining 23 profiles are `unassessed`, without penalty, following the
+2026-10-02 review and the four-profile follow-up on 2026-10-04. No qualifying
+integration was established for their assessed defaults; this bounded review
+does not prove that none exists. Zorin Pro's [creative bundle](https://help.zorin.com/docs/apps-games/alternatives-to-windows-apps/)
 is outside the Core baseline; separate Fedora/Ubuntu creative editions do not
 transfer to the assessed desktops. Pop!_OS's [Resolve guide](https://support.system76.com/support/install-davinci-resolve)
 documents manual dependencies and a community script. MX's general package installer
@@ -137,9 +137,8 @@ Garuda's current tool contents and Slackware's documentation could not be fully
 retrieved in this pass. Bluefin qualifies through its current tablet helper, not the
 [removed Resolve recipe](https://github.com/ublue-os/bluefin/discussions/3842).
 
-Explicit creative intent activates the existing +2 trait modifier, inside the
-±12 cap. No capability axis, extra questionnaire, inferred expertise, or guarantee
-for specific apps, formats, plugins, or peripherals is added. Review helpers and
+The [engine's trait refinements](../recommendations/README.md#trait-refinements)
+apply this assessment only with explicit creative intent. Review helpers and
 package claims again when their sources or assessed editions change.
 
 ## Breadth and constraints
@@ -156,8 +155,8 @@ within a constraint are conjunctive. All `require` constraints must be satisfied
 before a top recommendation is eligible. `strongly-prefer` expresses substantial
 soft reluctance if the whole condition group does not match, rather than a total
 lock. Unknown user evidence must not be assumed to satisfy hard requirements.
-The engine penalizes unmet soft conditions and rejects incomplete answer sets;
-see its scoring notes for the selected strengths.
+See [engine eligibility](../recommendations/README.md#eligibility) for penalties
+and constraint diagnostics.
 
 Conditions describe minimum experience, upkeep/learning tolerance, system-control
 interest, purposes, or specific interests. Ordered minimums are intermediate/advanced
