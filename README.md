@@ -2,6 +2,8 @@
 
 **Stop distro-hopping before it starts.**
 
+[Try DistroQuest](https://distroquest.com)
+
 A playful Linux distribution finder built with Astro, TypeScript, and plain CSS.
 Answer 16 questions to compare 29 distros, with explanations, tradeoffs, and
 edition-aware alternatives. Mac users get one extra hardware question.
@@ -30,9 +32,8 @@ npm run format:check
 npm run build
 ```
 
-The static build writes to `dist/`. Set `SITE_URL` to the public HTTPS origin for
-canonical URLs and the sitemap. On Cloudflare Pages, use `npm run build` and output
-directory `dist`; no server adapter is needed.
+The static build writes to `dist/`; no server adapter is needed. Set `SITE_URL`
+to the public HTTPS origin at build time for canonical URLs and the sitemap.
 
 ## Matching and development
 
