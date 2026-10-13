@@ -7,7 +7,7 @@ Answer 16 questions to compare 29 distros, with explanations, tradeoffs, and
 edition-aware alternatives. Mac users get one extra hardware question.
 
 No signup, cookies, or tracking. Answers stay in memory and disappear on refresh;
-only your theme preference is saved. Available in English, Spanish, and Portuguese.
+only your theme preference is saved. Available in English, Spanish, Portuguese, and Italian.
 
 ## Run locally
 

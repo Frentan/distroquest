@@ -62,7 +62,7 @@ test('review CLI clearly rejects missing drafts and malformed arguments', () => 
   }
 });
 
-test('review CLI loads the unpublished Portuguese batch and preserves review boundaries', () => {
+test('review CLI loads reviewed Portuguese content and preserves review boundaries', () => {
   const result = run(['--locale', 'pt', '--json']);
   assert.equal(result.status, 0, result.stderr);
   const report = JSON.parse(result.stdout);

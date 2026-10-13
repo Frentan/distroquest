@@ -43,7 +43,7 @@ test('Portuguese runtime composition matches reviewed content and cannot bypass 
     ['pt: explicit publication approval missing'],
   );
   assert.throws(
-    () => getMessages('it' as PublishedLocale),
+    () => getMessages('fr' as PublishedLocale),
     /No complete published dictionary/,
   );
   const report = reviewReport(en, draftPt, reviews.units);

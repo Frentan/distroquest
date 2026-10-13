@@ -9,7 +9,7 @@ remain independent of translated presentation.
 `Messages` covers page copy, questions, distro profiles, capabilities, preparation
 tips, explanations, and platform guidance. `catalog.ts` registers complete runtime
 dictionaries. `getMessages()` requires a published locale and an available dictionary;
-there is no partial merge or English fallback. Published English, Spanish, and Portuguese dictionaries are registered explicitly. Unpublished
+there is no partial merge or English fallback. Published English, Spanish, Portuguese, and Italian dictionaries are registered explicitly. Unpublished
 drafts are loaded only by Node review tooling.
 
 `locales.ts` separates known IDs, actively planned locales, deferred locales, and
@@ -29,7 +29,7 @@ sitemap. Without an origin, absolute metadata is omitted and the sitemap is empt
 
 ## Language switching
 
-The header offers EN, ES, and PT, retaining native-language names and accessible
+The header offers EN, ES, PT, and IT, retaining native-language names and accessible
 labels. Links use equivalent page identities: home to home, quiz to quiz. On the
 quiz, any selected or retained answer triggers the reviewed restart confirmation
 before same-tab language navigation. The dialog identifies the destination language;
@@ -96,10 +96,9 @@ npm run --silent i18n:review -- --hashes
 freshness for `--locale <code>`, defaulting to Spanish (`es`). It loads
 `src/i18n/{locale}/draft.ts` (named export `draftEs`, `draftIt`, `draftPt`, etc.)
 and the corresponding `reviews.json`. A locale without a draft produces an error;
-selecting a locale does not create content or enable publication. Spanish and
-Portuguese review entry points re-export their complete runtime dictionaries.
-Italian's unpublished draft is available only to review tooling, with unit review and
-publication approval recorded separately in `it/reviews.json`.
+selecting a locale does not create content or enable publication. Spanish,
+Portuguese, and Italian review entry points re-export their complete runtime
+dictionaries. Unit reviews and publication approval remain separate records.
 
 Combine `--locale` with any one output mode: `--json` includes content units and proposed hashes,
 `--markdown` produces bilingual copy in authored order, and `--hashes` emits a

@@ -11,5 +11,5 @@ export function formattingLocale(locale: Locale): string {
 }
 
 // Publish only when reviewed content AND both static page routes are ready.
-export const publishedLocales = ['en', 'es', 'pt'] as const;
+export const publishedLocales = ['en', 'es', 'pt', 'it'] as const;
 export type PublishedLocale = (typeof publishedLocales)[number];

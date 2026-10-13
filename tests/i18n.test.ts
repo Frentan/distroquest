@@ -56,9 +56,9 @@ test('completeness catches missing options, explanations, platform copy and call
 });
 
 test('unpublished dictionaries never silently resolve to English', () => {
-  assert.deepEqual(publishedLocales, ['en', 'es', 'pt']);
+  assert.deepEqual(publishedLocales, ['en', 'es', 'pt', 'it']);
   assert.throws(
-    () => getMessages('it' as PublishedLocale),
+    () => getMessages('fr' as PublishedLocale),
     /No complete published dictionary/,
   );
 });
@@ -76,13 +76,13 @@ test('explanation lookup uses supplied presentation content', () => {
 });
 
 test('a complete staged dictionary still cannot bypass the published locale registry', () => {
-  dictionaries.it = en;
+  dictionaries.fr = en;
   try {
     assert.throws(
-      () => getMessages('it' as PublishedLocale),
+      () => getMessages('fr' as PublishedLocale),
       /No complete published dictionary/,
     );
   } finally {
-    delete dictionaries.it;
+    delete dictionaries.fr;
   }
 });
