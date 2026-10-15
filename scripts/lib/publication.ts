@@ -1,5 +1,5 @@
 import { dictionaryIssues } from '../../src/i18n/validation.ts';
-import { pagePath } from '../../src/routing.ts';
+import { allPages, pagePath } from '../../src/routing.ts';
 import { plannedLocales, type Locale } from '../../src/i18n/locales.ts';
 import {
   contentUnits,
@@ -42,15 +42,13 @@ export function publicationIssues(
   return issues;
 }
 
-/** Both equivalents must exist, and unfinished or unrelated HTML must not ship. */
+/** All published equivalents must exist, and unfinished or unrelated HTML must not ship. */
 export function pageOutputIssues(
   files: readonly string[],
   locales: readonly Locale[],
 ): string[] {
   const expected = locales.flatMap((locale) =>
-    (['home', 'quiz'] as const).map(
-      (page) => `${pagePath(page, locale).slice(1)}index.html`,
-    ),
+    allPages.map((page) => `${pagePath(page, locale).slice(1)}index.html`),
   );
   return [
     ...expected

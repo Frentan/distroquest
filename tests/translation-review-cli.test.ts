@@ -1,4 +1,6 @@
 import assert from 'node:assert/strict';
+import { en } from '../src/i18n/en.ts';
+import { contentUnits } from '../scripts/lib/translation-review.ts';
 import { spawnSync } from 'node:child_process';
 import { cpSync, mkdtempSync, mkdirSync, rmSync, writeFileSync } from 'node:fs';
 import { tmpdir } from 'node:os';
@@ -67,7 +69,10 @@ test('review CLI loads reviewed Portuguese content and preserves review boundari
   assert.equal(result.status, 0, result.stderr);
   const report = JSON.parse(result.stdout);
   assert.equal(report.locale, 'pt');
-  assert.equal(report.summary.translatedUnits, 765);
+  assert.equal(
+    report.summary.translatedUnits,
+    Object.keys(contentUnits(en)).length,
+  );
   assert.equal(report.summary.unreviewed, 0);
   assert.equal(report.summary.staleSource, 0);
   assert.equal(report.summary.changedTranslation, 0);

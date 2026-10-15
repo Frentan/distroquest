@@ -1,0 +1,146 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import ResultArtworkFilters from './ResultArtworkFilters.astro';
+import { distroProfiles } from '../data/distros';
+import { capabilityKeys, type DistroId } from '../domain/distro';
+import { officialWebsites } from '../data/official-websites';
+import { getMessages, type PublishedLocale } from '../i18n';
+import { distroPage, publishedPagePath } from '../routing';
+import '../styles/distros.css';
+import '../styles/result-details.css';
+interface Props {
+  locale: PublishedLocale;
+  id: DistroId;
+}
+const { locale, id } = Astro.props;
+const {
+  discovery: copy,
+  distros,
+  quiz,
+  capabilityLabels,
+} = getMessages(locale);
+const distro = distros[id];
+const officialUrl = officialWebsites[id];
+const profile = distroProfiles.find((distro) => distro.id === id)!;
+---
+
+<BaseLayout
+  page={distroPage(id)}
+  locale={locale}
+  title={copy.profileTitle(distro.name)}
+  description={distro.summary}
+>
+  <article class="container distro-page">
+    <p class="distro-back">
+      <a href={publishedPagePath('distros', locale)}>
+        <span aria-hidden="true">←</span>{' '}
+        <span class="link-text">{copy.back}</span>
+      </a>
+    </p>
+    <header class="distro-profile-heading">
+      <div class="distro-heading">
+        <h1>{distro.name}</h1>
+        <p class="result-archetype">{distro.archetype.name}</p>
+        <p class="result-archetype-description">
+          <em>{distro.archetype.description}</em>
+        </p>
+        <p class="result-summary">{distro.summary}</p>
+      </div>
+      <ResultArtworkFilters />
+      <img
+        class="distro-character"
+        src={`/characters/${id}.png`}
+        width="512"
+        height="512"
+        alt=""
+        decoding="async"
+      />
+    </header>
+    <div class="distro-details">
+      <section aria-labelledby="suitable-title">
+        <h2 id="suitable-title">{copy.suitable}</h2>
+        <ul>
+          {distro.idealFor.map((item) => (
+            <li>{item}</li>
+          ))}
+        </ul>
+      </section>
+      <section aria-labelledby="strengths-title">
+        <h2 id="strengths-title">{copy.strengths}</h2>
+        <ul>
+          {distro.strengths.map((item) => (
+            <li>{item}</li>
+          ))}
+        </ul>
+      </section>
+      <section aria-labelledby="cautions-title">
+        <h2 id="cautions-title">{copy.cautions}</h2>
+        <ul>
+          {distro.cautions.map((item) => (
+            <li>{item}</li>
+          ))}
+        </ul>
+      </section>
+      <section aria-labelledby="edition-title">
+        <h2 id="edition-title">{copy.considerations}</h2>
+        <p>{distro.assessmentBasis}</p>
+        {'editionNote' in distro && <p>{distro.editionNote}</p>}
+        <p>{copy.compatibilityNote}</p>
+        {officialUrl && (
+          <p>
+            <a href={officialUrl} rel="external">
+              <span class="link-text">{copy.official}</span>{' '}
+              <span aria-hidden="true">↗</span>
+            </a>
+          </p>
+        )}
+      </section>
+    </div>
+    <section
+      class="capability-stats distro-capabilities"
+      aria-labelledby="capabilities-title"
+    >
+      <h2 id="capabilities-title">{quiz.stats}</h2>
+      <p class="result-note">{quiz.statsNote}</p>
+      <div class="capability-grid">
+        {capabilityKeys.map((capability) => (
+          <div class="capability-stat">
+            <span id={`capability-${capability}`}>
+              {capabilityLabels[capability]}
+            </span>
+            <span class="capability-value" aria-hidden="true">
+              {quiz.statScore(profile.capabilities[capability])}
+            </span>
+            <div
+              class="capability-bar"
+              role="meter"
+              aria-labelledby={`capability-${capability}`}
+              aria-valuemin="0"
+              aria-valuemax="5"
+              aria-valuenow={profile.capabilities[capability]}
+              aria-valuetext={quiz.statValue(profile.capabilities[capability])}
+            >
+              {Array.from({ length: 10 }, (_, index) => (
+                <span
+                  class={
+                    index < profile.capabilities[capability] * 2
+                      ? 'filled'
+                      : undefined
+                  }
+                  aria-hidden="true"
+                />
+              ))}
+            </div>
+          </div>
+        ))}
+      </div>
+    </section>
+    <section class="distro-quiz-invitation" aria-labelledby="quiz-title">
+      <h2 id="quiz-title">{copy.quizHeading}</h2>
+      <p>{copy.quizIntroduction}</p>
+      <a class="button button-primary" href={publishedPagePath('quiz', locale)}>
+        {copy.quizLink} <span aria-hidden="true">→</span>
+      </a>
+    </section>
+  </article>
+</BaseLayout>

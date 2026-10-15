@@ -24,7 +24,9 @@
     "deploy:check": "node --experimental-strip-types scripts/check-deployment.ts",
     "preview": "astro preview",
     "astro": "astro",
-    "recommendations:review": "node --experimental-strip-types scripts/review-recommendations.ts"
+    "recommendations:review": "node --experimental-strip-types scripts/review-recommendations.ts",
+    "test:browser": "node --experimental-strip-types scripts/check-browser.mjs",
+    "assets:social": "node --experimental-strip-types scripts/generate-social-card.ts"
   },
   "dependencies": {
     "@astrojs/cloudflare": "14.3.4",

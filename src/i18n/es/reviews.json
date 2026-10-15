@@ -3123,10 +3123,10 @@
       "reviewedBy": "Frentan"
     },
     "/home/privacyDescription": {
-      "sourceHash": "233c2550424c0f37895f04486f4ec37614c22c3737f8f2fd7e1062353e2cee69",
-      "translationHash": "3c0f3310363b4731707bd0f0d4ff0804357547e82ffd67d2d35567f9c05d7fb2",
+      "sourceHash": "d6ef21e015184ce60b99583d79bfebb497b86b007d85965075f7729d9014c7f4",
+      "translationHash": "510a8f5c72adf1428e8460e405d3a577aa5c29a6bb6310c261bda961bd88f356",
       "status": "reviewed",
-      "reviewedBy": "Frentan"
+      "reviewedBy": "Codex (Milestone 8 editorial review)"
     },
     "/home/privacyLabel": {
       "sourceHash": "43519879d1130abd1122c40c338a9bc8b5879114406cf73174196490454d2485",
@@ -4591,6 +4591,120 @@
       "translationHash": "e44a1dd2101229bf135f6ba87faba7f05e1464407369a136e097831cf1a1f307",
       "status": "reviewed",
       "reviewedBy": "Frentan"
+    },
+    "/discovery/back": {
+      "sourceHash": "0213b6e2d4c57522a21386c33cdeac3aa0f1aba6258fd0c0604cab21253153d9",
+      "translationHash": "9a5fd44cbfa54a55558c4d51d9da93c11815a6fa17dbb881e0300f0e49330be7",
+      "status": "reviewed",
+      "reviewedBy": "Codex (Milestone 8 editorial review)"
+    },
+    "/discovery/cautions": {
+      "sourceHash": "a437250d7ff65ef8319ac510de63e12cf1858e8465f26d71d699614be4c0b3cb",
+      "translationHash": "179340394773b5e6394c9a088e6f8c5cdca98fa38a9a77b4be00fcf07a3f57b5",
+      "status": "reviewed",
+      "reviewedBy": "Codex (Milestone 8 editorial review)"
+    },
+    "/discovery/compatibilityNote": {
+      "sourceHash": "3ed0383ec1a13cb7f054704c40c46ec746ddadd1b7a0408150b598a7b1ad3005",
+      "translationHash": "7fc98c862ad46d983e9a55634b900bf912ff08cb524049694ea103666dc6150f",
+      "status": "reviewed",
+      "reviewedBy": "Codex (Milestone 8 editorial review)"
+    },
+    "/discovery/considerations": {
+      "sourceHash": "2b771ee4e671d3a5286867850a7950b8388e494f6e48ff6c3f329e6d1d673072",
+      "translationHash": "8006f2fae03eac5e1925a8f968c9937a400dbd668c705c436955cd956c88a6af",
+      "status": "reviewed",
+      "reviewedBy": "Codex (Milestone 8 editorial review)"
+    },
+    "/discovery/directoryDescription": {
+      "sourceHash": "7b0dc3923c7d50bd1ca67b6b066dfa879b90c8093dfe3cdd7e91894504b62fc3",
+      "translationHash": "d4c6cd2899a9370a215cd25c8a0a5f8c1c83012b697670336d827f745c197146",
+      "status": "reviewed",
+      "reviewedBy": "Codex (Milestone 8 editorial review)"
+    },
+    "/discovery/directoryHeading": {
+      "sourceHash": "be70796ea228c4f0297cf82de6c4e6cc9d37697e39d6c5b9cb51a0db420bd06e",
+      "translationHash": "561ef69a026b6762cca476185345fd37e3c4a0d96df3d7160252b8ea20ca2351",
+      "status": "reviewed",
+      "reviewedBy": "Codex (Milestone 8 editorial review)"
+    },
+    "/discovery/directoryIntroduction": {
+      "sourceHash": "c676f4eb9a43780c8bcec30d3fab48f4933ad3929a39b10423c0040df95f18c1",
+      "translationHash": "7c0ef57026c210774dc12a22f338f7de88a736cce90b0baadb5721e312e3df05",
+      "status": "reviewed",
+      "reviewedBy": "Codex (Milestone 8 editorial review)"
+    },
+    "/discovery/directoryLink": {
+      "sourceHash": "10464f434a74b4eef7f073900eeefdfbba4893eb6243b06cf17e2821760634ef",
+      "translationHash": "cc35ca5e4b3d760c7ab3b9a5feb6ed2cc97ceb09d1c8ee55259adc653e201d95",
+      "status": "reviewed",
+      "reviewedBy": "Codex (Milestone 8 editorial review)"
+    },
+    "/discovery/directoryTitle": {
+      "sourceHash": "a377f7baed0f65d5140e14ce307f69ddfdfaf2cc6bcc320017a9c533d7668b45",
+      "translationHash": "5e17796d252b91efd03d8ecff35ea85c8f5e318b9bdad71d4de8521137f38e1b",
+      "status": "reviewed",
+      "reviewedBy": "Codex (Milestone 8 editorial review)"
+    },
+    "/discovery/official": {
+      "sourceHash": "b7656e2d3cc9776e24b7a694516afc82c2461331248027e396874d4b5d7020a2",
+      "translationHash": "e00b5b4ee04a6cb8e6d425e04c8139c292d7d2b21e2e1e2c0aa382563b4e54ce",
+      "status": "reviewed",
+      "reviewedBy": "Codex (Milestone 8 editorial review)"
+    },
+    "/discovery/profileLink": {
+      "sourceHash": "50bcee7de1d55d464476eca4c55c27d1b23af5078531f594ec3206cac3148d1f",
+      "translationHash": "b60373aed54212d737f983e53147902496f973998fb1bcf7b734a8ca278fde53",
+      "status": "reviewed",
+      "reviewedBy": "Codex (Milestone 8 editorial review)"
+    },
+    "/discovery/profileTitle": {
+      "sourceHash": "aa52d5a15a78fdbdedf3f01d3e06187eb3b53beee612ea5d1a77b46dfb245c4c",
+      "translationHash": "6388ebcbc1bc8740e3241393caae55cb017a3d5c5248229a5cf1b418923c183a",
+      "status": "reviewed",
+      "reviewedBy": "Codex (Milestone 8 editorial review)"
+    },
+    "/discovery/quizHeading": {
+      "sourceHash": "f58d1d80aa6488f3a970c7c0e15bbb16d5638dd9bb3a47a1b10f45c30d9da6ac",
+      "translationHash": "b3038069cd7a814494fcc0a259ca7193528adc648d9c50f3260249816458aedf",
+      "status": "reviewed",
+      "reviewedBy": "Codex (Milestone 8 editorial review)"
+    },
+    "/discovery/quizIntroduction": {
+      "sourceHash": "25cdd560078705078b19c6fc9482f6c215da17d8aa09d68d827c573b06afe74a",
+      "translationHash": "b1b8cd342e3ddaaaf2b1207a9701dc48914d05080efc636f0be64c052ea9643b",
+      "status": "reviewed",
+      "reviewedBy": "Codex (Milestone 8 editorial review)"
+    },
+    "/discovery/quizLink": {
+      "sourceHash": "acdff0760e2046f7e8ce555c86f7432ebd00aba9f0f8b1ce666f8ccd63e5d0c1",
+      "translationHash": "6b31bf209ebbac8a4416af1d066cbb0e951eb8ea9754657fd9483b0c1c86b387",
+      "status": "reviewed",
+      "reviewedBy": "Codex (Milestone 8 editorial review)"
+    },
+    "/discovery/shareAlt": {
+      "sourceHash": "118e2c07d9dc489af6ae58ad5d76186105afc2aca2bfc1015d66e9d1ce726365",
+      "translationHash": "292b959d467bbb16e65c4e7232412306db7ea41172db65bfdbe0e433326a04ad",
+      "status": "reviewed",
+      "reviewedBy": "Codex (Milestone 8 editorial review)"
+    },
+    "/discovery/strengths": {
+      "sourceHash": "9e8b4836b8e62a5161a60e39e8b8d3a032007c46bd30e1fb2bf3a3a9cb20c270",
+      "translationHash": "be251bc94ce883a155d646983aed88ff1426b8e23f2b7aa9320962b0550f52e3",
+      "status": "reviewed",
+      "reviewedBy": "Codex (Milestone 8 editorial review)"
+    },
+    "/discovery/suitable": {
+      "sourceHash": "81b124d7229c44351b62e787849dbfa81bbfa0437a0e67ea88cb7f674d74bb77",
+      "translationHash": "7b1031a84c1ccd5a3b580191d724a82ed46f40e44e5feeb20bfb390e080277c0",
+      "status": "reviewed",
+      "reviewedBy": "Codex (Milestone 8 editorial review)"
+    },
+    "/discovery/support": {
+      "sourceHash": "e42d440c1b91343de5be4d8a6e027950d3f91d3faa7d1f96c46257d9565e22bf",
+      "translationHash": "8c2959daa23a17527f60e7a5a5e5d64753700d124676f313bce0683ba9c8c4cc",
+      "status": "reviewed",
+      "reviewedBy": "Codex (Milestone 8 editorial review)"
     }
   }
 }

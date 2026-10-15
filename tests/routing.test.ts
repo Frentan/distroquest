@@ -1,5 +1,7 @@
 import assert from 'node:assert/strict';
 import { test } from 'node:test';
+import { distroProfiles } from '../src/data/distros.ts';
+import { allPages, distroPage } from '../src/routing.ts';
 import {
   plannedLocales,
   deferredLocales,
@@ -68,29 +70,42 @@ test('only published English, Spanish, Portuguese and Italian produce public lin
   assert.equal(publishedPagePath('quiz', 'pt'), '/pt/quiz/');
   assert.equal(publishedPagePath('home', 'it'), '/it/');
   assert.equal(publishedPagePath('quiz', 'it'), '/it/quiz/');
-  assert.deepEqual(sitemapUrls(site), [
-    'https://distroquest.example/',
-    'https://distroquest.example/es/',
-    'https://distroquest.example/pt/',
-    'https://distroquest.example/it/',
-  ]);
+  assert.deepEqual(
+    sitemapUrls(site),
+    publishedLocales.flatMap((locale) => {
+      const prefix = locale === 'en' ? '' : `/${locale}`;
+      return [
+        `${site.origin}${prefix}/`,
+        `${site.origin}${prefix}/distros/`,
+        ...distroProfiles.map(
+          (distro) => `${site.origin}${prefix}/distros/${distro.slug}/`,
+        ),
+      ];
+    }),
+  );
 });
 
 test('canonical URLs and indexing policy belong to the page identity', () => {
   assert.deepEqual(pageMetadata('home', 'en', site), {
     canonical: 'https://distroquest.example/',
-    alternates: publishedLocales.map((locale) => ({
-      locale,
-      href: new URL(pagePath('home', locale), site).href,
-    })),
+    alternates: [
+      ...publishedLocales.map((locale) => ({
+        locale,
+        href: new URL(pagePath('home', locale), site).href,
+      })),
+      { locale: 'x-default', href: 'https://distroquest.example/' },
+    ],
     noindex: false,
   });
   assert.deepEqual(pageMetadata('quiz', 'en', site), {
     canonical: 'https://distroquest.example/quiz/',
-    alternates: publishedLocales.map((locale) => ({
-      locale,
-      href: new URL(pagePath('quiz', locale), site).href,
-    })),
+    alternates: [
+      ...publishedLocales.map((locale) => ({
+        locale,
+        href: new URL(pagePath('quiz', locale), site).href,
+      })),
+      { locale: 'x-default', href: 'https://distroquest.example/quiz/' },
+    ],
     noindex: true,
   });
   assert.deepEqual(sitemapUrls(undefined), []);
@@ -124,6 +139,10 @@ test('published pages produce reciprocal equivalents and self-canonicals', () =>
         locale: 'it',
         href: `https://distroquest.example/it/${page === 'home' ? '' : 'quiz/'}`,
       },
+      {
+        locale: 'x-default',
+        href: `https://distroquest.example${page === 'home' ? '/' : '/quiz/'}`,
+      },
     ]);
     assert.equal(spanish.canonical, spanish.alternates[1].href);
     assert.equal(publishedPagePath(page, 'es', ready), pagePath(page, 'es'));
@@ -135,12 +154,19 @@ test('published pages produce reciprocal equivalents and self-canonicals', () =>
     assert.deepEqual(italian.alternates, english.alternates);
     assert.equal(italian.canonical, italian.alternates[3].href);
   }
-  assert.deepEqual(sitemapUrls(site, ready), [
-    'https://distroquest.example/',
-    'https://distroquest.example/es/',
-    'https://distroquest.example/pt/',
-    'https://distroquest.example/it/',
-  ]);
+  assert.deepEqual(
+    sitemapUrls(site, ready),
+    publishedLocales.flatMap((locale) => {
+      const prefix = locale === 'en' ? '' : `/${locale}`;
+      return [
+        `${site.origin}${prefix}/`,
+        `${site.origin}${prefix}/distros/`,
+        ...distroProfiles.map(
+          (distro) => `${site.origin}${prefix}/distros/${distro.slug}/`,
+        ),
+      ];
+    }),
+  );
 });
 
 test('French and German remain reserved but outside the active localization plan', () => {
@@ -151,4 +177,41 @@ test('French and German remain reserved but outside the active localization plan
     assert.equal(publishedPagePath('home', locale), undefined);
     assert.equal(publishedPagePath('quiz', locale), undefined);
   }
+});
+
+test('all 116 distro routes and four directories have published equivalents without extending the roster', () => {
+  assert.equal(allPages.length * publishedLocales.length, 128);
+  assert.equal(new Set(sitemapUrls(site)).size, 124);
+  for (const distro of distroProfiles) {
+    assert.equal(
+      distro.slug,
+      distro.id,
+      'route IDs must reuse the assessed slug',
+    );
+    for (const locale of publishedLocales) {
+      const prefix = locale === 'en' ? '' : `/${locale}`;
+      const path = `${prefix}/distros/${distro.slug}/`;
+      const page = distroPage(distro.id);
+      assert.equal(publishedPagePath(page, locale), path);
+      assert.deepEqual(resolvePage(path), { page, locale });
+      assert.deepEqual(resolvePage(path.slice(0, -1)), { page, locale });
+      assert.equal(
+        pageMetadata(page, locale, site).canonical,
+        `${site.origin}${path}`,
+      );
+      assert.equal(pageMetadata(page, locale, site).noindex, false);
+      for (const language of deferredLocales)
+        assert.equal(publishedPagePath(page, language), undefined);
+    }
+  }
+  for (const path of [
+    '/distros/unknown/',
+    '/distros/linux-mint/results/',
+    '/desktop/',
+    '/es/desktop/',
+    '/en/distros/linux-mint/',
+  ]) {
+    assert.equal(resolvePage(path), undefined);
+  }
+  assert.equal(localePath('/es/desktop/', 'it'), '/it/desktop/');
 });

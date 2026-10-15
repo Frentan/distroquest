@@ -1,3 +1,4 @@
+import { discoveryEn } from './en/discovery.ts';
 import { distroContentEn } from './en/distros.ts';
 import { questionContentEn } from './en/questions.ts';
 import {
@@ -15,6 +16,7 @@ import { QUESTION_COUNT } from '../data/questions.ts';
 // All English UI copy, including metadata and accessible labels, lives here.
 // Preserve whole sentences; future translations can choose their own line breaks.
 export const en = {
+  discovery: discoveryEn,
   distros: distroContentEn,
   questions: questionContentEn,
   site: {
@@ -79,7 +81,7 @@ export const en = {
     privacyLabel: 'Privacy',
     privacyTitle: 'Your quest is yours.',
     privacyDescription:
-      'No accounts, cookies, or tracking. Only your theme preference is saved in your browser.',
+      'No accounts or cookies. Answers stay in this tab; only your theme preference is saved. We use privacy-conscious visit statistics.',
     privacyBadge: 'SMALL BY DESIGN',
   },
   scene: {

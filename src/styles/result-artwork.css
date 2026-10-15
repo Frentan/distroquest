@@ -1,0 +1,28 @@
+.result-artwork-filters {
+  position: absolute;
+  pointer-events: none;
+}
+.result-artwork-fill,
+.result-artwork-edge {
+  flood-color: var(--accent);
+}
+.result-artwork-fill {
+  flood-opacity: 0.075;
+}
+.result-artwork-edge {
+  flood-opacity: 0.17;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme='light']) .result-artwork-fill {
+    flood-opacity: 0.065;
+  }
+  :root:not([data-theme='light']) .result-artwork-edge {
+    flood-opacity: 0.15;
+  }
+}
+:root[data-theme='dark'] .result-artwork-fill {
+  flood-opacity: 0.065;
+}
+:root[data-theme='dark'] .result-artwork-edge {
+  flood-opacity: 0.15;
+}

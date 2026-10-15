@@ -2,7 +2,7 @@ import assert from 'node:assert/strict';
 import { spawnSync } from 'node:child_process';
 import {
   mkdtempSync,
-  copyFileSync,
+  cpSync,
   mkdirSync,
   readFileSync,
   rmSync,
@@ -18,7 +18,7 @@ import {
   validateDeployment,
 } from '../scripts/check-deployment.ts';
 import { publishedLocales } from '../src/i18n/locales.ts';
-import { pagePath } from '../src/routing.ts';
+import { allPages, pagePath, sitemapUrls } from '../src/routing.ts';
 
 const origin = 'https://distroquest.com';
 const root = fileURLToPath(new URL('../', import.meta.url));
@@ -42,15 +42,20 @@ function fixture(
     'dist/client/wrangler.json',
     JSON.stringify({ assets: { directory: '.' } }),
   );
-  for (const locale of publishedLocales) {
-    write(
-      homeFile(locale),
-      `<html><head><link href='${origin}${pagePath('home', locale)}' rel='canonical'>${publishedLocales.map((alternate) => `<link hreflang="${alternate}" href="${origin}${pagePath('home', alternate)}" rel="alternate">`).join('')}</head><body></body></html>`,
-    );
-  }
+  for (const page of allPages)
+    for (const locale of publishedLocales) {
+      write(
+        `dist/client/${pagePath(page, locale).slice(1)}index.html`,
+        `<html lang="${locale}"><head><title>Title</title><meta name="description" content="Description"><meta property="og:title" content="Title"><meta property="og:description" content="Description"><meta property="og:url" content="${origin}${pagePath(page, locale)}"><meta property="og:image" content="${origin}/social-card.png"><meta name="twitter:card" content="summary_large_image">${page === 'quiz' ? '<meta name="robots" content="noindex, follow">' : ''}<link href='${origin}${pagePath(page, locale)}' rel='canonical'>${publishedLocales.map((alternate) => `<link hreflang="${alternate}" href="${origin}${pagePath(page, alternate)}" rel="alternate">`).join('')}<link rel="alternate" hreflang="x-default" href="${origin}${pagePath(page, 'en')}"></head><body></body></html>`,
+      );
+    }
   write(
     'dist/client/sitemap.xml',
-    `<?xml version="1.0" encoding="UTF-8"?><urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">${publishedLocales.map((locale) => `<url><loc>${origin}${pagePath('home', locale)}</loc></url>`).join('')}</urlset>`,
+    `<?xml version="1.0" encoding="UTF-8"?><urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">${sitemapUrls(
+      new URL(origin),
+    )
+      .map((url) => `<url><loc>${url}</loc></url>`)
+      .join('')}</urlset>`,
   );
   write(
     'dist/client/robots.txt',
@@ -131,7 +136,7 @@ test('deployment CLI rejects invalid origins before attempting a build, independ
     }
 });
 
-test('deployment validates every published homepage through the generated Wrangler assets pointer', () => {
+test('deployment validates all published pages through the generated Wrangler assets pointer', () => {
   fixture((directory) =>
     assert.doesNotThrow(() => validateDeployment(directory, origin)),
   );
@@ -147,13 +152,69 @@ test('deployment validates every published homepage through the generated Wrangl
   });
 });
 
+test('deployment rejects corrupted profile metadata, x-default, quiz directives and extra routes', () => {
+  const path = 'dist/client/it/distros/gentoo/index.html';
+  for (const [transform, reason] of [
+    [
+      (html: string) => html.replace('lang="it"', 'lang="en"'),
+      /incorrect document language/,
+    ],
+    [
+      (html: string) =>
+        html.replace('<title>Title</title>', '<title>Different</title>'),
+      /inconsistent title metadata/,
+    ],
+    [
+      (html: string) =>
+        html.replace(
+          'name="description" content="Description"',
+          'name="description" content=""',
+        ),
+      /inconsistent description metadata/,
+    ],
+    [
+      (html: string) =>
+        html.replace(/<link rel="alternate" hreflang="x-default"[^>]+>/, ''),
+      /incorrect reciprocal hreflang/,
+    ],
+    [
+      (html: string) =>
+        html.replace('content="summary_large_image"', 'content="summary"'),
+      /incorrect social sharing metadata/,
+    ],
+  ] as const)
+    fixture((directory, write) => {
+      write(path, transform(readFileSync(join(directory, path), 'utf8')));
+      assert.throws(() => validateDeployment(directory, origin), reason);
+    });
+  fixture((directory, write) => {
+    const quiz = 'dist/client/pt/quiz/index.html';
+    write(
+      quiz,
+      readFileSync(join(directory, quiz), 'utf8').replace(
+        'noindex, follow',
+        'index, follow',
+      ),
+    );
+    assert.throws(
+      () => validateDeployment(directory, origin),
+      /quiz must be noindex, follow/,
+    );
+  });
+  fixture((directory, write) => {
+    write('dist/client/quiz/results/index.html', '<html></html>');
+    assert.throws(
+      () => validateDeployment(directory, origin),
+      /Unexpected page: quiz\/results/,
+    );
+  });
+});
+
 test('deployment CLI passes valid artifacts and exits unsuccessfully after metadata corruption', () => {
   fixture((directory, write) => {
-    mkdirSync(join(directory, 'scripts'));
-    copyFileSync(
-      join(root, 'scripts/check-deployment.ts'),
-      join(directory, 'scripts/check-deployment.ts'),
-    );
+    cpSync(join(root, 'scripts'), join(directory, 'scripts'), {
+      recursive: true,
+    });
     symlinkSync(join(root, 'src'), join(directory, 'src'), 'dir');
     const env: NodeJS.ProcessEnv = { ...process.env, SITE_URL: origin };
     delete env.NODE_TEST_CONTEXT;
@@ -325,6 +386,24 @@ test('deployment requires exactly one correct absolute sitemap reference in robo
       assert.throws(
         () => validateDeployment(directory, origin),
         /robots.txt: incorrect sitemap reference/,
+      );
+    });
+});
+
+test('deployment rejects robots rules that block crawler access', () => {
+  for (const directives of [
+    'User-agent: *\nDisallow: /',
+    'User-agent: Googlebot\nAllow: /',
+    'User-agent: *',
+  ])
+    fixture((directory, write) => {
+      write(
+        'dist/client/robots.txt',
+        `${directives}\nSitemap: ${origin}/sitemap.xml\n`,
+      );
+      assert.throws(
+        () => validateDeployment(directory, origin),
+        /unrestricted crawler access/,
       );
     });
 });

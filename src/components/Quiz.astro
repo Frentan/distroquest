@@ -7,6 +7,7 @@ const { locale = defaultLocale } = Astro.props;
 const quizCopy = getMessages(locale).quiz;
 import ResultArtworkFilters from './ResultArtworkFilters.astro';
 import '../styles/quiz.css';
+import '../styles/result-details.css';
 ---
 
 <section class="quiz-shell container" aria-label={quizCopy.eyebrow}>

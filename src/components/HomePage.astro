@@ -41,7 +41,8 @@ const copy = getMessages(locale);
           class="button button-primary"
           href={publishedPagePath('quiz', locale)}
         >
-          {copy.home.begin} <span aria-hidden="true">→</span>
+          <span class="link-text">{copy.home.begin}</span>{' '}
+          <span aria-hidden="true">→</span>
         </a>
         <div class="hero-information">
           <div class="information-tile">
@@ -98,6 +99,12 @@ const copy = getMessages(locale);
         ))}
       </ol>
     </section>
+    <p class="directory-entry">
+      <a href={publishedPagePath('distros', locale)}>
+        <span class="link-text">{copy.discovery.directoryLink}</span>{' '}
+        <span aria-hidden="true">→</span>
+      </a>
+    </p>
     <aside class="privacy-note" aria-label={copy.home.privacyLabel}>
       <span class="privacy-icon" aria-hidden="true">
         ◇

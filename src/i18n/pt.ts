@@ -1,3 +1,4 @@
+import { discoveryPt } from './pt/discovery.ts';
 import type { Messages } from './catalog.ts';
 import { QUESTION_COUNT } from '../data/questions.ts';
 import { formattingLocale } from './locales.ts';
@@ -13,6 +14,7 @@ import { platformCopyPt } from './pt/platforms.ts';
 
 // Complete reviewed Portuguese dictionary; publication is validated separately.
 export const pt = {
+  discovery: discoveryPt,
   site: {
     name: 'DistroQuest',
     wordmark: ['Distro', 'Quest'],
@@ -78,7 +80,7 @@ export const pt = {
     privacyLabel: 'Privacidade',
     privacyTitle: 'Sua aventura é sua.',
     privacyDescription:
-      'Sem contas, cookies ou rastreamento. Apenas sua preferência de tema é salva no navegador.',
+      'Sem contas ou cookies. Suas respostas ficam nesta aba; apenas sua preferência de tema é salva. Usamos estatísticas de acesso que respeitam a privacidade.',
     privacyBadge: 'PEQUENO POR ESCOLHA',
   },
   scene: {

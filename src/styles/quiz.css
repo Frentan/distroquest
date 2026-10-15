@@ -230,45 +230,9 @@ progress::-moz-progress-bar {
   background: transparent;
   padding: 0.75rem 0;
 }
-.result-note,
 .showing-results .quiz-helper {
   color: var(--muted);
   font-size: 0.875rem;
-}
-.capability-stats {
-  display: grid;
-  gap: 0.5rem;
-}
-.capability-stats > .result-note {
-  font-style: italic;
-}
-.capability-grid {
-  display: grid;
-  grid-template-columns: repeat(2, minmax(0, 1fr));
-  gap: 0.6rem 1.25rem;
-}
-.capability-stat {
-  display: grid;
-  grid-template-columns: 1fr auto;
-  gap: 0.2rem 0.5rem;
-  font-size: 0.875rem;
-}
-.capability-value {
-  color: var(--muted);
-  font-variant-numeric: tabular-nums;
-}
-.capability-bar {
-  display: grid;
-  grid-template-columns: repeat(10, minmax(0, 1fr));
-  grid-column: 1 / -1;
-  gap: 3px;
-  height: 0.5rem;
-}
-.capability-bar span {
-  background: var(--line);
-}
-.capability-bar .filled {
-  background: var(--accent);
 }
 .alternative-result .capability-grid {
   grid-template-columns: 1fr;
@@ -397,50 +361,6 @@ progress::-moz-progress-bar {
   letter-spacing: -1px;
   overflow-wrap: anywhere;
 }
-.result-archetype {
-  color: var(--accent);
-  font-family: Georgia, serif;
-  font-size: 1.25rem;
-  font-style: italic;
-  line-height: 1.3;
-}
-.result-archetype-description {
-  max-width: 58ch;
-  color: var(--muted);
-  font-size: 1rem;
-  line-height: 1.6;
-}
-.result-summary {
-  max-width: 58ch;
-}
-.result-artwork-filters {
-  position: absolute;
-  pointer-events: none;
-}
-.result-artwork-fill,
-.result-artwork-edge {
-  flood-color: var(--accent);
-}
-.result-artwork-fill {
-  flood-opacity: 0.075;
-}
-.result-artwork-edge {
-  flood-opacity: 0.17;
-}
-@media (prefers-color-scheme: dark) {
-  :root:not([data-theme='light']) .result-artwork-fill {
-    flood-opacity: 0.065;
-  }
-  :root:not([data-theme='light']) .result-artwork-edge {
-    flood-opacity: 0.15;
-  }
-}
-:root[data-theme='dark'] .result-artwork-fill {
-  flood-opacity: 0.065;
-}
-:root[data-theme='dark'] .result-artwork-edge {
-  flood-opacity: 0.15;
-}
 .result-artwork {
   width: 256px;
   aspect-ratio: 1;
@@ -485,9 +405,6 @@ progress::-moz-progress-bar {
 }
 .capability-stats h2 {
   font-size: 1.125rem;
-}
-.capability-stats {
-  padding-block: 0.25rem;
 }
 .edition-details > summary {
   color: var(--accent);
@@ -553,9 +470,6 @@ progress::-moz-progress-bar {
   }
   .result-preparation {
     padding-inline: 0;
-  }
-  .capability-grid {
-    grid-template-columns: 1fr;
   }
 }
 @media (max-width: 360px) {
@@ -711,4 +625,17 @@ progress::-moz-progress-bar {
   .alternative-grid .capability-grid {
     grid-template-columns: 1fr;
   }
+}
+
+.result-profile-link {
+  display: inline-block;
+  color: var(--muted);
+  font-size: 0.875rem;
+  font-weight: 500;
+  margin-top: 8px;
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+.result-profile-link:is(:hover, :focus-visible) {
+  color: var(--text);
 }

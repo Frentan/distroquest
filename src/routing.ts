@@ -1,3 +1,4 @@
+import { distroIds, type DistroId } from './domain/distro.ts';
 import {
   defaultLocale,
   knownLocales,
@@ -9,8 +10,19 @@ import {
 export const pages = {
   home: { path: '/', indexable: true },
   quiz: { path: '/quiz/', indexable: false },
+  distros: { path: '/distros/', indexable: true },
 } as const;
-export type Page = keyof typeof pages;
+export type Page = keyof typeof pages | `distro:${DistroId}`;
+
+// Distro slugs currently equal their stable IDs; a regression test enforces this.
+export const allPages: readonly Page[] = [
+  ...(Object.keys(pages) as (keyof typeof pages)[]),
+  ...distroIds.map((id): Page => `distro:${id}`),
+];
+
+export function distroPage(id: DistroId): Page {
+  return `distro:${id}`;
+}
 
 // Path construction preserves known locale paths, including reserved IDs.
 // Neither planning nor path resolution establishes publication.
@@ -29,7 +41,13 @@ export function localePath(
 }
 
 export function pagePath(page: Page, locale: Locale = defaultLocale): string {
-  return localePath(pages[page].path, locale);
+  if (!allPages.includes(page)) throw new Error(`Unknown page: ${page}`);
+  return localePath(
+    page.startsWith('distro:')
+      ? `/distros/${page.slice('distro:'.length)}/`
+      : pages[page as keyof typeof pages].path,
+    locale,
+  );
 }
 
 export function resolvePage(
@@ -37,7 +55,7 @@ export function resolvePage(
 ): { page: Page; locale: Locale } | undefined {
   const pathname = path.split(/[?#]/, 1)[0];
   for (const locale of knownLocales) {
-    for (const page of Object.keys(pages) as Page[]) {
+    for (const page of allPages) {
       const expected = pagePath(page, locale);
       if (
         pathname === expected ||
@@ -69,12 +87,18 @@ export function pageMetadata(
   const canonical = site && path ? new URL(path, site).href : undefined;
   const alternates =
     canonical && locales.length > 1
-      ? locales.map((language) => ({
-          locale: language,
-          href: new URL(pagePath(page, language), site).href,
-        }))
+      ? [
+          ...locales.map((language) => ({
+            locale: language,
+            href: new URL(pagePath(page, language), site).href,
+          })),
+          {
+            locale: 'x-default',
+            href: new URL(pagePath(page, defaultLocale), site).href,
+          },
+        ]
       : [];
-  return { canonical, alternates, noindex: !pages[page].indexable };
+  return { canonical, alternates, noindex: page === 'quiz' };
 }
 
 export function sitemapUrls(
@@ -83,8 +107,8 @@ export function sitemapUrls(
 ): string[] {
   if (!site) return [];
   return locales.flatMap((locale) =>
-    (Object.keys(pages) as Page[])
-      .filter((page) => pages[page].indexable)
+    allPages
+      .filter((page) => page !== 'quiz')
       .map((page) => new URL(pagePath(page, locale), site).href),
   );
 }

@@ -1,0 +1,43 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import { distroIds } from '../domain/distro';
+import { getMessages, type PublishedLocale } from '../i18n';
+import { distroPage, publishedPagePath } from '../routing';
+import '../styles/distros.css';
+interface Props {
+  locale: PublishedLocale;
+}
+const { locale } = Astro.props;
+const { discovery: copy, distros } = getMessages(locale);
+---
+
+<BaseLayout
+  page="distros"
+  locale={locale}
+  title={copy.directoryTitle}
+  description={copy.directoryDescription}
+>
+  <div class="container distro-page">
+    <header class="distro-heading">
+      <h1>{copy.directoryHeading}</h1>
+      <p>{copy.directoryIntroduction}</p>
+    </header>
+    <ul class="distro-directory">
+      {distroIds.map((id) => (
+        <li>
+          <h2>
+            <a href={publishedPagePath(distroPage(id), locale)}>
+              {distros[id].name}
+            </a>
+          </h2>
+          <p>{distros[id].summary}</p>
+        </li>
+      ))}
+    </ul>
+    <p>
+      <a class="button button-primary" href={publishedPagePath('quiz', locale)}>
+        {copy.quizLink} <span aria-hidden="true">→</span>
+      </a>
+    </p>
+  </div>
+</BaseLayout>

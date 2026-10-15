@@ -1,3 +1,4 @@
+import { discoveryIt } from './it/discovery.ts';
 import type { Messages } from './catalog.ts';
 import { QUESTION_COUNT } from '../data/questions.ts';
 import { questionContentIt } from './it/questions.ts';
@@ -12,6 +13,7 @@ import { platformCopyIt } from './it/platforms.ts';
 
 // Complete reviewed Italian dictionary; publication is validated separately.
 export const it = {
+  discovery: discoveryIt,
   distros: distroContentIt,
   site: {
     name: 'DistroQuest',
@@ -81,7 +83,7 @@ export const it = {
     privacyLabel: 'Privacy',
     privacyTitle: 'La tua avventura è solo tua.',
     privacyDescription:
-      'Niente account, cookie o tracciamento. Nel browser viene salvata solo la tua preferenza per il tema.',
+      'Niente account o cookie. Le risposte restano in questa scheda; viene salvata solo la preferenza per il tema. Usiamo statistiche sulle visite nel rispetto della privacy.',
     privacyBadge: 'PICCOLO PER SCELTA',
   },
   scene: {

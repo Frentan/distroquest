@@ -1,3 +1,4 @@
+import { discoveryEs } from './es/discovery.ts';
 import type { Messages } from './index.ts';
 import { QUESTION_COUNT } from '../data/questions.ts';
 import { questionContentEs } from './es/questions.ts';
@@ -12,6 +13,7 @@ import { distroContentEs } from './es/distros.ts';
 
 // Complete reviewed Spanish dictionary; publication remains gated separately.
 export const es = {
+  discovery: discoveryEs,
   site: {
     name: 'DistroQuest',
     wordmark: ['Distro', 'Quest'],
@@ -78,7 +80,7 @@ export const es = {
     privacyLabel: 'Privacidad',
     privacyTitle: 'Tu aventura te pertenece.',
     privacyDescription:
-      'Sin cuentas, cookies ni seguimiento. Solo se guarda tu preferencia de tema en el navegador.',
+      'Sin cuentas ni cookies. Tus respuestas se quedan en esta pestaña; solo se guarda tu preferencia de tema. Usamos estadísticas de visitas respetuosas con la privacidad.',
     privacyBadge: 'PEQUEÑO A PROPÓSITO',
   },
   scene: {

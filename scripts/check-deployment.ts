@@ -1,10 +1,11 @@
 import { spawnSync } from 'node:child_process';
-import { readFileSync } from 'node:fs';
+import { readFileSync, readdirSync } from 'node:fs';
 import { isIP } from 'node:net';
 import { dirname, resolve } from 'node:path';
 import { fileURLToPath, pathToFileURL } from 'node:url';
 import { publishedLocales } from '../src/i18n/locales.ts';
-import { pagePath, sitemapUrls } from '../src/routing.ts';
+import { allPages, pagePath, sitemapUrls } from '../src/routing.ts';
+import { pageOutputIssues } from './lib/publication.ts';
 
 /** Validate an origin without relying on NODE_ENV or making DNS requests. */
 export function deploymentSite(value: string | undefined): URL {
@@ -111,41 +112,121 @@ export function validateDeployment(
       return '';
     }
   };
-  const expectedAlternates = publishedLocales.map(
-    (locale) => `${locale}=${new URL(pagePath('home', locale), site).href}`,
-  );
-  for (const locale of publishedLocales) {
-    const path = `${pagePath('home', locale).slice(1)}index.html`;
-    try {
-      const tags = metadataTags(read(path));
-      const links = tags.filter((tag) => tag.tag === 'link');
-      const rel = (tag: Record<string, string>, name: string) =>
-        tag.rel?.toLowerCase().split(/\s+/).includes(name);
-      const canonical = links
-        .filter((tag) => rel(tag, 'canonical'))
-        .map((tag) => tag.href);
-      if (
-        !sameValues(canonical, [new URL(pagePath('home', locale), site).href])
-      )
-        issues.push(`${path}: incorrect self-canonical`);
-      const alternates = links
-        .filter((tag) => rel(tag, 'alternate') && 'hreflang' in tag)
-        .map((tag) => `${tag.hreflang}=${tag.href}`);
-      if (!sameValues(alternates, expectedAlternates))
-        issues.push(`${path}: incorrect reciprocal hreflang`);
-      if (
-        tags.some(
-          (tag) =>
-            tag.tag === 'meta' &&
-            tag.name?.toLowerCase() === 'robots' &&
-            /\bnoindex\b/i.test(tag.content),
-        )
-      )
-        issues.push(`${path}: published homepage is noindex`);
-    } catch (error) {
-      issues.push(`${path}: ${(error as Error).message}`);
+  const htmlFiles: string[] = [];
+  function walk(directory: string, prefix = '') {
+    for (const entry of readdirSync(directory, { withFileTypes: true })) {
+      const path = `${prefix}${entry.name}`;
+      if (entry.isDirectory()) walk(resolve(directory, entry.name), `${path}/`);
+      else if (entry.name.endsWith('.html')) htmlFiles.push(path);
     }
   }
+  try {
+    walk(assets);
+  } catch {
+    issues.push('assets directory: missing or unreadable artifact');
+  }
+  issues.push(...pageOutputIssues(htmlFiles, publishedLocales));
+  const decode = (text: string) =>
+    text.replace(/&(?:amp|quot|apos|lt|gt|#\d+|#x[0-9a-f]+);/gi, (entity) => {
+      const names: Record<string, string> = {
+        '&amp;': '&',
+        '&quot;': '"',
+        '&apos;': "'",
+        '&lt;': '<',
+        '&gt;': '>',
+      };
+      return (
+        names[entity] ??
+        String.fromCodePoint(
+          entity[2].toLowerCase() === 'x'
+            ? parseInt(entity.slice(3, -1), 16)
+            : Number(entity.slice(2, -1)),
+        )
+      );
+    });
+  for (const page of allPages)
+    for (const locale of publishedLocales) {
+      const path = `${pagePath(page, locale).slice(1)}index.html`;
+      const url = new URL(pagePath(page, locale), site).href;
+      const expectedAlternates = [
+        ...publishedLocales.map(
+          (language) =>
+            `${language}=${new URL(pagePath(page, language), site).href}`,
+        ),
+        `x-default=${new URL(pagePath(page, 'en'), site).href}`,
+      ];
+      try {
+        const html = read(path);
+        const tags = metadataTags(html);
+        const links = tags.filter((tag) => tag.tag === 'link');
+        const rel = (tag: Record<string, string>, name: string) =>
+          tag.rel?.toLowerCase().split(/\s+/).includes(name);
+        const canonical = links
+          .filter((tag) => rel(tag, 'canonical'))
+          .map((tag) => tag.href);
+        if (!sameValues(canonical, [url]))
+          issues.push(`${path}: incorrect self-canonical`);
+        const alternates = links
+          .filter((tag) => rel(tag, 'alternate') && 'hreflang' in tag)
+          .map((tag) => `${tag.hreflang}=${tag.href}`);
+        if (!sameValues(alternates, expectedAlternates))
+          issues.push(`${path}: incorrect reciprocal hreflang`);
+        const robots = tags
+          .filter(
+            (tag) => tag.tag === 'meta' && tag.name?.toLowerCase() === 'robots',
+          )
+          .map((tag) => tag.content);
+        if (page === 'quiz') {
+          if (!sameValues(robots, ['noindex, follow']))
+            issues.push(`${path}: quiz must be noindex, follow`);
+        } else if (
+          robots.some((content) => /\b(?:noindex|none)\b/i.test(content))
+        ) {
+          issues.push(
+            `${path}: published ${page === 'home' ? 'homepage' : 'page'} is noindex`,
+          );
+        }
+        if (
+          !new RegExp(`<html\\s[^>]*\\blang=["']${locale}["']`, 'i').test(html)
+        )
+          issues.push(`${path}: incorrect document language`);
+        const meta = (key: string) =>
+          tags
+            .filter(
+              (tag) =>
+                tag.tag === 'meta' &&
+                (tag.name === key || tag.property === key),
+            )
+            .map((tag) => decode(tag.content ?? ''));
+        const titles = [
+          ...html.matchAll(/<title\b[^>]*>([^<]*)<\/title>/gi),
+        ].map((match) => decode(match[1]));
+        const descriptions = meta('description');
+        if (
+          titles.length !== 1 ||
+          !titles[0].trim() ||
+          !sameValues(meta('og:title'), titles)
+        )
+          issues.push(`${path}: inconsistent title metadata`);
+        if (
+          descriptions.length !== 1 ||
+          !descriptions[0].trim() ||
+          !sameValues(meta('og:description'), descriptions)
+        )
+          issues.push(`${path}: inconsistent description metadata`);
+        if (!sameValues(meta('og:url'), [url]))
+          issues.push(`${path}: incorrect Open Graph URL`);
+        if (
+          !sameValues(meta('og:image'), [
+            new URL('/social-card.png', site).href,
+          ]) ||
+          !sameValues(meta('twitter:card'), ['summary_large_image'])
+        )
+          issues.push(`${path}: incorrect social sharing metadata`);
+      } catch (error) {
+        issues.push(`${path}: ${(error as Error).message}`);
+      }
+    }
   // The existing sitemap contract is a namespace-qualified urlset of loc entries.
   const sitemap = read('sitemap.xml').trim();
   const body =
@@ -162,12 +243,22 @@ export function validateDeployment(
     body.replace(entry, '').trim() ||
     !sameValues(urls, sitemapUrls(site))
   )
-    issues.push('sitemap.xml: malformed or incorrect published homepage URLs');
+    issues.push('sitemap.xml: malformed or incorrect published indexable URLs');
+  const robots = read('robots.txt');
   const robotsSitemaps = [
-    ...read('robots.txt').matchAll(/^[ \t]*Sitemap:[ \t]*(\S+)[ \t]*\r?$/gim),
+    ...robots.matchAll(/^[ \t]*Sitemap:[ \t]*(\S+)[ \t]*\r?$/gim),
   ].map((match) => match[1]);
   if (!sameValues(robotsSitemaps, [new URL('/sitemap.xml', site).href]))
     issues.push('robots.txt: incorrect sitemap reference');
+  const agents = [
+    ...robots.matchAll(/^[ \t]*User-agent:[ \t]*(\S+)[ \t]*\r?$/gim),
+  ].map((match) => match[1]);
+  if (
+    !sameValues(agents, ['*']) ||
+    !/^[ \t]*Allow:[ \t]*\/[ \t]*\r?$/im.test(robots) ||
+    /^[ \t]*Disallow:[ \t]*\S+/im.test(robots)
+  )
+    issues.push('robots.txt: expected unrestricted crawler access');
   if (issues.length)
     throw new Error(
       `Deployment metadata validation failed:\n${issues.join('\n')}`,

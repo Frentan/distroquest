@@ -1,0 +1,13 @@
+---
+import DistroProfilePage from '../../components/DistroProfilePage.astro';
+import { distroProfiles } from '../../data/distros';
+export function getStaticPaths() {
+  return distroProfiles.map((distro) => ({
+    params: { slug: distro.slug },
+    props: { id: distro.id },
+  }));
+}
+const { id } = Astro.props;
+---
+
+<DistroProfilePage locale="en" id={id} />

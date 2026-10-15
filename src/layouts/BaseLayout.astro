@@ -1,8 +1,9 @@
 ---
+import { structuredData, serializeStructuredData } from '../seo';
 import ThemeToggle from '../components/ThemeToggle.astro';
 import BrandMark from '../components/BrandMark.astro';
 import JourneySymbols from '../components/JourneySymbols.astro';
-import { repositoryUrl } from '../config';
+import { repositoryUrl, supportUrl } from '../config';
 import '../styles/global.css';
 import {
   defaultLocale,
@@ -24,7 +25,8 @@ interface Props {
   description: string;
 }
 const { title, description, page, locale = defaultLocale } = Astro.props;
-const copy = getMessages(locale).site;
+const messages = getMessages(locale);
+const copy = messages.site;
 const route = resolvePage(Astro.url.pathname);
 if (
   route?.page !== page ||
@@ -38,6 +40,10 @@ const { canonical, alternates, noindex } = pageMetadata(
   locale,
   Astro.site,
 );
+const jsonLd = structuredData(page, locale, Astro.site, title, description);
+const socialImage = Astro.site
+  ? new URL('/social-card.png', Astro.site).href
+  : undefined;
 ---
 
 <!doctype html>
@@ -58,7 +64,25 @@ const { canonical, alternates, noindex } = pageMetadata(
     <meta property="og:title" content={title} />
     <meta property="og:description" content={description} />
     {canonical && <meta property="og:url" content={canonical} />}
-    <meta name="twitter:card" content="summary" />
+    {socialImage && (
+      <>
+        <meta property="og:image" content={socialImage} />
+        <meta property="og:image:width" content="1200" />
+        <meta property="og:image:height" content="630" />
+        <meta property="og:image:type" content="image/png" />
+        <meta property="og:image:alt" content={messages.discovery.shareAlt} />
+        <meta name="twitter:image" content={socialImage} />
+        <meta name="twitter:image:alt" content={messages.discovery.shareAlt} />
+      </>
+    )}
+    <meta name="twitter:card" content="summary_large_image" />
+    {jsonLd && (
+      <script
+        type="application/ld+json"
+        is:inline
+        set:html={serializeStructuredData(jsonLd)}
+      />
+    )}
     <link
       rel="icon"
       type="image/x-icon"
@@ -84,7 +108,7 @@ const { canonical, alternates, noindex } = pageMetadata(
     </script>
   </head>
   <body>
-    <JourneySymbols />
+    {page === 'home' || page === 'quiz' ? <JourneySymbols /> : null}
     <a class="skip-link" href="#main">
       {copy.skipLink}
     </a>
@@ -102,17 +126,29 @@ const { canonical, alternates, noindex } = pageMetadata(
         </span>
       </a>
       <nav aria-label={copy.navigationLabel}>
-        <a
-          class="about-link"
-          href={`${publishedPagePath('home', locale)}#how-it-works`}
-        >
-          {copy.howLink}
-        </a>
+        <div class="header-links">
+          <a
+            class="about-link"
+            href={`${publishedPagePath('home', locale)}#how-it-works`}
+          >
+            <span class="link-text">{copy.howLink}</span>{' '}
+            <span aria-hidden="true">🧭</span>
+          </a>
+          <a
+            class="project-support-link"
+            href={supportUrl}
+            target="_blank"
+            rel="noopener noreferrer external"
+          >
+            <span class="link-text">{messages.discovery.support}</span>{' '}
+            <span aria-hidden="true">☕</span>
+          </a>
+        </div>
         <div class="header-controls">
           {publishedLocales.length > 1 && (
             <details class="language-control">
               <summary
-                aria-label={`${copy.languageLabel}: ${copy.languageNames[locale]}`}
+                aria-label={`${locale.toUpperCase()}: ${copy.languageLabel}, ${copy.languageNames[locale]}`}
               >
                 {locale.toUpperCase()}
               </summary>
@@ -126,7 +162,9 @@ const { canonical, alternates, noindex } = pageMetadata(
                       data-language-link={language}
                       aria-current={language === locale ? 'page' : undefined}
                     >
-                      <span>{copy.languageNames[language]}</span>
+                      <span class="link-text">
+                        {copy.languageNames[language]}
+                      </span>
                     </a>
                   </li>
                 ))}
@@ -152,7 +190,7 @@ const { canonical, alternates, noindex } = pageMetadata(
         >
           <path d="M12 .5C5.65.5.5 5.65.5 12c0 5.08 3.29 9.39 7.86 10.91.58.11.79-.25.79-.56v-2.14c-3.2.69-3.87-1.36-3.87-1.36-.52-1.33-1.28-1.68-1.28-1.68-1.05-.72.08-.71.08-.71 1.16.08 1.77 1.19 1.77 1.19 1.03 1.76 2.7 1.25 3.36.96.1-.75.4-1.25.73-1.54-2.56-.29-5.25-1.28-5.25-5.69 0-1.26.45-2.28 1.18-3.08-.12-.29-.51-1.46.11-3.04 0 0 .96-.31 3.16 1.18a11 11 0 0 1 5.75 0c2.2-1.49 3.16-1.18 3.16-1.18.62 1.58.23 2.75.11 3.04.74.8 1.18 1.82 1.18 3.08 0 4.42-2.69 5.39-5.26 5.68.41.36.78 1.06.78 2.14v3.17c0 .31.21.68.79.56A11.51 11.51 0 0 0 23.5 12C23.5 5.65 18.35.5 12 .5z" />
         </svg>
-        {copy.github}
+        <span class="link-text">{copy.github}</span>
       </a>
       <p>
         {copy.footerCredit}{' '}
@@ -161,9 +199,8 @@ const { canonical, alternates, noindex } = pageMetadata(
         </span>
       </p>
     </footer>
-    <script>
-      const language =
-        document.querySelector<HTMLDetailsElement>('.language-control');
+    <script is:inline>
+      const language = document.querySelector('.language-control');
       language?.addEventListener('keydown', (event) => {
         if (event.key === 'Escape') {
           language.open = false;

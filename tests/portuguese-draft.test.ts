@@ -11,7 +11,10 @@ import {
   publicationIssues,
   type PublicationReview,
 } from '../scripts/lib/publication.ts';
-import { reviewReport } from '../scripts/lib/translation-review.ts';
+import {
+  contentUnits,
+  reviewReport,
+} from '../scripts/lib/translation-review.ts';
 import { distroIds } from '../src/domain/distro.ts';
 import { distroProfiles, getDistros } from '../src/data/index.ts';
 import { validateDataset } from '../src/data/validate.ts';
@@ -47,7 +50,10 @@ test('Portuguese runtime composition matches reviewed content and cannot bypass 
     /No complete published dictionary/,
   );
   const report = reviewReport(en, draftPt, reviews.units);
-  assert.equal(Object.keys(reviews.units).length, 765);
+  assert.equal(
+    Object.keys(reviews.units).length,
+    Object.keys(contentUnits(en)).length,
+  );
   assert.equal(report.unreviewed.length, 0);
   assert.equal(report.missing.length, 0);
   for (const reason of [

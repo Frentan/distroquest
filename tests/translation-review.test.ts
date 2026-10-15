@@ -14,6 +14,7 @@ import {
   pageOutputIssues,
 } from '../scripts/lib/publication.ts';
 import { en } from '../src/i18n/en.ts';
+import { allPages, pagePath } from '../src/routing.ts';
 import { draftEs } from '../src/i18n/es/draft.ts';
 import { quizCopyEs } from '../src/i18n/es/quiz.ts';
 import { validatePublication } from '../scripts/check-i18n.ts';
@@ -255,20 +256,25 @@ test('Spanish draft covers the complete dictionary, option IDs, Mac follow-ups a
 });
 
 test('output gate rejects unfinished routes and missing published equivalents', () => {
-  const english = ['index.html', 'quiz/index.html'];
+  const english = allPages.map(
+    (page) => `${pagePath(page, 'en').slice(1)}index.html`,
+  );
+  const spanish = allPages.map(
+    (page) => `${pagePath(page, 'es').slice(1)}index.html`,
+  );
   assert.deepEqual(pageOutputIssues(english, ['en']), []);
   assert.deepEqual(pageOutputIssues([...english, 'es/index.html'], ['en']), [
     'Unexpected page: es/index.html',
   ]);
   assert.deepEqual(
-    pageOutputIssues([...english, 'es/index.html'], ['en', 'es']),
+    pageOutputIssues(
+      [...english, ...spanish.filter((p) => p !== 'es/quiz/index.html')],
+      ['en', 'es'],
+    ),
     ['Missing published page: es/quiz/index.html'],
   );
   assert.deepEqual(
-    pageOutputIssues(
-      [...english, 'es/index.html', 'es/quiz/index.html'],
-      ['en', 'es'],
-    ),
+    pageOutputIssues([...english, ...spanish], ['en', 'es']),
     [],
   );
 });

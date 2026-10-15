@@ -11,7 +11,10 @@ import {
   publicationIssues,
   type PublicationReview,
 } from '../scripts/lib/publication.ts';
-import { reviewReport } from '../scripts/lib/translation-review.ts';
+import {
+  contentUnits,
+  reviewReport,
+} from '../scripts/lib/translation-review.ts';
 import { distroIds } from '../src/domain/distro.ts';
 import { getDistros, distroProfiles } from '../src/data/index.ts';
 import { validateDataset } from '../src/data/validate.ts';
@@ -30,7 +33,10 @@ test('Italian runtime uses reviewed content and still requires separate publicat
   assert.deepEqual(dictionaryIssues(it), []);
   assert.equal(reviews.approved, true);
   assert.equal(reviews.approvedBy, 'Frentan');
-  assert.equal(Object.keys(reviews.units).length, 765);
+  assert.equal(
+    Object.keys(reviews.units).length,
+    Object.keys(contentUnits(en)).length,
+  );
   for (const paths of Object.values(reviewReport(en, it, reviews.units)))
     assert.deepEqual(paths, []);
   assert.deepEqual(publicationIssues('it', en, it, reviews), []);

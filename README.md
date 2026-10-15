@@ -8,8 +8,12 @@ A playful Linux distribution finder built with Astro, TypeScript, and plain CSS.
 Answer 16 questions to compare 29 distros, with explanations, tradeoffs, and
 edition-aware alternatives. Mac users get one extra hardware question.
 
-No signup, cookies, or tracking. Answers stay in memory and disappear on refresh;
-only your theme preference is saved. Available in English, Spanish, Portuguese, and Italian.
+No signup or cookies. Answers stay in memory and disappear on refresh;
+only your theme preference is saved. Cloudflare provides privacy-conscious traffic analytics.
+Available in English, Spanish, Portuguese, and Italian.
+
+Browse all 29 supported distributions at [/distros/](https://distroquest.com/distros/),
+with strengths, trade-offs and assessed-edition notes in all four languages.
 
 ## Run locally
 
@@ -31,6 +35,9 @@ npm test
 npm run format:check
 npm run build
 ```
+
+After building, `npm run test:browser` runs optional local Chromium checks using an
+isolated temporary profile. Set `CHROME_PATH` if Chromium is installed elsewhere.
 
 Local builds can omit `SITE_URL`. Cloudflare builds write the site to
 `dist/client/` and generate Wrangler's deployment configuration.

@@ -1,3 +1,4 @@
+import { distroPage, publishedPagePath } from '../routing.ts';
 import { questions } from '../data/questions.ts';
 import { getDistros } from '../data/index.ts';
 import {
@@ -275,6 +276,13 @@ export function mountQuiz(
         'result-summary',
       ),
     );
+    const profileLink = element(
+      'a',
+      messages.discovery.profileLink(distro.name),
+      'result-profile-link',
+    );
+    profileLink.href = publishedPagePath(distroPage(distro.id), locale)!;
+    identity.append(profileLink);
     if (showFit)
       identity.append(element('p', copy.match(percentMatch(row)), 'fit-label'));
     if (distro.editionNote)
