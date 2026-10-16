@@ -297,6 +297,8 @@ export function mountQuiz(
       sprite.width = 512;
       sprite.height = 512;
       sprite.decoding = 'async';
+      sprite.loading = 'eager';
+      sprite.fetchPriority = 'high';
       sprite.addEventListener('error', () => artwork.remove(), { once: true });
       sprite.src = `/characters/${distro.id}.png`;
       artwork.append(sprite);
