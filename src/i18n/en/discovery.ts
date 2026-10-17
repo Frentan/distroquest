@@ -18,6 +18,14 @@ export const discoveryEn = {
   quizIntroduction:
     'Answer a few questions about your habits, hardware and appetite for tinkering.',
   quizLink: 'Begin Quest',
+  characterAlt: message(
+    'Pixel-art fantasy character representing {name}: {archetype}.',
+    [
+      { name: 'name', kind: 'text' },
+      { name: 'archetype', kind: 'text' },
+    ],
+    'en',
+  ),
   profileTitle: message(
     '{name}: strengths and trade-offs | DistroQuest',
     [{ name: 'name', kind: 'text' }],

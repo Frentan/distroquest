@@ -18,6 +18,14 @@ export const discoveryEs = {
   quizIntroduction:
     'Responde algunas preguntas sobre tus hábitos, tu hardware y tus ganas de experimentar.',
   quizLink: 'Empieza tu aventura',
+  characterAlt: message(
+    'Personaje fantástico en pixel art que representa a {name}: {archetype}.',
+    [
+      { name: 'name', kind: 'text' },
+      { name: 'archetype', kind: 'text' },
+    ],
+    'es',
+  ),
   profileTitle: message(
     '{name}: puntos fuertes y limitaciones | DistroQuest',
     [{ name: 'name', kind: 'text' }],

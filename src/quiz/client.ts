@@ -69,6 +69,14 @@ export function mountQuiz(
     messages.explanations,
   );
   let state = startQuiz();
+  // Retain a choice/focus made while the static question awaited JavaScript.
+  const initialChoice = root.querySelector<HTMLInputElement>('input:checked');
+  if (initialChoice) state = selectAnswer(state, initialChoice.value);
+  const initialFocus =
+    root.querySelector<HTMLInputElement>('input:focus')?.value;
+  const initialRestartFocus =
+    root.querySelector('.question-actions .button-tertiary') ===
+    document.activeElement;
   let pendingLanguage: HTMLAnchorElement | null = null;
   const submitted = new Set<string>();
   const distros = getDistros(messages.distros);
@@ -851,7 +859,10 @@ export function mountQuiz(
         ?.focus({ preventScroll: true });
       root.scrollIntoView({ block: 'start', behavior: 'instant' });
     }
-    if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+    if (
+      focus &&
+      !window.matchMedia('(prefers-reduced-motion: reduce)').matches
+    ) {
       const target = state.completed
         ? panel.querySelector('.result-intro')
         : panel.querySelector('.quiz-title');
@@ -865,4 +876,12 @@ export function mountQuiz(
     }
   }
   render(false);
+  if (initialRestartFocus)
+    panel
+      .querySelector<HTMLButtonElement>('.question-actions .button-tertiary')
+      ?.focus({ preventScroll: true });
+  if (initialFocus)
+    Array.from(panel.querySelectorAll('input'))
+      .find((input) => input.value === initialFocus)
+      ?.focus({ preventScroll: true });
 }

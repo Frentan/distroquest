@@ -52,7 +52,7 @@ const profile = distroProfiles.find((distro) => distro.id === id)!;
         src={`/characters/${id}.png`}
         width="512"
         height="512"
-        alt=""
+        alt={copy.characterAlt(distro.name, distro.archetype.name)}
         decoding="async"
         loading="eager"
         fetchpriority="high"

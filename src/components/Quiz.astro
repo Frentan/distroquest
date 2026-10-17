@@ -4,7 +4,14 @@ interface Props {
   locale?: PublishedLocale;
 }
 const { locale = defaultLocale } = Astro.props;
-const quizCopy = getMessages(locale).quiz;
+const messages = getMessages(locale);
+const quizCopy = messages.quiz;
+const question = questions[0];
+const content = messages.questions[question.id];
+const position = getQuizProgress(startQuiz());
+import { questions } from '../data/questions';
+import { startQuiz, getQuizProgress } from '../quiz/state';
+import InitialQuizJourney from './InitialQuizJourney.astro';
 import ResultArtworkFilters from './ResultArtworkFilters.astro';
 import '../styles/quiz.css';
 import '../styles/result-details.css';
@@ -13,7 +20,68 @@ import '../styles/result-details.css';
 <section class="quiz-shell container" aria-label={quizCopy.eyebrow}>
   <ResultArtworkFilters />
   <div id="quiz-root" data-locale={locale}>
-    <p>{quizCopy.loading}</p>
+    <!-- Match the first client render so delayed JavaScript cannot move the footer. -->
+    <div class="quiz-panel">
+      <InitialQuizJourney total={position.total} />
+      <div class="quest-progress">
+        <div class="progress-info">
+          <p class="eyebrow">
+            {quizCopy.progress(position.current, position.total)}
+          </p>
+          <p class="progress-count">{quizCopy.submitted(0, position.total)}</p>
+          <progress
+            max={position.total}
+            value="0"
+            aria-label={quizCopy.progressLabel}
+            aria-valuetext={quizCopy.submitted(0, position.total)}
+          />
+        </div>
+      </div>
+      <p class="result-note" hidden>
+        {quizCopy.macStep}
+      </p>
+      <h1 id="quest-heading" class="quiz-title" tabindex="-1">
+        {content.prompt}
+      </h1>
+      {content.helper && <p class="quiz-helper">{content.helper}</p>}
+      <p id="question-hint" class="quiz-helper quiz-hint">
+        {quizCopy.singleHint}
+      </p>
+      <div
+        class="quiz-options"
+        role="group"
+        aria-labelledby="quest-heading"
+        aria-describedby="question-hint"
+      >
+        {question.options.map((option) => {
+          const optionCopy = content.options[option.id];
+          return (
+            <label class="answer-choice" data-option={option.id}>
+              <input type="radio" name={question.id} value={option.id} />
+              <span class="answer-emoji" aria-hidden="true">
+                {option.emoji}
+              </span>
+              <span class="answer-content">
+                <span class="answer-label">{optionCopy.label}</span>
+                {optionCopy.description && (
+                  <span class="answer-description">
+                    {optionCopy.description}
+                  </span>
+                )}
+              </span>
+            </label>
+          );
+        })}
+      </div>
+      <div class="quiz-actions question-actions">
+        <button type="button" class="button button-primary" disabled>
+          {quizCopy.next}
+        </button>
+        <button type="button" class="button button-tertiary">
+          {quizCopy.restart}
+        </button>
+      </div>
+    </div>
   </div>
   <noscript>
     <p>{quizCopy.noScript}</p>

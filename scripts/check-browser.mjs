@@ -8,6 +8,7 @@ import { join, extname, resolve } from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { recommendationPersonas } from './recommendation-personas.ts';
 import { questions } from '../src/data/questions.ts';
+import { distroIds } from '../src/domain/distro.ts';
 import { publishedLocales, getMessages } from '../src/i18n/index.ts';
 import { startQuiz, selectAnswer, nextQuestion } from '../src/quiz/state.ts';
 import { platformShortlist } from '../src/quiz/platform-presentation.ts';
@@ -23,6 +24,7 @@ const mime = {
   '.xml': 'application/xml',
   '.txt': 'text/plain',
 };
+let quizScriptDelay = 0;
 const server = createServer(async (req, res) => {
   try {
     let pathname = new URL(req.url, 'http://localhost').pathname;
@@ -33,6 +35,8 @@ const server = createServer(async (req, res) => {
     res.writeHead(200, {
       'Content-Type': mime[extname(path)] ?? 'application/octet-stream',
     });
+    if (pathname.endsWith('.js') && quizScriptDelay)
+      await new Promise((resolve) => setTimeout(resolve, quizScriptDelay));
     res.end(data);
   } catch {
     res.writeHead(404);
@@ -55,7 +59,14 @@ const browser = spawn(
 );
 let ws;
 const errors = [],
-  summary = { artifacts, layouts: 0, quizFlows: 0, lighthouse: [], errors };
+  summary = {
+    artifacts,
+    layouts: 0,
+    quizFlows: 0,
+    lighthouse: [],
+    quizLayout: [],
+    errors,
+  };
 try {
   const endpoint = await new Promise((resolve, reject) => {
     let output = '';
@@ -182,6 +193,156 @@ try {
     assert.deepEqual(result.small, [], 'undersized text');
     summary.layouts++;
   };
+  // Parse emitted HTML, including entities, to verify all 116 localized images.
+  for (const locale of publishedLocales)
+    for (const id of distroIds) {
+      const prefix = locale === 'en' ? '' : `/${locale}`;
+      const html = await readFile(
+        join(root, `${prefix}/distros/${id}/index.html`),
+        'utf8',
+      );
+      const alt = await evaluate(
+        `new DOMParser().parseFromString(${JSON.stringify(html)},'text/html').querySelector('img.distro-character')?.alt`,
+      );
+      const messages = getMessages(locale),
+        distro = messages.distros[id];
+      assert.equal(
+        alt,
+        messages.discovery.characterAlt(distro.name, distro.archetype.name),
+      );
+    }
+  // Force a painted static question before client initialization. This catches
+  // footer/shell CLS and drift between the Astro and client first-question markup.
+  await cdp('Network.enable');
+  await cdp('Network.setCacheDisabled', { cacheDisabled: true });
+  const observer = await cdp('Page.addScriptToEvaluateOnNewDocument', {
+    source: `window.quizShifts=[];new PerformanceObserver(list=>{for(const entry of list.getEntries())if(!entry.hadRecentInput)window.quizShifts.push(entry.value);}).observe({type:'layout-shift',buffered:true});`,
+  });
+  quizScriptDelay = 800;
+  for (const locale of publishedLocales)
+    for (const width of [390, 1440]) {
+      const path = `${locale === 'en' ? '' : '/' + locale}/quiz/`;
+      await cdp('Emulation.setDeviceMetricsOverride', {
+        width,
+        height: width === 390 ? 844 : 900,
+        deviceScaleFactor: 1,
+        mobile: width === 390,
+      });
+      await cdp('Page.navigate', { url: origin + path });
+      await waitFor("!!document.querySelector('#quiz-root input')");
+      const geometry = () =>
+        evaluate(`({
+        h1:document.querySelectorAll('h1').length,
+        title:document.querySelector('h1').textContent,
+        height:document.querySelector('#quiz-root').getBoundingClientRect().height,
+        footer:document.querySelector('footer').getBoundingClientRect().top,
+        robots:document.querySelector('meta[name="robots"]').content
+      })`);
+      const before = await geometry();
+      assert.equal(before.h1, 1);
+      assert.equal(
+        before.title,
+        getMessages(locale).questions.experience.prompt,
+      );
+      assert.equal(before.robots, 'noindex, follow');
+      await waitFor(
+        "!!document.querySelector('#quiz-root dialog')&&document.readyState==='complete'",
+      );
+      await delay(100);
+      const after = await geometry();
+      assert.deepEqual(
+        after,
+        before,
+        `Initial quiz layout changed: ${locale}/${width}`,
+      );
+      const cls = await evaluate(
+        'window.quizShifts.reduce((sum,value)=>sum+value,0)',
+      );
+      assert.ok(cls < 0.01, `Quiz CLS ${locale}/${width}: ${cls}`);
+      summary.quizLayout.push({ locale, width, cls, ...after });
+    }
+  // A keyboard choice made before initialization must survive replacement.
+  await cdp('Page.navigate', { url: origin + '/quiz/' });
+  await waitFor("!!document.querySelector('#quiz-root input')");
+  await evaluate("document.querySelector('#quiz-root input').focus()");
+  await cdp('Input.dispatchKeyEvent', {
+    type: 'keyDown',
+    key: ' ',
+    code: 'Space',
+    windowsVirtualKeyCode: 32,
+  });
+  await cdp('Input.dispatchKeyEvent', {
+    type: 'keyUp',
+    key: ' ',
+    code: 'Space',
+    windowsVirtualKeyCode: 32,
+  });
+  await waitFor(
+    "!!document.querySelector('#quiz-root dialog')&&document.readyState==='complete'",
+  );
+  assert.equal(
+    await evaluate("document.querySelector('#quiz-root input:checked')?.value"),
+    'new',
+  );
+  assert.equal(await evaluate('document.activeElement?.value'), 'new');
+  assert.equal(
+    await evaluate(
+      "document.querySelector('.question-actions .button-primary').disabled",
+    ),
+    false,
+  );
+  // Tab reaches Restart while Continue is disabled, even before initialization.
+  for (const locale of publishedLocales) {
+    const prefix = locale === 'en' ? '' : `/${locale}`;
+    await cdp('Page.navigate', { url: origin + `${prefix}/quiz/` });
+    await waitFor(
+      "!!document.querySelector('#quiz-root input')&&!document.querySelector('#quiz-root dialog')",
+    );
+    await evaluate("document.querySelector('#quiz-root input').focus()");
+    await cdp('Input.dispatchKeyEvent', {
+      type: 'keyDown',
+      key: 'Tab',
+      code: 'Tab',
+      windowsVirtualKeyCode: 9,
+    });
+    await cdp('Input.dispatchKeyEvent', {
+      type: 'keyUp',
+      key: 'Tab',
+      code: 'Tab',
+      windowsVirtualKeyCode: 9,
+    });
+    const restartFocused =
+      "document.activeElement===document.querySelector('.question-actions .button-tertiary')";
+    assert.equal(await evaluate(restartFocused), true);
+    await waitFor(
+      "!!document.querySelector('#quiz-root dialog')&&document.readyState==='complete'",
+    );
+    assert.equal(
+      await evaluate(restartFocused),
+      true,
+      `Restart focus lost: ${locale}`,
+    );
+    await cdp('Input.dispatchKeyEvent', {
+      type: 'keyDown',
+      key: ' ',
+      code: 'Space',
+      windowsVirtualKeyCode: 32,
+    });
+    await cdp('Input.dispatchKeyEvent', {
+      type: 'keyUp',
+      key: ' ',
+      code: 'Space',
+      windowsVirtualKeyCode: 32,
+    });
+    assert.equal(
+      await evaluate("document.querySelector('#quiz-root dialog').open"),
+      true,
+    );
+  }
+  quizScriptDelay = 0;
+  await cdp('Page.removeScriptToEvaluateOnNewDocument', {
+    identifier: observer.identifier,
+  });
   for (const locale of publishedLocales)
     for (const width of [320, 390, 760, 1440])
       for (const theme of ['light', 'dark']) {
@@ -360,8 +521,9 @@ try {
       const shortlist = platformShortlist(expected.platformResult);
       await navigate(`${prefix}/quiz/`, true);
       const cards = await evaluate(
-        `(()=>{const answers=${JSON.stringify(answers)};let steps=0;while(!document.querySelector('.primary-result')&&steps++<20){const inputs=[...document.querySelectorAll('#quiz-root input')],name=inputs[0]?.name;for(const value of name==='apple-generation'?['m1-m2']:answers[name]){const input=inputs.find(i=>i.value===value);if(!input)throw Error('Missing option '+name+'/'+value);input.click();}document.querySelector('.question-actions .button-primary').click();}return[...document.querySelectorAll('[data-distro]')].map(card=>({id:card.dataset.distro,href:card.querySelector('.result-profile-link')?.getAttribute('href'),text:card.querySelector('.result-profile-link')?.textContent}));})()`,
+        `(()=>{const answers=${JSON.stringify(answers)};let steps=0;while(!document.querySelector('.primary-result')&&steps++<20){if(document.querySelectorAll('h1').length!==1)throw Error('Quiz must have one H1');const inputs=[...document.querySelectorAll('#quiz-root input')],name=inputs[0]?.name;for(const value of name==='apple-generation'?['m1-m2']:answers[name]){const input=inputs.find(i=>i.value===value);if(!input)throw Error('Missing option '+name+'/'+value);input.click();}document.querySelector('.question-actions .button-primary').click();}return[...document.querySelectorAll('[data-distro]')].map(card=>({id:card.dataset.distro,href:card.querySelector('.result-profile-link')?.getAttribute('href'),text:card.querySelector('.result-profile-link')?.textContent}));})()`,
       );
+      assert.equal(await evaluate("document.querySelectorAll('h1').length"), 1);
       assert.equal(cards[0].id, shortlist.primary.recommendation.distroId);
       const profileLinkStyle = await evaluate(
         `(()=>{const link=document.querySelector('.result-profile-link'),retake=document.querySelector('.quiz-actions .button-tertiary');return{color:getComputedStyle(link).color,retake:getComputedStyle(retake).color,underline:getComputedStyle(link).textDecorationLine};})()`,

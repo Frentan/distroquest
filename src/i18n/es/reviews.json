@@ -4705,6 +4705,12 @@
       "translationHash": "8c2959daa23a17527f60e7a5a5e5d64753700d124676f313bce0683ba9c8c4cc",
       "status": "reviewed",
       "reviewedBy": "Codex (Milestone 8 editorial review)"
+    },
+    "/discovery/characterAlt": {
+      "sourceHash": "9c3c9c9240b3da08a0b8f79f0ec44ad023b701bcf7911ba5ddae6adbf912ee69",
+      "translationHash": "ed1c891ff6d0c37e81df6d4c185f06f408cf06588dd80f77de9a46253b680ba6",
+      "status": "reviewed",
+      "reviewedBy": "Frentan"
     }
   }
 }
