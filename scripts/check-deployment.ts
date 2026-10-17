@@ -1,3 +1,4 @@
+import { decodeHtmlEntities as decode } from './lib/html-entities.ts';
 import { spawnSync } from 'node:child_process';
 import { readFileSync, readdirSync } from 'node:fs';
 import { isIP } from 'node:net';
@@ -126,24 +127,6 @@ export function validateDeployment(
     issues.push('assets directory: missing or unreadable artifact');
   }
   issues.push(...pageOutputIssues(htmlFiles, publishedLocales));
-  const decode = (text: string) =>
-    text.replace(/&(?:amp|quot|apos|lt|gt|#\d+|#x[0-9a-f]+);/gi, (entity) => {
-      const names: Record<string, string> = {
-        '&amp;': '&',
-        '&quot;': '"',
-        '&apos;': "'",
-        '&lt;': '<',
-        '&gt;': '>',
-      };
-      return (
-        names[entity] ??
-        String.fromCodePoint(
-          entity[2].toLowerCase() === 'x'
-            ? parseInt(entity.slice(3, -1), 16)
-            : Number(entity.slice(2, -1)),
-        )
-      );
-    });
   for (const page of allPages)
     for (const locale of publishedLocales) {
       const path = `${pagePath(page, locale).slice(1)}index.html`;

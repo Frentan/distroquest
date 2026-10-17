@@ -272,36 +272,6 @@
       "status": "reviewed",
       "reviewedBy": "Frentan"
     },
-    "/scene/heading": {
-      "sourceHash": "28439ea22ed3358e9bb11062c8d43a83cf9c1d3878cd14baf526c7a29eca18b6",
-      "translationHash": "eeb7489682719fcfd73fa7607a7700529efd02984e5f7361296a37ca3ecf28af",
-      "status": "reviewed",
-      "reviewedBy": "Frentan"
-    },
-    "/scene/title": {
-      "sourceHash": "5ca1371f75fbc517c2651d738014dcc2e5a27bdd7e9de3bbcc39e720912b35e2",
-      "translationHash": "30489188cf094e09502caf478ee14a224733f66a9e1c15f6fcceb534070c72de",
-      "status": "reviewed",
-      "reviewedBy": "Frentan"
-    },
-    "/scene/description": {
-      "sourceHash": "637aae3f3b9abe84ada8adbb5634b89bf896e143e7d1c944f12ea01a92aedbe1",
-      "translationHash": "f7967e63ecc61463e9a175033ee4c1fc15010e603f50b21417b0b05aa937720f",
-      "status": "reviewed",
-      "reviewedBy": "Frentan"
-    },
-    "/scene/caption": {
-      "sourceHash": "b80dc002e2868812696903cff4419d0c027072e250eaf8127f596b76513f44b6",
-      "translationHash": "52083cc7d79cb1083ef58bd00337d7b6f3765bccd0592ec58f01ede2897c4c27",
-      "status": "reviewed",
-      "reviewedBy": "Frentan"
-    },
-    "/scene/captionDetail": {
-      "sourceHash": "6bdd5d7c7aff550278f309584236d6265d4497b2e91a852248a5475d855497bf",
-      "translationHash": "a7345e6d35ee53bb9be1eadd24ceba9273738929ae4f1ba4317eb76a41614637",
-      "status": "reviewed",
-      "reviewedBy": "Frentan"
-    },
     "/questions/experience/prompt": {
       "sourceHash": "60593b33d5281656732f9c43fed11808dfb0b63b7d2a730c270c0283b516a91b",
       "translationHash": "884cee3c1c4524a6e91badd8586ea465470398b8c0037299c7be9d19c2a960d9",
@@ -1199,12 +1169,6 @@
     "/quiz/noScript": {
       "sourceHash": "8c01f204cea8e2145616fe1d4cb1f2c8aefbc9fdb6eea94a4820e2a63ed16fd1",
       "translationHash": "bdd4de457a2def529afa578db70ba2c9f6e72bcd378c540b97a2bac5d8312d81",
-      "status": "reviewed",
-      "reviewedBy": "Frentan"
-    },
-    "/quiz/loading": {
-      "sourceHash": "56dfa90f9b43c8f9317b0ece90427dc78d4d7f5bee8d76783996babc88fca7b8",
-      "translationHash": "f240641e2aa20342aa6cbeeb3034f6d4d360ef8cd8307d3d345f53ca8867c815",
       "status": "reviewed",
       "reviewedBy": "Frentan"
     },

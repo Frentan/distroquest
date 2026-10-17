@@ -8,9 +8,9 @@ import {
 
 // This describes the existing pages, not a replacement for Astro's file routing.
 export const pages = {
-  home: { path: '/', indexable: true },
-  quiz: { path: '/quiz/', indexable: false },
-  distros: { path: '/distros/', indexable: true },
+  home: { path: '/' },
+  quiz: { path: '/quiz/' },
+  distros: { path: '/distros/' },
 } as const;
 export type Page = keyof typeof pages | `distro:${DistroId}`;
 

@@ -84,7 +84,6 @@ export const quizCopyPt = {
   revise: 'Alterar respostas',
   noScript:
     'Esta aventura precisa de JavaScript para manter suas respostas e calcular o resultado no navegador. Ative-o e recarregue a página para começar.',
-  loading: 'Preparando sua aventura…',
   error:
     'Não foi possível descobrir seu caminho. Suas respostas continuam aqui. Tente novamente ou volte para revisá-las.',
   path: 'SEU CAMINHO',

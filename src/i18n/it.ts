@@ -86,14 +86,6 @@ export const it = {
       'Niente account o cookie. Le risposte restano in questa scheda; viene salvata solo la preferenza per il tema. Usiamo statistiche sulle visite nel rispetto della privacy.',
     privacyBadge: 'PICCOLO PER SCELTA',
   },
-  scene: {
-    heading: 'LA TUA PROSSIMA AVVENTURA',
-    title: 'Ti aspetta un nuovo percorso',
-    description:
-      'Un paesaggio in pixel art con montagne coperte di boschi, un sentiero dorato e tortuoso e un piccolo computer alla fine del percorso.',
-    caption: 'Trova il tuo punto di partenza.',
-    captionDetail: 'Ogni grande avventura inizia con l’equipaggiamento giusto.',
-  },
   questions: questionContentIt,
   platformQuestions: {
     'apple-generation': {

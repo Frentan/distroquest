@@ -1,14 +1,9 @@
 ---
 import QuestLandscape from './QuestLandscape.astro';
-import { defaultLocale, type PublishedLocale } from '../i18n';
-interface Props {
-  locale?: PublishedLocale;
-}
-const { locale = defaultLocale } = Astro.props;
 ---
 
 <div class="quest-scene" aria-hidden="true">
-  <QuestLandscape locale={locale} />
+  <QuestLandscape />
   <svg
     class="home-journey-mobile"
     viewBox="0 0 288 56"

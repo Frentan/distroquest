@@ -83,14 +83,6 @@ export const pt = {
       'Sem contas ou cookies. Suas respostas ficam nesta aba; apenas sua preferência de tema é salva. Usamos estatísticas de acesso que respeitam a privacidade.',
     privacyBadge: 'PEQUENO POR ESCOLHA',
   },
-  scene: {
-    heading: 'SUA PRÓXIMA AVENTURA',
-    title: 'Um novo caminho espera por você',
-    description:
-      'Uma paisagem em pixel art com montanhas cobertas de árvores, um caminho dourado e sinuoso e um pequeno computador no fim da trilha.',
-    caption: 'Encontre seu ponto de partida.',
-    captionDetail: 'Toda boa aventura começa com o equipamento certo.',
-  },
   questions: questionContentPt,
   platformQuestions: {
     'apple-generation': {

@@ -85,7 +85,6 @@ export const quizCopyIt = {
   revise: 'Modifica le risposte',
   noScript:
     'Questa avventura richiede JavaScript per conservare le risposte e calcolare il risultato nel browser. Attivalo e ricarica la pagina per iniziare.',
-  loading: 'Preparazione dell’avventura…',
   error:
     'Non è stato possibile rivelare il tuo percorso. Le risposte sono ancora qui. Riprova oppure torna indietro per rivederle.',
   path: 'IL TUO PERCORSO',

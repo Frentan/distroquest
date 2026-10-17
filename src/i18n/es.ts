@@ -83,14 +83,6 @@ export const es = {
       'Sin cuentas ni cookies. Tus respuestas se quedan en esta pestaña; solo se guarda tu preferencia de tema. Usamos estadísticas de visitas respetuosas con la privacidad.',
     privacyBadge: 'PEQUEÑO A PROPÓSITO',
   },
-  scene: {
-    heading: 'TU PRÓXIMA AVENTURA',
-    title: 'Te espera un nuevo camino',
-    description:
-      'Un paisaje de píxeles con montañas arboladas, un sendero dorado y sinuoso, y un pequeño equipo al final del recorrido.',
-    caption: 'Encuentra tu punto de partida.',
-    captionDetail: 'Toda buena aventura empieza con el equipo adecuado.',
-  },
   questions: questionContentEs,
   quiz: quizCopyEs,
   capabilityLabels: capabilityLabelsEs,

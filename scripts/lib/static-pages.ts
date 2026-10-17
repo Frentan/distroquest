@@ -1,4 +1,9 @@
-import { getMessages, type PublishedLocale } from '../../src/i18n/index.ts';
+import {
+  getMessages,
+  publishedLocales,
+  type PublishedLocale,
+} from '../../src/i18n/index.ts';
+import { decodeHtmlEntities } from './html-entities.ts';
 import {
   capabilityKeys,
   distroIds,
@@ -16,26 +21,11 @@ import { structuredData } from '../../src/seo.ts';
 import { supportUrl } from '../../src/config.ts';
 
 function textContent(html: string): string {
-  return html
-    .replace(/<!--[\s\S]*?-->|<(script|style)\b[^>]*>[\s\S]*?<\/\1>/gi, '')
-    .replace(/<[^>]*>/g, ' ')
-    .replace(/&(?:amp|quot|apos|lt|gt|#\d+|#x[0-9a-f]+);/gi, (entity) => {
-      const names: Record<string, string> = {
-        '&amp;': '&',
-        '&quot;': '"',
-        '&apos;': "'",
-        '&lt;': '<',
-        '&gt;': '>',
-      };
-      return (
-        names[entity] ??
-        String.fromCodePoint(
-          entity[2].toLowerCase() === 'x'
-            ? parseInt(entity.slice(3, -1), 16)
-            : Number(entity.slice(2, -1)),
-        )
-      );
-    })
+  return decodeHtmlEntities(
+    html
+      .replace(/<!--[\s\S]*?-->|<(script|style)\b[^>]*>[\s\S]*?<\/\1>/gi, '')
+      .replace(/<[^>]*>/g, ' '),
+  )
     .replace(/\s+/g, ' ')
     .trim();
 }
@@ -60,7 +50,7 @@ export function staticPageIssues(
     issues.push('expected one static H1');
   for (const href of hrefs.filter((href) => href.startsWith('/'))) {
     const route = resolvePage(href);
-    if (!route || !['en', 'es', 'pt', 'it'].includes(route.locale))
+    if (!route || !publishedLocales.some((locale) => locale === route.locale))
       issues.push(`unpublished internal link: ${href}`);
     else if (href.split(/[?#]/, 1)[0] !== pagePath(route.page, route.locale))
       issues.push(`unnormalized internal link: ${href}`);

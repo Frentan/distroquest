@@ -62,7 +62,6 @@ export const quizCopy = {
   revise: 'Change answers',
   noScript:
     'This quest needs JavaScript to keep your answers and calculate your result in your browser. Enable it and reload to begin.',
-  loading: 'Preparing your quest…',
   error:
     'Your path could not be revealed. Your answers are still here. Try again, or go back to review them.',
   path: 'YOUR PATH',

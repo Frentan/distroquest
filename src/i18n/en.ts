@@ -84,14 +84,6 @@ export const en = {
       'No accounts or cookies. Answers stay in this tab; only your theme preference is saved. We use privacy-conscious visit statistics.',
     privacyBadge: 'SMALL BY DESIGN',
   },
-  scene: {
-    heading: 'YOUR NEXT ADVENTURE',
-    title: 'A new path awaits',
-    description:
-      'A pixel landscape with forested mountains, a winding golden path and a small computer at the end of the trail.',
-    caption: 'Find your starting point.',
-    captionDetail: 'Every good quest starts with the right kit.',
-  },
   quiz: quizCopy,
   capabilityLabels,
   preparationCopy,
