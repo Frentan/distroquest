@@ -49,7 +49,22 @@
   height: 0.5rem;
 }
 .capability-bar span {
+  position: relative;
   background: var(--line);
+}
+/* Whole-point ticks sit in the center of the 3px segment gaps. */
+.capability-bar span:nth-child(even)::after {
+  content: '';
+  position: absolute;
+  right: -2px;
+  bottom: -4px;
+  width: 1px;
+  height: 3px;
+  background: var(--muted);
+  opacity: 0.7;
+}
+.capability-bar span:last-child::after {
+  right: 0;
 }
 .capability-bar .filled {
   background: var(--accent);

@@ -70,9 +70,10 @@ export function ascentFacing(fraction: number): 1 | -1 {
 // Separated canopies; the terminal's rock and immediate background stay clear.
 const pines = [
   [14, 136, 0.5],
-  [36, 116, 1],
+  [38, 116, 0.875],
   [50, 158, 0.5],
-  [132, 150, 1],
+  [24, 180, 0.5],
+  [140, 150, 0.875],
   [174, 164, 0.5],
   [144, 104, 0.5],
   [86, 84, 0.5],
@@ -82,7 +83,7 @@ const pines = [
   [166, 218, 0.5],
   [166, 252, 0.5],
   [142, 242, 0.5],
-  [146, 174, 0.5],
+  [138, 184, 0.5],
 ];
 // Authored clusters leave the switchbacks, exposed faces and summit clear.
 const lichen = `<path d="M66 98h6v2h-6zM70 102h4v2h-4zM56 150h6v2h-6zM60 154h4v2h-4zM132 156h6v2h-6zM136 160h4v2h-4zM64 204h8v2h-8zM70 208h4v2h-4zM144 226h6v2h-6zM148 230h4v2h-4zM26 224h6v2h-6z" fill="var(--grass)"/>`;

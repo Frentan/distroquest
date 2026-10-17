@@ -78,6 +78,11 @@
   gap: 16px;
   margin-top: 40px;
 }
+@media (min-width: 761px) {
+  .distro-profile-heading {
+    max-width: 960px;
+  }
+}
 @media (max-width: 760px) {
   .distro-page {
     padding-block: 32px;
