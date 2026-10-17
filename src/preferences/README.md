@@ -66,7 +66,7 @@ The question order follows the requested 8 / 4 / 3 / 1 structure:
 |  13 | software-freedom | Free-software preference                                   |
 |  14 | troubleshooting  | Learning tolerance; secondary convenience/control needs    |
 |  15 | identity         | Aspirational preferences and explicit specialist interests |
-|  16 | path             | Small thematic reinforcement                               |
+|  16 | path             | Thematic reinforcement and qualified control priority      |
 
 ## Targets, evidence weights, and importance
 
@@ -135,8 +135,10 @@ and surplus beginner support or polish is not a mismatch.
   supplies the engine's [driver-setup refinement](../recommendations/README.md#trait-refinements).
 - Identity names technical learning, declarative configuration, minimalism, or
   traditional Unix interests. The learning use case can add technical learning
-  alongside an identity interest. The final road contributes only low-weight
-  capability targets, never traits or eligibility evidence.
+  alongside an identity interest. The final road retains its low-weight capability
+  targets and supplies `finalRoad` to the engine's qualified control-priority rule.
+  It supplies no traits or eligibility evidence. The additional rule changes effective
+  scoring importance only; input weights still follow the original target signals.
 
 Mixed answers blend rather than discard evidence: newcomers can want deep control,
 experienced users can want low upkeep, and current software can accompany fixed

@@ -4,7 +4,10 @@ import type {
   DistroProfile,
   RecommendationCondition,
 } from '../domain/distro.ts';
-import type { UserPreferenceProfile } from '../domain/preferences.ts';
+import type {
+  FinalRoad,
+  UserPreferenceProfile,
+} from '../domain/preferences.ts';
 import type {
   Adjustment,
   Recommendation,
@@ -41,12 +44,22 @@ export const scoringRules = Object.freeze({
 const clamp = (value: number, low: number, high: number) =>
   Math.min(high, Math.max(low, value));
 
+const finalRoadControlMultipliers: Readonly<Record<FinalRoad, number>> =
+  Object.freeze({
+    comfortable: 1,
+    modern: 1,
+    explorer: 1.25,
+    artisan: 1.5,
+    forbidden: 2,
+  });
+
 // Adapter preserves Milestone 3's targets and relative importance exactly.
 export function normalizePreferenceProfile(
   profile: UserPreferenceProfile,
 ): RecommendationProfile {
   return {
     version: 1,
+    finalRoad: profile.finalRoad,
     capabilities: Object.fromEntries(
       capabilityKeys.map((key) => [
         key,
@@ -313,13 +326,24 @@ export function scoreDistro(
     (profile.eligibility.experience === 'intermediate' ||
       profile.eligibility.experience === 'advanced') &&
     profile.eligibility.systemControl === 'high';
+  // The road expresses priority only after all four independent answers qualify.
+  const qualifiedControlPriority =
+    profile.eligibility.experience === 'advanced' &&
+    profile.eligibility.maintenanceTolerance === 'high' &&
+    profile.eligibility.systemControl === 'high' &&
+    profile.eligibility.learningTolerance === 'high';
+  const controlMultiplier = qualifiedControlPriority
+    ? finalRoadControlMultipliers[profile.finalRoad]
+    : 1;
   const scoringWeight = (capability: Capability) =>
     profile.capabilities[capability].weight *
     (capability === 'oldHardware' && resourcePriority
       ? scoringRules.resourceImportanceMultiplier
       : capability === 'desktopPolish' && selfBuildPriority
         ? scoringRules.selfBuildPolishMultiplier
-        : 1);
+        : capability === 'systemControl'
+          ? controlMultiplier
+          : 1);
   const totalWeight = capabilityKeys.reduce(
     (sum, key) => sum + scoringWeight(key),
     0,
@@ -528,5 +552,5 @@ export function rankDistros(
 // Public boundary: accepts untrusted answers; existing validation rejects omissions.
 export function recommend(input: unknown): RecommendationResult {
   const profile = normalizePreferenceProfile(buildPreferenceProfile(input));
-  return { modelVersion: 14, profile, ranking: rankDistros(profile) };
+  return { modelVersion: 15, profile, ranking: rankDistros(profile) };
 }

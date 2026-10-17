@@ -9,6 +9,7 @@ import type { UserPreferenceProfile } from './preferences.ts';
 export type Preference = Readonly<{ target: number; weight: number }>;
 export type RecommendationProfile = Readonly<{
   version: 1;
+  finalRoad: UserPreferenceProfile['finalRoad'];
   capabilities: Readonly<Record<Capability, Preference>>;
   traits: UserPreferenceProfile['traits'];
   eligibility: UserPreferenceProfile['eligibility'];
@@ -60,7 +61,7 @@ export type Recommendation = Readonly<{
   cautions: readonly string[];
 }>;
 export type RecommendationResult = Readonly<{
-  modelVersion: 14;
+  modelVersion: 15;
   profile: RecommendationProfile;
   ranking: readonly Recommendation[];
 }>;

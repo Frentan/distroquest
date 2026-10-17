@@ -38,6 +38,8 @@ export type Hardware =
   'powerful' | 'recent' | 'aging' | 'limited' | 'unspecified';
 export type DeviceType = 'desktop-or-laptop' | 'handheld';
 export type FreshnessIntent = 'proven' | 'balanced' | 'modern' | 'newest';
+export type FinalRoad =
+  'comfortable' | 'modern' | 'artisan' | 'explorer' | 'forbidden';
 
 // Each selected option supplies a target and its evidence weight, not a delta.
 export type PreferenceEffect = Readonly<{
@@ -106,6 +108,7 @@ export type UserTraits = Readonly<{
 }>;
 export type UserPreferenceProfile = Readonly<{
   version: 1;
+  finalRoad: FinalRoad;
   // Continuous 0–5 targets; do not round to distro assessment half steps.
   targets: Readonly<Record<Capability, number>>;
   // 0–5 relative importance; zero means no requested benefit on that axis.

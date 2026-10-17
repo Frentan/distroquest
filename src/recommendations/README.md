@@ -1,16 +1,16 @@
-# Recommendation engine, model v14
+# Recommendation engine, model v15
 
 The pure engine converts complete quiz answers into a deterministic ranking of
 all 29 distro profiles, with eligibility, score components, and explanation codes.
-Model v14 combines effective resource/polish importance with small trait and
-specialist credits. The current rules preserve the 16-question schema, distro
+Model v15 adds qualified final-road control importance to the existing resource/polish
+weights, trait and specialist credits. It preserves the 16-question schema, distro
 assessments and explicit eligibility requirements. Support continuity is not scored.
 
 ## API and boundaries
 
 ```ts
 import { recommend } from './engine.ts';
-const result = recommend(answers); // { modelVersion: 14, profile, ranking }
+const result = recommend(answers); // { modelVersion: 15, profile, ranking }
 ```
 
 `recommend(unknown)` validates through the preference builder and throws
@@ -18,8 +18,9 @@ const result = recommend(answers); // { modelVersion: 14, profile, ranking }
 Outputs contain machine codes; the UI localizes them through `src/i18n/`.
 
 `normalizePreferenceProfile` retains continuous 0–5 targets and divides importance
-by 5 to produce 0–1 scoring weights. Answer evidence weights belong to profile
-construction, separately from scoring. Traits and eligibility remain categorical.
+by 5 to produce 0–1 input weights, and retains the selected `finalRoad`. Answer
+evidence weights belong to profile construction, separately from scoring. Traits
+and eligibility remain categorical.
 
 `scoreDistro`, `rankDistros`, `matchesCondition`, and `capabilitySimilarity` take
 constructed typed inputs; they do not validate imported profiles. Import answers
@@ -39,8 +40,10 @@ gaming distance        = min(5, 2 × raw distance)
 similarity             = 1 - effective distance / 5
 resource priority      = limited hardware OR (aging hardware AND old-hardware purpose)
 self-build priority    = explicit build setup AND intermediate/advanced AND high control
+control priority       = advanced AND high upkeep AND high control AND high learning
 scoring weight         = w × 1.5 for oldHardware with resource priority
                        = w × 0.5 for desktopPolish with self-build priority
+                       = w × road multiplier for systemControl with control priority
                        = w otherwise
 axis contribution      = 100 × scoring weight × similarity / sum(scoring weights)
 capability score       = sum(axis contributions)
@@ -53,10 +56,10 @@ secondary answers cannot overwrite `freshnessIntent`. Gaming shortfalls count tw
 Zero weights contribute nothing; an all-zero profile defensively yields zero points.
 Valid quiz profiles always carry freshness importance.
 
-Both multipliers change relative importance within the weighted average, not
+These multipliers change relative importance within the weighted average, not
 profile targets/weights, distances, assessments or eligibility. Trait and specialist
 refinements use the original profile. `capabilityMatches.weight` records the effective
-weight, up to 1.5 for oldHardware.
+weight, up to 1.5 for oldHardware and 2 for systemControl.
 
 Resource priority applies to limited hardware regardless of purpose, or aging
 hardware with explicit old-hardware purpose. Self-build priority requires
@@ -65,6 +68,16 @@ and high control. Identity, finale and enthusiasm for configuration cannot suppl
 that setup evidence. Halving supplied-polish importance retains a penalty if the
 user also requests polish. The multipliers compose; reducing polish importance
 can lower absolute scores when other shortfalls gain relative weight.
+
+Control priority requires all four independent eligibility answers: advanced
+experience, high maintenance tolerance, high system-control interest, and high
+learning tolerance. Identity and the final road cannot establish qualifications.
+For qualified profiles, the effective control-weight multipliers are Comfortable
+1, Modern 1, Explorer 1.25, Artisan 1.5, and Forbidden 2. Nonqualified profiles retain
+their existing weights. The road's original low-weight target signals remain unchanged.
+This increases the importance of assessed control fit; it adds no rarity or complexity
+bonus and bypasses no requirements. Resource and polish weighting compose with it.
+The capability average remains bounded by 100, so the normalization ceiling is unchanged.
 
 `capabilityMatches` exposes target, weight, actual value, raw/effective distance,
 similarity, and contribution. Reason `.met` means zero effective distance; `.near`

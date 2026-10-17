@@ -3,6 +3,7 @@ import type { Capability } from '../domain/distro.ts';
 import { preferenceUseCases } from '../domain/preferences.ts';
 import type {
   AnswerSet,
+  FinalRoad,
   PreferenceEffect,
   UserPreferenceProfile,
   UserTraits,
@@ -116,6 +117,8 @@ export function buildPreferenceProfile(input: unknown): UserPreferenceProfile {
     throw new Error('Question schema is missing required profile evidence');
   return {
     version: 1,
+    // Answer validation establishes one existing road ID; it grants no eligibility.
+    finalRoad: answers.path[0] as FinalRoad,
     targets,
     importance,
     eligibility: {

@@ -136,7 +136,7 @@ test('genuine penetration tester: Kali is eligible and ranks highly', () => {
 
 test('qualified security intent has separate credit even when general traits are capped', () => {
   const result = recommend(personas.penetrationTester);
-  assert.equal(result.modelVersion, 14);
+  assert.equal(result.modelVersion, 15);
   const kali = result.ranking[0];
   assert.equal(kali.distroId, 'kali-linux');
   assert.equal(kali.traitAdjustment, 12);
@@ -1164,11 +1164,13 @@ test('self-build polish priority requires explicit setup, experience, and high c
   }
   const builder = recommend({
     ...personas.highControl,
+    path: ['modern'],
     customization: ['touches'],
   });
   assert.equal(builder.ranking[0].distroId, 'arch-linux');
   const polishDefault = recommend({
     ...personas.highControl,
+    path: ['modern'],
     customization: ['defaults'],
   });
   assert.equal(polishDefault.ranking[0].distroId, 'endeavouros');
