@@ -27,6 +27,7 @@ interface Props {
 const { title, description, page, locale = defaultLocale } = Astro.props;
 const messages = getMessages(locale);
 const copy = messages.site;
+const footerCreditLastSpace = copy.footerCredit.lastIndexOf(' ');
 const route = resolvePage(Astro.url.pathname);
 if (
   route?.page !== page ||
@@ -193,9 +194,12 @@ const socialImage = Astro.site
         <span class="link-text">{copy.github}</span>
       </a>
       <p>
-        {copy.footerCredit}{' '}
-        <span class="footer-spark" aria-hidden="true">
-          ✦
+        {copy.footerCredit.slice(0, footerCreditLastSpace + 1)}
+        <span class="footer-credit-end">
+          {copy.footerCredit.slice(footerCreditLastSpace + 1)}{' '}
+          <span class="footer-spark" aria-hidden="true">
+            ✦
+          </span>
         </span>
       </p>
     </footer>
