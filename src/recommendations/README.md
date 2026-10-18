@@ -1,16 +1,17 @@
-# Recommendation engine, model v15
+# Recommendation engine, model v16
 
 The pure engine converts complete quiz answers into a deterministic ranking of
 all 29 distro profiles, with eligibility, score components, and explanation codes.
-Model v15 adds qualified final-road control importance to the existing resource/polish
-weights, trait and specialist credits. It preserves the 16-question schema, distro
-assessments and explicit eligibility requirements. Support continuity is not scored.
+Model v16 preserves explicit development need when homelab is also selected.
+It retains v15's qualified final-road control importance, resource/polish weights,
+trait and specialist credits, the 16-question schema, distro assessments and explicit
+eligibility requirements. Support continuity is not scored.
 
 ## API and boundaries
 
 ```ts
 import { recommend } from './engine.ts';
-const result = recommend(answers); // { modelVersion: 15, profile, ranking }
+const result = recommend(answers); // { modelVersion: 16, profile, ranking }
 ```
 
 `recommend(unknown)` validates through the preference builder and throws
@@ -208,6 +209,8 @@ percentage. Revisit it when adding specialist matches or positive constraint rew
 Sort by eligibility, descending unrounded raw score, then ascending distro ID for
 exact ties. The UI rounds fit to one decimal place; displayed ties can be close
 scores or exact ties. Capability bars show assessed strengths out of 5, not fit.
+The primary result explains that fit percentages are model estimates, not
+probabilities, and very small gaps indicate similarly strong matches.
 
 Result explanations prioritize specialist matches, then stronger trait
 contributions with stable ties. Distinct topics are selected before limiting trait
@@ -216,6 +219,15 @@ is omitted only when its equivalent near-match reason is actually shown on the s
 card, after filtering and truncation. Concrete distro and platform warnings and
 gaming's additional support check remain. This selection changes presentation,
 not scores or eligibility.
+
+Alternative reasons are deduplicated against the translated primary reasons
+actually rendered (four maximum); alternatives retain their two-reason limit.
+The primary result previews at most one existing substantial caution: a capability
+gap of at least one effective point costing at least three capability-score points,
+or a negative trait modifier of at least four points. The largest qualifying loss
+wins, with stable ties. Near-match suppression and visible device warnings remain
+respected; all other cautions stay in the disclosure. These thresholds only control
+warning prominence and do not change scoring or introduce fit-score tie thresholds.
 
 `family` describes ancestry; `presentationGroup` derives official sibling paths
 from shared non-independent family and upstream lineage, retaining distinct

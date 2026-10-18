@@ -27,7 +27,8 @@ import {
 import {
   percentMatch,
   preparationTopics,
-  strongestReasons,
+  reasonsForCard,
+  primaryCaution,
   cautionsForVisibleReasons,
 } from './presentation.ts';
 import { platformShortlist } from './platform-presentation.ts';
@@ -293,6 +294,7 @@ export function mountQuiz(
     identity.append(profileLink);
     if (showFit)
       identity.append(element('p', copy.match(percentMatch(row)), 'fit-label'));
+    if (primary) identity.append(element('p', copy.fitContext, 'result-note'));
     if (distro.editionNote)
       identity.append(element('p', distro.editionNote, 'result-note'));
     const intro = element('div', undefined, 'result-intro');
@@ -345,20 +347,15 @@ export function mountQuiz(
       card.append(warnings);
     }
     if (primary) card.append(element('h2', copy.why));
-    const reasonTopic = (code: string) =>
-      code.startsWith('capability.')
-        ? code.split('.').slice(0, 2).join('.')
-        : code;
-    const primaryReasons = new Set(
-      main ? strongestReasons(main).map(reasonTopic) : [],
-    );
-    const reasons = strongestReasons(row)
-      .filter((code) => primary || !primaryReasons.has(reasonTopic(code)))
+    const reasons = reasonsForCard(
+      row,
+      explainReason,
+      primary ? undefined : main,
+    )
       .map((code) => ({ code, text: explainReason(code) }))
       .filter(
         (reason): reason is { code: string; text: string } => !!reason.text,
-      )
-      .slice(0, primary ? 4 : 2);
+      );
     if (reasons.length) {
       const list = element('ul', undefined, 'result-reasons');
       for (const reason of reasons) list.append(element('li', reason.text));
@@ -417,22 +414,27 @@ export function mountQuiz(
         card.append(comparison);
       }
     }
+    const cautionCodes = cautionsForVisibleReasons(
+      row.cautions,
+      reasons.map((reason) => reason.code),
+    );
     const warnings = [
       ...new Set([
-        ...cautionsForVisibleReasons(
-          row.cautions,
-          reasons.map((reason) => reason.code),
-        )
+        ...cautionCodes
           .map(explainCaution)
           .filter((text): text is string => !!text),
         ...distro.cautions.slice(0, primary ? 2 : 1),
       ]),
     ].filter((warning) => !deviceWarnings.includes(warning));
-    // Visible device warnings and the alternative preview have one home.
-    const preview = !primary
-      ? (warnings.find((warning) => warning === distro.cautions[0]) ??
-        warnings[0])
+    // Visible device warnings and the single preview each have one home.
+    const primaryCode = primary ? primaryCaution(row, cautionCodes) : undefined;
+    const primaryWarning = primaryCode
+      ? explainCaution(primaryCode)
       : undefined;
+    const preview = primary
+      ? warnings.find((warning) => warning === primaryWarning)
+      : (warnings.find((warning) => warning === distro.cautions[0]) ??
+        warnings[0]);
     if (preview) card.append(element('p', preview, 'result-note'));
     const additionalWarnings = warnings.filter(
       (warning) => warning !== preview,

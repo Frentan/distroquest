@@ -4675,6 +4675,12 @@
       "translationHash": "46e66dac0801fc068d8da7a198e736cb09c7aa07f1e6f83f9590087ee4408046",
       "status": "reviewed",
       "reviewedBy": "Frentan"
+    },
+    "/quiz/fitContext": {
+      "sourceHash": "d231e33876268f73916a481f8b569ee3996d0fe1ce0c35061f4816a4d7a297da",
+      "translationHash": "729eae5e6cade2f5ec2ccfd6670b4bc8d49f7c13879c2ca9e72cad24b663a63a",
+      "status": "reviewed",
+      "reviewedBy": "Codex (v16 fit-score copy review)"
     }
   }
 }

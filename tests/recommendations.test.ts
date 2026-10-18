@@ -22,6 +22,7 @@ import {
   scoringRules,
 } from '../src/recommendations/engine.ts';
 import { recommendationPersonas as personas } from '../scripts/recommendation-personas.ts';
+import { preparationTopics } from '../src/quiz/presentation.ts';
 import {
   formatRankingTable,
   formatExampleRankings,
@@ -136,7 +137,7 @@ test('genuine penetration tester: Kali is eligible and ranks highly', () => {
 
 test('qualified security intent has separate credit even when general traits are capped', () => {
   const result = recommend(personas.penetrationTester);
-  assert.equal(result.modelVersion, 15);
+  assert.equal(result.modelVersion, 16);
   const kali = result.ranking[0];
   assert.equal(kali.distroId, 'kali-linux');
   assert.equal(kali.traitAdjustment, 12);
@@ -1705,4 +1706,22 @@ test('traditional Unix credit needs the explicit soft interest and full speciali
     scoreDistro(r.profile, { ...slack, id: 'ubuntu' }).specialistAdjustment,
     0.5,
   );
+});
+
+test('adding homelab retains development ranking and both preparation topics', () => {
+  const answers = {
+    ...personas.beginner,
+    experience: ['regular'],
+    identity: ['shape'],
+    path: ['artisan'],
+    'use-cases': ['development'],
+  };
+  const development = recommend(answers);
+  const combined = recommend({
+    ...answers,
+    'use-cases': ['development', 'homelab'],
+  });
+  assert.equal(development.ranking[0].distroId, 'fedora-workstation');
+  assert.deepEqual(combined.ranking, development.ranking);
+  assert.deepEqual(preparationTopics(combined), ['development', 'homelab']);
 });

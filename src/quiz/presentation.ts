@@ -68,6 +68,60 @@ export function strongestReasons(row: Recommendation): string[] {
   ];
 }
 
+/** Use the same translated, truncated primary reasons that the card renders. */
+export function reasonsForCard(
+  row: Recommendation,
+  explainReason: (code: string) => string | undefined,
+  primary?: Recommendation,
+): string[] {
+  const topic = (code: string) =>
+    code.startsWith('capability.')
+      ? code.split('.').slice(0, 2).join('.')
+      : code;
+  const primaryTopics = new Set(
+    primary ? reasonsForCard(primary, explainReason).map(topic) : [],
+  );
+  return strongestReasons(row)
+    .filter((code) => !primaryTopics.has(topic(code)) && !!explainReason(code))
+    .slice(0, primary ? 2 : 4);
+}
+
+/** Select one substantial existing caution; this never changes the ranking. */
+export function primaryCaution(
+  row: Recommendation,
+  availableCautions: readonly string[],
+): string | undefined {
+  const totalWeight = row.capabilityMatches.reduce(
+    (sum, match) => sum + match.weight,
+    0,
+  );
+  const candidates = [
+    ...row.capabilityMatches.flatMap((match) => {
+      // Ignore near matches and gaps costing less than three capability points.
+      const loss = totalWeight
+        ? (100 * match.weight * (1 - match.similarity)) / totalWeight
+        : 0;
+      return match.effectiveDistance >= 1 && loss >= 3
+        ? [
+            {
+              code: `capability.${match.capability}.${match.capability === 'freshness' ? 'distance' : 'shortfall'}`,
+              loss,
+            },
+          ]
+        : [];
+    }),
+    // Strong release/workflow/focus conflicts already have concrete cautions.
+    ...row.traitModifiers
+      .filter(
+        (modifier) => modifier.points <= -4 && modifier.code !== 'traits.cap',
+      )
+      .map((modifier) => ({ code: modifier.code, loss: -modifier.points })),
+  ];
+  return candidates
+    .filter((candidate) => availableCautions.includes(candidate.code))
+    .sort((a, b) => b.loss - a.loss)[0]?.code;
+}
+
 /** Pass only reasons actually rendered on this card, after filtering/truncation. */
 export function cautionsForVisibleReasons(
   cautions: readonly string[],

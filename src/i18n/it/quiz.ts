@@ -77,6 +77,8 @@ export const quizCopyIt = {
     'it',
   ),
   matchNote: 'Il supporto hardware viene verificato separatamente.',
+  fitContext:
+    'Le percentuali di affinità sono stime del modello, non probabilità. Differenze molto piccole indicano opzioni quasi altrettanto adatte alle tue preferenze.',
   restart: 'Ricomincia l’avventura',
   restartPrompt: 'Vuoi ricominciare? Le risposte attuali verranno cancellate.',
   confirmRestart: 'Ricomincia',

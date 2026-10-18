@@ -54,6 +54,8 @@ export const quizCopy = {
     { name: 'percentage', kind: 'number', digits: 1 },
   ]),
   matchNote: 'Hardware support is checked separately.',
+  fitContext:
+    'Fit percentages are model estimates, not probabilities. Very small differences indicate similarly strong matches.',
   restart: 'Restart quest',
   restartPrompt: 'Start over? Your current answers will be cleared.',
   confirmRestart: 'Start over',

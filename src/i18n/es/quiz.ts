@@ -77,6 +77,8 @@ export const quizCopyEs = {
     'es',
   ),
   matchNote: 'La compatibilidad del hardware se comprueba por separado.',
+  fitContext:
+    'Los porcentajes de afinidad son estimaciones del modelo, no probabilidades. Las diferencias muy pequeñas indican opciones que encajan casi igual de bien.',
   restart: 'Reiniciar la aventura',
   restartPrompt: '¿Empezar de nuevo? Se borrarán tus respuestas actuales.',
   confirmRestart: 'Empezar de nuevo',

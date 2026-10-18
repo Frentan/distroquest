@@ -15,6 +15,39 @@ import { preferenceExamples } from '../scripts/preference-examples.ts';
 const base = preferenceExamples.newcomer;
 const profile = buildPreferenceProfile;
 
+test('homelab complements explicit development without diluting it or other purposes', () => {
+  const otherPurposes = questions
+    .find((question) => question.id === 'use-cases')!
+    .options.map((option) => option.id)
+    .filter((id) => id !== 'development' && id !== 'homelab');
+  for (const extra of [undefined, ...otherPurposes]) {
+    const purposes = ['development', ...(extra ? [extra] : [])];
+    const development = profile({ ...base, 'use-cases': purposes });
+    const combined = profile({
+      ...base,
+      'use-cases': [...purposes, 'homelab'],
+    });
+    const reversed = profile({
+      ...base,
+      'use-cases': ['homelab', ...purposes],
+    });
+    assert.equal(combined.targets.developerExperience, 5);
+    assert.equal(combined.importance.developerExperience, 5);
+    assert.deepEqual(combined.targets, development.targets);
+    assert.deepEqual(combined.importance, development.importance);
+    assert.deepEqual(combined.eligibility, development.eligibility);
+    assert.deepEqual(
+      { ...combined.traits, useCases: development.traits.useCases },
+      development.traits,
+    );
+    assert.ok(combined.traits.useCases.includes('homelab'));
+    assert.deepEqual(reversed, combined);
+  }
+  const homelab = profile({ ...base, 'use-cases': ['homelab'] });
+  assert.equal(homelab.targets.developerExperience, 4);
+  assert.equal(homelab.importance.developerExperience, 4);
+});
+
 test('scalar evidence has one owning question; required direct evidence covers every option', () => {
   // Use cases and interests accumulate across questions; scalar evidence must
   // not silently depend on which question happens to come last in the schema.

@@ -104,6 +104,11 @@ export function buildPreferenceProfile(input: unknown): UserPreferenceProfile {
     // Other axes express wanted benefits; low need must not become an aversion.
     importance[key] = key === 'freshness' ? 4 : targets[key];
   }
+  // A related homelab purpose must not dilute explicit development needs.
+  if (useCases.has('development') && useCases.has('homelab')) {
+    targets.developerExperience = 5;
+    importance.developerExperience = 5;
+  }
   if (
     !eligibility.experience ||
     !eligibility.maintenanceTolerance ||

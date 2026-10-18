@@ -125,7 +125,7 @@ test('qualified final roads resolve the reviewed advanced profile with bounded m
   };
   for (const road of roads) {
     const result = recommend({ ...advanced, path: [road] });
-    assert.equal(result.modelVersion, 15);
+    assert.equal(result.modelVersion, 16);
     assert.deepEqual(
       result.ranking.slice(0, 3).map((r) => r.distroId),
       expected[road],

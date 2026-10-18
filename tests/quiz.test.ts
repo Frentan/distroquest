@@ -14,6 +14,8 @@ import {
   preparationTopics,
   strongestReasons,
   cautionsForVisibleReasons,
+  reasonsForCard,
+  primaryCaution,
 } from '../src/quiz/presentation.ts';
 import { platformShortlist } from '../src/quiz/platform-presentation.ts';
 import { applyPlatform } from '../src/platforms/compatibility.ts';
@@ -24,6 +26,95 @@ import { en } from '../src/i18n/en.ts';
 import { createExplanations } from '../src/i18n/explanations.ts';
 const { explainReason, explainCaution } = createExplanations(en.explanations);
 import type { Recommendation } from '../src/domain/recommendations.ts';
+
+test('alternative reasons use rendered primary topics after translation and limits', () => {
+  const result = recommend(personas.rollingEnthusiast);
+  const primary = result.ranking[0];
+  const alternative = result.ranking.find(
+    (row) => row.distroId === 'endeavouros',
+  )!;
+  assert.equal(strongestReasons(primary)[4], 'capability.freshness.met');
+  assert.equal(reasonsForCard(primary, explainReason).length, 4);
+  assert.ok(
+    !reasonsForCard(primary, explainReason).includes(
+      'capability.freshness.met',
+    ),
+  );
+  const reasons = reasonsForCard(alternative, explainReason, primary);
+  assert.ok(reasons.includes('capability.freshness.met'));
+  assert.ok(reasons.length <= 2);
+  assert.ok(!reasons.includes('release.match'));
+  const missingTranslation = (code: string) =>
+    code === 'release.match' ? undefined : explainReason(code);
+  assert.equal(reasonsForCard(primary, missingTranslation).length, 4);
+  assert.ok(
+    reasonsForCard(primary, missingTranslation).includes(
+      'capability.freshness.met',
+    ),
+  );
+  assert.ok(
+    !reasonsForCard(alternative, missingTranslation, primary).includes(
+      'capability.freshness.met',
+    ),
+  );
+});
+
+test('primary preview surfaces significant resource and control gaps without near-fit clutter', () => {
+  const expert = {
+    ...personas.customizableDeveloper,
+    maintenance: ['hobby'],
+    control: ['everything'],
+    troubleshooting: ['learn'],
+    gpu: ['nvidia'],
+    path: ['forbidden'],
+  };
+  for (const [answers, expected] of [
+    [personas.oldLaptop, 'capability.oldHardware.shortfall'],
+    [expert, 'capability.systemControl.shortfall'],
+  ] as const) {
+    const row = recommend(answers).ranking[0];
+    const available = cautionsForVisibleReasons(
+      row.cautions,
+      reasonsForCard(row, explainReason),
+    );
+    assert.equal(primaryCaution(row, available), expected);
+    assert.notEqual(
+      primaryCaution(
+        row,
+        available.filter((code) => code !== expected),
+      ),
+      expected,
+    );
+  }
+  const beginner = recommend(personas.beginner).ranking[0];
+  assert.equal(primaryCaution(beginner, beginner.cautions), undefined);
+  assert.equal(primaryCaution(beginner, []), undefined);
+});
+
+test('primary preview prefers the strongest available gap and leaves device warnings alone', () => {
+  const row = recommend({
+    ...personas.windowsGamer,
+    hardware: ['limited'],
+    gaming: ['main'],
+    'use-cases': ['gaming', 'old-hardware'],
+  }).ranking[0];
+  const snapshot = structuredClone(row);
+  assert.equal(
+    primaryCaution(row, row.cautions),
+    'capability.oldHardware.shortfall',
+  );
+  const conflict = recommend({ ...personas.conservative, release: ['rolling'] })
+    .ranking[0];
+  assert.equal(
+    primaryCaution(conflict, ['release.conflict']),
+    'release.conflict',
+  );
+  assert.equal(
+    primaryCaution(row, ['nvidia.manual', 'handheld.support-unassessed']),
+    undefined,
+  );
+  assert.deepEqual(row, snapshot);
+});
 
 test('starts unanswered; cannot advance or skip; ignores unknown options', () => {
   const state = startQuiz();

@@ -112,7 +112,10 @@ and surplus beginner support or polish is not a mismatch.
   and troubleshooting never promote experience. Upkeep tolerance comes from
   question 4, control appetite from 5, and learning tolerance from 14.
 - Question 9 retains all selected purposes in canonical order. Development supplies
-  developer needs; homelab supplies weaker evidence. Creative/security intent stays
+  developer target and importance 5, including when homelab is also selected.
+  Homelab alone retains target and importance 4; its trait and preparation advice
+  remain present in the combined answer. This pair is the only exception to the
+  weighted-mean aggregation. Creative/security intent stays
   categorical, without a new capability axis. Question 10 alone sets numeric gaming
   intensity, including zero; a gaming checkbox cannot override it.
 - Question 11 supplies resource needs; old-hardware intent adds secondary evidence.

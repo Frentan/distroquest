@@ -552,5 +552,5 @@ export function rankDistros(
 // Public boundary: accepts untrusted answers; existing validation rejects omissions.
 export function recommend(input: unknown): RecommendationResult {
   const profile = normalizePreferenceProfile(buildPreferenceProfile(input));
-  return { modelVersion: 15, profile, ranking: rankDistros(profile) };
+  return { modelVersion: 16, profile, ranking: rankDistros(profile) };
 }
