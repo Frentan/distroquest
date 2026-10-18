@@ -11,7 +11,6 @@ evidence and the decision to keep project longevity out of numeric matching.
 ## Inspect and validate
 
 ```sh
-npm test
 npm run data:review
 npm run data:review -- --json
 ```
@@ -19,7 +18,7 @@ npm run data:review -- --json
 The default review output is a Markdown table of all ten capabilities and breadth.
 JSON includes every profile, trait, constraint, source, and English content field.
 For a clean JSON file, use `npm run --silent data:review -- --json > /tmp/distroquest-profiles.json`.
-Both modes validate first and exit unsuccessfully if any record is invalid. Review tools run locally and ship no inspection page.
+Both modes validate first and reject invalid records.
 
 ## Boundaries
 
@@ -150,11 +149,9 @@ audience breadth, not quality, popularity, or a user's match. The recommendation
 uses it as an additive 0–2 point prior, after eligibility and capability fit. A breadth of
 0 is not a hidden gate; Kali has explicit requirements.
 
-Each constraint has an `effect` and nonempty `allOf` conditions. All conditions
-within a constraint are conjunctive. All `require` constraints must be satisfied
-before a top recommendation is eligible. `strongly-prefer` expresses substantial
-soft reluctance if the whole condition group does not match, rather than a total
-lock. Unknown user evidence must not be assumed to satisfy hard requirements.
+Each constraint has an `effect` and nonempty conjunctive `allOf` conditions.
+Every `require` group must match for eligibility; unmet `strongly-prefer` groups
+incur soft penalties. Unknown evidence cannot satisfy hard requirements.
 See [engine eligibility](../recommendations/README.md#eligibility) for penalties
 and constraint diagnostics.
 
@@ -170,7 +167,7 @@ supplies explicit evidence, including lower levels.
   upkeep and control preferences do not impose hard requirements.
 
 These minimums are DistroQuest recommendation policy for the assessed desktop
-workflows, not upstream restrictions. The existing ideal-fit conditions stay soft:
+workflows, not upstream restrictions. Ideal-fit conditions remain soft:
 
 - Gentoo strongly prefers advanced experience, high upkeep tolerance, and high control.
 - Alpine desktop strongly prefers advanced experience, minimalism, and technical exploration.
@@ -249,12 +246,9 @@ Dataset tests check beginner friendliness (Mint > Fedora > Tumbleweed > Arch >
 Gentoo), gaming readiness (Bazzite > Fedora), and old-hardware fit (MX > Mint).
 Breadth separately favors general-purpose reach; it is not quality.
 
-The engine derives official sibling groups from upstream lineage and a shared
-non-independent family. Fedora Workstation/KDE/Silverblue share `fedora-desktop`;
-Tumbleweed/Aeon share `suse-desktop`. Derivatives retain their own groups. `family` describes ancestry, and `workflow` distinguishes
-conventional, atomic, gaming-appliance, and declarative systems. The quiz groups
-sibling editions without penalizing scores or enforcing one result per family.
-Platform support can independently reorder practical installation paths.
+The [engine](../recommendations/README.md#final-score-and-presentation) groups
+official sibling editions without changing scores or imposing family quotas.
+Platform support separately orders practical installation paths.
 
 The [2026-10-04 coverage review](ATOMIC-REVIEW.md) records the four-candidate
 inclusion gate, current architectures, calibration, sources and focused simulations.

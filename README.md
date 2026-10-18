@@ -12,8 +12,8 @@ No signup or cookies. Answers stay in memory and disappear on refresh;
 only your theme preference is saved. Cloudflare provides privacy-conscious traffic analytics.
 Available in English, Spanish, Portuguese, and Italian.
 
-Browse all 29 supported distributions at [/distros/](https://distroquest.com/distros/),
-with strengths, trade-offs and assessed-edition notes in all four languages.
+Browse the [distro directory](https://distroquest.com/distros/) for strengths,
+trade-offs and assessed-edition notes.
 
 ## Run locally
 
@@ -55,10 +55,10 @@ inconsistent generated SEO metadata before upload.
 
 ## Matching and development
 
-The quiz turns explicit answers into capability preferences, traits, and eligibility
-evidence. A pure engine ranks all 29 profiles and explains matches and tradeoffs.
-Gaming intensity comes from its dedicated question; broad purposes never infer
-expertise or bypass eligibility.
+The engine ranks distributions using explicit capability preferences, traits and
+eligibility evidence.
+Broad purposes never infer expertise or bypass eligibility; the dedicated gaming
+question controls gaming intensity.
 
 Displayed fit is an uncalibrated preference score, not a compatibility guarantee.
 The ten capability bars show assessed distro strengths out of 5. A separate platform

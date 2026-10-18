@@ -9,8 +9,8 @@ remain independent of translated presentation.
 `Messages` covers page copy, questions, distro profiles, capabilities, preparation
 tips, explanations, and platform guidance. `catalog.ts` registers complete runtime
 dictionaries. `getMessages()` requires a published locale and an available dictionary;
-there is no partial merge or English fallback. Published English, Spanish, Portuguese, and Italian dictionaries are registered explicitly. Unpublished
-drafts are loaded only by Node review tooling.
+there is no partial merge or English fallback. EN/ES/PT/IT are registered explicitly;
+Node review tooling alone loads unpublished drafts.
 
 `locales.ts` separates known IDs, actively planned locales, deferred locales, and
 published locales. Reserved IDs keep their paths and native-language name keys;
@@ -19,11 +19,9 @@ they do not enable translation work or publication.
 `src/routing.ts` owns the `home`, `quiz`, `distros` and typed `distro:<id>` page identities. English uses `/` and
 `/quiz/`; other locales use `/{locale}/` and `/{locale}/quiz/`. `pagePath()` constructs
 known paths; `publishedPagePath()` gates public links. Helpers do not create routes.
-Astro route files reuse `HomePage.astro`, `QuizPage.astro`, `DistroDirectory.astro` and
-`DistroProfilePage.astro`. Directories use `/{locale}/distros/`; profiles use
-`/{locale}/distros/{slug}/`, with the English prefix omitted. All 29 slugs currently
-equal their stable IDs; tests enforce this relationship. The quiz client receives
-its locale through `data-locale`.
+Directories use `/{locale}/distros/`; profiles use
+`/{locale}/distros/{slug}/`, with the English prefix omitted. Profile slugs match
+stable distro IDs. The quiz client receives its locale through `data-locale`.
 
 With `SITE_URL`, published equivalents receive self-referencing canonical and Open
 Graph URLs and reciprocal `hreflang` links, including `x-default` to the corresponding English page. The sitemap lists published indexable
@@ -32,13 +30,13 @@ sitemap. Without an origin, absolute metadata is omitted and the sitemap is empt
 
 ## Language switching
 
-The header offers EN, ES, PT, and IT, retaining native-language names and accessible
-labels. Links use equivalent page identities, including the same distro profile across languages. On the
-quiz, any selected or retained answer triggers the reviewed restart confirmation
+Header language links retain native-language names and accessible labels, and
+lead to the equivalent page or distro profile. On the quiz, any selected or retained
+answer triggers the restart confirmation
 before same-tab language navigation. The dialog identifies the destination language;
-cancel or Escape preserves progress. Confirming clears the old page's answers as
-well as starting the destination quiz empty. Answers and language choices are not
-persisted or restored across languages. Theme persistence remains independent.
+cancel or Escape preserves progress. Confirming clears the old page's answers and
+starts the destination quiz empty.
+Answers and language choices are not persisted; theme persistence is independent.
 
 ## Parameterized messages
 
@@ -77,13 +75,10 @@ editorial source and does not require translation reviews. Deferred locales must
 be reactivated before they can be published. `dictionaryIssues()` checks structural
 coverage, including option IDs, nonempty strings, and array lengths.
 
-The Astro integration validates published content at configuration startup and on
-builds, including direct `astro build` commands. Output checks require every registered page for each published locale and reject
-unexpected HTML routes. Generated-content checks verify localized profile content,
-directory coverage, internal links and JSON-LD. Directories have static content and no content images or directory-specific client
-logic. Every page retains the shared theme/language controls and honors the saved
-theme preference.
-Run the checks while editing; freshness is not monitored through HMR.
+The Astro integration validates published content at configuration startup and
+on builds, including direct `astro build` commands. Output checks enforce exact
+route coverage, localized content, internal links and JSON-LD. Freshness is not
+monitored through HMR; run the checks while editing.
 
 ```sh
 npm run i18n:check
@@ -94,10 +89,9 @@ npm run --silent i18n:review -- --locale it --markdown
 `i18n:check` validates published locales. `i18n:review` reports draft coverage and
 freshness for `--locale <code>` (`es`, `pt`, or `it`), defaulting to `es`. It loads
 `src/i18n/{locale}/draft.ts` (named export `draftEs`, `draftIt`, `draftPt`, etc.)
-and the corresponding `reviews.json`. A locale without a draft produces an error;
-selecting a locale does not create content or enable publication. Spanish,
-Portuguese, and Italian review entry points re-export their complete runtime
-dictionaries.
+and the corresponding `reviews.json`. A missing draft is an error; selecting a
+locale does not create or publish it.
+ES/PT/IT review entry points re-export their runtime dictionaries.
 
 Combine `--locale` with any one output mode: `--json` includes content units and proposed hashes,
 `--markdown` produces bilingual copy in authored order, and `--hashes` emits a
@@ -107,17 +101,17 @@ proposal snapshot. Generated proposals do not grant editorial or publication app
 
 Profiles render the existing localized summaries, archetypes, suitability lists,
 strengths, cautions and edition notes, plus all ten curated capability ratings.
-Those ratings reuse result styles and accessible meters. They do not render preference-match scores or
-personalized results. Official destinations live separately in
+Profiles use accessible capability meters, without personalized fit scores.
+Official destinations live separately in
 `src/data/official-websites.ts`; an unverified destination is omitted. The quiz's
 platform guidance remains separate from these general summaries.
 
 With an origin, the English root identifies DistroQuest with `WebSite` JSON-LD.
 Indexable pages describe themselves with `WebPage` or `CollectionPage`; quizzes
 emit no structured data. The social image reuses the canonical favicon mark.
-`npm run assets:social` regenerates it using installed ImageMagick, outside the
-ordinary build. No new runtime dependency is required.
+`npm run assets:social` regenerates it with installed ImageMagick, outside the
+ordinary build.
 
 A complete production build emits 128 HTML pages and 124 sitemap entries:
 four homepages, four directories and 116 profiles are indexable; four quizzes are
-excluded. No DesktopQuest, question or personalized-result routes are registered.
+excluded.

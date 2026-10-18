@@ -2,10 +2,8 @@
 
 The pure engine converts complete quiz answers into a deterministic ranking of
 all 29 distro profiles, with eligibility, score components, and explanation codes.
-Model v16 preserves explicit development need when homelab is also selected.
-It retains v15's qualified final-road control importance, resource/polish weights,
-trait and specialist credits, the 16-question schema, distro assessments and explicit
-eligibility requirements. Support continuity is not scored.
+The [preference builder](../preferences/README.md) preserves explicit development
+need when homelab is also selected. Support continuity is not scored.
 
 ## API and boundaries
 
@@ -25,8 +23,8 @@ and eligibility remain categorical.
 
 `scoreDistro`, `rankDistros`, `matchesCondition`, and `capabilitySimilarity` take
 constructed typed inputs; they do not validate imported profiles. Import answers
-through `recommend`. Functions perform no I/O, read no clock, use no randomness,
-and mutate neither inputs nor dataset. Constraint diagnostics own their copies.
+through `recommend`. Functions perform no I/O, use no clock or randomness, and
+mutate neither inputs nor dataset.
 
 ## Capability fit
 
@@ -62,23 +60,18 @@ profile targets/weights, distances, assessments or eligibility. Trait and specia
 refinements use the original profile. `capabilityMatches.weight` records the effective
 weight, up to 1.5 for oldHardware and 2 for systemControl.
 
-Resource priority applies to limited hardware regardless of purpose, or aging
-hardware with explicit old-hardware purpose. Self-build priority requires
-`traits.selfBuild` from the build setup answer, intermediate/advanced experience
-and high control. Identity, finale and enthusiasm for configuration cannot supply
-that setup evidence. Halving supplied-polish importance retains a penalty if the
-user also requests polish. The multipliers compose; reducing polish importance
-can lower absolute scores when other shortfalls gain relative weight.
+Only the build setup answer supplies `traits.selfBuild`; identity and finale
+cannot supply it. Halving polish importance retains a penalty for unmet polish
+needs. Multipliers compose; reducing polish importance can lower absolute scores
+when other shortfalls gain relative weight.
 
-Control priority requires all four independent eligibility answers: advanced
-experience, high maintenance tolerance, high system-control interest, and high
-learning tolerance. Identity and the final road cannot establish qualifications.
-For qualified profiles, the effective control-weight multipliers are Comfortable
+Control qualifications come from the independent experience, maintenance, control
+and troubleshooting answers; identity and finale cannot supply them.
+For qualified profiles, the control-weight multipliers are Comfortable
 1, Modern 1, Explorer 1.25, Artisan 1.5, and Forbidden 2. Nonqualified profiles retain
 their existing weights. The road's original low-weight target signals remain unchanged.
-This increases the importance of assessed control fit; it adds no rarity or complexity
-bonus and bypasses no requirements. Resource and polish weighting compose with it.
-The capability average remains bounded by 100, so the normalization ceiling is unchanged.
+The multiplier adds no rarity or complexity bonus and bypasses no requirements.
+The capability average remains bounded by 100.
 
 `capabilityMatches` exposes target, weight, actual value, raw/effective distance,
 similarity, and contribution. Reason `.met` means zero effective distance; `.near`
@@ -142,15 +135,14 @@ Two additional credits use existing constraints as the specialist contract:
   all soft groups match, and a soft group explicitly assesses that same interest.
   The current recipient is Slackware.
 
-Both require a hard requirement and a nonempty soft-preference group. Partial
-soft fit receives no credit; its penalty is unchanged. Void's Xfce baseline need
-not be manually assembled. Minimalism and Unix identity are mutually exclusive
-in the current quiz, so both credits cannot activate in the same valid completion.
+Both require a hard requirement and a nonempty soft-preference group. Partial soft
+fit receives no credit. Void's Xfce baseline need not be manually assembled.
+Minimalism and Unix identity are mutually exclusive in the current quiz, so both
+credits cannot activate in the same valid completion.
 
 `specialistModifiers` explains each match and sums to `specialistAdjustment`,
 outside the ±12 trait cap. Existing general trait credits remain inside that cap.
-All specialist rules use explicit evidence and assessed traits, without distro-ID
-bonuses or a new capability axis. Eligibility is evaluated first and never bypassed.
+Eligibility is evaluated first and never bypassed.
 
 Bazzite's [documented handheld path](https://docs.bazzite.gg/Handheld_and_HTPC_edition/Handheld_Wiki/)
 requires a device check. Bluefin's [Developer Mode](https://docs.projectbluefin.io/bluefin-dx/)
@@ -166,22 +158,15 @@ experience and tolerance; use cases and interests require membership. Aspiration
 identity/finale answers cannot promote experience.
 
 - Failed `require`: ineligible, −100 points, normalized score zero; listed after
-  every eligible record. Kali requires security intent and intermediate experience.
+  every eligible record.
 - `strongly-prefer`: −8 per unmet condition, except −4 for explicit moderate
   maintenance tolerance falling short of a high-maintenance preference. The total
   penalty is capped at −24 per constraint; +2 if fully satisfied. These adjustments
   sit outside the trait cap. The partial-fit rule does not apply to hard requirements,
   low maintenance tolerance, or experience, learning, control, and interest shortfalls.
-- Arch, Gentoo, Slackware, Void, and Alpine require intermediate experience,
-  moderate upkeep tolerance, and moderate system-control interest.
-- NixOS requires intermediate experience and moderate learning tolerance, without
-  a hard upkeep or control requirement. Its distinct model needs learning evidence.
 
-These are recommendation floors for the assessed desktops, not upstream installation
-restrictions. Existing stronger conditions remain soft: advanced expertise, high
-upkeep/control, and specific interests can improve fit without becoming hard gates.
-See [the dataset notes](../data/README.md#breadth-and-constraints) for source evidence.
-Matched hard requirements add no points.
+Matched hard requirements add no points. The [dataset notes](../data/README.md#breadth-and-constraints)
+list each distro's hard and soft conditions and their source evidence.
 
 `constraints` exposes condition values, match flags, and adjustments.
 `constraint.i.j.unmet` identifies missing evidence; `constraint.i.met` explains
@@ -195,22 +180,18 @@ raw score          = capability + capped traits + specialist + eligibility + bre
 normalized score   = 100 × clamp(raw score / 116, 0, 1)  # eligible only
 ```
 
-The fixed ceiling remains 116. Ordinary profiles allow 100 capability, 12 trait,
+The fixed ceiling is 116. Ordinary profiles allow 100 capability, 12 trait,
 2 satisfied-soft-constraint, and 2 breadth points. Kali, the only current security
 specialist, instead allows 100 capability, 12 trait, and 4 specialist points; it has
-zero breadth and no soft-constraint reward. Bazzite allows 100 capability, 12 trait, 2 specialist, and 1.2 breadth points,
-totaling 115.2; Bluefin and Silverblue allow 1.6 breadth points, totaling 115.6.
-Narrow specialist bounds are also below 116: Arch 115.3, Gentoo 114.9, Void 115.1,
-Alpine 114.7 and Slackware 114.9. Tests check bounds before normalization, so future
-changes cannot silently rely on clamping overflow.
+zero breadth and no soft-constraint reward. Other specialist combinations remain
+below 116. Tests check bounds before normalization to detect clamping overflow.
 The scale is independent of other candidates and is not a probability or calibrated
 percentage. Revisit it when adding specialist matches or positive constraint rewards.
 
 Sort by eligibility, descending unrounded raw score, then ascending distro ID for
 exact ties. The UI rounds fit to one decimal place; displayed ties can be close
 scores or exact ties. Capability bars show assessed strengths out of 5, not fit.
-The primary result explains that fit percentages are model estimates, not
-probabilities, and very small gaps indicate similarly strong matches.
+The primary result explains that very small gaps indicate similarly strong matches.
 
 Result explanations prioritize specialist matches, then stronger trait
 contributions with stable ties. Distinct topics are selected before limiting trait
@@ -226,8 +207,8 @@ The primary result previews at most one existing substantial caution: a capabili
 gap of at least one effective point costing at least three capability-score points,
 or a negative trait modifier of at least four points. The largest qualifying loss
 wins, with stable ties. Near-match suppression and visible device warnings remain
-respected; all other cautions stay in the disclosure. These thresholds only control
-warning prominence and do not change scoring or introduce fit-score tie thresholds.
+respected; all other cautions stay in the disclosure. These thresholds control
+warning prominence, not scoring or fit-score ties.
 
 `family` describes ancestry; `presentationGroup` derives official sibling paths
 from shared non-independent family and upstream lineage, retaining distinct
@@ -252,21 +233,17 @@ npm run recommendations:review -- --answers /tmp/answers.json
 npm run recommendations:review -- --examples
 ```
 
-The 20 complete fixtures in `scripts/recommendation-personas.ts` cover ordinary
-and specialist desktop workflows. Tests check top-N results, eligibility boundaries,
-paired creative scenarios, deterministic scores, and reconstructable diagnostics.
-Explanation tests check every emitted public reason and caution across the personas
-and individual answer options, including reasons omitted from the visible shortlist.
-Internal breadth and satisfied-constraint diagnostics remain untranslated.
+The 20 fixtures in `scripts/recommendation-personas.ts` cover ordinary and specialist
+workflows. Tests check rankings, eligibility, deterministic diagnostics and public
+explanation coverage, including reasons omitted from the shortlist. Internal breadth
+and satisfied-constraint diagnostics remain untranslated.
 Across these fixtures, all 29 profiles appear on standard-PC shortlists as primary
 results, sibling editions, or alternatives. This does not require every profile
 to win or establish support on every platform.
 
-`formatRankingTable` prints all score components. JSON includes the full profile,
-reasons, cautions, modifiers, and capability/constraint diagnostics; use
-`npm run --silent` for clean JSON. [Example rankings](EXAMPLES.md) contain all 20
-full tables. `--examples` uses the persona registry, so new fixtures are included
-automatically.
+`formatRankingTable` prints all score components; JSON includes the full profile
+and diagnostics. Use `npm run --silent` for clean JSON. `--examples` regenerates
+all persona tables in [Example rankings](EXAMPLES.md).
 
 Scores are editorial judgments, not user research or empirical calibration. Changes
 need source-backed assessments, persona/focused-scenario review, a normalization
