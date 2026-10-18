@@ -36,7 +36,10 @@ export const questionContentEn: QuestionDictionary = {
     options: {
       minimal: { label: 'Very little. Updates should be uneventful.' },
       occasional: { label: 'Occasional cleanup or troubleshooting is fine.' },
-      sometimes: { label: 'I don’t mind fixing things sometimes.' },
+      sometimes: {
+        label:
+          'I’m comfortable doing regular maintenance and fixing things myself.',
+      },
       hobby: { label: 'Breaking and repairing things is part of the hobby.' },
     },
   },

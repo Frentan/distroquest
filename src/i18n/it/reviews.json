@@ -531,8 +531,8 @@
       "reviewedBy": "Frentan"
     },
     "/questions/maintenance/options/sometimes/label": {
-      "sourceHash": "e4cd7b9f3c57d136fac2a4bda5316bc13df44c91a6ab5646d01e946601d5a20e",
-      "translationHash": "961889839a174405f3f2582ddff9a85572cc073884579808d4b386ada8d4d756",
+      "sourceHash": "3f9d1c28a2fd1af45bc4b2d99139302d48e17fc536e0c064be545bc6f9f63c6e",
+      "translationHash": "f907abd5a7dd1444306ba1fabe30f22766a32ed7984d2eb696d5dedaeea2b2d8",
       "status": "reviewed",
       "reviewedBy": "Frentan"
     },
@@ -1221,8 +1221,8 @@
       "reviewedBy": "Frentan"
     },
     "/distros/fedora-kde/assessmentBasis": {
-      "sourceHash": "51efd98161271babc01f882a4775ed3e457b1746aea6c8316abcc850b166efaa",
-      "translationHash": "c7695f46f1ea17179d509e280fd68e72a5b1b437e00588c6ffbb2a4c91f00cde",
+      "sourceHash": "9d1d093607ea7a7d92393ef65da13ed1c119725fb44b7c8a2f689902ef645956",
+      "translationHash": "7f61c4ea8fddb18746b06853eede54eb11a25375740bee8cd3bcebb7d4796cc1",
       "status": "reviewed",
       "reviewedBy": "Frentan"
     },
@@ -1563,7 +1563,7 @@
       "reviewedBy": "Frentan"
     },
     "/distros/bluefin/summary": {
-      "sourceHash": "bc282b5a6f6b90c38600c037617f4b795808b22768171ebc38ed73e647e20ccd",
+      "sourceHash": "0a29c06049b36465e97e507aa64fcacdbf02accabb5cdf3e25c9aefbc78a808a",
       "translationHash": "9935de3108dc6c8acbc1dfc16882cc9f0a54b3c300e72eb5802b09364ac44cb8",
       "status": "reviewed",
       "reviewedBy": "Frentan"
@@ -2169,8 +2169,8 @@
       "reviewedBy": "Frentan"
     },
     "/distros/garuda-linux/assessmentBasis": {
-      "sourceHash": "ccf8e54ccfe156e970c0c6bc4f2af0d6a6ee2f0a7037cecdc5d56f1fa504aa01",
-      "translationHash": "24bd0dd86d28b1ba956506b8ec0db1ad91895744e21e2717cbeb147444606b11",
+      "sourceHash": "901a855d56dd5bb95e966ba852b36002922283064fb41c75c377c39aeafaf82a",
+      "translationHash": "7430c741e31e64ab6250f7d2abe37cef5a2a54b32abcef1520bd775d4054a9ff",
       "status": "reviewed",
       "reviewedBy": "Frentan"
     },
@@ -2973,8 +2973,8 @@
       "reviewedBy": "Frentan"
     },
     "/distros/pop-os/assessmentBasis": {
-      "sourceHash": "4441a416c0a40e746ee42dd3032ef59c4a64b3e4a3e6f827b7805e3f635dc5f4",
-      "translationHash": "f6baee1f0f892bd4482500989e8e3b81e1e023d4547749dbdda2902540561279",
+      "sourceHash": "1626fb15a24d4d8a4a62b05790d69d8ec49924ced6d818ef1f7940f7d191e22f",
+      "translationHash": "b23f44be465166b318afbc4e0f9ed7c78d18dd2a2f47300dcf5e868062be8761",
       "status": "reviewed",
       "reviewedBy": "Frentan"
     },
@@ -3057,14 +3057,14 @@
       "reviewedBy": "Frentan"
     },
     "/distros/rhino-linux/assessmentBasis": {
-      "sourceHash": "57732ea4f7b21787646b291e7fead63651192a2dd7b54e761e10eb93ff3b8aa1",
-      "translationHash": "e9b5c8a42c4f2da761a2eb936ee4a67c1362bc2690ea042c19b8553ad6bcd3eb",
+      "sourceHash": "4618db44b0afbcc98341be9a1438736a75d872430fc83c31e919d6089bb4714c",
+      "translationHash": "1aae7ab0c76ad4285ce21b35bf974349157666c75de373a08fb870fc54460b16",
       "status": "reviewed",
       "reviewedBy": "Frentan"
     },
     "/distros/rhino-linux/cautions/0": {
       "sourceHash": "26973b6fc4bfd0ce16cd0ba0a5e405921d981906e7f7b0843a15359c44c869a7",
-      "translationHash": "2bfbafa9cd30adb139495f836945e8479c3d9196a141a2e4f9572b71fde54458",
+      "translationHash": "5d296ee2f466f706cb02bb54d9ce97f036a8ce35898c90ef84d3e3929354d7e8",
       "status": "reviewed",
       "reviewedBy": "Frentan"
     },
@@ -3369,8 +3369,8 @@
       "reviewedBy": "Frentan"
     },
     "/distros/vanilla-os/assessmentBasis": {
-      "sourceHash": "533c0d7650a91e83fac35ec9e4d2a254f7cdd34a3056da7a805188e99b4cb986",
-      "translationHash": "cd423be178115e543bb5ebd81ddbaaa6386dc2fb5348c15fe08c3c28b37eac6b",
+      "sourceHash": "afe69d54690a40c0f164969c32dcea679dd4291f173043cae56370e3eadf72d3",
+      "translationHash": "fe2a9988ea16aff2e7bfdf13acadce666fe9d0f1a35cf5924131664f42e1e582",
       "status": "reviewed",
       "reviewedBy": "Frentan"
     },
@@ -3634,13 +3634,13 @@
     },
     "/platform/effort/guided": {
       "sourceHash": "f69b38c4d1b13fabf0f288e99534c22451288cfc01a4e17fce5c77f3d8cbb162",
-      "translationHash": "d25a98163019de8d3ebfbe2711b09942a40082ffb1e17b6aa12d03cd1817becd",
+      "translationHash": "a8c331ef5f7a352da8c4b68c2fcf8480b0c2fe387d359b5f1024bde449be5389",
       "status": "reviewed",
       "reviewedBy": "Frentan"
     },
     "/preparationCopy/old-hardware": {
-      "sourceHash": "ce5dd8a1b9a3285847bfd49cb8802ee4bc96bb3c759cd0fb7397d1d4d4b8c010",
-      "translationHash": "b90177402f16efeaf59d953880c34a3ebd4c884fc32e6c40b0ae17b8892ba964",
+      "sourceHash": "e6bdc74f1f75f6f03ef9ab89619e189f4cf67b8aba0e237f7e3c2a6a64bc1e92",
+      "translationHash": "9955a2335d06192093c0e6433665238cc06d5d295303e0143823e02124fef812",
       "status": "reviewed",
       "reviewedBy": "Frentan"
     },
@@ -3657,8 +3657,8 @@
       "reviewedBy": "Frentan"
     },
     "/quiz/statsNote": {
-      "sourceHash": "64baae3426fca3d36d89e672bd7df1a01bd532c7ff88814a58e2358d499d9db6",
-      "translationHash": "ebe46cf2ef4fbff48da003ed59da4151fe9473c71d6124a4ddca7e1187235b74",
+      "sourceHash": "c8ca850356b4d5a9bcdf9a0eef92ea6884c52bc6eeed480b7a86996f7f3908ba",
+      "translationHash": "e0bdd164adb9719f29f70235ade8339c1012782ddfdd1bc4673373ed7ec14f18",
       "status": "reviewed",
       "reviewedBy": "Frentan"
     },
@@ -3765,8 +3765,8 @@
       "reviewedBy": "Frentan"
     },
     "/explanations/capability/developerExperience/reason": {
-      "sourceHash": "921386bfbf53221dd570697ded2fc72707450cfedf5d992ba92a08833eb40886",
-      "translationHash": "850ac0fa80e2cc070096d3679ec5ff67c47cda4dd1f0eb806801058e0ddbffdf",
+      "sourceHash": "7cd759cc0d4e071eac4131cc4230474efff7960ecee1c55c844cd5896826b8cf",
+      "translationHash": "908ef1bedfb264e9d342cedce074361acbded228e34b4c909218e8a5b9ab57a9",
       "status": "reviewed",
       "reviewedBy": "Frentan"
     },
@@ -4257,8 +4257,8 @@
       "reviewedBy": "Frentan"
     },
     "/preparationCopy/general-desktop": {
-      "sourceHash": "3b0b3803f22e1b6a3f5118080316affc35270ce5e980bdc1643464d5bd644015",
-      "translationHash": "de367743040ecab022ee3c88b416e118fb04563bc0c9cc6684490915695143c2",
+      "sourceHash": "ce0a44d737058b5f6aacd1248df70f435fe94b7873d71681c696d60d26d66694",
+      "translationHash": "ef6f64a02e25f8ffcd7cac7f72cb3f869235664f18af9a063b26fa91fd242f2d",
       "status": "reviewed",
       "reviewedBy": "Frentan"
     },
@@ -4282,7 +4282,7 @@
     },
     "/quiz/alternativeDetails": {
       "sourceHash": "d084cd9515d12753f10abf582d64199b3182c5b45c7e7f6af8b831e56e7b5f90",
-      "translationHash": "907647cde05d9b4ec0fd7d113e40471eae0040f89c64160f7fa572a97a61e00d",
+      "translationHash": "3b1733511624c7a21503ee58c1298093925a5c10a20f2f0a913c9c13915eee5e",
       "status": "reviewed",
       "reviewedBy": "Frentan"
     },
@@ -4377,8 +4377,8 @@
       "reviewedBy": "Frentan"
     },
     "/quiz/matchNote": {
-      "sourceHash": "c713ab553acf289c3bdf81fab6408ba4773bb61c15a4464310e0f8d5d3eb384c",
-      "translationHash": "2b530dab037d6cf6e231061749249cdbfe6e204d183f96de5e28c79f1658ecec",
+      "sourceHash": "01395c2a77fe708083bedebab15a54d176dbc6db715f01d31835f9850ba9adc3",
+      "translationHash": "31ed0aa6eea6de579e83c1b8163655bbc8cc2844d0d15c3d8f74ae1d5e138743",
       "status": "reviewed",
       "reviewedBy": "Frentan"
     },

@@ -37,7 +37,7 @@ export const quizCopyEs = {
     'Has alcanzado el límite. Desmarca una respuesta para elegir otra.',
   relevantStats: 'Capacidades según tus prioridades',
   statsNote:
-    'Valoraciones de capacidades sobre 5, no puntuaciones de afinidad ni de compatibilidad del hardware.',
+    'Valoraciones editoriales de las capacidades sobre 5, no puntuaciones de afinidad ni de compatibilidad del hardware.',
   comparedWith: message(
     'En comparación con {name}',
     [{ name: 'name', kind: 'text' }],
@@ -76,7 +76,7 @@ export const quizCopyEs = {
     [{ name: 'percentage', kind: 'number', digits: 1 }],
     'es',
   ),
-  matchNote: 'La compatibilidad del hardware se comprueba por separado.',
+  matchNote: 'Comprueba la compatibilidad del hardware por separado.',
   fitContext:
     'Los porcentajes de afinidad son estimaciones del modelo, no probabilidades. Las diferencias muy pequeñas indican opciones que encajan casi igual de bien.',
   restart: 'Reiniciar la aventura',
@@ -103,7 +103,7 @@ export const quizCopyEs = {
   alternatives: 'Otros caminos por explorar',
   sameFamily:
     'Comparte familia con tu recomendación principal, pero sigue otro camino.',
-  alternativeDetails: 'Ventajas y limitaciones',
+  alternativeDetails: 'Limitaciones',
   resultFallback:
     'Un camino que merece la pena explorar según tus respuestas. Sopesa sus puntos fuertes y sus limitaciones antes de partir.',
 } satisfies Messages['quiz'];
@@ -123,7 +123,7 @@ export const capabilityLabelsEs: Messages['capabilityLabels'] = {
 
 export const preparationCopyEs: Record<UseCase, string> = {
   'general-desktop':
-    'Equipo para el día a día: prueba tu navegador, archivos de usuario, llamadas e impresora sin instalar el sistema.',
+    'Equipo para el día a día: comprueba tu navegador, archivos de ofimática, llamadas e impresora. Prueba el sistema sin instalarlo si tu opción de instalación lo permite.',
   creative:
     'Equipo creativo: comprueba tus aplicaciones imprescindibles, extensiones, formatos multimedia y periféricos antes de trasladar tus proyectos.',
   gaming:
@@ -137,5 +137,5 @@ export const preparationCopyEs: Record<UseCase, string> = {
   'security-testing':
     'Equipo de seguridad: usa tus herramientas en un laboratorio de prácticas aislado y autorizado.',
   'old-hardware':
-    'Equipo de rescate: prueba el escritorio sin instalarlo en tu equipo antiguo antes de su próxima aventura.',
+    'Equipo de rescate: comprueba la compatibilidad del hardware y los recursos necesarios; prueba el escritorio sin instalarlo en tu equipo antiguo cuando sea posible.',
 };

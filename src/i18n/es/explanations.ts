@@ -44,7 +44,7 @@ export const explanationsEs = {
     },
     developerExperience: {
       reason:
-        'Sus herramientas de desarrollo te dan un buen punto de partida para programar.',
+        'Sus herramientas y su ecosistema de software te dan un buen punto de partida para tus proyectos técnicos.',
       caution:
         'Tu entorno de desarrollo puede necesitar configuración adicional.',
     },

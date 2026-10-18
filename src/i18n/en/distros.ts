@@ -110,7 +110,7 @@ export const distroContentEn = {
       'People seeking modern software with conventional administration',
     ],
     assessmentBasis:
-      'Fedora KDE Plasma Desktop; desktop customization scores its built-in settings above GNOME.',
+      'Fedora KDE Plasma Desktop, assessed with its built-in desktop settings.',
   },
   'fedora-silverblue': {
     name: 'Fedora Silverblue',
@@ -197,7 +197,7 @@ export const distroContentEn = {
       'System76 hardware owners',
     ],
     assessmentBasis:
-      'Current COSMIC desktop direction; polish and maintenance estimates need review as the desktop matures.',
+      'Pop!_OS with the COSMIC desktop; assessments of desktop polish and upkeep remain provisional as COSMIC matures.',
   },
   'zorin-os': {
     name: 'Zorin OS',
@@ -459,7 +459,7 @@ export const distroContentEn = {
         'The Navigator stays on course with a managed foundation and clearly separated tools. Bluefin suits people who welcome automatic image updates and application-focused workflows, especially developers already comfortable with containers.',
     },
     summary:
-      'A Fedora-based image workstation with curated GNOME defaults and container-oriented development workflows.',
+      'A Fedora-based workstation with image-based updates, curated GNOME defaults, and container-oriented development workflows.',
     strengths: [
       'Automatic image-based updates',
       'Strong container-focused developer mode',
@@ -645,7 +645,7 @@ export const distroContentEn = {
       'Tinkerers comfortable with recovery tools',
     ],
     assessmentBasis:
-      'Gaming-oriented KDE installation with Btrfs snapshots; lighter editions differ.',
+      'Garuda Dr460nized Gaming KDE edition with Btrfs snapshots; lighter editions differ.',
   },
   solus: {
     name: 'Solus',
@@ -758,7 +758,7 @@ export const distroContentEn = {
       'People wanting application environments separated from the host',
     ],
     assessmentBasis:
-      'Vanilla OS 3 Reunion GNOME desktop, released August 2026; hybrid Debian-derived OCI host with ABRoot, Apx v3, a Debian-testing VSO environment and Flatpak apps. Continuously updated images with named major revisions are modeled as rolling, not Ubuntu LTS. Included with caution for the small ecosystem and recent workflow changes.',
+      'Vanilla OS 3 Reunion GNOME desktop (August 2026), with a hybrid Debian-derived OCI host, ABRoot, Apx v3, a Debian-testing VSO environment, and Flatpak apps. System images update continuously between named major revisions. The small ecosystem and recent workflow changes warrant caution.',
   },
   'rhino-linux': {
     name: 'Rhino Linux',
@@ -787,7 +787,7 @@ export const distroContentEn = {
       'Desktop users comfortable with upkeep who prefer Debian-family systems over Arch',
     ],
     assessmentBasis:
-      'Rhino Linux 2026.1 Unicorn desktop snapshot: mutable Ubuntu devel base, Xfce, Pacstall and Rhino PKG (RPK2), with guided NVIDIA setup. UBXI desktops such as Lomiri are separate choices. Included with caution; the February 2026 Pacstall emergency fix illustrates real upkeep risk.',
+      'Rhino Linux 2026.1 Unicorn desktop snapshot, with a mutable Ubuntu development base, Xfce, Pacstall, Rhino PKG (RPK2), and guided NVIDIA setup. UBXI desktops such as Lomiri are separate choices. Rolling updates and community packages can require manual fixes.',
   },
   slackware: {
     name: 'Slackware',

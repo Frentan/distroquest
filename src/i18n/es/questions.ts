@@ -46,7 +46,7 @@ export const questionContentEs: QuestionDictionary = {
       },
       sometimes: {
         label:
-          'Estoy dispuesto a investigar y solucionar problemas cuando surjan.',
+          'Me siento cómodo haciendo el mantenimiento regular y resolviendo problemas por mi cuenta.',
       },
       hobby: { label: 'Romper y reparar cosas es parte de la afición.' },
     },

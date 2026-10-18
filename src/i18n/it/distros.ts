@@ -110,7 +110,7 @@ export const distroContentIt = {
       'Chi cerca software moderno con un’amministrazione tradizionale',
     ],
     assessmentBasis:
-      'Fedora KDE Plasma Desktop; grazie alle impostazioni integrate, ottiene un punteggio di personalizzazione superiore a GNOME.',
+      'Fedora KDE Plasma Desktop, valutato con le impostazioni integrate dell’ambiente desktop.',
   },
   'fedora-silverblue': {
     name: 'Fedora Silverblue',
@@ -197,7 +197,7 @@ export const distroContentIt = {
       'Proprietari di hardware System76',
     ],
     assessmentBasis:
-      'Attuale impostazione basata sul desktop COSMIC; le stime sulla rifinitura e sulla manutenzione vanno riviste con il maturare del desktop.',
+      'Pop!_OS con il desktop COSMIC; le valutazioni sulla rifinitura del desktop e sulla manutenzione restano provvisorie mentre COSMIC matura.',
   },
   'zorin-os': {
     name: 'Zorin OS',
@@ -645,7 +645,7 @@ export const distroContentIt = {
       'Smanettoni a proprio agio con gli strumenti di ripristino',
     ],
     assessmentBasis:
-      'Installazione KDE orientata ai videogiochi con snapshot Btrfs; le edizioni più leggere sono diverse.',
+      'Edizione Garuda Dr460nized Gaming con KDE e snapshot Btrfs; le edizioni più leggere sono diverse.',
   },
   solus: {
     name: 'Solus',
@@ -758,7 +758,7 @@ export const distroContentIt = {
       'Chi vuole ambienti applicativi separati dal sistema host',
     ],
     assessmentBasis:
-      'Desktop GNOME di Vanilla OS 3 Reunion, rilasciato ad agosto 2026; sistema host OCI ibrido derivato da Debian, con ABRoot, Apx v3, un ambiente VSO basato su Debian testing e app Flatpak. Le immagini aggiornate continuamente, con revisioni principali dotate di un nome, sono modellate come rolling, non come Ubuntu LTS. Incluso con cautela per l’ecosistema piccolo e i recenti cambiamenti nel flusso di lavoro.',
+      'Desktop GNOME di Vanilla OS 3 Reunion (agosto 2026), con un sistema host OCI ibrido derivato da Debian, ABRoot, Apx v3, un ambiente VSO basato su Debian testing e app Flatpak. Le immagini del sistema ricevono aggiornamenti continui tra le versioni principali con nome proprio. Le dimensioni ridotte dell’ecosistema e i recenti cambiamenti nel flusso di lavoro richiedono cautela.',
   },
   'rhino-linux': {
     name: 'Rhino Linux',
@@ -776,7 +776,7 @@ export const distroContentIt = {
       'Desktop Unicorn leggero e personalizzabile, basato su Xfce',
     ],
     cautions: [
-      'I pacchetti di sviluppo di Ubuntu e gli aggiornamenti rolling possono causare malfunzionamenti che richiedono correzioni manuali.',
+      'I pacchetti del ramo di sviluppo di Ubuntu e gli aggiornamenti rolling possono causare malfunzionamenti che richiedono correzioni manuali.',
       'Progetto e comunità di supporto più piccoli rispetto a Ubuntu standard.',
       'I pacchetti della comunità Pacstall richiedono valutazioni autonome; non sono tutti mantenuti da Ubuntu.',
       'I kernel non firmati influiscono sulla configurazione di Secure Boot; le versioni dei driver NVIDIA vanno verificate.',
@@ -787,7 +787,7 @@ export const distroContentIt = {
       'Utenti desktop a proprio agio con la manutenzione che preferiscono sistemi della famiglia Debian ad Arch',
     ],
     assessmentBasis:
-      'Snapshot del desktop Unicorn di Rhino Linux 2026.1: base Ubuntu devel modificabile, Xfce, Pacstall e Rhino PKG (RPK2), con configurazione NVIDIA guidata. I desktop UBXI come Lomiri sono scelte separate. Incluso con cautela; la correzione di emergenza di Pacstall di febbraio 2026 dimostra un rischio concreto di manutenzione.',
+      'Snapshot del desktop Unicorn di Rhino Linux 2026.1, con una base modificabile derivata dal ramo di sviluppo di Ubuntu, Xfce, Pacstall, Rhino PKG (RPK2) e configurazione NVIDIA guidata. I desktop UBXI come Lomiri sono scelte separate. Gli aggiornamenti rolling e i pacchetti della comunità possono richiedere correzioni manuali.',
   },
   slackware: {
     name: 'Slackware',

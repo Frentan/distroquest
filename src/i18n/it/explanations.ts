@@ -44,7 +44,7 @@ export const explanationsIt = {
     },
     developerExperience: {
       reason:
-        'Gli strumenti di sviluppo offrono un utile punto di partenza ai tuoi progetti di programmazione.',
+        'Gli strumenti e l’ecosistema software offrono un utile punto di partenza per i tuoi progetti tecnici.',
       caution:
         'Il tuo flusso di sviluppo potrebbe richiedere una configurazione aggiuntiva.',
     },

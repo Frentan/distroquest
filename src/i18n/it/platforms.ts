@@ -51,7 +51,7 @@ export const platformCopyIt = {
   identifyT2: 'Verifica se il tuo Mac ha il chip T2',
   effort: {
     guided:
-      "Usa l'installer T2 o il modulo dedicato alla piattaforma, entrambi mantenuti dal progetto.",
+      'Usa il percorso T2 mantenuto per questa distribuzione, tramite installer o modulo dedicato alla piattaforma.',
     manual:
       'È disponibile un percorso T2 documentato che richiede più configurazione manuale.',
     standard:

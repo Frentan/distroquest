@@ -110,7 +110,7 @@ export const distroContentEs = {
       'Quienes buscan software moderno con administración convencional',
     ],
     assessmentBasis:
-      'Fedora KDE Plasma Desktop; sus ajustes integrados permiten una personalización del escritorio superior a la de GNOME.',
+      'Fedora KDE Plasma Desktop, evaluado con sus ajustes de escritorio integrados.',
   },
   'fedora-silverblue': {
     name: 'Fedora Silverblue',
@@ -197,7 +197,7 @@ export const distroContentEs = {
       'Propietarios de equipos System76',
     ],
     assessmentBasis:
-      'Propuesta actual del escritorio COSMIC; las estimaciones de pulido y mantenimiento necesitan revisión a medida que madure el escritorio.',
+      'Pop!_OS con el escritorio COSMIC; las valoraciones sobre el pulido del escritorio y el mantenimiento siguen siendo provisionales mientras COSMIC madura.',
   },
   'zorin-os': {
     name: 'Zorin OS',
@@ -523,7 +523,7 @@ export const distroContentEs = {
       'Documentación detallada del sistema',
     ],
     cautions: [
-      'La configuración y los cambios de versión exigen bastante atención.',
+      'La configuración y las actualizaciones exigen bastante atención.',
       'Compilar desde el código fuente puede llevar tiempo y demandar mucho trabajo de tu hardware.',
       'La integración del escritorio es responsabilidad del usuario.',
     ],
@@ -645,7 +645,7 @@ export const distroContentEs = {
       'Quienes disfrutan personalizando el sistema y se manejan bien con herramientas de recuperación',
     ],
     assessmentBasis:
-      'Instalación KDE orientada a videojuegos con instantáneas Btrfs; las ediciones más ligeras difieren.',
+      'Edición Garuda Dr460nized Gaming con KDE e instantáneas Btrfs; las ediciones más ligeras difieren.',
   },
   solus: {
     name: 'Solus',
@@ -758,7 +758,7 @@ export const distroContentEs = {
       'Quienes quieren entornos de aplicaciones separados del sistema anfitrión',
     ],
     assessmentBasis:
-      'Escritorio GNOME de Vanilla OS 3 Reunion, publicado en agosto de 2026; sistema anfitrión OCI híbrido derivado de Debian, con ABRoot, Apx v3, un entorno VSO basado en Debian testing y aplicaciones Flatpak. Las imágenes con actualización continua y revisiones principales con nombre se modelan como actualización continua, no como Ubuntu LTS. Incluido con cautela por su ecosistema pequeño y los cambios recientes en la forma de trabajar.',
+      'Escritorio GNOME de Vanilla OS 3 Reunion (agosto de 2026), con un sistema anfitrión OCI híbrido derivado de Debian, ABRoot, Apx v3, un entorno VSO basado en Debian testing y aplicaciones Flatpak. Las imágenes del sistema se actualizan de forma continua entre versiones principales con nombre propio. Su ecosistema pequeño y los cambios recientes en la forma de trabajar aconsejan cautela.',
   },
   'rhino-linux': {
     name: 'Rhino Linux',
@@ -770,13 +770,13 @@ export const distroContentEs = {
     summary:
       'Un escritorio de la familia Ubuntu con actualización continua que combina paquetes actuales, herramientas Pacstall y una experiencia de escritorio ligera con decisiones de diseño propias.',
     strengths: [
-      'Base de paquetes de desarrollo de Ubuntu con actualización continua',
+      'Base de paquetes de la rama de desarrollo de Ubuntu con actualización continua',
       'Kernels y software de desarrollo muy actuales',
       'Paquetes comunitarios de Pacstall e integración con Rhino PKG',
       'Escritorio Unicorn ligero y personalizable, basado en Xfce',
     ],
     cautions: [
-      'Los paquetes de desarrollo de Ubuntu y las actualizaciones continuas pueden provocar fallos que requieran correcciones manuales.',
+      'Los paquetes de la rama de desarrollo de Ubuntu y las actualizaciones continuas pueden provocar fallos que requieran correcciones manuales.',
       'Proyecto y comunidad de soporte más pequeños que los de Ubuntu estándar.',
       'Los paquetes comunitarios de Pacstall requieren criterio propio; no todos están mantenidos por Ubuntu.',
       'Los kernels sin firmar afectan a la configuración de Secure Boot; hay que comprobar las versiones de los controladores NVIDIA.',
@@ -787,7 +787,7 @@ export const distroContentEs = {
       'Usuarios de escritorio cómodos con el mantenimiento que prefieren sistemas de la familia Debian a Arch',
     ],
     assessmentBasis:
-      'Instantánea del escritorio Unicorn de Rhino Linux 2026.1: base mutable de Ubuntu devel, Xfce, Pacstall y Rhino PKG (RPK2), con configuración guiada de NVIDIA. Los escritorios UBXI, como Lomiri, son opciones separadas. Incluido con cautela; la corrección de emergencia de Pacstall de febrero de 2026 ilustra un riesgo real de mantenimiento.',
+      'Instantánea del escritorio Unicorn de Rhino Linux 2026.1, con una base mutable de la rama de desarrollo de Ubuntu, Xfce, Pacstall, Rhino PKG (RPK2) y configuración guiada de NVIDIA. Los escritorios UBXI, como Lomiri, son opciones separadas. Las actualizaciones continuas y los paquetes comunitarios pueden requerir correcciones manuales.',
   },
   slackware: {
     name: 'Slackware',

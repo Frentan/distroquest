@@ -43,7 +43,8 @@ export const questionContentIt: QuestionDictionary = {
         label: 'Ogni tanto va bene fare pulizia o risolvere qualche problema.',
       },
       sometimes: {
-        label: 'Non mi dispiace sistemare le cose di tanto in tanto.',
+        label:
+          'Mi sento a mio agio nel fare manutenzione regolare e risolvere i problemi in autonomia.',
       },
       hobby: { label: 'Rompere e riparare le cose fa parte dell’hobby.' },
     },

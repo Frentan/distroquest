@@ -23,7 +23,8 @@ export const quizCopy = {
   ]),
   selectionLimit: 'Limit reached. Deselect an answer to choose another.',
   relevantStats: 'Capabilities for your priorities',
-  statsNote: 'Capability ratings out of 5, not fit or hardware-support scores.',
+  statsNote:
+    'Editorial capability ratings out of 5, not fit or hardware-support scores.',
   comparedWith: message('Compared with {name}', [
     { name: 'name', kind: 'text' },
   ]),
@@ -53,7 +54,7 @@ export const quizCopy = {
   match: message('{percentage}% preference fit', [
     { name: 'percentage', kind: 'number', digits: 1 },
   ]),
-  matchNote: 'Hardware support is checked separately.',
+  matchNote: 'Check hardware support separately.',
   fitContext:
     'Fit percentages are model estimates, not probabilities. Very small differences indicate similarly strong matches.',
   restart: 'Restart quest',
@@ -97,7 +98,7 @@ export const capabilityLabels: Record<Capability, string> = {
 };
 export const preparationCopy: Record<UseCase, string> = {
   'general-desktop':
-    'Everyday kit: try your browser, office files, calls, and printer in a live session.',
+    'Everyday kit: check your browser, office files, calls, and printer. Use a live session where your installation path supports one.',
   creative:
     'Creative kit: check your must-have apps, plugins, media formats, and peripherals before moving your projects.',
   gaming:
@@ -111,7 +112,7 @@ export const preparationCopy: Record<UseCase, string> = {
   'security-testing':
     'Security kit: use an isolated, authorized practice lab for your tools.',
   'old-hardware':
-    'Revival kit: let the old machine try the live desktop before its next adventure.',
+    'Revival kit: check hardware support and resource needs; try a live desktop on the old machine where available.',
 };
 export const capabilityCopy: Record<
   Capability,
@@ -147,7 +148,8 @@ export const capabilityCopy: Record<
       'Your gaming setup may need more preparation here. Check support for your games and hardware.',
   },
   developerExperience: {
-    reason: 'Developer tools give your coding plans a useful starting point.',
+    reason:
+      'Its tools and software ecosystem give your technical projects a useful starting point.',
     caution: 'Your development workflow may need extra setup.',
   },
   oldHardware: {

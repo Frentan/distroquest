@@ -36,7 +36,7 @@ export const quizCopyPt = {
     'Limite atingido. Desmarque uma resposta para escolher outra.',
   relevantStats: 'Capacidades para suas prioridades',
   statsNote:
-    'Notas de capacidade em uma escala de 5 pontos; não são notas de afinidade nem de suporte ao hardware.',
+    'Avaliações editoriais das capacidades em uma escala de 5 pontos; não são notas de afinidade nem de suporte ao hardware.',
   comparedWith: message(
     'Em comparação com {name}',
     [{ name: 'name', kind: 'text' }],
@@ -75,7 +75,7 @@ export const quizCopyPt = {
     [{ name: 'percentage', kind: 'number', digits: 1 }],
     'pt',
   ),
-  matchNote: 'O suporte ao hardware é verificado separadamente.',
+  matchNote: 'Verifique o suporte ao hardware separadamente.',
   fitContext:
     'Os percentuais de afinidade são estimativas do modelo, não probabilidades. Diferenças muito pequenas indicam opções com afinidade semelhante.',
   restart: 'Reiniciar a aventura',
@@ -102,7 +102,7 @@ export const quizCopyPt = {
   alternatives: 'Outros caminhos para explorar',
   sameFamily:
     'Da mesma família da sua recomendação principal, com um caminho diferente.',
-  alternativeDetails: 'Vantagens e limitações',
+  alternativeDetails: 'Limitações',
   resultFallback:
     'Um caminho que vale a pena explorar com base nas suas respostas. Considere suas vantagens e limitações antes de partir.',
 } satisfies Messages['quiz'];
@@ -123,7 +123,7 @@ export const capabilityLabelsPt = {
 // Unpublished batch 3 draft; the security-testing sample is already reviewed.
 export const preparationCopyPt = {
   'general-desktop':
-    'Kit para o dia a dia: teste seu navegador, documentos de escritório, chamadas e impressora em uma sessão sem instalar o sistema.',
+    'Kit para o dia a dia: verifique seu navegador, documentos de escritório, chamadas e impressora. Teste o sistema sem instalá-lo se o método de instalação permitir.',
   creative:
     'Kit criativo: verifique seus aplicativos essenciais, plugins, formatos de mídia e periféricos antes de transferir seus projetos.',
   gaming:
@@ -137,5 +137,5 @@ export const preparationCopyPt = {
   'security-testing':
     'Kit de segurança: use um laboratório de prática isolado e autorizado para suas ferramentas.',
   'old-hardware':
-    'Kit de resgate: teste o ambiente em modo live sem instalação no computador antigo antes da próxima aventura.',
+    'Kit de resgate: verifique o suporte ao hardware e os recursos necessários; teste o ambiente de trabalho no computador antigo sem instalar o sistema, se essa opção estiver disponível.',
 } satisfies Messages['preparationCopy'];

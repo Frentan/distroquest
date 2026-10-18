@@ -37,7 +37,7 @@ export const quizCopyIt = {
     'Limite raggiunto. Deseleziona una risposta per sceglierne un’altra.',
   relevantStats: 'Capacità rilevanti per le tue priorità',
   statsNote:
-    'Valutazioni delle capacità su 5 punti, non punteggi di compatibilità hardware o di affinità con le tue preferenze.',
+    'Valutazioni editoriali delle capacità su 5 punti, non punteggi di compatibilità hardware o di affinità con le tue preferenze.',
   comparedWith: message(
     'Confronto con {name}',
     [{ name: 'name', kind: 'text' }],
@@ -76,7 +76,7 @@ export const quizCopyIt = {
     [{ name: 'percentage', kind: 'number', digits: 1 }],
     'it',
   ),
-  matchNote: 'Il supporto hardware viene verificato separatamente.',
+  matchNote: 'Verifica il supporto hardware separatamente.',
   fitContext:
     'Le percentuali di affinità sono stime del modello, non probabilità. Differenze molto piccole indicano opzioni quasi altrettanto adatte alle tue preferenze.',
   restart: 'Ricomincia l’avventura',
@@ -103,7 +103,7 @@ export const quizCopyIt = {
   alternatives: 'Altri percorsi da esplorare',
   sameFamily:
     'Stessa famiglia della raccomandazione principale, con un percorso diverso.',
-  alternativeDetails: 'Vantaggi e compromessi',
+  alternativeDetails: 'Limiti',
   resultFallback:
     'Un percorso da esplorare in base alle tue risposte. Valuta i suoi punti di forza e i compromessi prima di partire.',
 };
@@ -123,7 +123,7 @@ export const capabilityLabelsIt: Record<Capability, string> = {
 
 export const preparationCopyIt: Record<UseCase, string> = {
   'general-desktop':
-    'Equipaggiamento quotidiano: prova browser, documenti d’ufficio, chiamate e stampante in una sessione live.',
+    'Equipaggiamento quotidiano: verifica browser, documenti d’ufficio, chiamate e stampante. Usa una sessione live se il percorso di installazione lo consente.',
   creative:
     'Equipaggiamento creativo: verifica le app indispensabili, i plugin, i formati multimediali e le periferiche prima di trasferire i tuoi progetti.',
   gaming:
@@ -137,5 +137,5 @@ export const preparationCopyIt: Record<UseCase, string> = {
   'security-testing':
     'Equipaggiamento per la sicurezza: usa i tuoi strumenti in un laboratorio di esercitazione isolato e autorizzato.',
   'old-hardware':
-    'Equipaggiamento di rinascita: prova il desktop in modalità live sul tuo vecchio computer prima della prossima avventura.',
+    'Equipaggiamento di rinascita: verifica il supporto hardware e i requisiti di risorse; prova il desktop in modalità live sul vecchio computer, se questa opzione è disponibile.',
 };

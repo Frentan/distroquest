@@ -41,7 +41,7 @@ export const explanationsPt = {
     },
     developerExperience: {
       reason:
-        'As ferramentas de desenvolvimento oferecem um bom ponto de partida para programar.',
+        'As ferramentas e o ecossistema de software oferecem um bom ponto de partida para seus projetos técnicos.',
       caution:
         'Seu fluxo de desenvolvimento pode precisar de configuração adicional.',
     },
@@ -90,7 +90,7 @@ export const explanationsPt = {
     'focus.gaming':
       'O foco em jogos coloca suas partidas no centro da aventura.',
     'creative.documented-integration':
-      'Recursos e orientações documentados para configurar ferramentas criativas ajudam a preparar seus projetos.',
+      'Os recursos documentados de configuração para trabalho criativo ajudam nos seus projetos.',
     'focus.development':
       'O foco em desenvolvimento coloca a programação no centro do ambiente.',
     'focus.security':

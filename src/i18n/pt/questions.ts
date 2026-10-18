@@ -22,7 +22,7 @@ export const questionContentPt = {
     },
   },
   freshness: {
-    prompt: 'Quanto você quer que o software esteja atualizado?',
+    prompt: 'Você prefere software mais consolidado ou mais recente?',
     options: {
       proven: { label: 'Quero algo testado e sem graça.' },
       balanced: { label: 'Recente o suficiente, mas confiável.' },
@@ -42,7 +42,10 @@ export const questionContentPt = {
         label:
           'Tudo bem fazer uma limpeza ou resolver problemas de vez em quando.',
       },
-      sometimes: { label: 'Não me importo de corrigir problemas às vezes.' },
+      sometimes: {
+        label:
+          'Me sinto à vontade para fazer manutenção regular e resolver problemas por conta própria.',
+      },
       hobby: { label: 'Quebrar e consertar as coisas faz parte do hobby.' },
     },
   },
