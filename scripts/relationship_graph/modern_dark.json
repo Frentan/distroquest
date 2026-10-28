@@ -1,0 +1,53 @@
+{
+  "name": "Modern Dark",
+  "legend_enabled": true,
+  "heading": {
+    "cellpadding": 3,
+    "cellspacing": 2
+  },
+  "legend": {
+    "fontsize": 11.5,
+    "fontcolor": "#a9b1bb"
+  },
+  "graph": {
+    "bgcolor": "#2b2b2b",
+    "fontname": "Fira Sans",
+    "fontsize": 14,
+    "fontcolor": "#e5e7eb"
+  },
+  "node": {
+    "shape": "box",
+    "style": "rounded,filled",
+    "fontname": "Fira Sans",
+    "fontsize": 12,
+    "fontcolor": "#e5e7eb",
+    "penwidth": 1,
+    "margin": "0.16,0.10"
+  },
+  "edge": {
+    "fontname": "Fira Sans",
+    "fontsize": 10.5,
+    "fontcolor": "#a9b1bb",
+    "arrowsize": 0.65,
+    "penwidth": 1.1
+  },
+  "cluster": {
+    "style": "rounded,filled",
+    "fillcolor": "#303237",
+    "color": "#a9b1bb",
+    "penwidth": 1,
+    "fontname": "Fira Sans SemiBold",
+    "fontsize": 13.5,
+    "fontcolor": "#e5e7eb"
+  },
+  "categories": {
+    "application": { "color": "#60b8f4", "fillcolor": "#303b45" },
+    "tests": { "color": "#f5bd42", "fillcolor": "#403b2f" },
+    "tooling": { "color": "#b78af0", "fillcolor": "#393244" },
+    "neutral": { "color": "#a9b1bb", "fillcolor": "#33363a" }
+  },
+  "references": {
+    "value": { "color": "#60c8e6", "style": "solid" },
+    "type": { "color": "#c5cbd3", "style": "dashed" }
+  }
+}

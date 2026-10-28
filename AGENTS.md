@@ -76,6 +76,18 @@ npm run build
   verify the static build with an isolated profile under `/tmp`. Keep test tooling
   outside the shipped application and close only processes started for that test.
 
+## Relationship maps
+
+- The retained report and maps live in `reports/relationship-graph/`; regenerate
+  them rather than editing generated files. Sources remain canonical.
+- Before finishing authorized changes to scanned code/docs, link targets,
+  resolver/dependency configuration or `scripts/relationship_graph/`, run
+  `python3 -B scripts/relationship_graph/refresh.py --check`. If stale, run
+  `--refresh`, inspect the report and images, then check again. Read-only tasks
+  only check and report staleness. No hooks or automatic commits are required.
+- Preserve the two bounded views and explicit provenance. If a view exceeds its
+  limit or becomes unhelpful, stop and propose a smaller question.
+
 ## Brand assets
 
 - `public/favicon.svg` is the canonical shield/terminal mark. Reuse

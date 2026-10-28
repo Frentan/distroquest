@@ -7,3 +7,6 @@ package-lock.json
 .aws/
 AGENTS.md
 CLAUDE.md
+
+# Reproducible graph artifacts; refresh with the graph script instead.
+/reports/relationship-graph/

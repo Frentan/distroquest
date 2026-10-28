@@ -78,6 +78,7 @@ Technical references:
 - [Preference model](src/preferences/README.md)
 - [Scoring engine](src/recommendations/README.md) and [example rankings](src/recommendations/EXAMPLES.md)
 - [Routing, translations, and publication checks](src/i18n/README.md)
+- [Documentation and code relationship maps](reports/relationship-graph/README.md)
 
 ## License
 
