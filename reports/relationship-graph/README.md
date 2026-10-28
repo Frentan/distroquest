@@ -134,4 +134,4 @@ python3 -B scripts/relationship_graph/refresh.py --export /tmp/distroquest-graph
 snapshot.json records input/tool fingerprints and artifact hashes. Generated outputs
 and this toolkit can be removed without changing the application.
 
-Snapshot fingerprint: `28a66d1b338747c56d97520302d253c5fe7a2370886430efc146e3d337bb064a`.
+Snapshot fingerprint: `3dbc3cbefe518cb55077af854c68c713e987d1671f90537008d4fb21eef8c323`.

@@ -195,7 +195,7 @@ export async function inspect(root, inventory, dependencyRoot = root) {
     if (ts.isImportDeclaration(node)) {
       const c = node.importClause;
       if (!c) return ['value'];
-      if (c.isTypeOnly) return ['type'];
+      if (c.phaseModifier === ts.SyntaxKind.TypeKeyword) return ['type'];
       const result = c.name ? ['value'] : [];
       if (c.namedBindings)
         result.push(
@@ -528,7 +528,6 @@ export async function inspect(root, inventory, dependencyRoot = root) {
       configuration: {
         tsconfig_sha256: hash(fs.readFileSync(configPath)),
         paths: options.paths ?? null,
-        baseUrl: options.baseUrl ?? null,
       },
       counts: {
         files: files.length,

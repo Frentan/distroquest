@@ -1,19 +1,19 @@
 {
   "artifacts": {
-    "README.md": "d4dc6908091b5191cec45319a29dffe0c87642e5564c266fd80d5610ebf8a977",
+    "README.md": "5f14a63d38c7ada97332dc6b011a06f3712d14e2fbe8d4787f631f4f3533ff87",
     "code/engine-neighborhood.png": "c8c62982a1cbb609cd90c5b91f72367c4851c31bdb55e06de6e498aae976b1a8",
     "documentation/overview.png": "50cc8ff8f4e6de5cc72abb24d54c07d6931fdcb31ef25c7d56bacf73567f3cbe"
   },
-  "fingerprint": "28a66d1b338747c56d97520302d253c5fe7a2370886430efc146e3d337bb064a",
+  "fingerprint": "3dbc3cbefe518cb55077af854c68c713e987d1671f90537008d4fb21eef8c323",
   "state": {
     "configuration": {
       "package-lock.json": "e4df5a6f2f74f6ba2c1541c650fae00364a017f53c34499d8d9470cdbf243b87",
       "package.json": "441cf63c08a3aa0db6ed1e01f1bdae76f23157cf3db23277bba3dd27d5aca030",
       "tsconfig.json": "bf1977425a6738cf26d11d26076082df29400de10e464176d46c1e2c00849bb4"
     },
-    "graph_sha256": "9ee7129bfbb2cc2254f451f1461d83c91852f35ee11961c31b218e3a8ced42dc",
+    "graph_sha256": "ace808b2996043053912e615eb19bb6806420240f5f796604e0aa32e9d0e21b2",
     "implementation": {
-      "inspect_code.mjs": "9d69762a204fe8b5e06f8361347b1f04ffcfe08a92fce89c9466c88b9386381b",
+      "inspect_code.mjs": "ae5251ad6f3abcf8167513387846080f1d2c3720e3616c3d84549f26e2c9e80c",
       "inspect_docs.py": "263d5e24881057613588f6657d4d813516b0abfd28f933089cd4527bcef04dc5",
       "markdown_links.py": "da9ed7baf1ebaad35d1a3263c2d8dd96baa4dc83e00e935792c688273ccc94cc",
       "modern_dark.json": "56a14cd5920af627c40b27b296746083a2350bbbd88e5f8f679777c7d868ce69",
